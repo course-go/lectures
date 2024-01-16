@@ -2,6 +2,10 @@
 
 This repository contains lecture slides for Course Go.
 
+## Content
+
+TBD
+
 ## Tooling
 
 The slides are made using the [go present syntax](https://pkg.go.dev/golang.org/x/tools/present).
