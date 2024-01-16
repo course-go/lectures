@@ -27,3 +27,11 @@ present
 ```
 
 A webserver is run on localhost where you can preview the slides using your favourite web browser.
+
+## Atribution
+
+Some of the lecture slides are based on the [GoCourse](https://github.com/RedHatOfficial/GoCourse) 
+project developed under [Red Hat](https://github.com/RedHatOfficial). The GoCourse is licensed under 
+[CC BY-SA 4.0 DEED license](https://creativecommons.org/licenses/by-sa/4.0/deed.en), which this 
+repository respects and therefore shares.
+
