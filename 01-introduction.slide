@@ -394,3 +394,10 @@ go version go<version> <os>/<platform>
 [Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide#1)
 - [Playground](https://go.dev/play/)
 
+## Resources
+
+- [Go Spec](https://go.dev/ref/spec)
+- [Go Doc](https://pkg.go.dev)
+- [Tour of Go](https://go.dev/tour/welcome/1)
+- [Effective Go](https://go.dev/doc/effective_go)
+- [Go by Example](https://gobyexample.com)
