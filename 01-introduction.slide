@@ -109,9 +109,11 @@ to 'block &&'
 ## Goals
 
 - Simplicity
+- Versatility
 - Unambiguity
 - Performance
 - Pragmatic
+- Community
 - Safer applications (compared to C/C++)
 - Microservices
 - Ease to install ("DLL hell" can't happen)
