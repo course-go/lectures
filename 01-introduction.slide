@@ -124,7 +124,8 @@ to 'block &&'
 - Explicit error handling
 - No generics till version 1.18
 - No class-based OOP
-- No exceptions or `try`/`catch`/`finally` block
+- No exceptions or exception handling control structures
+    - `try`/`catch`/`finally` block
 - `goto` keyword
 - `nil` identifier
 
@@ -138,8 +139,6 @@ to 'block &&'
     - Garbage collector
 - Standardized testing framework
 - Stricter rules (`++`/`--`, pointers, ...)
-- No exception handling control structures
-- No generic data types till Go 1.18
 
 ## But... we are in 21th century!
 
