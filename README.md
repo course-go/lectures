@@ -4,7 +4,16 @@ This repository contains lecture slides for Course Go.
 
 ## Content
 
-TBD
+1. Introduction
+    - Course introduction & requirements
+    - Course overview
+    - Origins of Go
+    - Comparison with other languages
+    - Concurrency
+    - Use Cases
+    - Why learn it
+    - Installation
+    - Tooling
 
 ## Tooling
 
