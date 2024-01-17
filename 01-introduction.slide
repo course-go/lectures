@@ -1,0 +1,395 @@
+# Introduction
+Course Go
+Tags: golang, go
+
+## Course
+
+- 11/12 lectures
+- 6 exercises
+- Final project
+
+## Requirements
+
+TODO
+
+## Course Overview
+
+TODO
+
+##
+
+.image assets/logos/go-logo-blue.svg _ 600
+
+## Introduction
+
+- Lots of interesting programming languages that you can learn
+- Should you perfect them all?
+    - Of course no
+- So what about the Go language - is it worth a try?
+- Let's take look...
+
+## Gophers
+
+.image assets/gophers/go-gopher.svg _ 500
+
+## Introduction
+
+- Conceived late 2007 at Google
+    - [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike), 
+    [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), 
+    [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer)
+- Launched in November 2009 by Google
+- Go version 1.0 released March 2012
+    - [Release History](https://go.dev/doc/devel/release)
+- More readable replacement for C, C++, Java, ...
+- Better suits corporations needs
+- _„Less is more“_
+
+## Introduction
+
+- Procedural, C-family
+- Compiled
+- Statically typed
+- Allows cross-compilation
+- Garbage collected
+- Built-in concurrency
+- Strict formatting rules
+- Type inference
+
+## More readable compared to C/C++
+
+- Evolved from C
+- Declarations in postfix
+- Much faster for parser to parse sources
+- Exported symbols begin with Capital letter
+- [The Go Blog: Go's Declaration Syntax](https://blog.golang.org/gos-declaration-syntax)
+
+```
+int a;
+int *p;
+int *(*f)(int *);
+```
+
+```
+a int
+p *int
+f func(*int) *int
+```
+
+## More readable compared to C++
+
+- In C++ we don't say "Missing asterisk"
+- We say:
+
+```
+error C2664:
+'void std::vector<block,std::alocator<_Ty> >::push_back(const block &)':
+cannot convert argument 1 from
+'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<block> > >'
+to 'block &&'
+```
+
+- and I think that's beautiful
+- [source](https://goo.gl/Akxjih)
+
+## More readable compared to C++
+
+    #include <vector>
+    #include <algorithm>
+    
+    int main()
+    {
+        int a;
+        std::vector< std::vector <int> > v;
+        std::vector< std::vector <int> >::const_iterator it = std::find( v.begin(), v.end(), a );
+    }
+
+- gcc -c error.cpp will produce 15786 bytes of output, with a longest line of 330 characters
+
+## Goals
+
+- Simplicity
+- Unambiguity
+- Performance
+- Pragmatic
+- Safer applications (compared to C/C++)
+- Microservices
+- Ease to install ("DLL hell" can't happen)
+- For DevOps from DevOps
+- Fast (actually super fast) builds (CI tools like it ;-)
+
+## Attention
+
+- Go is a blend of modern approaches combined with quite old ideas
+- Explicit error handling
+- No generics till version 1.18
+- No class-based OOP
+- No exceptions or `try`/`catch`/`finally` block
+- `goto` keyword
+- `nil` identifier
+
+## Go vs C(++)
+
+- Stronger type system
+- No text substitution macros
+- No header files
+- Package system
+- Safer memory operations
+    - Garbage collector
+- Standardized testing framework
+- Stricter rules (`++`/`--`, pointers, ...)
+- No exception handling control structures
+- No generic data types till Go 1.18
+
+## But... we are in 21th century!
+
+.image assets/lesson-01/ural.jpg _ 700
+
+## But... we are in 21th century!
+
+- Multi-core CPUs
+- Distributed systems
+- Memory locality
+- Readability
+
+## Multi-core CPUs
+
+.image assets/lesson-01/Amdahl.png
+
+## Bit of history
+
+## 60's
+
+- Insufficient program flow control
+- _"[Go To Statement Considered Harmful](https://homepages.cwi.nl/~storm/teaching/reader/Dijkstra68.pdf)"_
+    - [Edsger W. Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra)
+- Solved by introducing structured programming
+- -> new syntax
+
+## 70's
+
+- Insufficient state control
+- Solved by introducing OOP
+    - [Smalltalk](https://en.wikipedia.org/wiki/Smalltalk)
+- -> new syntax
+
+## 2000's 
+
+- Insufficient concurrency control
+- Not solved for a long time
+- Go's goroutines and channels
+- Python's and JavaScript's async
+- -> new syntax
+
+## Support for concurrency
+
+- [Communicating sequential processes](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf) by [C.A.R. Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) (a formal language etc. etc.)
+- _"Don't communicate by sharing memory; share memory by communicating"_
+- **Goroutines**
+- **Channels**
+
+## Concurrency and/or parallelism
+
+- **Serial**: runs tasks in an order with one CPU core
+- **Concurrent**: runs many tasks simultaneously with a less number of CPU cores (or even 1)
+- **Parallel**: runs n tasks simultaneously with n CPU cores
+
+## Concurrency
+
+- When multiple tasks can run in overlapping periods
+- Needs only one CPU core
+- Main problem: interruptions
+
+## Parallelism
+
+- Needs more than one CPU core
+- Main problem: isolation
+- Second problem: coordination
+
+## Solutions for concurrency and parallelism
+
+- Processes
+- Threads
+- Coroutines
+
+## Solutions for concurrency and parallelism
+
+- Processes
+- Threads
+- **Goroutines**
+- Coroutines
+
+## Goroutines + channels is a way to ... Go
+
+- Deadlocks are not such a big problem then
+
+.image assets/lesson-01/deadlock.gif _ 700
+
+## Memory locality
+
+- True structures
+- True value types
+- No object headers
+- Java: no value types, no structures, object headers
+
+## Memory locality
+
+- RAM is no longer "Random Access Memory"
+
+## Memory locality
+
+.image assets/lesson-01/computer-latency-1.jpg _ 300
+
+## Memory locality and access times
+
+- We humans are bad comparing very small time periods
+- Dtto for other units (length, money etc.)
+
+## Memory locality and access times
+
+.image assets/lesson-01/computer-latency-2.png _ 500
+
+## Go and KISS principle
+
+## Dynamic devel teams
+
+.image assets/gophers/teams.png _ 500
+
+## Dynamic devel teams
+
+- Stability
+- On source code level: if it compiles in version X, it will compile in version X+1 too
+- OTOH: https://pythonclock.org/
+- Readability
+
+## Popularity
+
+- [Tiobe Index](https://www.tiobe.com/tiobe-index/)
+- [GitHub Innovation Graph](https://innovationgraph.github.com/global-metrics/programming-languages)
+- [PYPL](http://pypl.github.io/PYPL.html)
+
+## Where is it used?
+
+[Go: Use Cases](https://go.dev/solutions/use-cases)
+
+- Cloud & network services
+- Web development & server side applications
+- CLIs
+- DevOps
+
+## Cloud technologies writting in Go 
+
+- [Docker](https://www.docker.com)
+- [Podman](https://podman.io)
+- [Kubernetes](https://kubernetes.io)
+- [Kubernetes Operators](https://coreos.com/operators)
+- [MinIO](https://min.io)
+- [NSQ](https://nsq.io)
+- [NATS](https://nats.io)
+- [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
+- [Go Ethereum](https://geth.ethereum.org)
+- and many more...
+
+## Companies using Go
+
+[Go: Case Studies](https://go.dev/solutions/case-studies)
+
+- Google
+- Microsoft
+- Amazon
+- Uber
+- Twitch
+- Netflix
+- Dropbox
+- 1Password
+- Riot Games
+- and many more...
+
+## So...is it worth to spend time learning Go?
+
+- Networking - YES
+- (Micro)services - YES
+- Scalable systems - YES
+- You like strict formatting rules - YES
+- You like strong type systems - YES
+- You like minimalism - YES
+- Pretty fast compilation - YES
+- The simplest deployment - YES
+- Guaranteed source code compatibility - YES
+
+## So...is it worth to spend time learning Go?
+
+- You like classic (broken) class-based OOP - NO
+- You like baroque languages - NO, enjoy C++
+- You like inconsistent languages - NO, enjoy Perl
+- You like homoiconic languages - NO, LISP/Scheme/Clojure are better then
+- You want to manage memory ourself - NO
+- You like to have buffer overflows - NO, there are "better" choices
+- You like really very strong type system & fast language - Rust
+
+## Installation
+
+## Installing Go
+
+[Go: Download and Install](https://go.dev/doc/install)
+
+- The official download guide lets you download:
+    - _.msi_ file for Windows
+    - _.pkg_ file for MacOS
+    - _.tar.gz_ archive for Linux
+- The _.msi_ and _.pkg_ can be executed directly
+- The tar archive has to be unarchived, moved and the path to it exported manually
+
+```
+ rm -rf /usr/local/go && tar -C /usr/local -xzf go<version>linux-amd64.tar.gz
+ export PATH=$PATH:/usr/local/go/bin
+```
+
+## Package Managers
+
+Package managers can also be used
+
+- Linux: APT
+
+```
+sudo apt install golang-go
+```
+
+- MacOS: [Homebrew](https://brew.sh)
+
+```
+brew install golang
+```
+
+- Windows: [Chocolatey](https://chocolatey.org)
+
+```
+choco install golang
+```
+
+## Verify Installation
+
+Execute the `go` command to verify that go was installed and you have it in your path
+
+```
+go version
+````
+
+should output:
+```
+go version go<version> <os>/<platform>
+```
+
+## IDEs and code editors
+
+[Go Wiki: Editors and IDEs](https://go.dev/wiki/IDEsAndTextEditorPlugins)
+
+- [VS Code](https://code.visualstudio.com/docs/languages/go)
+- [JetBrains Goland](https://www.jetbrains.com/go/)
+- Vim/Neovim with a LSP
+
+## Go Playground
+
+[Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide#1)
+- [Playground](https://go.dev/play/)
+
