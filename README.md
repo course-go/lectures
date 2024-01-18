@@ -2,6 +2,10 @@
 
 This repository contains lecture slides for Course Go.
 
+> [!INFO]
+> The course is currently a WIP! \
+> None of the things stated here are final.
+
 ## Content
 
 1. Introduction
