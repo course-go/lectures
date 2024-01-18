@@ -14,6 +14,26 @@ This repository contains lecture slides for Course Go.
     - Why learn it
     - Installation
     - Tooling
+2. Fundamentals #1
+    - Keywords
+    - Data types
+    - Operators
+    - Variables
+    - Pointers
+    - Visibility
+    - Packages
+    - Control flow
+    - Functions
+    - Structures
+3. Fundamentals #2
+    - Interfaces
+    - Errors
+    - Arrays
+    - Slices
+    - Maps
+    - Range
+    - Generics
+    - Standard library
 
 ## Tooling
 
