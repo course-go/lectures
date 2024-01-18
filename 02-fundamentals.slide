@@ -1,0 +1,243 @@
+# Go Fundamentals
+Course Go
+Tags: golang, go
+
+## Go Command
+
+	bug         start a bug report
+	build       compile packages and dependencies
+	clean       remove object files and cached files
+	doc         show documentation for package or symbol
+	env         print Go environment information
+	fix         update packages to use new APIs
+	fmt         gofmt (reformat) package sources
+	generate    generate Go files by processing source
+	get         add dependencies to current module and install them
+	install     compile and install packages and dependencies
+	list        list packages or modules
+	mod         module maintenance
+	work        workspace maintenance
+	run         compile and run Go program
+	test        test packages
+	tool        run specified go tool
+	version     print Go version
+	vet         report likely mistakes in packages
+
+## Go keywords
+
+    break     case   chan    const       continue
+    default   defer  else    fallthrough for
+    func      go     goto    if          import
+    interface map    package range       return
+    select    struct switch  type        var
+
+[GothamGo 2018 - Things in Go I Never Use by Mat Ryer](https://youtu.be/5DVV36uqQ4E?si=hZDbgTxZiUAvAS3g)
+
+## Packages and Imports
+
+- Program building blocks ("libraries")
+- Imported by other programs
+- Package name is the last element of the import path
+- [Standard library packages](https://pkg.go.dev/std)
+
+```
+package main
+```
+
+## Executable Packages 
+
+- Have to be named `main`
+- Have to contain `main()` function as entrypoint
+
+## Hello world
+
+.play assets/lesson-02/hello-world.go
+
+```
+$ go build hello.go
+$ ./hello
+Hello world
+```
+
+```
+$ go run hello.go
+Hello world
+```
+
+## Go Format
+
+.play assets/lesson-02/unformatted-hello-world.go
+
+```
+go fmt gofmt.go
+```
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello world")
+}
+```
+
+## Workspace
+
+- Defined by `$GOPATH` variable
+    - `$HOME/go` by default
+- Structured directory:
+    - `/src`: historicaly used for storing source code
+        - unused after introduction of go modules
+    - `/pkg`: stores downloaded versioned packages
+        - `go get`
+    - `/bin`: contains executable binaries 
+        - `go install`
+
+## Unicode support
+
+- all string literals use UTF-8
+
+.play assets/lesson-02/hello-world-unicode.go
+
+## Types and variables 
+
+## Types
+
+- Similar to C
+- No auto casts
+- Type inference and default types
+- Each type has clear zero value (0, false, "")
+
+```
+bool
+
+string
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+
+byte // alias for uint8
+
+rune // alias for int32
+     // represents a Unicode code point
+
+float32 float64
+
+complex64 complex128
+```
+
+## Variables
+
+.play assets/lesson-02/variables.go
+
+## Constants
+
+.play assets/lesson-02/const.go
+
+## Type conversions
+
+- No auto casts
+
+.play assets/lesson-02/casts.go
+
+## Functions
+
+## Functions
+
+.play assets/lesson-02/functions.go
+
+## Multiple return values
+
+.play assets/lesson-02/functions2.go
+
+## Named return values
+
+.play assets/lesson-02/functions3.go
+
+## Shortening argument type declaration
+
+```
+func calculate(x int, y int, z bool) (a int, b int) {
+    // ...
+}
+```
+
+```
+func calculate(x, y int, z bool) (a, b int) {
+    // ...
+}
+```
+
+## Control Flow
+
+## Conditions
+
+- Similarly to for loop allows init statement
+- Variables declared there don't exist outside of the if block
+
+.play assets/lesson-02/if.go
+
+## Else statement
+
+- Variables declared in the init statement do exist in the else block
+
+.play assets/lesson-02/if2.go
+
+## Switch statement
+
+- Again allows init statement
+- Like set of if-else statements
+- Evaluated top-bottom, first successful case is executed
+- Thus there's no break statement
+
+.play assets/lesson-02/switch.go
+
+## Switch statement 2
+
+- Allows non-constant and non-integer values
+
+.play assets/lesson-02/switch2.go
+
+## Switch with no condition
+
+- switch without condition is like switch true
+
+.play assets/lesson-02/switch3.go
+
+## Loops
+
+- Only the `for` keyword exists
+
+.play assets/lesson-02/for.go
+
+## Loops
+
+- break keyword
+- continue keyword
+
+## Labels
+
+TODO
+
+## Error 
+
+- error is a built-in type
+
+```
+type error interface {
+    Error() string
+}
+```
+
+## Error handling
+
+[Go Blog: Error handling and Go](https://go.dev/blog/error-handling-and-go)
+
+.play assets/lesson-02/ret.go
+
+## Ignoring return values
+
+- '`_`' idiom can be used to drop return values
+
+.play assets/lesson-02/ignore-return-values.go
