@@ -58,7 +58,7 @@ This installs the **present** executable into your
 
 ### Usage
 
-Make sure the binary directory is in your $PATH. After that, running the present tool is simple:
+Make sure that the directory with the **present** binary is in your $PATH. After that, running the present tool is simple:
 
 ```
 present
