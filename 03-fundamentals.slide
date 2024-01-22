@@ -57,7 +57,7 @@ Tags: golang, go
 
 - artifical example
 
-.play assets/lesson-03/13_B_satisfy.go
+.play assets/lecture-03/13_B_satisfy.go
 
 ## Embedding other interface(s)
 
@@ -91,52 +91,52 @@ Tags: golang, go
 
 ## Declaration of two interfaces
 
-.play assets/lesson-03/13_interface.go
+.play assets/lecture-03/13_interface.go
 
 ## Missing interface implementation
 
-.play assets/lesson-03/14_interface_missing_implementation.go /^package main/,/^func main/
+.play assets/lecture-03/14_interface_missing_implementation.go /^package main/,/^func main/
 
 ## Missing interface implementation (cont.)
 
-.play assets/lesson-03/14_interface_missing_implementation.go /^func main/,/^}/
+.play assets/lecture-03/14_interface_missing_implementation.go /^func main/,/^}/
 
 ## Implementation of an interface
 
-.play assets/lesson-03/15_interface_implementation_via_methods.go /^package main/,/^func main/
+.play assets/lecture-03/15_interface_implementation_via_methods.go /^package main/,/^func main/
 
 ## Implementation of an interface (cont.)
 
-.play assets/lesson-03/15_interface_implementation_via_methods.go /^func main/,/^}/
+.play assets/lecture-03/15_interface_implementation_via_methods.go /^func main/,/^}/
 
 ## More implementations of one interface (1/5)
 
 - the longest example :)
 
-.play assets/lesson-03/16_more_interface_implementations.go /^package main/,/^type Line/
+.play assets/lecture-03/16_more_interface_implementations.go /^package main/,/^type Line/
 
 ## More implementations of one interface (2/5)
 
-.play assets/lesson-03/16_more_interface_implementations.go /^type Line/,/^func/
+.play assets/lecture-03/16_more_interface_implementations.go /^type Line/,/^func/
 
 ## More implementations of one interface (3/5)
 
-.play assets/lesson-03/16_more_interface_implementations.go /^func \(line/,/^func main/
+.play assets/lecture-03/16_more_interface_implementations.go /^func \(line/,/^func main/
 
 ## More implementations of one interface (4/5)
 
-.play assets/lesson-03/16_more_interface_implementations.go /^func main/,/cont/
+.play assets/lecture-03/16_more_interface_implementations.go /^func main/,/cont/
 
 ## More implementations of one interface (5/5)
 
-.play assets/lesson-03/16_more_interface_implementations.go /cont/,/^}/
+.play assets/lecture-03/16_more_interface_implementations.go /cont/,/^}/
 
 ## Empty interface
 
 - is automatically satisfied by any type
 - value of any type can be assigned to such interface type variable
 
-.play assets/lesson-03/17_empty_interface.go
+.play assets/lecture-03/17_empty_interface.go
 
 ## Type `any`
 
@@ -158,11 +158,11 @@ Tags: golang, go
 
 ## `nil` interface
 
-.play assets/lesson-03/18_nil_interface_riddle.go
+.play assets/lecture-03/18_nil_interface_riddle.go
 
 ## `nil` interface
 
-.play assets/lesson-03/20_three_nil_interfaces.go
+.play assets/lecture-03/20_three_nil_interfaces.go
 
 ## Type assertions
 
@@ -182,11 +182,11 @@ Tags: golang, go
 
 ## Type assertions
 
-.play assets/lesson-03/19_type_assertions.go
+.play assets/lecture-03/19_type_assertions.go
 
 ## Type assertions
 
-.play assets/lesson-03/handle_server_error.go
+.play assets/lecture-03/handle_server_error.go
 
 ## Errors
 
@@ -204,7 +204,7 @@ type error interface {
 
 [Go Blog: Error handling and Go](https://go.dev/blog/error-handling-and-go)
 
-.play assets/lesson-03/ret.go
+.play assets/lecture-03/ret.go
 
 ## Line of sight
 
@@ -238,7 +238,7 @@ TODO
 
 - function `on_finish()` is called before exit from `main()`
 
-.play assets/lesson-03/01_defer_basic_usage.go
+.play assets/lecture-03/01_defer_basic_usage.go
 
 ## Function declaration in defer statement
 
@@ -246,19 +246,19 @@ TODO
 - this function is anonymous - lambda, and usually it is a closure as well
 - (we will talk about lambdas and closures in the next lesson)
 
-.play assets/lesson-03/02_defer_func.go
+.play assets/lecture-03/02_defer_func.go
 
 ## Function declaration in defer statement (cont.)
 
 - parenthesis around lambda are not required
 
-.play assets/lesson-03/02B_defer_func.go
+.play assets/lecture-03/02B_defer_func.go
 
 ## Function declaration with parameters in defer statement
 
 - it is possible to specify arguments passed into function in `defer`
 
-.play assets/lesson-03/03_defer_with_parameters.go
+.play assets/lecture-03/03_defer_with_parameters.go
 
 ## More defer statements in one function
 
@@ -266,7 +266,7 @@ TODO
 - LIFO behaviour
 - (check in runtime how it works)
 
-.play assets/lesson-03/04_more_defers.go
+.play assets/lecture-03/04_more_defers.go
 
 ## Defer arguments evaluation
 
@@ -276,7 +276,7 @@ TODO
 
 ## Defer arguments evaluation (cont.)
 
-.play assets/lesson-03/05_defer_arguments_evaluation.go
+.play assets/lecture-03/05_defer_arguments_evaluation.go
 
 ## Defer arguments evaluation (more complicated example)
 
@@ -286,7 +286,7 @@ TODO
 
 ## Defer arguments evaluation (more complicated example, cont.)
 
-.play assets/lesson-03/06_defer_arguments_evaluation.go
+.play assets/lecture-03/06_defer_arguments_evaluation.go
 
 ## Defer and (many) return statements
 
@@ -294,39 +294,39 @@ TODO
 
 ## Defer and (many) return statements
 
-.play assets/lesson-03/07_defer_on_all_returns.go /^package main/,/^func main/
+.play assets/lecture-03/07_defer_on_all_returns.go /^package main/,/^func main/
 
 ## Defer and (many) return statements (cont.)
 
-.play assets/lesson-03/07_defer_on_all_returns.go /^func main/,/^}/
+.play assets/lecture-03/07_defer_on_all_returns.go /^func main/,/^}/
 
 ## Practical usage of defer
 
 - how to use `defer` in an application to copy files
 
-.play assets/lesson-03/08_defer_practical_usage.go /^package main/,/func copyFile/
+.play assets/lecture-03/08_defer_practical_usage.go /^package main/,/func copyFile/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lesson-03/08_defer_practical_usage.go /^func copyFile/,/^}/
+.play assets/lecture-03/08_defer_practical_usage.go /^func copyFile/,/^}/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lesson-03/08_defer_practical_usage.go /^func main/,/^}/
+.play assets/lecture-03/08_defer_practical_usage.go /^func main/,/^}/
 
 ## Practical usage of defer
 
 - previous example refactored
 
-.play assets/lesson-03/09_defer_practical_usage.go /^package main/,/func copyFile/
+.play assets/lecture-03/09_defer_practical_usage.go /^package main/,/func copyFile/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lesson-03/09_defer_practical_usage.go /^func copyFile/,/^}/
+.play assets/lecture-03/09_defer_practical_usage.go /^func copyFile/,/^}/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lesson-03/09_defer_practical_usage.go /^func main/,/^}/
+.play assets/lecture-03/09_defer_practical_usage.go /^func main/,/^}/
 
 ## Defer and return values
 
@@ -337,7 +337,7 @@ TODO
 
 ## Defer and return values
 
-.play assets/lesson-03/10_defer_return_values.go
+.play assets/lecture-03/10_defer_return_values.go
 
 ## Structs (records)
 
@@ -353,7 +353,7 @@ TODO
 
 ## Structs and dot operator
 
-.play assets/lesson-03/11_struct.go
+.play assets/lecture-03/11_struct.go
 
 ## Initialization of struct members
 
@@ -363,7 +363,7 @@ TODO
 
 ## Initialization of struct members (cont.)
 
-.play assets/lesson-03/12_struct_init.go
+.play assets/lecture-03/12_struct_init.go
 
 ## Better (more explicit) initialization of struct members
 
@@ -373,31 +373,31 @@ TODO
 
 ## Better (more explicit) initialization of struct members (cont.)
 
-.play assets/lesson-03/13_better_struct_init.go
+.play assets/lecture-03/13_better_struct_init.go
 
 ## Comparison of whole structs is possible!
 
 - `==` and `!=` operators
-.play assets/lesson-03/14_struct_comparison.go /^func main/,/^}/
+.play assets/lecture-03/14_struct_comparison.go /^func main/,/^}/
 
 ## Comparison of whole structs is possible! (cont.)
 
-.play assets/lesson-03/14_struct_comparison.go /^func main/,/^}/
+.play assets/lecture-03/14_struct_comparison.go /^func main/,/^}/
 
 ## Passing structs as values into functions
 
 - by value
 - by reference (via pointer)
 
-.play assets/lesson-03/15_print_user.go /package main/,/^func main//
+.play assets/lecture-03/15_print_user.go /package main/,/^func main//
 
 ## Passing structs as values into functions (cont.)
 
-.play assets/lesson-03/15_print_user.go /^func main/,/^}/
+.play assets/lecture-03/15_print_user.go /^func main/,/^}/
 
 ## Struct embedding
 
-.play assets/lesson-03/40_struct_embedding.go
+.play assets/lecture-03/40_struct_embedding.go
 
 ## Anonymous structure
 
@@ -420,16 +420,16 @@ TODO
 
 ## Basic operations with arrays
 
-.play assets/lesson-03/16_arrays.go
+.play assets/lecture-03/16_arrays.go
 
 ## Matrix (two dimensional array)
 
-.play assets/lesson-03/16B_arrays.go
+.play assets/lecture-03/16B_arrays.go
 
 ## Array copy
 
 - unlike slices, arrays can be copied
-.play assets/lesson-03/17_array_copy.go
+.play assets/lecture-03/17_array_copy.go
 
 ## Slices
 
@@ -444,11 +444,11 @@ TODO
 
 ## Usage of slices
 
-.play assets/lesson-03/18_slices.go /package main/,/cont//
+.play assets/lecture-03/18_slices.go /package main/,/cont//
 
 ## Usage of slices (cont.)
 
-.play assets/lesson-03/18_slices.go /cont/,/^}//
+.play assets/lecture-03/18_slices.go /cont/,/^}//
 
 ## Slices and arrays as data source for them
 
@@ -456,29 +456,29 @@ TODO
 - but the slice does not contain any data, just a pointer to array element
 - so any modify in slice element is reflected in an array as well
 
-.play assets/lesson-03/19_slice_copy.go /package main/,/cont//
+.play assets/lecture-03/19_slice_copy.go /package main/,/cont//
 
 ## Slices and arrays as data source for them (cont.)
 
 - modify array elements
 - then modify the same elements, but via slice
 
-.play assets/lesson-03/19_slice_copy.go /cont/,/^}//
+.play assets/lecture-03/19_slice_copy.go /cont/,/^}//
 
 ## Slice from slice
 
 - "slicing" of another slice is possible
-.play assets/lesson-03/20_slice_from_slice.go /package main/,/cont//
+.play assets/lecture-03/20_slice_from_slice.go /package main/,/cont//
 
 ## Slice from slice (cont.)
 
-.play assets/lesson-03/20_slice_from_slice.go /cont/,/^}//
+.play assets/lecture-03/20_slice_from_slice.go /cont/,/^}//
 
 ## Append function
 
 - the function `append` returns a new slice
 - the capacity of new slice can be increased (realloc magic inside!)
-.play assets/lesson-03/21_slice_append.go
+.play assets/lecture-03/21_slice_append.go
 
 ## Pointers
 
@@ -492,33 +492,33 @@ TODO
 
 - please note the usage of `##p_i++`
 
-.play assets/lesson-03/22_pointer_to_int.go
+.play assets/lecture-03/22_pointer_to_int.go
 
 ## Pointer to structure
 
-.play assets/lesson-03/23_pointer_to_struct.go /package main/,/func main//
+.play assets/lecture-03/23_pointer_to_struct.go /package main/,/func main//
 
 ## Pointer to structure (cont.)
 
 - please note the possibility to write `p_u.id` instead of `(##p_u).id`
 
-.play assets/lesson-03/23_pointer_to_struct.go /func main/,/^}//
+.play assets/lecture-03/23_pointer_to_struct.go /func main/,/^}//
 
 ## Pointer to structure item/member
 
-.play assets/lesson-03/24_pointer_to_struct_item.go /package main/,/func main//
+.play assets/lecture-03/24_pointer_to_struct_item.go /package main/,/func main//
 
 ## Pointer to structure item/member (cont.)
 
-.play assets/lesson-03/24_pointer_to_struct_item.go /func main/,/^}//
+.play assets/lecture-03/24_pointer_to_struct_item.go /func main/,/^}//
 
 ## Pointer to array item
 
-.play assets/lesson-03/25_pointer_to_array.go /package main/,/cont//
+.play assets/lecture-03/25_pointer_to_array.go /package main/,/cont//
 
 ## Pointer to array item (cont.)
 
-.play assets/lesson-03/25_pointer_to_array.go /cont/,/^}//
+.play assets/lecture-03/25_pointer_to_array.go /cont/,/^}//
 
 ## Return pointer to local variable from C function
 
@@ -538,7 +538,7 @@ TODO
 
 ## Return pointer to local variable from Go function
 
-.play assets/lesson-03/25_B_return_pointer.go
+.play assets/lecture-03/25_B_return_pointer.go
 
 ## Maps
 
@@ -572,59 +572,59 @@ TODO
 
 ## Unitialized map ("nil map")
 
-.play assets/lesson-03/26_uninitialized_map.go
+.play assets/lecture-03/26_uninitialized_map.go
 
 ## Unitialized map ("nil map")
 
-.play assets/lesson-03/26_B_uninitialized_map.go
+.play assets/lecture-03/26_B_uninitialized_map.go
 
 ## Empty map (int -> string)
 
-.play assets/lesson-03/27_initialized_map.go
+.play assets/lecture-03/27_initialized_map.go
 
 ## Empty map (string -> int)
 
-.play assets/lesson-03/27_B_initialized_map.go
+.play assets/lecture-03/27_B_initialized_map.go
 
 ## Empty map (shorter idiom)
 
-.play assets/lesson-03/28_initialized_map.go
+.play assets/lecture-03/28_initialized_map.go
 
 ## Maps and struct
 
-.play assets/lesson-03/29_map_and_struct.go /^package main/,/^func main/
+.play assets/lecture-03/29_map_and_struct.go /^package main/,/^func main/
 
 ## Maps and struct (cont.)
 
-.play assets/lesson-03/29_map_and_struct.go /^func main/,/^}/
+.play assets/lecture-03/29_map_and_struct.go /^func main/,/^}/
 
 ## Struct can be used as key as well
 
-.play assets/lesson-03/30_map_and_struct_B.go /^package main/,/^func main/
+.play assets/lecture-03/30_map_and_struct_B.go /^package main/,/^func main/
 
 ## Struct can be used as key as well (cont.)
 
-.play assets/lesson-03/30_map_and_struct_B.go /^func main/,/^}/
+.play assets/lecture-03/30_map_and_struct_B.go /^func main/,/^}/
 
 ## Reading items from map
 
-.play assets/lesson-03/31_reading_from_maps.go /^package main/,/cont/
+.play assets/lecture-03/31_reading_from_maps.go /^package main/,/cont/
 
 ## Nonexistent values
 
-.play assets/lesson-03/31_map_nonexistent_values.go
+.play assets/lecture-03/31_map_nonexistent_values.go
 
 ## Reading items from map (cont.)
 
-.play assets/lesson-03/31_reading_from_maps.go /cont/,/^}/
+.play assets/lecture-03/31_reading_from_maps.go /cont/,/^}/
 
 ## Deleting items from map
 
-.play assets/lesson-03/32_delete_from_map.go /^package main/,/^func main/
+.play assets/lecture-03/32_delete_from_map.go /^package main/,/^func main/
 
 ## Deleting items from map (cont.)
 
-.play assets/lesson-03/32_delete_from_map.go /^func main/,/^}/
+.play assets/lecture-03/32_delete_from_map.go /^func main/,/^}/
 
 ## Sets
 
@@ -640,23 +640,23 @@ TODO
 
 ## Iterating over an array
 
-.play assets/lesson-03/33_for_range_1.go
+.play assets/lecture-03/33_for_range_1.go
 
 ## Index can be ignored
 
-.play assets/lesson-03/34_for_range_2.go
+.play assets/lecture-03/34_for_range_2.go
 
 ## Iterating over slice
 
-.play assets/lesson-03/35_for_range_3.go
+.play assets/lecture-03/35_for_range_3.go
 
 ## Iterating over Unicode glyphs
 
-.play assets/lesson-03/36_for_range_4.go
+.play assets/lecture-03/36_for_range_4.go
 
 ## Iterating over map pairs (key+value)
 
-.play assets/lesson-03/37_for_range_map.go
+.play assets/lecture-03/37_for_range_map.go
 
 ## User-defined data types
 
@@ -665,11 +665,11 @@ TODO
 
 ## User-defined data types
 
-.play assets/lesson-03/38_user_types.go
+.play assets/lecture-03/38_user_types.go
 
 ## User-defined data types (passing to function)
 
-.play assets/lesson-03/39_type_func_params.go
+.play assets/lecture-03/39_type_func_params.go
 
 ## Generics
 

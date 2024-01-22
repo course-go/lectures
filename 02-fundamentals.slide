@@ -51,7 +51,7 @@ package main
 
 ## Hello world
 
-.play assets/lesson-02/hello-world.go
+.play assets/lecture-02/hello-world.go
 
 ```
 $ go build hello.go
@@ -66,7 +66,7 @@ Hello world
 
 ## Go Format
 
-.play assets/lesson-02/unformatted-hello-world.go
+.play assets/lecture-02/unformatted-hello-world.go
 
 ```
 go fmt gofmt.go
@@ -98,7 +98,7 @@ func main() {
 
 - all string literals use UTF-8
 
-.play assets/lesson-02/hello-world-unicode.go
+.play assets/lecture-02/hello-world-unicode.go
 
 ## Types and variables 
 
@@ -129,17 +129,17 @@ complex64 complex128
 
 ## Variables
 
-.play assets/lesson-02/variables.go
+.play assets/lecture-02/variables.go
 
 ## Constants
 
-.play assets/lesson-02/const.go
+.play assets/lecture-02/const.go
 
 ## Type conversions
 
 - No auto casts
 
-.play assets/lesson-02/casts.go
+.play assets/lecture-02/casts.go
 
 ## Control Flow
 
@@ -148,13 +148,13 @@ complex64 complex128
 - Similarly to for loop allows init statement
 - Variables declared there don't exist outside of the if block
 
-.play assets/lesson-02/if.go
+.play assets/lecture-02/if.go
 
 ## Else statement
 
 - Variables declared in the init statement do exist in the else block
 
-.play assets/lesson-02/if2.go
+.play assets/lecture-02/if2.go
 
 ## Switch statement
 
@@ -163,25 +163,25 @@ complex64 complex128
 - Evaluated top-bottom, first successful case is executed
 - Thus there's no break statement
 
-.play assets/lesson-02/switch.go
+.play assets/lecture-02/switch.go
 
 ## Switch statement 2
 
 - Allows non-constant and non-integer values
 
-.play assets/lesson-02/switch2.go
+.play assets/lecture-02/switch2.go
 
 ## Switch with no condition
 
 - switch without condition is like switch true
 
-.play assets/lesson-02/switch3.go
+.play assets/lecture-02/switch3.go
 
 ## Loops
 
 - Only the `for` keyword exists
 
-.play assets/lesson-02/for.go
+.play assets/lecture-02/for.go
 
 ## Loops
 
@@ -196,21 +196,21 @@ TODO
 
 - '`_`' idiom can be used to drop return values
 
-.play assets/lesson-02/ignore-return-values.go
+.play assets/lecture-02/ignore-return-values.go
 
 ## Functions
 
 ## Functions
 
-.play assets/lesson-02/functions.go
+.play assets/lecture-02/functions.go
 
 ## Multiple return values
 
-.play assets/lesson-02/functions2.go
+.play assets/lecture-02/functions2.go
 
 ## Named return values
 
-.play assets/lesson-02/functions3.go
+.play assets/lecture-02/functions3.go
 
 ## Shortening argument type declaration
 
@@ -241,30 +241,30 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Function as a value (like any other value)
 
-.play assets/lesson-02/01_func_type.go
+.play assets/lecture-02/01_func_type.go
 
 ## Function with parameters as a value (like any other value)
 
-.play assets/lesson-02/02_func_type.go
+.play assets/lecture-02/02_func_type.go
 
 ## Functions stored in local variables (just a toy)
 
-.play assets/lesson-02/03_functions_as_values.go
+.play assets/lecture-02/03_functions_as_values.go
 
 ## Anonymous functions (just a toy again)
 
-.play assets/lesson-02/04_lambdas.go
+.play assets/lecture-02/04_lambdas.go
 
 ## Function types
 
 - a new type `BinaryOp` is defined
 - it is used to specify parameter type in `applyBinaryOp`
 
-.play assets/lesson-02/05_function_type.go /^package main/,/^func testBinaryOps/
+.play assets/lecture-02/05_function_type.go /^package main/,/^func testBinaryOps/
 
 ## Function types (cont.)
 
-.play assets/lesson-02/05_function_type.go /^func testBinaryOps/,/^}/
+.play assets/lecture-02/05_function_type.go /^func testBinaryOps/,/^}/
 
 ## Closures
 
@@ -275,31 +275,31 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Practical example - sorting elements in slice
 
-.play assets/lesson-02/06_sort_function.go /^package main/,/^func main/
+.play assets/lecture-02/06_sort_function.go /^package main/,/^func main/
 
 ## Practical example - sorting elements in slice (cont.)
 
-.play assets/lesson-02/06_sort_function.go /^func main/,/^}/
+.play assets/lecture-02/06_sort_function.go /^func main/,/^}/
 
 ## Practical example - sorting elements in a slice
 
 - implemented as a closure
 
-.play assets/lesson-02/07_sort_closure.go /^package main/,/^func main/
+.play assets/lecture-02/07_sort_closure.go /^package main/,/^func main/
 
 ## Practical example - sorting elements in slice (cont.)
 
 - implemented as a closure
 
-.play assets/lesson-02/07_sort_closure.go /^func main/,/^}/
+.play assets/lecture-02/07_sort_closure.go /^func main/,/^}/
 
 ## Implementation of sort-by
 
-.play assets/lesson-02/08_sort_by.go /^package main/,/^func main/
+.play assets/lecture-02/08_sort_by.go /^package main/,/^func main/
 
 ## Implementation of sort-by (cont.)
 
-.play assets/lesson-02/08_sort_by.go /^func main/,/^}/
+.play assets/lecture-02/08_sort_by.go /^func main/,/^}/
 
 ## Structures
 

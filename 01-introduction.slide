@@ -144,7 +144,7 @@ to 'block &&'
 
 ## But... we are in 21th century!
 
-.image assets/lesson-01/ural.jpg _ 700
+.image assets/lecture-01/ural.jpg _ 700
 
 ## But... we are in 21th century!
 
@@ -155,7 +155,7 @@ to 'block &&'
 
 ## Multi-core CPUs
 
-.image assets/lesson-01/Amdahl.png
+.image assets/lecture-01/Amdahl.png
 
 ## Bit of history
 
@@ -224,7 +224,7 @@ to 'block &&'
 
 - Deadlocks are not such a big problem then
 
-.image assets/lesson-01/deadlock.gif _ 700
+.image assets/lecture-01/deadlock.gif _ 700
 
 ## Memory locality
 
@@ -239,7 +239,7 @@ to 'block &&'
 
 ## Memory locality
 
-.image assets/lesson-01/computer-latency-1.jpg _ 300
+.image assets/lecture-01/computer-latency-1.jpg _ 300
 
 ## Memory locality and access times
 
@@ -248,7 +248,7 @@ to 'block &&'
 
 ## Memory locality and access times
 
-.image assets/lesson-01/computer-latency-2.png _ 500
+.image assets/lecture-01/computer-latency-2.png _ 500
 
 ## Go and KISS principle
 
