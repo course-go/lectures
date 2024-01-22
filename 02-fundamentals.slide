@@ -318,7 +318,7 @@ func calculate(x, y int, z bool) (a, b int) {
 
 - function `on_finish()` is called before exit from `main()`
 
-.play assets/lecture-03/01_defer_basic_usage.go
+.play assets/lecture-02/01_defer_basic_usage.go
 
 ## Function declaration in defer statement
 
@@ -326,19 +326,19 @@ func calculate(x, y int, z bool) (a, b int) {
 - this function is anonymous - lambda, and usually it is a closure as well
 - (we will talk about lambdas and closures in the next lesson)
 
-.play assets/lecture-03/02_defer_func.go
+.play assets/lecture-02/02_defer_func.go
 
 ## Function declaration in defer statement (cont.)
 
 - parenthesis around lambda are not required
 
-.play assets/lecture-03/02B_defer_func.go
+.play assets/lecture-02/02B_defer_func.go
 
 ## Function declaration with parameters in defer statement
 
 - it is possible to specify arguments passed into function in `defer`
 
-.play assets/lecture-03/03_defer_with_parameters.go
+.play assets/lecture-02/03_defer_with_parameters.go
 
 ## More defer statements in one function
 
@@ -346,7 +346,7 @@ func calculate(x, y int, z bool) (a, b int) {
 - LIFO behaviour
 - (check in runtime how it works)
 
-.play assets/lecture-03/04_more_defers.go
+.play assets/lecture-02/04_more_defers.go
 
 ## Defer arguments evaluation
 
@@ -356,7 +356,7 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Defer arguments evaluation (cont.)
 
-.play assets/lecture-03/05_defer_arguments_evaluation.go
+.play assets/lecture-02/05_defer_arguments_evaluation.go
 
 ## Defer arguments evaluation (more complicated example)
 
@@ -366,7 +366,7 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Defer arguments evaluation (more complicated example, cont.)
 
-.play assets/lecture-03/06_defer_arguments_evaluation.go
+.play assets/lecture-02/06_defer_arguments_evaluation.go
 
 ## Defer and (many) return statements
 
@@ -374,39 +374,39 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Defer and (many) return statements
 
-.play assets/lecture-03/07_defer_on_all_returns.go /^package main/,/^func main/
+.play assets/lecture-02/07_defer_on_all_returns.go /^package main/,/^func main/
 
 ## Defer and (many) return statements (cont.)
 
-.play assets/lecture-03/07_defer_on_all_returns.go /^func main/,/^}/
+.play assets/lecture-02/07_defer_on_all_returns.go /^func main/,/^}/
 
 ## Practical usage of defer
 
 - how to use `defer` in an application to copy files
 
-.play assets/lecture-03/08_defer_practical_usage.go /^package main/,/func copyFile/
+.play assets/lecture-02/08_defer_practical_usage.go /^package main/,/func copyFile/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lecture-03/08_defer_practical_usage.go /^func copyFile/,/^}/
+.play assets/lecture-02/08_defer_practical_usage.go /^func copyFile/,/^}/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lecture-03/08_defer_practical_usage.go /^func main/,/^}/
+.play assets/lecture-02/08_defer_practical_usage.go /^func main/,/^}/
 
 ## Practical usage of defer
 
 - previous example refactored
 
-.play assets/lecture-03/09_defer_practical_usage.go /^package main/,/func copyFile/
+.play assets/lecture-02/09_defer_practical_usage.go /^package main/,/func copyFile/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lecture-03/09_defer_practical_usage.go /^func copyFile/,/^}/
+.play assets/lecture-02/09_defer_practical_usage.go /^func copyFile/,/^}/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lecture-03/09_defer_practical_usage.go /^func main/,/^}/
+.play assets/lecture-02/09_defer_practical_usage.go /^func main/,/^}/
 
 ## Defer and return values
 
@@ -417,7 +417,69 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Defer and return values
 
-.play assets/lecture-03/10_defer_return_values.go
+.play assets/lecture-02/10_defer_return_values.go
+
+## Pointers
+
+## Pointers
+
+- always points to an element of some type
+- ie. `void` pointers are not supported
+- implicit pointer value is `nil`
+- address of element can be retrieved using the `&` operator
+- access via pointer (reference in some other languages) using the `##` operator
+
+## Basic usage of pointers
+
+- please note the usage of `##p_i++`
+
+.play assets/lecture-02/22_pointer_to_int.go
+
+## Pointer to structure
+
+.play assets/lecture-02/23_pointer_to_struct.go /package main/,/func main//
+
+## Pointer to structure (cont.)
+
+- please note the possibility to write `p_u.id` instead of `(##p_u).id`
+
+.play assets/lecture-02/23_pointer_to_struct.go /func main/,/^}//
+
+## Pointer to structure item/member
+
+.play assets/lecture-02/24_pointer_to_struct_item.go /package main/,/func main//
+
+## Pointer to structure item/member (cont.)
+
+.play assets/lecture-02/24_pointer_to_struct_item.go /func main/,/^}//
+
+## Pointer to array item
+
+.play assets/lecture-02/25_pointer_to_array.go /package main/,/cont//
+
+## Pointer to array item (cont.)
+
+.play assets/lecture-02/25_pointer_to_array.go /cont/,/^}//
+
+## Return pointer to local variable from C function
+
+    #include <stdio.h>
+
+    int* get_pointer(void) {
+        int i = 42;
+        return &i;
+    }
+
+    int main(void) {
+        int *p = get_pointer();
+        printf("%p\n", p);
+        printf("%d\n", *p);
+        return 0;
+    }
+
+## Return pointer to local variable from Go function
+
+.play assets/lecture-02/25_B_return_pointer.go
 
 
 ## Structures
@@ -436,7 +498,7 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Structs and dot operator
 
-.play assets/lecture-03/11_struct.go
+.play assets/lecture-02/11_struct.go
 
 ## Initialization of struct members
 
@@ -446,7 +508,7 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Initialization of struct members (cont.)
 
-.play assets/lecture-03/12_struct_init.go
+.play assets/lecture-02/12_struct_init.go
 
 ## Better (more explicit) initialization of struct members
 
@@ -456,31 +518,31 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Better (more explicit) initialization of struct members (cont.)
 
-.play assets/lecture-03/13_better_struct_init.go
+.play assets/lecture-02/13_better_struct_init.go
 
 ## Comparison of whole structs is possible!
 
 - `==` and `!=` operators
-.play assets/lecture-03/14_struct_comparison.go /^func main/,/^}/
+.play assets/lecture-02/14_struct_comparison.go /^func main/,/^}/
 
 ## Comparison of whole structs is possible! (cont.)
 
-.play assets/lecture-03/14_struct_comparison.go /^func main/,/^}/
+.play assets/lecture-02/14_struct_comparison.go /^func main/,/^}/
 
 ## Passing structs as values into functions
 
 - by value
 - by reference (via pointer)
 
-.play assets/lecture-03/15_print_user.go /package main/,/^func main//
+.play assets/lecture-02/15_print_user.go /package main/,/^func main//
 
 ## Passing structs as values into functions (cont.)
 
-.play assets/lecture-03/15_print_user.go /^func main/,/^}/
+.play assets/lecture-02/15_print_user.go /^func main/,/^}/
 
 ## Struct embedding
 
-.play assets/lecture-03/40_struct_embedding.go
+.play assets/lecture-02/40_struct_embedding.go
 
 ## Anonymous structure
 

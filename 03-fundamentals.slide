@@ -209,7 +209,7 @@ type error interface {
 
 ## Panic
 
-.play lesson3/panic.go
+.play assets/lecture-03/panic.go
 
 ## Recover
 
@@ -286,66 +286,6 @@ TODO
 - the function `append` returns a new slice
 - the capacity of new slice can be increased (realloc magic inside!)
 .play assets/lecture-03/21_slice_append.go
-
-## Pointers
-
-- always points to an element of some type
-- ie. `void` pointers are not supported
-- implicit pointer value is `nil`
-- address of element can be retrieved using the `&` operator
-- access via pointer (reference in some other languages) using the `##` operator
-
-## Basic usage of pointers
-
-- please note the usage of `##p_i++`
-
-.play assets/lecture-03/22_pointer_to_int.go
-
-## Pointer to structure
-
-.play assets/lecture-03/23_pointer_to_struct.go /package main/,/func main//
-
-## Pointer to structure (cont.)
-
-- please note the possibility to write `p_u.id` instead of `(##p_u).id`
-
-.play assets/lecture-03/23_pointer_to_struct.go /func main/,/^}//
-
-## Pointer to structure item/member
-
-.play assets/lecture-03/24_pointer_to_struct_item.go /package main/,/func main//
-
-## Pointer to structure item/member (cont.)
-
-.play assets/lecture-03/24_pointer_to_struct_item.go /func main/,/^}//
-
-## Pointer to array item
-
-.play assets/lecture-03/25_pointer_to_array.go /package main/,/cont//
-
-## Pointer to array item (cont.)
-
-.play assets/lecture-03/25_pointer_to_array.go /cont/,/^}//
-
-## Return pointer to local variable from C function
-
-    #include <stdio.h>
-
-    int* get_pointer(void) {
-        int i = 42;
-        return &i;
-    }
-
-    int main(void) {
-        int *p = get_pointer();
-        printf("%p\n", p);
-        printf("%d\n", *p);
-        return 0;
-    }
-
-## Return pointer to local variable from Go function
-
-.play assets/lecture-03/25_B_return_pointer.go
 
 ## Maps
 
