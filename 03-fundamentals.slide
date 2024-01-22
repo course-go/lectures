@@ -206,6 +206,25 @@ type error interface {
 
 .play assets/lesson-03/ret.go
 
+## Line of sight
+
+- About idiomatic and easy to comprehend Go code
+- [[https://medium.com/@matryer/line-of-sight-in-code-186dd7cdea88]]
+- "Happy path" on the left (one column)
+- No nest of indented braces for "happy path"
+- Exit early
+- No else returns style statements (`golint` is able to detect it)
+- "Happy return" at the very last line
+
+## Panic
+
+.play lesson3/panic.go
+
+## Recover
+
+TODO
+
+
 ## defer statement
 
 - `defer` is a keyword in the Go programming language
