@@ -32,6 +32,22 @@ Tags: golang, go
     %    >>    %=    >>=    --    !     ...   .    :
          &^          &^=
 
+## Error 
+
+- error is a built-in type
+
+```
+type error interface {
+    Error() string
+}
+```
+
+## Error handling
+
+[Go Blog: Error handling and Go](https://go.dev/blog/error-handling-and-go)
+
+.play assets/lesson-03/ret.go
+
 ## defer statement
 
 - `defer` is a keyword in the Go programming language

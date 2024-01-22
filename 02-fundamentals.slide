@@ -220,22 +220,6 @@ func calculate(x, y int, z bool) (a, b int) {
 
 TODO
 
-## Error 
-
-- error is a built-in type
-
-```
-type error interface {
-    Error() string
-}
-```
-
-## Error handling
-
-[Go Blog: Error handling and Go](https://go.dev/blog/error-handling-and-go)
-
-.play assets/lesson-02/ret.go
-
 ## Ignoring return values
 
 - '`_`' idiom can be used to drop return values
