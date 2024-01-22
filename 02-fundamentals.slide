@@ -301,3 +301,45 @@ func calculate(x, y int, z bool) (a, b int) {
 
 .play assets/lesson-02/08_sort_by.go /^func main/,/^}/
 
+## Structures
+
+## Methods on types
+
+- a _method_ is a function that has a defined receiver
+- (in OOP: a method is a function on an instance of an object)
+- concept of a _receiver_
+- usage - method declaration
+
+    func (receiver) method_name(parameters) return_types {
+        ...
+        ...
+        ...
+    }
+
+- method is called by
+
+    some_object.method_name(parameters)
+
+- methods can modify (mutate) a receiver
+- call by value vs. call by reference (via pointer)
+
+## User type with one method
+
+.play lesson3/09_methods.go
+
+## Receiver used as a value
+
+.play lesson3/10_methods_with_parameters.go
+
+## Receiver used via pointer
+
+.play lesson3/11_methods_ptr.go
+
+## Nil receiver
+
+.play lesson3/21_nil_receiver.go
+
+## More methods for the same type
+
+.play lesson3/12_more_methods.go /// Line/,/End OMIT/
+
