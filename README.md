@@ -49,7 +49,7 @@ You can run the slides locally using the go present CLI command.
 You can install the CLI command via go install like so:
 
 ```
-go install golang.org/x/tools/cmd/present
+go install golang.org/x/tools/cmd/present@latest
 ```
 
 This installs the **present** executable into your 
