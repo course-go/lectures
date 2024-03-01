@@ -5,3 +5,94 @@ Tags: golang, go
 ## Outline
 
 TODO
+
+## Concurrency
+
+- Definition: Computations happening at the same time
+- Even on single CPU (kernel makes that feeling)
+
+## Communication via message queues
+
+- Analogy of phone calls
+- Phone ringing: blocking call
+- Answerphone: non-blocking call (tape length = queue size)
+- Multiple receivers: Call centre
+- Multiple senders: Conf call
+
+## Threads and goroutines
+
+- Reminder: Threads share memory
+- Go routines are light-weighted threads, cheap to spawn
+- It should be fine to spawn thousands of goroutines
+- Internally multiplexed across thread pool
+- Spawned with simple go keyword
+
+## Goroutines
+
+.play assets/lecture-04/goroutines.go
+
+## Channels
+
+- Way to transfer data between goroutines
+- Type of data is part of the channel type
+- By default blocks on both tx/rx (but can be buffered too)
+- Same operator to send and receive from channel
+- Created with make()
+
+.code assets/lecture-04/chan.go
+
+## Channels
+
+- Note that this is racy.. more about that later
+
+.play assets/lecture-04/chan2.go
+
+## Channels
+
+- Unbuffered channels do block (and golang kindly detects deadlock)
+
+.play assets/lecture-04/chan3.go
+
+## Buffered channels
+
+- Size of buffer as second argument to make()
+
+.play assets/lecture-04/chan4.go
+
+## Closing channels
+
+- Channels can be closed with close()
+- Readers can check for closed channels using optional second return argument
+- Alternatively readers can detect closed channel with the loop over range
+
+## Closed channel detection with return value
+
+.play assets/lecture-04/chan_close.go
+
+## Closed channel detection with range
+
+.play assets/lecture-04/range.go
+
+## Select on multiple channels
+
+- You can read wait on multiple channels at the same time using select
+
+## Select on multiple channels
+
+.play assets/lecture-04/select.go
+
+## Quit + ack pattern
+
+.play assets/lecture-04/quit_ack.go /^package main/,/^func main/
+
+## Quit + ack pattern (cont.)
+
+.play assets/lecture-04/quit_ack.go /^func main/,/^}/
+
+## Default selection
+
+- Default action to take if all other actions would block
+
+## Default selection
+
+.play assets/lecture-04/default.go
