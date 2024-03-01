@@ -4,7 +4,10 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- testing
+- benchmarks
+
+## Testing
 
 ## Golang Testing Frameworks
 
@@ -527,12 +530,9 @@ Author: https://github.com/leandroreox
 ## Examples
 
 - Bunch of examples for each expect-like library
-
-## go-expect
-
-## gexpect
-
-## goexpect
+- go-expect
+- gexpect
+- goexpect
 
 ## REST API testing
 
@@ -550,7 +550,6 @@ Author: https://github.com/leandroreox
 ## Frisby
 
 .image ./assets/lecture-05/frisby.png _ 600
-(MIT License)
 
 ## Frisby
 
@@ -612,7 +611,6 @@ Author: https://github.com/leandroreox
 
 .code assets/lecture-05/frisby/13_frisby_as_test_pass_test.go
 
-
 ## Using Frisby package in unit tests (failing tests)
 
 - (can not be run directly from slides!)
@@ -625,7 +623,6 @@ Author: https://github.com/leandroreox
 
 .code assets/lecture-05/frisby/15_frisby_more_test.go
 
-
 ## Some tips and tricks for Frisby
 
 ## Performance analysis
@@ -634,31 +631,31 @@ Author: https://github.com/leandroreox
 
 ## Useful links
 
-[An introduction to programming in Go: testing](https://www.golang-book.com/books/intro/12)
-[Package testing](https://golang.org/pkg/testing/)
-[Go(lang) Unit Testing for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
-[testing in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
-[Go Test Your Code: An introduction to Testing in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
-[Comparative Analysis Of GoLang Testing Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
+- [An introduction to programming in Go: testing](https://www.golang-book.com/books/intro/12)
+- [Package testing](https://golang.org/pkg/testing/)
+- [Go(lang) Unit Testing for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
+- [testing in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
+- [Go Test Your Code: An introduction to Testing in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
+- [Comparative Analysis Of GoLang Testing Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
 
 ## Useful links (cont.)
 
-[Code Coverage Tutorial: Branch, Statement, Decision, FSM](https://www.guru99.com/code-coverage.html)
-[Exploring the landscape of Go Testing frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
-[Go coverage service](https://gocover.io/)
-[GoConvey](http://goconvey.co/)
-[GoConvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
-[GoConvey FAQ](https://github.com/smartystreets/goconvey/wiki/FAQ)
+- [Code Coverage Tutorial: Branch, Statement, Decision, FSM](https://www.guru99.com/code-coverage.html)
+- [Exploring the landscape of Go Testing frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
+- [Go coverage service](https://gocover.io/)
+- [GoConvey](http://goconvey.co/)
+- [GoConvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
+- [GoConvey FAQ](https://github.com/smartystreets/goconvey/wiki/FAQ)
 
 ## Useful links (cont.)
 
-[Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development)
-[The Three Rules Of Tdd](http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd)
-[The Difference Between TDD and BDD](https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/)
-[The difference between TDD and BDD](https://www.hindsightsoftware.com/blog/tdd-vs-bdd/)
-[Package goexpect](https://github.com/google/goexpect)
-[Package go-expect](https://github.com/Netflix/go-expect)
-[Package gexpect](https://github.com/ThomasRooney/gexpect)
+- [Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development)
+- [The Three Rules Of Tdd](http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd)
+- [The Difference Between TDD and BDD](https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/)
+- [The difference between TDD and BDD](https://www.hindsightsoftware.com/blog/tdd-vs-bdd/)
+- [Package goexpect](https://github.com/google/goexpect)
+- [Package go-expect](https://github.com/Netflix/go-expect)
+- [Package gexpect](https://github.com/ThomasRooney/gexpect)
 
 ## Testing and Benchmarking in Go
 
@@ -721,7 +718,9 @@ Author: https://github.com/leandroreox
 - profiler is part of standard Go tools
 - tracer is also part of standard Go tools
 
-## Testing
+## Benchmarks
+
+## Benchmarks
 
 - part of standard Go tooling
 - can be combined with profiling functions and methods
