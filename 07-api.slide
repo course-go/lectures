@@ -14,7 +14,7 @@ TODO
 
 ## Basic web server
 
-.play assets/lecture-06/web_server.go
+.play assets/lecture-07/web_server.go
 
 ## Basic web server
 
@@ -22,11 +22,11 @@ TODO
 
 ## Web server with more control
 
-.play assets/lecture-06/web_server_more_control.go /^func main/,/^}/
+.play assets/lecture-07/web_server_more_control.go /^func main/,/^}/
 
 ## Multiple paths
 
-.play assets/lecture-06/web_server_multi.go
+.play assets/lecture-07/web_server_multi.go
 
 ## Multiple paths
 
@@ -34,40 +34,40 @@ TODO
 
 ## Inspecting requests (cool trick)
 
-.play assets/lecture-06/web_server_inspect.go
+.play assets/lecture-07/web_server_inspect.go
 
 ## Parsing requests: query
 
-.play assets/lecture-06/web_server_params.go
+.play assets/lecture-07/web_server_params.go
 
 ## Parsing requests: raw body
 
-.play assets/lecture-06/web_server_body.go
+.play assets/lecture-07/web_server_body.go
 
 ## Parsing requests: json
 
-.play assets/lecture-06/web_server_json.go
+.play assets/lecture-07/web_server_json.go
 
 ## Parsing requests: json (2)
 
-.play assets/lecture-06/web_server_json_2.go
+.play assets/lecture-07/web_server_json_2.go
 
 ## Headers and status codes
 
-.play assets/lecture-06/web_server_headers.go
+.play assets/lecture-07/web_server_headers.go
 
 ## Status codes (2)
 
-.play assets/lecture-06/web_server_status_codes.go
+.play assets/lecture-07/web_server_status_codes.go
 
 ## Client
 
-.play assets/lecture-06/client.go
+.play assets/lecture-07/client.go
 
 ## Client (post)
 
-.play assets/lecture-06/client_post.go /// Params/,/End OMIT/
+.play assets/lecture-07/client_post.go /// Params/,/End OMIT/
 
 ## Proxy
 
-.play assets/lecture-06/proxy.go
+.play assets/lecture-07/proxy.go
