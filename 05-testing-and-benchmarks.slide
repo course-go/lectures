@@ -6,22 +6,22 @@ Tags: golang, go
 
 TODO
 
-## Golang assets/lecture-05 Frameworks
+## Golang Testing Frameworks
 
-- Unit assets/lecture-05
-- BDD assets/lecture-05
+- Unit testing
+- BDD testing
 - Expect-like frameworks and libraries
-- REST API assets/lecture-05
+- REST API testing
 - Performance analysis
 
 ## Test pyramid and ice-cream cone
 
-- [assets/lecture-05 pyramid](https://watirmelon.files.wordpress.com/2018/02/automated-testing-pyramid-with-eye.jpg?w=840)
-- [Ice-cream cone](https://watirmelon.files.wordpress.com/2018/02/software-assets/lecture-05-icecream-cone-antipattern.jpg?w=840)
+- [Testing pyramid](https://watirmelon.files.wordpress.com/2018/02/automated-testing-pyramid-with-eye.jpg?w=840)
+- [Ice-cream cone](https://watirmelon.files.wordpress.com/2018/02/software-testing-icecream-cone-antipattern.jpg?w=840)
 
-## Unit assets/lecture-05
+## Unit testing
 
-- Standard `assets/lecture-05` package
+- Standard `testing` package
 - Helper tool `go-carpet`
 - Extensions (`testify`)
 - Alternative package `oglematchers`
@@ -29,16 +29,16 @@ TODO
 - Package `assertions`
 - Package `goblin`
 
-## Standard "assets/lecture-05" package
+## Standard "testing" package
 
-- Based on [[https://pkg.go.dev/assets/lecture-05]] package
+- Based on [testing package](https://pkg.go.dev/testing])
 - Sources containing tests need to end with `_test.go`
-- Each test needs to be stored in a function named `func` `TestXxx(*assets/lecture-05.T)`
-- Basic methods for `assets/lecture-05.T` structure (data type)
+- Each test needs to be stored in a function named `func` `TestXxx(*testing.T)`
+- Basic methods for `testing.T` structure (data type)
 
-## Standard "assets/lecture-05" package
+## Standard "testing" package
 
-- There are no "assertions" in the `assets/lecture-05` package!
+- There are no "assertions" in the `testing` package!
 - `Log(args` `...interface{})`
 - `Skip(args` `...interface{})`
 - `Error(args` `...interface{})`
@@ -46,7 +46,7 @@ TODO
 - `Fail()`
 - `FailNow()`
 
-## Standard "assets/lecture-05" package
+## Standard "testing" package
 
 - Formatting output
 - `Logf(format` `string,` `args` `...interface{})`
@@ -55,6 +55,7 @@ TODO
 - `Fatalf(format` `string,` `args` `...interface{})`
 
 ## Unit test files
+
 - Usually stored in `package_test.go`
 - Can be split into as many files, as necessary
 - So called table-driven tests
@@ -354,7 +355,7 @@ Author: https://github.com/leandroreox
 - GoConvey
 - Godog
 
-## BDD assets/lecture-05
+## BDD testing
 
 - Test pyramid
 - BDD: behavior-driven development
@@ -510,7 +511,7 @@ Author: https://github.com/leandroreox
 - (IMHO) easiest to use
 - Regexp support in 'expect' commands
 - Two goroutines for `stdout` and `stdin` to make some use cases simpler
-- Can be used in cooperation with the standard `assets/lecture-05` module
+- Can be used in cooperation with the standard `testing` module
 
 ## Package goexpect
 
@@ -520,8 +521,8 @@ Author: https://github.com/leandroreox
 - Support for batch of commands (Batcher)
 - Support for conditionals in brach (Caser)
 - Go channel with exit status of automated/tested application
-- Verbose mode (for debugging/assets/lecture-05 etc.)
-- Can be used in cooperation with the standard `assets/lecture-05` module
+- Verbose mode (for debugging/testing etc.)
+- Can be used in cooperation with the standard `testing` module
 
 ## Examples
 
@@ -533,13 +534,14 @@ Author: https://github.com/leandroreox
 
 ## goexpect
 
-## REST API assets/lecture-05
-- in many aspects like software assets/lecture-05 at UI level
-- instead of input-output assets/lecture-05, REST API is validated
+## REST API testing
+
+- in many aspects like software Testing at UI level
+- instead of input-output testing, REST API is validated
 - very important in niche where Go language is used
 - supports HTTP and HTTPS as well
 
-## REST API assets/lecture-05 frameworks
+## REST API Testing frameworks
 
 - several packages/frameworks are available
 - Frisby
@@ -628,21 +630,21 @@ Author: https://github.com/leandroreox
 
 ## Performance analysis
 
-- very important part of assets/lecture-05
+- very important part of testing
 
 ## Useful links
 
-[An introduction to programming in Go: assets/lecture-05](https://www.golang-book.com/books/intro/12)
-[Package assets/lecture-05](https://golang.org/pkg/testing/)
-[Go(lang) Unit assets/lecture-05 for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
-[assets/lecture-05 in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
-[Go Test Your Code: An introduction to assets/lecture-05 in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
-[Comparative Analysis Of GoLang assets/lecture-05 Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
+[An introduction to programming in Go: testing](https://www.golang-book.com/books/intro/12)
+[Package testing](https://golang.org/pkg/testing/)
+[Go(lang) Unit Testing for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
+[testing in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
+[Go Test Your Code: An introduction to Testing in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
+[Comparative Analysis Of GoLang Testing Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
 
 ## Useful links (cont.)
 
 [Code Coverage Tutorial: Branch, Statement, Decision, FSM](https://www.guru99.com/code-coverage.html)
-[Exploring the landscape of Go assets/lecture-05 frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
+[Exploring the landscape of Go Testing frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
 [Go coverage service](https://gocover.io/)
 [GoConvey](http://goconvey.co/)
 [GoConvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
@@ -658,32 +660,32 @@ Author: https://github.com/leandroreox
 [Package go-expect](https://github.com/Netflix/go-expect)
 [Package gexpect](https://github.com/ThomasRooney/gexpect)
 
-## assets/lecture-05 and Benchmarking in Go
+## Testing and Benchmarking in Go
 
 - Unit test "framework" integral to the Go command
 - `go` `test`
 - (Micro)Benchmark "framework" part of it too
 - `go` `test` `-bench` `.`
-- package `assets/lecture-05`
+- package `testing`
 - code needs to be "vetable", pass `go` `vet` check
 
 ## Tests
 
 - in `_test.go` files
-- all `Test*(t` `*assets/lecture-05.T)` functions get executed
+- all `Test*(t` `*testing.T)` functions get executed
 
 ## Test main
 
-- `func` `TestMain(m` `*assets/lecture-05.M)`
+- `func` `TestMain(m` `*testing.M)`
 - `m.Run`
 - provides ability to do setup, passing CLI flags,...
 - execute tests that don't fit the basic framework, etc.
 - checkout misc/cgo GC tests
 
-## assets/lecture-05
+## testing
 
 - in `_test.go` files
-- all `Benchmark*(b` `*assets/lecture-05.B)` functions get executed
+- all `Benchmark*(b` `*testing.B)` functions get executed
 - can benchmark not only performance(`-bench`), but memory usage(`-benchmem`)
 
 ## Assertions in Go
@@ -719,7 +721,7 @@ Author: https://github.com/leandroreox
 - profiler is part of standard Go tools
 - tracer is also part of standard Go tools
 
-## assets/lecture-05
+## Testing
 
 - part of standard Go tooling
 - can be combined with profiling functions and methods
@@ -744,8 +746,8 @@ Author: https://github.com/leandroreox
 
 ## Timers
 
-- sometimes it is needed to prepare data/config for assets/lecture-05
-- and also check output data generated by assets/lecture-05
+- sometimes it is needed to prepare data/config for testing
+- and also check output data generated by testing
 - setup/cleanup/checks steps are sometimes memory/CPU-intensive operations
 - -> would be better not to measure theese steps by benchmark
 - b.StopTimer()
