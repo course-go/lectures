@@ -1,7 +1,3 @@
-// "Generics" implemented in runtime.
-
-// Not very efficient nor elegant, but doable in a way
-
 package main
 
 import "fmt"

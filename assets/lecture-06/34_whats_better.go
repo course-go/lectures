@@ -18,10 +18,7 @@ func Print[T any](s Slice[T]) {
 
 func main() {
 	s := Slice[int]{1, 2, 3}
-
 	Print(s)
-
 	fmt.Println()
-
 	s.Print()
 }

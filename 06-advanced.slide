@@ -4,7 +4,10 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- optimizations
+- cgo
+
+## Optimizations
 
 ## Simple but useful performance improvements in Go
 
@@ -15,7 +18,7 @@ TODO
 
 1. Pass structures by reference, not by value
 2. Pass receivers by reference, not by value
-3. Maps pre-allocation
+3. Maps & slides pre-allocation
 4. Arrays vs slices
 
 - Most things mentioned above are not idiomatic!
@@ -52,63 +55,9 @@ sasl_username = "not-used"
 sasl_password = "not-used"
 topic = "platform.notifications.ingress" #provide in deployment env or as secret
 timeout = "60s"
-likelihood_threshold = 0
-impact_threshold = 0
-severity_threshold = 0
-total_risk_threshold = 3
 event_filter = "totalRisk >= totalRiskThreshold"
 
-[service_log]
-client_id = "a-service-id"
-client_secret = "a-secret"
-token_url = ""
-enabled = false
-url = "https://api.openshift.com/api/service_logs/v1/cluster_logs/"
-timeout = "15s"
-likelihood_threshold = 0
-impact_threshold = 0
-severity_threshold = 0
-total_risk_threshold = 0
-event_filter = "totalRisk >= totalRiskThreshold"
-rule_details_uri = "https://console.redhat.com/openshift/insights/advisor/recommendations/{module}|{error_key}"
-
-[storage]
-db_driver = "postgres"
-pg_username = "postgres" #provide in deployment env or as secret
-pg_password = "postgres" #provide in deployment env or as secret
-pg_host = "localhost" #provide in deployment env or as secret
-pg_port = 5432 #provide in deployment env or as secret
-pg_db_name = "notification" #provide in deployment env or as secret
-pg_params = "sslmode=disable"
-log_sql_queries = true
-
-[dependencies]
-content_server = "localhost:8082" #provide in deployment env or as secret
-content_endpoint = "/api/v1/content" #provide in deployment env or as secret
-template_renderer_server = "localhost:8083" #provide in deployment env or as secret
-template_renderer_endpoint = "/v1/rendered_reports" #provide in deployment env or as secret
-
-[notifications]
-insights_advisor_url = "https://console.redhat.com/openshift/insights/advisor/clusters/{cluster_id}"
-cluster_details_uri = "https://console.redhat.com/openshift/details/{cluster_id}#insights"
-rule_details_uri = "https://console.redhat.com/openshift/details/{cluster_id}/insights/{module}/{error_key}"
-# valid units are SQL epoch time units: months days hours minutes seconds"
-cooldown = "24 hours"
-
-[metrics]
-job_name = "ccx_notification_service"
-# The metrics in Prometheus will be $namespace_$subsystem_$name
-namespace = "ccx_notification_service"
-subsystem = "to_notification_backend"
-gateway_url = "localhost:9091"
-gateway_auth_token = ""
-retries = 3
-# Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h".
-retry_after = "60s"
-
-[cleaner]
-# valid units are SQL epoch time units: months days hours minutes seconds"
-max_age = "90 days"
+\...110 lines...
 
 [processing]
 filter_allowed_clusters = false
@@ -119,13 +68,42 @@ blocked_clusters = []
 
 ## Representation of such structure in Go
 
-.code assets/lecture-05/config_struct_1.go
+```go
+type ConfigStruct struct {
+        Logging       LoggingConfiguration       `mapstructure:"logging" toml:"logging"`
+        Storage       StorageConfiguration       `mapstructure:"storage" toml:"storage"`
+        Kafka         KafkaConfiguration         `mapstructure:"kafka_broker" toml:"kafka_broker"`
+        ServiceLog    ServiceLogConfiguration    `mapstructure:"service_log" toml:"service_log"`
+        Dependencies  DependenciesConfiguration  `mapstructure:"dependencies" toml:"dependencies"`
+        Notifications NotificationsConfiguration `mapstructure:"notifications" toml:"notifications"`
+        Metrics       MetricsConfiguration       `mapstructure:"metrics" toml:"metrics"`
+        Cleaner       CleanerConfiguration       `mapstructure:"cleaner" toml:"cleaner"`
+        Processing    ProcessingConfiguration    `mapstructure:"processing" toml:"processing"`
+}
+```
 
 ## Sub-structure(s)
 
-.code assets/lecture-05/config_struct_2.go
+```go
+type LoggingConfiguration struct {
+        // Debug enables pretty colored logging
+        Debug bool `mapstructure:"debug" toml:"debug"`
+        LogLevel string `mapstructure:"log_level" toml:"log_level"`
+}
+```
 
-.code assets/lecture-05/config_struct_3.go
+```go
+type StorageConfiguration struct {
+        Driver        string `mapstructure:"db_driver"       toml:"db_driver"`
+        PGUsername    string `mapstructure:"pg_username"     toml:"pg_username"`
+        PGPassword    string `mapstructure:"pg_password"     toml:"pg_password"`
+        PGHost        string `mapstructure:"pg_host"         toml:"pg_host"`
+        PGPort        int    `mapstructure:"pg_port"         toml:"pg_port"`
+        PGDBName      string `mapstructure:"pg_db_name"      toml:"pg_db_name"`
+        PGParams      string `mapstructure:"pg_params"       toml:"pg_params"`
+        LogSQLQueries bool   `mapstructure:"log_sql_queries" toml:"log_sql_queries"`
+}
+```
 
 ## 'Getter' used in the code
 
@@ -158,19 +136,81 @@ func GetStorageConfigurationByReference(configuration *ConfigStruct) StorageConf
 
 ## Is it worth to do it?
 
-.code assets/lecture-05/benchmark_1_1.go
+```go
+package conf_test
+
+// Benchmark for config module
+
+import (
+        "os"
+        "testing"
+
+        "config-struct/conf"
+)
+
+const (
+        configFileEnvVariableName = "CCX_NOTIFICATION_SERVICE_CONFIG_FILE"
+        defaultConfigFileName     = "./config"
+)
+```
 
 ## Helper function to load configuration
 
-.code assets/lecture-05/benchmark_1_2.go
+```go
+// loadConfiguration function loads configuration prepared to be used by
+// benchmarks
+func loadConfiguration() (conf.ConfigStruct, error) {
+        os.Clearenv()
+
+        err := os.Setenv(configFileEnvVariableName, defaultConfigFileName)
+        if err != nil {
+                return conf.ConfigStruct{}, err
+        }
+
+        config, err := conf.LoadConfiguration(configFileEnvVariableName, defaultConfigFileName)
+        if err != nil {
+                return conf.ConfigStruct{}, err
+        }
+
+        return config, nil
+}
+```
 
 ## Helper function to load configuration
 
-.code assets/lecture-05/benchmark_1_3.go
+```go
+func mustLoadBenchmarkConfiguration(b *testing.B) conf.ConfigStruct {
+        configuration, err := loadConfiguration()
+        if err != nil {
+                b.Fatal(err)
+        }
+        return configuration
+}
+```
 
 ## Actual benchmarks
 
-.code assets/lecture-05/benchmark_1_4.go
+```go
+func BenchmarkGetStorageConfigurationFunctionByValue(b *testing.B) {
+        b.StopTimer()
+        configuration := mustLoadBenchmarkConfiguration(b)
+        b.StartTimer()
+
+        for i := 0; i < b.N; i++ {
+                conf.GetStorageConfigurationByValue(configuration)
+        }
+}
+
+func BenchmarkGetStorageConfigurationFunctionByReference(b *testing.B) {
+        b.StopTimer()
+        configuration := mustLoadBenchmarkConfiguration(b)
+        b.StartTimer()
+
+        for i := 0; i < b.N; i++ {
+                conf.GetStorageConfigurationByReference(&configuration)
+        }
+}
+```
 
 ## Benchmark results
 
@@ -197,25 +237,25 @@ ok      config-struct/conf      27.166s
 
 ## Graphical output
 
-![Benchmark1](images/benchmark1.png)
+.image assets/lecture-06/benchmark1.png 520 _
 
 ## Table output
 
-![Benchmark1](images/benchmark2.png)
+.image assets/lecture-06/benchmark2.png 250 _
 
 ## Is it still relevant?
 
 - 0.2405 ns vs. 13.20 ns from CPU point of view vs. human point of view
 
-![CPU](images/computer_latency.png)
+.image assets/lecture-06/computer_latency.png 380 _
 
 ## Memory is getting "slower"
 
-![CPU2](images/cpu.png)
+.image assets/lecture-06/cpu.png 500 _
 
 ## What about methods?
 
-- The same issue + simple fix
+- The same issue and simple fix
 
 ```go
 func (configuration ConfigStruct) GetStorageConfigurationByValue() StorageConfiguration {
@@ -293,7 +333,6 @@ type UUID string
 func BenchmarkInsertIntoPreallocatedMapUUIDKey(b *testing.B) {
         m := make(map[UUID]time.Time, b.N)
         t := time.Now()
-
         for i := 0; i < b.N; i++ {
                 b.StopTimer()
                 id := UUID(uuid.New().String())
@@ -305,7 +344,6 @@ func BenchmarkInsertIntoPreallocatedMapUUIDKey(b *testing.B) {
 func BenchmarkInsertIntoEmptyMapUUIDKey(b *testing.B) {
         m := map[UUID]time.Time{}
         t := time.Now()
-
         for i := 0; i < b.N; i++ {
                 b.StopTimer()
                 id := UUID(uuid.New().String())
@@ -329,7 +367,7 @@ PASS
 
 ## Graphical output
 
-![Profiler1](images/profiler1.png)
+.image assets/lecture-06/profiler1.png 500 _
 
 ## Maps with large keys
 
@@ -337,6 +375,8 @@ PASS
 - So keys might be pretty large (imagine structs)
 
 ```go
+type value struct{}
+
 type key struct {
         ID      int
         payload [100]byte
@@ -349,12 +389,6 @@ m2 := make(map[key]value, capacity)
 ## Benchmark
 
 ```go
-type key struct {
-        ID      int
-        payload [100]byte
-}
-type value struct{}
-
 func BenchmarkInsertIntoPreallocatedMapCompoundKey(b *testing.B) {
         m := make(map[key]value, b.N)
         for i := 0; i < b.N; i++ {
@@ -396,11 +430,11 @@ PASS
 
 ## Go profiler to the rescue
 
-![Profiler2](images/profiler2.png)
+.image assets/lecture-06/profiler2.png 420 _
 
 ## Go profiler to the rescue
 
-![Profiler3](images/profiler3.png)
+.image assets/lecture-06/profiler3.png 500 _
 
 ## Set implementations
 
@@ -507,15 +541,15 @@ BenchmarkFindInSlice1000-8  100000000  281.4 ns/op
 
 ## Low number of items
 
-![Set1](images/set1.png)
+.image assets/lecture-06/set1.png 500 _
 
 ## Higher number of items
 
-![Set2](images/set2.png)
+.image assets/lecture-06/set2.png 500 _
 
 ## Map vs slice for set implementation
 
-![Set3](images/set3.png)
+.image assets/lecture-06/set3.png 500 _
 
 ## Use slices instead of arrays (if possible)
 
@@ -622,7 +656,7 @@ BenchmarkPassArrayByReference-8   100000000    0.4740 ns/op
 
 ## Is it really the case?
 
-![Profiler4](images/profiler4.png)
+.image assets/lecture-06/profiler4.png 450 _
 
 ## Now with side effect
 
@@ -648,7 +682,7 @@ func changeMe3(values *[MAX_VALS]int) int {
 
 ## Benchmark (1/3)
 
-```
+```go
 func BenchmarkPassSlice(b *testing.B) {
 	var values []int = make([]int, MAX_VALS)
 
@@ -669,7 +703,7 @@ func BenchmarkPassSlice(b *testing.B) {
 
 ## Benchmark (2/3)
 
-```
+```go
 func BenchmarkPassArrayByValue(b *testing.B) {
 	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
 
@@ -690,7 +724,7 @@ func BenchmarkPassArrayByValue(b *testing.B) {
 
 ## Benchmark (3/3)
 
-```
+```go
 func BenchmarkPassArrayByReference(b *testing.B) {
 	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
 
@@ -711,14 +745,15 @@ func BenchmarkPassArrayByReference(b *testing.B) {
 
 ## Benchmark results
 
-```
+```go
 BenchmarkPassSlice-8              100000000    0.4768 ns/op
 BenchmarkPassArrayByValue-8       100000000  135.3 ns/op
 BenchmarkPassArrayByReference-8   100000000    0.5629 ns/op
 ```
+
 ## Benchmark results
 
-![benchmark3](images/benchmark3.png)
+.image assets/lecture-06/benchmark3.png 500 _
 
 ## for-each implementation (arrays, slices)
 
@@ -745,9 +780,10 @@ for j := 0; j < len(items); j++ {
 BenchmarkCountValues1-8   100000  70310 ns/op
 BenchmarkCountValues2-8   100000  10687 ns/op
 ```
+
 ## Benchmark results
 
-![benchmark4](images/benchmark4.png)
+.image assets/lecture-06/benchmark4.png 500 _
 
 ## for-each implementation (maps)
 
@@ -779,7 +815,7 @@ BenchmarkCountValues2-8   100000    12300 ns/op
 
 ## Benchmark results
 
-![benchmark5](images/benchmark5.png)
+.image assets/lecture-06/benchmark5.png 500 _
 
 ## Synchronization
 
@@ -853,16 +889,7 @@ func concatstrings(buf *tmpBuf, a []string) string {
                 count++
                 idx = i
         }
-        if count == 0 {
-                return ""
-        }
-
-        // If there is just one string and either it is not on the stack
-        // or our result does not escape the calling frame (buf != nil),
-        // then we can return that string directly.
-        if count == 1 && (buf != nil || !stringDataOnStack(a[idx])) {
-                return a[idx]
-        }
+        // more code...
         s, b := rawstringtmp(buf, l)
         for _, x := range a {
                 copy(b, x)
@@ -882,7 +909,9 @@ for i := 0; i < n; i++ {
 }
 ```
 
-## Bytes buffer object
+## Bytes buffer
+
+- default
 
 ```go
 var bb bytes.Buffer
@@ -894,33 +923,7 @@ for i := 0; i < n; i++ {
 return bb.String()
 ```
 
-## String builder object
-
-```go
-var sb strings.Builder
-
-for i := 0; i < n; i++ {
-        sb.WriteRune('*')
-}
-
-return sb.String()
-```
-
-## Memory pre-allocation (buffer)
-
-```go
-var bb bytes.Buffer
-
-bb.Grow(n)
-
-for i := 0; i < n; i++ {
-        bb.WriteRune('*')
-}
-
-return bb.String()
-```
-
-## Memory pre-allocation (builder)
+- with pre-allocation
 
 ```go
 var bb bytes.Builder
@@ -934,17 +937,45 @@ for i := 0; i < n; i++ {
 return bb.String()
 ```
 
+## String builder
+
+- default
+
+```go
+var sb strings.Builder
+
+for i := 0; i < n; i++ {
+        sb.WriteRune('*')
+}
+
+return sb.String()
+```
+
+- with pre-allocation
+
+```go
+var sb strings.Builder
+
+sb.Grow(n)
+
+for i := 0; i < n; i++ {
+        sb.WriteRune('*')
+}
+
+return sb.String()
+```
+
 ## Benchmark results
 
-![benchmark6](images/benchmark6.png)
+.image assets/lecture-06/benchmark6.png 550 _
 
 ## Benchmark results
 
-![benchmark7](images/benchmark7.png)
+.image assets/lecture-06/benchmark7.png 550 _
 
 ## Benchmark results
 
-![benchmark8](images/benchmark8.png)
+.image assets/lecture-06/benchmark8.png 500 _
 
 ## SIMD instructions
 
@@ -978,7 +1009,7 @@ return bb.String()
 
 ## Typical vectors used in SIMD
 
-![SIMD](images/simd.png)
+.image assets/lecture-06/simd.png 450 _
 
 ## Operations with vectors (GCC)
 
@@ -1066,7 +1097,8 @@ int main(void)
     - we don't invest into this approach
     - anyway most processing is performed against UTF-8 chars
 
-# Thank you!
+## CGo {#cgo}
+
 ## CGo?
 
 - C and Go, Cgo, but not a Go
@@ -1095,30 +1127,12 @@ int main(void)
 
 .code assets/lecture-06/cgo-strings/cgo-string.go /memory management/,/memory management end/
 
-## Example Go in C
+## C in Go
 
-- don't
-- again don't
-- look at the CGo docs
+- Don't...
+- Again don't!
+- Look at the CGo docs
 - BEWARE! it has extreme overhead
-
-## Builtin tools
-
-- go vet
-- reports suspicions code construct, possible bugs
-- go fmt
-- formates code to the common coding standard
-- go fix
-- forward ports your code to latest release version of Go
-
-## External tools
-
-- abcgo
-- gosec
-- gocyclo
-- goconst
-- (go)errcheck
-- gocritic
 
 ## Dependency management
 
@@ -1158,25 +1172,40 @@ int main(void)
 
 ## Non-generic functions
 
+- good old "normal" functions as used for decades
+
 .play assets/lecture-06/01_print.go
 
 ## Overloaded function in Go?
+
+- go does not permit overloading functions 
+- avoid ugly "name mangling" C++ problem
 
 .play assets/lecture-06/02_print_overload.go
 
 ## No automatic type conversions
 
+- Go does not permit automatic type conversion (one of the best things)
+
 .play assets/lecture-06/03_print_no_conversion.go
 
 ## Generics implemented in runtime
+
+- runtime "generics"
+- not very efficient nor elegant, but doable in a way
 
 .play assets/lecture-06/04_print_interface.go
 
 ## Generic function
 
+- type parameters introduced in Go version 1.18
+
 .play assets/lecture-06/05_generic_print.go
 
 ## Selection of generic function
+
+- function variant can be manually specified
+    - redundant
 
 .play assets/lecture-06/06_type_parameter.go
 
@@ -1186,35 +1215,35 @@ int main(void)
 
 ## Concrete comparable interface
 
+- the "good" old compare function defined for single data type
+
 .play assets/lecture-06/08_comparable.go
 
 ## Problem with overloading
+
+- it was not easy to make variants of such function in Go < 1.18
 
 .play assets/lecture-06/09_comparable_variable_types.go
 
 ## Generic comparable interface
 
+- type sets also introduced in Go 1.18
+
 .play assets/lecture-06/10_compare_type_parameters.go
 
-## Compile time or runtime?
-
-- Python
+## Python: compile time or runtime?
 
 .code assets/lecture-06/Test.py
 
-## Compile time or runtime?
-
-- Python
+## Python: compile time or runtime?
 
 .code assets/lecture-06/Test.py.asm
 
-## Compile time or runtime?
-
-- Java
+## Java: compile time or runtime?
 
 .code assets/lecture-06/Test.java
 
-## Compile time or runtime?
+## Java: compile time or runtime?
 
 .code assets/lecture-06/Test.java.asm / public static void main/,/^}/
 
@@ -1222,26 +1251,35 @@ int main(void)
 
 .play assets/lecture-06/10_compare_type_parameters.go
 
-## Compile time or runtime?
+## Go: compile time or runtime?
 
-- go
-- interface{} - runtime
-- type parameters - compile time
+- interface{}
+    - runtime
+- type parameters
+    - compile time
 
- $ go tool compile -S 08_comparable.go > 08_comparable.s
- $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.s
+```
+$ go tool compile -S 08_comparable.go > 08_comparable.s
+```
+
+```
+$ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.s
+```
 
 ## Compiled concrete function
 
+```
   "".compare STEXT nosplit size=7 args=0x10 locals=0x0 funcid=0x0 align=0x0
         0x0000 00000 (08_comparable.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
         0x0000 00000 (08_comparable.go:7)       PCDATA  $3, $1
         0x0000 00000 (08_comparable.go:8)       CMPQ    BX, AX
         0x0003 00003 (08_comparable.go:8)       SETGT   AL
         0x0006 00006 (08_comparable.go:8)       RET
+```
 
 ## Compiled generic function
 
+```
   "".compare[go.shape.int_0] STEXT dupok nosplit size=7 args=0x18 locals=0x0 funcid=0x0 align=0x0
         0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
         0x0000 00000 (10_compare_type_parameters.go:11) PCDATA  $3, $1
@@ -1266,6 +1304,7 @@ int main(void)
         ...
         ...
         0x003e 00062 (10_compare_type_parameters.go:12) RET
+```
 
 ## "Universal numeric" data type?
 
@@ -1303,6 +1342,10 @@ int main(void)
 
 .play assets/lecture-06/34_whats_better.go
 
-## Generic linked list implementation
+## Generic linked list (1/2)
 
 .play assets/lecture-06/35_list.go
+
+## Generic linked list (2/2)
+
+.play assets/lecture-06/36_list2.go

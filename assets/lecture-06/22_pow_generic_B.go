@@ -18,9 +18,6 @@ func main() {
 		result := pow(x, 2)
 		fmt.Printf("%T %v\n", result, result)
 	}
-
-	fmt.Println()
-
 	for x := 0.0; x < 5.0; x += 0.5 {
 		result := pow(x, 2)
 		fmt.Printf("%T %v\n", result, result)
