@@ -2,23 +2,13 @@
 Course Go
 Tags: golang, go
 
-## Course
-
-- 11/12 lectures
-- 6 exercises
-- Final project
-
-## Requirements
-
-TODO
-
-## Course Outline
-
-TODO
-
 ##
 
 .image assets/logos/go-logo-blue.svg _ 600
+
+## Outline
+
+TODO
 
 ## Introduction
 
@@ -35,9 +25,9 @@ TODO
 ## Introduction
 
 - Conceived late 2007 at Google
-    - [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike), 
-    [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson), 
-    [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer)
+    - [Rob Pike](https://en.wikipedia.org/wiki/Rob_Pike)
+    - [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
+    - [Robert Griesemer](https://en.wikipedia.org/wiki/Robert_Griesemer)
 - Launched in November 2009 by Google
 - Go version 1.0 released March 2012
     - [Release History](https://go.dev/doc/devel/release)
