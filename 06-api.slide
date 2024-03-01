@@ -5,3 +5,69 @@ Tags: golang, go
 ## Outline
 
 TODO
+
+## Web services in Go
+
+- one of he most common thing written in go these days
+- largery used in http-based microservices 
+- rich support for HTTP-related directly [[https://golang.org/pkg/net/http/][in the language]] (batteries included)
+
+## Basic web server
+
+.play assets/lecture-06/web_server.go
+
+## Basic web server
+
+- a global `http.DefaultServerMux` is used for registering handlers
+
+## Web server with more control
+
+.play assets/lecture-06/web_server_more_control.go /^func main/,/^}/
+
+## Multiple paths
+
+.play assets/lecture-06/web_server_multi.go
+
+## Multiple paths
+
+-  the longest prefix always wins
+
+## Inspecting requests (cool trick)
+
+.play assets/lecture-06/web_server_inspect.go
+
+## Parsing requests: query
+
+.play assets/lecture-06/web_server_params.go
+
+## Parsing requests: raw body
+
+.play assets/lecture-06/web_server_body.go
+
+## Parsing requests: json
+
+.play assets/lecture-06/web_server_json.go
+
+## Parsing requests: json (2)
+
+.play assets/lecture-06/web_server_json_2.go
+
+## Headers and status codes
+
+.play assets/lecture-06/web_server_headers.go
+
+## Status codes (2)
+
+.play assets/lecture-06/web_server_status_codes.go
+
+## Client
+
+.play assets/lecture-06/client.go
+
+## Client (post)
+
+.play assets/lecture-06/client_post.go /// Params/,/End OMIT/
+
+## Proxy
+
+.play assets/lecture-06/proxy.go
