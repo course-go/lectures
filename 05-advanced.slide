@@ -5,3 +5,310 @@ Tags: golang, go
 ## Outline
 
 TODO
+
+## Testing and Benchmarking in Go
+
+- Unit test "framework" integral to the Go command
+- `go` `test`
+- (Micro)Benchmark "framework" part of it too
+- `go` `test` `-bench` `.`
+- package `testing`
+- code needs to be "vetable", pass `go` `vet` check
+
+## Tests
+
+- in `_test.go` files
+- all `Test*(t` `*testing.T)` functions get executed
+
+## Test main
+
+- `func` `TestMain(m` `*testing.M)`
+- `m.Run`
+- provides ability to do setup, passing CLI flags,...
+- execute tests that don't fit the basic framework, etc.
+- checkout misc/cgo GC tests
+
+## Benchmarks
+
+- in `_test.go` files
+- all `Benchmark*(b` `*testing.B)` functions get executed
+- can benchmark not only performance(`-bench`), but memory usage(`-benchmem`)
+
+## Assertions in Go
+
+- `assert` is not keyword in Go
+- but assert-like functions and methods exist
+- third party libraries
+
+## Assertions in Go (factorial)
+
+.code assets/lecture-05/assertions/assertions1/factorial.go
+
+## Assertions in Go (factorial)
+
+.code assets/lecture-05/assertions/assertions1/factorial_test.go
+
+## More assertions-like functions
+
+.code assets/lecture-05/assertions/assertions2/factorial_test.go
+
+## "Dot import" usage
+
+.code assets/lecture-05/assertions/assertions3/factorial_test.go
+
+## Go test tips&tricks
+
+- you can use build tags and/or short mode
+- good practice auxiliary data in testdata sub-directory/package, ignored by go build
+
+## Example 1
+
+.code assets/lecture-05/cgo-math-test-bench/cgo-math_test.go /T1/,/T1/
+
+## Example 2
+
+.code assets/lecture-05/cgo-math-test-bench/cgo-math_test.go /T2/,/T2/
+
+## Example 3
+
+.code assets/lecture-05/cgo-math-test-bench/cgo-math_test.go /benchmark/,/benchmark/
+
+## CGo?
+
+- C and Go, Cgo, but not a Go
+- allows  interoperability between Go and C code
+- calling C function in Go and Go functions in C
+- "FFI"
+- "C" "meta" package
+
+## CGo
+
+- has overhead, look for solution in Go
+- C code can't hold pointers in to the Go world
+- ^^ due to the copying nature of the GC
+- need to manually free malloc'ed(heap) C memory
+- string, arrays and such
+
+## Example C in Go inline
+
+.code assets/lecture-05/cgo-inlinec/cgo-inlinec.go
+
+## Example C in Go separate files
+
+.code assets/lecture-05/cgo-independent/cgo-independent.go
+
+## Example memory management with CGo and C strings
+
+.code assets/lecture-05/cgo-strings/cgo-string.go /memory management/,/memory management end/
+
+## Example Go in C
+
+- don't
+- again don't
+- look at the CGo docs
+- BEWARE! it has extreme overhead
+
+## Builtin tools
+
+- go vet
+- reports suspicions code construct, possible bugs
+- go fmt
+- formates code to the common coding standard
+- go fix
+- forward ports your code to latest release version of Go
+
+## External tools
+
+- abcgo
+- gosec
+- gocyclo
+- goconst
+- (go)errcheck
+- gocritic
+
+## Dependency management
+
+## The Past
+
+- go get and GOPATH
+- vendoring aka bundling
+- plethora of tools, godep, govendor, glide
+
+## The Present
+
+- Go modules, go mod
+- local cache instead of GOPATH
+- go mod
+- go.mod storing informations for module
+- init, vendor, download
+- go get bar@...
+- go list -m
+- go list -u -m -json all
+- go list -u -m -json all | go-mod-outdated -update
+
+## Proxies and sumdbs
+
+- Proxies facilitates fetches, instead of direct
+- SumDBs hashes of repos for corresponding versions
+
+## Generics in Go
+
+## Why generics?
+
+- to be able to create something similar to Numpy in Go
+- true abstract data types
+- lists
+- trees
+- priority queues
+- ...
+
+## Non-generic functions
+
+.play assets/lecture-05/01_print.go
+
+## Overloaded function in Go?
+
+.play assets/lecture-05/02_print_overload.go
+
+## No automatic type conversions
+
+.play assets/lecture-05/03_print_no_conversion.go
+
+## Generics implemented in runtime
+
+.play assets/lecture-05/04_print_interface.go
+
+## Generic function
+
+.play assets/lecture-05/05_generic_print.go
+
+## Selection of generic function
+
+.play assets/lecture-05/06_type_parameter.go
+
+## Compilation type checks
+
+.play assets/lecture-05/07_type_parameter_check.go
+
+## Concrete comparable interface
+
+.play assets/lecture-05/08_comparable.go
+
+## Problem with overloading
+
+.play assets/lecture-05/09_comparable_variable_types.go
+
+## Generic comparable interface
+
+.play assets/lecture-05/10_compare_type_parameters.go
+
+## Compile time or runtime?
+
+- Python
+
+.code assets/lecture-05/Test.py
+
+## Compile time or runtime?
+
+- Python
+
+.code assets/lecture-05/Test.py.asm
+
+## Compile time or runtime?
+
+- Java
+
+.code assets/lecture-05/Test.java
+
+## Compile time or runtime?
+
+.code assets/lecture-05/Test.java.asm / public static void main/,/^}/
+
+## Generic comparable interface (again)
+
+.play assets/lecture-05/10_compare_type_parameters.go
+
+## Compile time or runtime?
+
+- go
+- interface{} - runtime
+- type parameters - compile time
+
+ $ go tool compile -S 08_comparable.go > 08_comparable.s
+ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.s
+
+## Compiled concrete function
+
+  "".compare STEXT nosplit size=7 args=0x10 locals=0x0 funcid=0x0 align=0x0
+        0x0000 00000 (08_comparable.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
+        0x0000 00000 (08_comparable.go:7)       PCDATA  $3, $1
+        0x0000 00000 (08_comparable.go:8)       CMPQ    BX, AX
+        0x0003 00003 (08_comparable.go:8)       SETGT   AL
+        0x0006 00006 (08_comparable.go:8)       RET
+
+## Compiled generic function
+
+  "".compare[go.shape.int_0] STEXT dupok nosplit size=7 args=0x18 locals=0x0 funcid=0x0 align=0x0
+        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+        0x0000 00000 (10_compare_type_parameters.go:11) PCDATA  $3, $1
+        0x0000 00000 (10_compare_type_parameters.go:12) CMPQ    CX, BX
+        0x0003 00003 (10_compare_type_parameters.go:12) SETGT   AL
+        0x0006 00006 (10_compare_type_parameters.go:12) RET
+  "".compare[go.shape.float64_0] STEXT dupok nosplit size=8 args=0x18 locals=0x0 funcid=0x0 align=0x0
+        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.float64_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+        0x0000 00000 (10_compare_type_parameters.go:11) PCDATA  $3, $1
+        0x0000 00000 (10_compare_type_parameters.go:12) UCOMISD X0, X1
+        0x0004 00004 (10_compare_type_parameters.go:12) SETHI   AL
+        0x0007 00007 (10_compare_type_parameters.go:12) RET
+  "".compare[go.shape.string_0] STEXT dupok size=120 args=0x28 locals=0x28 funcid=0x0 align=0x0
+        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.string_0](SB), DUPOK|ABIInternal, $40-40
+        0x0000 00000 (10_compare_type_parameters.go:11) CMPQ    SP, 16(R14)
+        0x0004 00004 (10_compare_type_parameters.go:11) PCDATA  $0, $-2
+        0x0004 00004 (10_compare_type_parameters.go:11) JLS     63
+        ...
+        ...
+        0x002a 00042 (10_compare_type_parameters.go:12) PCDATA  $1, $1
+        0x002a 00042 (10_compare_type_parameters.go:12) CALL    runtime.cmpstring(SB)
+        ...
+        ...
+        0x003e 00062 (10_compare_type_parameters.go:12) RET
+
+## "Universal numeric" data type?
+
+.play assets/lecture-05/11_add_int.go
+
+## "Universal numeric" data type?
+
+.play assets/lecture-05/12_add_type_parameters.go
+
+## No automatic type conversion (1/2)
+
+.play assets/lecture-05/13_add_type_parameters.go /^package main/,/^func main/
+
+## No automatic type conversion (2/2)
+
+.play assets/lecture-05/13_add_type_parameters.go /^func main/,/^}/
+
+## Type approximations (1/2)
+
+.play assets/lecture-05/14_add_type_parameters.go /^package main/,/^func main/
+
+## Type approximations (2/2)
+
+.play assets/lecture-05/14_add_type_parameters.go /^func main/,/^}/
+
+## Concrete "pow" function
+
+.play assets/lecture-05/21_pow_floats_B.go
+
+## Generic "pow" function
+
+.play assets/lecture-05/22_pow_generic_B.go
+
+## Generic method vs. generic function
+
+.play assets/lecture-05/34_whats_better.go
+
+## Generic linked list implementation
+
+.play assets/lecture-05/35_list.go
