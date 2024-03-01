@@ -8,7 +8,12 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- history of Go
+- key characteristics
+- comparison with other languages
+- motivation
+- IDEs and editors
+- installation of Go
 
 ## Introduction
 
@@ -31,35 +36,49 @@ TODO
 - Launched in November 2009 by Google
 - Go version 1.0 released March 2012
     - [Release History](https://go.dev/doc/devel/release)
-- More readable replacement for C, C++, Java, ...
+- Frustration with C++ builds
+- More readable replacement for languages such as C, C++ or Java
 - Better suits corporations needs
+- _Go vs Golang_
+
+## Key characteristics
+
 - _„Less is more“_
-
-## Introduction
-
+- [Open-source](https://github.com/golang/go)
+- General purpose
 - Procedural, C-family
 - Compiled
 - Statically typed
-- Allows cross-compilation
-- Garbage collected
-- Built-in concurrency
-- Strict formatting rules
 - Type inference
+- Strict formatting rules
+- Allows cross-compilation
+- **Garbage collected**
+- **Built-in concurrency**
+
+## Influences
+
+- Distilled existing features and mechanisms
+- Mostly C family
+- Inputs from Algol60, Pascal, Modula, and Oberon
+- [Robert Griesemer - The Evolution of Go](https://www.youtube.com/watch?v=0ReKdcpNyQg)
+    - [Slides](https://go.dev/talks/2015/gophercon-goevolution.slide#1)
 
 ## More readable compared to C/C++
 
 - Evolved from C
 - Declarations in postfix
-- Much faster for parser to parse sources
-- Exported symbols begin with Capital letter
+- Much faster for parser to parse source code
+- No semicolons
 - [The Go Blog: Go's Declaration Syntax](https://blog.golang.org/gos-declaration-syntax)
 
+C:
 ```
 int a;
 int *p;
 int *(*f)(int *);
 ```
 
+Go:
 ```
 a int
 p *int
@@ -68,8 +87,7 @@ f func(*int) *int
 
 ## More readable compared to C++
 
-- In C++ we don't say "Missing asterisk"
-- We say:
+In C++ we don't say "Missing asterisk". We say:
 
 ```
 error C2664:
@@ -79,8 +97,9 @@ cannot convert argument 1 from
 to 'block &&'
 ```
 
-- and I think that's beautiful
-- [source](https://goo.gl/Akxjih)
+and I think that's beautiful...
+
+[Source](https://goo.gl/Akxjih)
 
 ## More readable compared to C++
 
@@ -94,19 +113,20 @@ to 'block &&'
         std::vector< std::vector <int> >::const_iterator it = std::find( v.begin(), v.end(), a );
     }
 
-- gcc -c error.cpp will produce 15786 bytes of output, with a longest line of 330 characters
+- gcc -c error.cpp will produce 
+    - 15786 bytes of output
+    - longest line of 330 characters
 
 ## Goals
 
-- Simplicity
-- Versatility
-- Unambiguity
+- Simplicity, versatility, unambiguity
 - Performance
 - Pragmatic
 - Community
 - Safer applications (compared to C/C++)
 - Microservices
-- Ease to install ("DLL hell" can't happen)
+- Ease of install ("DLL hell" can't happen)
+- [Backward compatibility](https://go.dev/doc/go1compat)
 - For DevOps from DevOps
 - Fast (actually super fast) builds (CI tools like it ;-)
 
@@ -114,10 +134,10 @@ to 'block &&'
 
 - Go is a blend of modern approaches combined with quite old ideas
 - Explicit error handling
-- No generics till version 1.18
+- No generics till [version 1.18](https://go.dev/blog/go1.18) [March 2022]
 - No class-based OOP
-- No exceptions or exception handling control structures
-    - `try`/`catch`/`finally` block
+- No exceptions or exception handling control structures (thank god)
+    - `try`/`catch`/`finally` blocks
 - `goto` keyword
 - `nil` identifier
 
@@ -375,9 +395,11 @@ go version go<version> <os>/<platform>
 
 [Go Wiki: Editors and IDEs](https://go.dev/wiki/IDEsAndTextEditorPlugins)
 
-- [VS Code](https://code.visualstudio.com/docs/languages/go)
 - [JetBrains Goland](https://www.jetbrains.com/go/)
+- [VS Code](https://code.visualstudio.com/docs/languages/go)
 - Vim/Neovim with a LSP
+    - [gopls](https://pkg.go.dev/golang.org/x/tools/gopls#section-readme)
+    - [vim-go](https://github.com/fatih/vim-go)
 
 ## Go Playground
 
