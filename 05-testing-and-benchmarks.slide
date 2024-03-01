@@ -1,0 +1,714 @@
+# Testing & Benchmarks
+Course Go
+Tags: golang, go
+
+## Outline
+
+TODO
+
+## Golang assets/lecture-05 Frameworks
+
+- Unit assets/lecture-05
+- BDD assets/lecture-05
+- Expect-like frameworks and libraries
+- REST API assets/lecture-05
+- Performance analysis
+
+## Test pyramid and ice-cream cone
+
+- [assets/lecture-05 pyramid](https://watirmelon.files.wordpress.com/2018/02/automated-testing-pyramid-with-eye.jpg?w=840)
+- [Ice-cream cone](https://watirmelon.files.wordpress.com/2018/02/software-assets/lecture-05-icecream-cone-antipattern.jpg?w=840)
+
+## Unit assets/lecture-05
+
+- Standard `assets/lecture-05` package
+- Helper tool `go-carpet`
+- Extensions (`testify`)
+- Alternative package `oglematchers`
+- Combination of `ogletest` and `oglematchers`
+- Package `assertions`
+- Package `goblin`
+
+## Standard "assets/lecture-05" package
+
+- Based on [[https://pkg.go.dev/assets/lecture-05]] package
+- Sources containing tests need to end with `_test.go`
+- Each test needs to be stored in a function named `func` `TestXxx(*assets/lecture-05.T)`
+- Basic methods for `assets/lecture-05.T` structure (data type)
+
+## Standard "assets/lecture-05" package
+
+- There are no "assertions" in the `assets/lecture-05` package!
+- `Log(args` `...interface{})`
+- `Skip(args` `...interface{})`
+- `Error(args` `...interface{})`
+- `Fatal(args` `...interface{})`
+- `Fail()`
+- `FailNow()`
+
+## Standard "assets/lecture-05" package
+
+- Formatting output
+- `Logf(format` `string,` `args` `...interface{})`
+- `Skipf(format` `string,` `args` `...interface{})`
+- `Errorf(format` `string,` `args` `...interface{})`
+- `Fatalf(format` `string,` `args` `...interface{})`
+
+## Unit test files
+- Usually stored in `package_test.go`
+- Can be split into as many files, as necessary
+- So called table-driven tests
+- Usually array/slice of structs with inputs and expected output is used
+
+## How to start unit tests
+
+- Basic command: `go` `test`
+- Usually: `go` `test` `./...`
+- It is possible to specify regexp to select just subset of tests
+
+## Simplest example
+
+.code assets/lecture-05/testing/tests01/add.go
+.code assets/lecture-05/testing/tests01/add_test.go
+
+## It is possible to test local functions/methods
+
+.code assets/lecture-05/testing/tests02/add.go
+.code assets/lecture-05/testing/tests02/add_test.go
+
+## Tests in its own package
+
+- this is preffered way
+- need proper project setup
+
+.code assets/lecture-05/testing/tests01B/go.mod
+
+## Tests in its own package
+
+.code assets/lecture-05/testing/tests01B/add.go
+.code assets/lecture-05/testing/tests01B/add_test.go
+
+## Local functions and tests in its own package
+
+- local functions are not visible by default
+- need global symbols pointing to local one
+
+## Local functions and tests in its own package
+
+.code assets/lecture-05/testing/tests02B/add.go
+.code assets/lecture-05/testing/tests02B/add_test.go
+
+## Local functions and tests in its own package
+
+- helper file
+
+.code assets/lecture-05/testing/tests02B/export_test.go
+
+## Test failures (due to an error in source code)
+
+.code assets/lecture-05/testing/tests03/add.go
+.code assets/lecture-05/testing/tests03/add_test.go
+
+## Tests can be stopped at any time
+
+.code assets/lecture-05/testing/tests04/add_test.go
+
+## Table-driven tests
+
+.code assets/lecture-05/testing/tests05/add_test.go /^package main/,/^func TestAdd/
+
+## Table-driven tests (cont.)
+
+.code assets/lecture-05/testing/tests05/add_test.go /^func TestAdd/,/^}/
+
+## Refactoring
+
+.code assets/lecture-05/testing/tests07/add_test.go /^package main/,/^func TestAdd/
+
+##  Refactoring (cont.)
+
+.code assets/lecture-05/testing/tests07/add_test.go /^func TestAdd/,/^}/
+
+## Normal/fast/slow tests
+
+- Normal tests
+
+.code assets/lecture-05/testing/tests08/add_test.go
+
+## Normal/fast/slow tests
+
+- Fast tests
+
+.code assets/lecture-05/testing/tests08/add_fast_test.go /^package main/,/^func checkAdd/
+
+## Normal/fast/slow tests
+
+- Fast tests (cont.)
+
+.code assets/lecture-05/testing/tests08/add_fast_test.go /^func checkAdd/,/^}/
+
+## Normal/fast/slow tests
+
+- Fast tests (cont.)
+
+.code assets/lecture-05/testing/tests08/add_fast_test.go /^func TestAddBasic/,/^}/
+
+.code assets/lecture-05/testing/tests08/add_fast_test.go /^func TestAddNegative/,/^}/
+
+## Normal/fast/slow tests
+
+- Slow tests
+
+.code assets/lecture-05/testing/tests08/add_slow_test.go /^package main/,/^func checkAdd/
+
+## Normal/fast/slow tests
+
+- Slow tests (cont.)
+
+.code assets/lecture-05/testing/tests08/add_slow_test.go /^func checkAdd/,/^}/
+
+## Normal/fast/slow tests
+
+- Slow tests (cont.)
+
+.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMinValue/,/^}/
+.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMaxValue/,/^}/
+
+## Normal/fast/slow tests
+- Slow tests (cont.)
+
+.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMinMaxValue/,/^}/
+
+## Code coverage
+
+- Basic code coverage report can be displayed by using just standard tools
+
+    $ go test -v -cover
+    === RUN   TestAdd
+    --- PASS: TestAdd (0.00s)
+    PASS
+    coverage: 50.0% of statements
+    ok      _/home/tester/tests01   0.004s
+
+## Code coverage as HTML page
+
+- It is possible to export code coverage report as HTML page (with colors, selection etc. etc.)
+
+    go test -coverprofile coverage
+    go tool cover -html coverage
+
+## Code coverage as HTML page
+
+.image ./assets/lecture-05/coverage.png _ 600
+
+## Helper tool `go-carpet`
+
+- Show test coverage in terminal for Go source files
+- With -256colors shows coverage in various shades of green
+- Installation: `go get -u github.com/msoap/go-carpet`
+- (`~/go/bin` should be put into `PATH`)
+- Run `go-carpet` in project directory
+
+## Helper tool `go-carpet`
+
+.image ./assets/lecture-05/go-carpet.png _ 600
+
+## Extension for the standard `testify` package
+
+- package `require`
+- package `mock`
+- package `suite`
+
+## Package `require`
+- Provides same global functions as the `assert` package
+- But instead of returning a boolean result they terminate current test
+- Tests written using this package are similar to unit tests in Python for example
+
+## Package `mock`
+- Provides a mechanism for writing mock objects
+- They can be used in place of real objects when writing test code
+
+## Package `suite`
+
+## Extensions (`testify`)
+
+## Alternative package `oglematchers`
+
+## Usage of package `oglematchers` - tested function
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial.go
+
+## First test written using `oglematchers` (1/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^package/,/^func TestFactorialForZero/
+
+## First test written using `oglematchers` (2/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForZero/,/^func TestFactorialForOne/
+
+## First test written using `oglematchers` (3/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForOne/,/^func TestFactorialForSmallNumber/
+
+## First test written using `oglematchers` (4/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForSmallNumber/,/^func TestFactorialForSmallNumberNegative/
+
+## First test written using `oglematchers` (5/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForSmallNumberNegative/,/^func TestFactorialForTen/
+
+## First test written using `oglematchers` (6/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForTen/,/^func TestFactorialForBigNumber/
+
+## First test written using `oglematchers` (7/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForBigNumber/,/^func TestFactorialForEvenBiggerNumber/
+
+## Second test written using `oglematchers` (1/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^package/,/^func TestFactorialForZero/
+
+## Second test written using `oglematchers` (2/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForZero/,/^func TestFactorialForOne/
+
+## Second test written using `oglematchers` (3/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForOne/,/^func TestFactorialForSmallNumber/
+
+## Second test written using `oglematchers` (4/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForSmallNumber/,/^func TestFactorialForSmallNumberNegative/
+
+## Second test written using `oglematchers` (5/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForSmallNumberNegative/,/^func TestFactorialForTen/
+
+## Second test written using `oglematchers` (6/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForTen/,/^func TestFactorialForBigNumber/
+
+## Second test written using `oglematchers` (7/7)
+
+.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForBigNumber/,/^func TestFactorialForEvenBiggerNumber/
+
+## Combination of `ogletest` and `oglematchers`
+
+## Package `assertions`
+
+## Package `goblin`
+
+.image ./assets/lecture-05/goblin.png _ 600
+Author: https://github.com/leandroreox
+
+## Package `goblin`
+
+- Based on Mocha library from the JavaScript/TypeScript world
+- 'It' and 'Describe' clausules
+- Assertion functions are built-in
+
+## Stub for test based on Goblin
+
+.code ./assets/lecture-05/goblin/01_intro_test.go
+
+## Checking behaviour of + operator
+
+.code ./assets/lecture-05/goblin/02_passing_test.go
+
+## More 'It' blocks in one 'Describe' block
+
+.code ./assets/lecture-05/goblin/03_intro_test.go
+
+## Example of all test steps that are passing
+
+.code ./assets/lecture-05/goblin/04_all_passing_test.go
+
+## Nested 'Describe' blocks in one test function
+
+.code ./assets/lecture-05/goblin/06_nested_describe_test.go
+
+## Tests splitted into more functions
+
+.code ./assets/lecture-05/goblin/07_nested_struct_test.go
+
+## Behaviour of Goblin when some test fails
+
+.code ./assets/lecture-05/goblin/09_nested_struct_failed_test.go
+
+## Behaviour of Goblin when some test fails
+
+.code ./assets/lecture-05/goblin/10_split_failed_test.go
+
+## Usage of method Goblin.Before
+
+.code ./assets/lecture-05/goblin/11_before_test.go
+
+## Usage of method Goblin.Before
+
+.code ./assets/lecture-05/goblin/12_before_test.go
+
+## BDD assets/lecture-05
+
+- GoConvey
+- Godog
+
+## BDD assets/lecture-05
+
+- Test pyramid
+- BDD: behavior-driven development
+- Simple DSL
+
+## GoConvey
+
+- Test steps are written directly as Go source code
+- Pros: support in IDE, most issues can be detected by the compiler
+- Cons: no proper separation from Go language
+- Supports web UI
+- Displays test coverage
+- Test code generator is included as well
+
+## GoConvey
+
+- `Convey`
+- `So`
+- `ShouldEqual`
+- `ShouldNotEqual`
+- `ShouldBeBetween`
+- `ShouldBeGreaterThan`
+- `ShouldNotBeEmpty`
+- ...
+- [[https://github.com/smartystreets/goconvey/wiki/Assertions]]
+- Possible to use: Convey("This isn't yet implemented", nil)
+
+## GoConvey output
+
+- `convey.Print`
+- `convey.Printf`
+- `convey.Println`
+
+## GoConvey - tested code
+
+.code assets/lecture-05/go-convey/go_convey1/factorial.go
+
+## GoConvey - behaviour test
+
+.code assets/lecture-05/go-convey/go_convey1/behaviour_test.go
+
+## GoConvey - checking behaviour of slice
+
+.code assets/lecture-05/go-convey/go_convey2/slice_test.go
+
+## GoConvey - more checks for factorial implementation
+
+.code assets/lecture-05/go-convey/go_convey3/behaviour_test.go
+
+## Godog
+
+- Based on Gherkin language
+- Pros: behaviour tests are separated from the code
+- Cons: "glue" between test scenarios and test step implementations
+
+## Gherkin language
+
+- Feature/Scenario/Scenario Outline
+- Given/when/then
+- Variable parameters in tests
+- Tables as data source
+- Tables for multiple test runs with variable parameters
+
+## Gherkin language
+
+- Based on natural language + a few keywords
+- usually English is used
+- translated into other languages as well
+- It is quite similar to Python, AsciiDoc etc.
+- indentation
+- based on keywords, not on special characters
+- tables "drawn" in ASCII
+- It is not tightly bound with any real programming language
+- it can be used by non-developers
+
+## Given-When-Then
+
+- Semi-structured way to write down test cases
+
+## Three clauses
+
+- `Given`
+- `When`
+- `Then`
+
+## The same clause on more consecutive lines?
+
+- `And`
+
+## Gherkin language - an example
+
+    Given the customer has logged into their current account
+      And the balance is shown to be 100 euros
+     When the customer transfers 75 euros to their savings account
+     Then the new current account balance should be 25 euros
+
+## Test scenario parts
+
+- Keywords/clauses:
+- `Given`, `And`, `When`, `Then`
+- The rest is written in "plain English":
+- Or in other supported language (ANY language in case of Godog)
+- Contains variable parts as well
+- `100`, `75`, `25`, `test`
+
+## Tables
+
+- has two purposes in Gherkin language
+- specify list of values used later in tests
+- specify multiple test scenarios with the same sentences, but with different parameters/variables.
+
+## Scenario outlines
+
+  Scenario Outline: Check the user search feature, perform the search for more users
+    Given GitHub is accessible
+    When I search for user with nick <nick>
+    Then I should receive 200 status code
+     And I should receive proper JSON response
+     And I should find the user with full name <fullname>
+     And I should find that the user works for company <company>
+
+     Examples: users
+     |nick|fullname|company|
+     |torvalds|Linus Torvalds|Linux Foundation|
+     |brammool|Bram Moolenaar|Zimbu Labs|
+     |tisnik|Pavel Tišnovský|Red Hat, Inc.|
+
+## Expect-like framework and libraries
+
+- Originally an extension to the TCL scripting language
+- Written by Don Libes for Unix, then ported to other operation systems
+- Automates interactions with programs that expose a text terminal interface
+- Also used to test such applications
+- Examples: Telnet, FTP, passwd, fsck, rlogin, tip, SSH
+- Used heavily in telco
+
+## Expect-like framework and libraries
+
+- Package goexpect [[https://github.com/google/goexpect]]
+- Package go-expect [[https://github.com/Netflix/go-expect]]
+- Package gexpect [[https://github.com/ThomasRooney/gexpect]]
+
+## Package go-expect
+
+- One of expect-like golang library to automate control of terminal or console based programs
+- Unlike expect it does not spawn or manage process lifecycle
+- Only focuses on expecting output and sending input through it's pseudoterminal
+- Can be used in cooperation with the standard `assets/lecture-05` module
+
+## Package gexpect
+
+- Pure golang expect-like module.
+- (IMHO) easiest to use
+- Regexp support in 'expect' commands
+- Two goroutines for `stdout` and `stdin` to make some use cases simpler
+- Can be used in cooperation with the standard `assets/lecture-05` module
+
+## Package goexpect
+
+- Another expect-like golang library
+- Native SSH spawner is included
+- Generic spawner that can be reused by additional spawners
+- Support for batch of commands (Batcher)
+- Support for conditionals in brach (Caser)
+- Go channel with exit status of automated/tested application
+- Verbose mode (for debugging/assets/lecture-05 etc.)
+- Can be used in cooperation with the standard `assets/lecture-05` module
+
+## Examples
+
+- Bunch of examples for each expect-like library
+
+## go-expect
+
+## gexpect
+
+## goexpect
+
+## REST API assets/lecture-05
+- in many aspects like software assets/lecture-05 at UI level
+- instead of input-output assets/lecture-05, REST API is validated
+- very important in niche where Go language is used
+- supports HTTP and HTTPS as well
+
+## REST API assets/lecture-05 frameworks
+
+- several packages/frameworks are available
+- Frisby
+- RestIt
+
+## Frisby
+
+.image ./assets/lecture-05/frisby.png _ 600
+(MIT License)
+
+## Frisby
+
+- All basic HTTP methods (GET, POST, PUT, PATCH, DELETE)
+- Built-in assertions
+- JSON parser
+- XML parser
+- Based of 'fluent API'
+- The whole test can be written as a chain of method of `*Frisby` object
+- Can be used as-is or as part of unit tests (usually not recommended)
+
+## Checking REST API with just GET method available
+
+.play assets/lecture-05/frisby/02_frisby_basic_usage.go
+
+## The same example, but with fluent API
+
+.play assets/lecture-05/frisby/01_frisby_basic_usage.go
+
+## Reporting similar to unit tests output
+
+.play assets/lecture-05/frisby/03_frisby_basic_usage.go
+
+## Behaviour when some tests fail
+
+.play assets/lecture-05/frisby/04_frisby_failures.go
+
+## Checking headers in the server response
+
+.play assets/lecture-05/frisby/05_frisby_check_headers.go
+
+## Checking headers in the server response (negative test)
+
+.play assets/lecture-05/frisby/06_frisby_check_headers.go
+
+## Using HTTP method POST
+
+.play assets/lecture-05/frisby/07_frisby_post.go
+
+## Sending JSON over HTTP/HTTPS
+
+.play assets/lecture-05/frisby/09_frisby_post_json.go
+
+## Checking content of HTTP response
+
+.play assets/lecture-05/frisby/10_frisby_check_content.go
+
+## Basic cookies handling
+
+.play assets/lecture-05/frisby/11_frisby_cookies.go
+
+## Method threading / Fluent API
+
+.play assets/lecture-05/frisby/12_frisby_threading.go
+
+## Using Frisby package in unit tests (passing tests)
+
+- (can not be run directly from slides!)
+
+.code assets/lecture-05/frisby/13_frisby_as_test_pass_test.go
+
+
+## Using Frisby package in unit tests (failing tests)
+
+- (can not be run directly from slides!)
+
+.code assets/lecture-05/frisby/14_frisby_as_test_fail_test.go
+
+## Using Frisby package in unit tests (combination)
+
+- (can not be run directly from slides!)
+
+.code assets/lecture-05/frisby/15_frisby_more_test.go
+
+
+## Some tips and tricks for Frisby
+
+## Performance analysis
+
+- very important part of assets/lecture-05
+
+## Useful links
+
+[An introduction to programming in Go: assets/lecture-05](https://www.golang-book.com/books/intro/12)
+[Package assets/lecture-05](https://golang.org/pkg/testing/)
+[Go(lang) Unit assets/lecture-05 for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
+[assets/lecture-05 in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
+[Go Test Your Code: An introduction to assets/lecture-05 in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
+[Comparative Analysis Of GoLang assets/lecture-05 Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
+
+## Useful links (cont.)
+
+[Code Coverage Tutorial: Branch, Statement, Decision, FSM](https://www.guru99.com/code-coverage.html)
+[Exploring the landscape of Go assets/lecture-05 frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
+[Go coverage service](https://gocover.io/)
+[GoConvey](http://goconvey.co/)
+[GoConvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
+[GoConvey FAQ](https://github.com/smartystreets/goconvey/wiki/FAQ)
+
+## Useful links (cont.)
+
+[Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development)
+[The Three Rules Of Tdd](http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd)
+[The Difference Between TDD and BDD](https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/)
+[The difference between TDD and BDD](https://www.hindsightsoftware.com/blog/tdd-vs-bdd/)
+[Package goexpect](https://github.com/google/goexpect)
+[Package go-expect](https://github.com/Netflix/go-expect)
+[Package gexpect](https://github.com/ThomasRooney/gexpect)
+
+## assets/lecture-05 and Benchmarking in Go
+
+- Unit test "framework" integral to the Go command
+- `go` `test`
+- (Micro)Benchmark "framework" part of it too
+- `go` `test` `-bench` `.`
+- package `assets/lecture-05`
+- code needs to be "vetable", pass `go` `vet` check
+
+## Tests
+
+- in `_test.go` files
+- all `Test*(t` `*assets/lecture-05.T)` functions get executed
+
+## Test main
+
+- `func` `TestMain(m` `*assets/lecture-05.M)`
+- `m.Run`
+- provides ability to do setup, passing CLI flags,...
+- execute tests that don't fit the basic framework, etc.
+- checkout misc/cgo GC tests
+
+## Benchmarks
+
+- in `_test.go` files
+- all `Benchmark*(b` `*assets/lecture-05.B)` functions get executed
+- can benchmark not only performance(`-bench`), but memory usage(`-benchmem`)
+
+## Assertions in Go
+
+- `assert` is not keyword in Go
+- but assert-like functions and methods exist
+- third party libraries
+
+## Assertions in Go (factorial)
+
+.code assets/lecture-05/assertions/assertions1/factorial.go
+
+## Assertions in Go (factorial)
+
+.code assets/lecture-05/assertions/assertions1/factorial_test.go
+
+## More assertions-like functions
+
+.code assets/lecture-05/assertions/assertions2/factorial_test.go
+
+## "Dot import" usage
+
+.code assets/lecture-05/assertions/assertions3/factorial_test.go
+
+## Go test tips&tricks
+
+- you can use build tags and/or short mode
+- good practice auxiliary data in testdata sub-directory/package, ignored by go build
