@@ -8,12 +8,14 @@ Tags: golang, go
 
 ## Outline
 
-- history of Go
-- key characteristics
-- comparison with other languages
-- motivation
+- History of Go
+- Key characteristics
+- Comparison with other languages
+- Motivation
 - IDEs and editors
-- installation of Go
+- Installation of Go
+- Go executable
+- Hello world
 
 ## Introduction
 
@@ -422,6 +424,18 @@ go version go<version> <os>/<platform>
 	version     print Go version
 	vet         report likely mistakes in packages
 
+## Workspace
+
+- Defined by `$GOPATH` variable
+    - `$HOME/go` by default
+- Structured directory:
+    - `/src`: historicaly used for storing source code
+        - unused after introduction of go modules
+    - `/pkg`: stores downloaded versioned packages
+        - `go get`
+    - `/bin`: contains executable binaries 
+        - `go install`
+
 ## Go keywords
 
     break     case   chan    const       continue
@@ -479,18 +493,6 @@ func main() {
     fmt.Println("Hello world")
 }
 ```
-
-## Workspace
-
-- Defined by `$GOPATH` variable
-    - `$HOME/go` by default
-- Structured directory:
-    - `/src`: historicaly used for storing source code
-        - unused after introduction of go modules
-    - `/pkg`: stores downloaded versioned packages
-        - `go get`
-    - `/bin`: contains executable binaries 
-        - `go install`
 
 ## Unicode support
 
