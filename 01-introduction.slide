@@ -401,6 +401,103 @@ go version go<version> <os>/<platform>
     - [gopls](https://pkg.go.dev/golang.org/x/tools/gopls#section-readme)
     - [vim-go](https://github.com/fatih/vim-go)
 
+## Go Command
+
+	bug         start a bug report
+	build       compile packages and dependencies
+	clean       remove object files and cached files
+	doc         show documentation for package or symbol
+	env         print Go environment information
+	fix         update packages to use new APIs
+	fmt         gofmt (reformat) package sources
+	generate    generate Go files by processing source
+	get         add dependencies to current module and install them
+	install     compile and install packages and dependencies
+	list        list packages or modules
+	mod         module maintenance
+	work        workspace maintenance
+	run         compile and run Go program
+	test        test packages
+	tool        run specified go tool
+	version     print Go version
+	vet         report likely mistakes in packages
+
+## Go keywords
+
+    break     case   chan    const       continue
+    default   defer  else    fallthrough for
+    func      go     goto    if          import
+    interface map    package range       return
+    select    struct switch  type        var
+
+## Packages and Imports
+
+- Program building blocks ("libraries")
+- Imported by other programs
+- Package name is the last element of the import path
+- [Standard library packages](https://pkg.go.dev/std)
+
+```
+package main
+```
+
+## Executable Packages 
+
+- Must:
+    - Be named `main`
+    - Contain `main()` function as entrypoint
+
+## Hello world
+
+.play assets/lecture-01/hello-world.go
+
+```
+$ go build hello.go
+$ ./hello
+Hello world
+```
+
+```
+$ go run hello.go
+Hello world
+```
+
+## Go Format
+
+.play assets/lecture-01/unformatted-hello-world.go
+
+```
+go fmt gofmt.go
+```
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello world")
+}
+```
+
+## Workspace
+
+- Defined by `$GOPATH` variable
+    - `$HOME/go` by default
+- Structured directory:
+    - `/src`: historicaly used for storing source code
+        - unused after introduction of go modules
+    - `/pkg`: stores downloaded versioned packages
+        - `go get`
+    - `/bin`: contains executable binaries 
+        - `go install`
+
+## Unicode support
+
+- all string literals use UTF-8
+
+.play assets/lecture-01/hello-world-unicode.go
+
 ## Go Playground
 
 [Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide#1)

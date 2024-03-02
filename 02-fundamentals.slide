@@ -6,27 +6,6 @@ Tags: golang, go
 
 TODO
 
-## Go Command
-
-	bug         start a bug report
-	build       compile packages and dependencies
-	clean       remove object files and cached files
-	doc         show documentation for package or symbol
-	env         print Go environment information
-	fix         update packages to use new APIs
-	fmt         gofmt (reformat) package sources
-	generate    generate Go files by processing source
-	get         add dependencies to current module and install them
-	install     compile and install packages and dependencies
-	list        list packages or modules
-	mod         module maintenance
-	work        workspace maintenance
-	run         compile and run Go program
-	test        test packages
-	tool        run specified go tool
-	version     print Go version
-	vet         report likely mistakes in packages
-
 ## Go keywords
 
     break     case   chan    const       continue
@@ -36,73 +15,6 @@ TODO
     select    struct switch  type        var
 
 [GothamGo 2018 - Things in Go I Never Use by Mat Ryer](https://youtu.be/5DVV36uqQ4E?si=hZDbgTxZiUAvAS3g)
-
-## Packages and Imports
-
-- Program building blocks ("libraries")
-- Imported by other programs
-- Package name is the last element of the import path
-- [Standard library packages](https://pkg.go.dev/std)
-
-```
-package main
-```
-
-## Executable Packages 
-
-- Have to be named `main`
-- Have to contain `main()` function as entrypoint
-
-## Hello world
-
-.play assets/lecture-02/hello-world.go
-
-```
-$ go build hello.go
-$ ./hello
-Hello world
-```
-
-```
-$ go run hello.go
-Hello world
-```
-
-## Go Format
-
-.play assets/lecture-02/unformatted-hello-world.go
-
-```
-go fmt gofmt.go
-```
-
-```
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello world")
-}
-```
-
-## Workspace
-
-- Defined by `$GOPATH` variable
-    - `$HOME/go` by default
-- Structured directory:
-    - `/src`: historicaly used for storing source code
-        - unused after introduction of go modules
-    - `/pkg`: stores downloaded versioned packages
-        - `go get`
-    - `/bin`: contains executable binaries 
-        - `go install`
-
-## Unicode support
-
-- all string literals use UTF-8
-
-.play assets/lecture-02/hello-world-unicode.go
 
 ## Types and variables 
 
