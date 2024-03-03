@@ -23,15 +23,15 @@ Tags: golang, go
 
 ## Simple benchmark for maps
 
-.code assets/lecture-05/map_test.go /^package main/,/^type value/
+.code assets/lecture-06/map_test.go /^package main/,/^type value/
 
 ## First part of benchmark
 
-.code assets/lecture-05/map_test.go /^func BenchmarkInsertIntoPreallocatedMap/,/^}/
+.code assets/lecture-06/map_test.go /^func BenchmarkInsertIntoPreallocatedMap/,/^}/
 
 ## Second part of benchmark
 
-.code assets/lecture-05/map_test.go /^func BenchmarkInsertIntoEmptyMap/,/^}/
+.code assets/lecture-06/map_test.go /^func BenchmarkInsertIntoEmptyMap/,/^}/
 
 ## Start benchmark
 
@@ -50,42 +50,42 @@ Tags: golang, go
 
 ## Large structures
 
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^type Config/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^type Config/,/^}/
 
 ## Large structures (2)
 
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^type StorageConfiguration/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^type StorageConfiguration/,/^}/
 
 ## Large structures (3)
 
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^type KafkaConfiguration/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^type KafkaConfiguration/,/^}/
 
 ## Large structures (4)
 
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^func GetStorageConfigurationByValue/,/^}/
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^func GetStorageConfigurationByReference/,/^}/
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^func \(configuration ConfigStruct\) GetStorageConfigurationByValue/,/^}/
-.code assets/lecture-05/parameter_value_reference/conf/config.go /^func \(configuration \*ConfigStruct\) GetStorageConfigurationByReference/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^func GetStorageConfigurationByValue/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^func GetStorageConfigurationByReference/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^func \(configuration ConfigStruct\) GetStorageConfigurationByValue/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config.go /^func \(configuration \*ConfigStruct\) GetStorageConfigurationByReference/,/^}/
 
 ## Passing by value/reference (1)
 
-.code assets/lecture-05/parameter_value_reference/conf/config_benchmark_test.go /^package conf_test/,/^func loadConfiguration/
+.code assets/lecture-06/parameter_value_reference/conf/config_benchmark_test.go /^package conf_test/,/^func loadConfiguration/
 
 ## Passing by value/reference (2)
 
-.code assets/lecture-05/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationFunctionByValue/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationFunctionByValue/,/^}/
 
 ## Passing by value/reference (3)
 
-.code assets/lecture-05/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationFunctionByReference/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationFunctionByReference/,/^}/
 
 ## Passing by value/reference (4)
 
-.code assets/lecture-05/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationMethodByValue/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationMethodByValue/,/^}/
 
 ## Passing by value/reference (5)
 
-.code assets/lecture-05/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationMethodByReference/,/^}/
+.code assets/lecture-06/parameter_value_reference/conf/config_benchmark_test.go /^func BenchmarkGetStorageConfigurationMethodByReference/,/^}/
 
 ## Memory profile
 
