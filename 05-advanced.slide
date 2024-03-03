@@ -23,82 +23,82 @@ Tags: golang, go
 
 - good old "normal" functions as used for decades
 
-.play assets/lecture-06/01_print.go
+.play assets/lecture-05/01_print.go
 
 ## Overloaded function in Go?
 
 - go does not permit overloading functions 
 - avoid ugly "name mangling" C++ problem
 
-.play assets/lecture-06/02_print_overload.go
+.play assets/lecture-05/02_print_overload.go
 
 ## No automatic type conversions
 
 - Go does not permit automatic type conversion (one of the best things)
 
-.play assets/lecture-06/03_print_no_conversion.go
+.play assets/lecture-05/03_print_no_conversion.go
 
 ## Generics implemented in runtime
 
 - runtime "generics"
 - not very efficient nor elegant, but doable in a way
 
-.play assets/lecture-06/04_print_interface.go
+.play assets/lecture-05/04_print_interface.go
 
 ## Generic function
 
 - type parameters introduced in Go version 1.18
 
-.play assets/lecture-06/05_generic_print.go
+.play assets/lecture-05/05_generic_print.go
 
 ## Selection of generic function
 
 - function variant can be manually specified
     - redundant
 
-.play assets/lecture-06/06_type_parameter.go
+.play assets/lecture-05/06_type_parameter.go
 
 ## Compilation type checks
 
-.play assets/lecture-06/07_type_parameter_check.go
+.play assets/lecture-05/07_type_parameter_check.go
 
 ## Concrete comparable interface
 
 - the "good" old compare function defined for single data type
 
-.play assets/lecture-06/08_comparable.go
+.play assets/lecture-05/08_comparable.go
 
 ## Problem with overloading
 
 - it was not easy to make variants of such function in Go < 1.18
 
-.play assets/lecture-06/09_comparable_variable_types.go
+.play assets/lecture-05/09_comparable_variable_types.go
 
 ## Generic comparable interface
 
 - type sets also introduced in Go 1.18
 
-.play assets/lecture-06/10_compare_type_parameters.go
+.play assets/lecture-05/10_compare_type_parameters.go
 
 ## Python: compile time or runtime?
 
-.code assets/lecture-06/Test.py
+.code assets/lecture-05/Test.py
 
 ## Python: compile time or runtime?
 
-.code assets/lecture-06/Test.py.asm
+.code assets/lecture-05/Test.py.asm
 
 ## Java: compile time or runtime?
 
-.code assets/lecture-06/Test.java
+.code assets/lecture-05/Test.java
 
 ## Java: compile time or runtime?
 
-.code assets/lecture-06/Test.java.asm / public static void main/,/^}/
+.code assets/lecture-05/Test.java.asm / public static void main/,/^}/
 
 ## Generic comparable interface (again)
 
-.play assets/lecture-06/10_compare_type_parameters.go
+.play assets/lecture-05/10_compare_type_parameters.go
 
 ## Go: compile time or runtime?
 
@@ -157,47 +157,47 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 ## "Universal numeric" data type?
 
-.play assets/lecture-06/11_add_int.go
+.play assets/lecture-05/11_add_int.go
 
 ## "Universal numeric" data type?
 
-.play assets/lecture-06/12_add_type_parameters.go
+.play assets/lecture-05/12_add_type_parameters.go
 
 ## No automatic type conversion (1/2)
 
-.play assets/lecture-06/13_add_type_parameters.go /^package main/,/^func main/
+.play assets/lecture-05/13_add_type_parameters.go /^package main/,/^func main/
 
 ## No automatic type conversion (2/2)
 
-.play assets/lecture-06/13_add_type_parameters.go /^func main/,/^}/
+.play assets/lecture-05/13_add_type_parameters.go /^func main/,/^}/
 
 ## Type approximations (1/2)
 
-.play assets/lecture-06/14_add_type_parameters.go /^package main/,/^func main/
+.play assets/lecture-05/14_add_type_parameters.go /^package main/,/^func main/
 
 ## Type approximations (2/2)
 
-.play assets/lecture-06/14_add_type_parameters.go /^func main/,/^}/
+.play assets/lecture-05/14_add_type_parameters.go /^func main/,/^}/
 
 ## Concrete "pow" function
 
-.play assets/lecture-06/21_pow_floats_B.go
+.play assets/lecture-05/21_pow_floats_B.go
 
 ## Generic "pow" function
 
-.play assets/lecture-06/22_pow_generic_B.go
+.play assets/lecture-05/22_pow_generic_B.go
 
 ## Generic method vs. generic function
 
-.play assets/lecture-06/34_whats_better.go
+.play assets/lecture-05/34_whats_better.go
 
 ## Generic linked list (1/2)
 
-.play assets/lecture-06/35_list.go
+.play assets/lecture-05/35_list.go
 
 ## Generic linked list (2/2)
 
-.play assets/lecture-06/36_list2.go
+.play assets/lecture-05/36_list2.go
 
 ## Testing
 
