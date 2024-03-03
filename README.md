@@ -8,36 +8,81 @@ This repository contains lecture slides for Course Go.
 
 ## Content
 
-1. Introduction
-    - Course introduction & requirements
+0. Course
+    - Introduction & requirements
     - Course overview
+1. Introduction ([exercise](https://github.com/course-go/exercises/blob/master/01-workspace-setup-and-project-basics/README.md))
     - Origins of Go
-    - Comparison with other languages
-    - Concurrency
-    - Use Cases
-    - Why learn it
-    - Installation
-    - Tooling
-2. Fundamentals #1
+    - Key characteristics
+    - Use cases & motivation
+    - IDEs and editors
+    - Installation of Go
+    - Hello world!
+2. Fundamentals #1 ([exercise](https://github.com/course-go/exercises/blob/master/02-simple-katas/README.md))
+    - Packages & visibility
+    - Variables
     - Keywords
     - Data types
-    - Operators
-    - Variables
-    - Pointers
-    - Visibility
-    - Packages
     - Control flow
     - Functions
+    - Pointers
     - Structures
-3. Fundamentals #2
+3. Fundamentals #2 ([exercise](https://github.com/course-go/exercises/blob/master/03-data-structures-katas/README.md))
     - Interfaces
     - Errors
     - Arrays
     - Slices
     - Maps
     - Range
+4. Concurrency and parallelism ([exercise](https://github.com/course-go/exercises/blob/master/04-concurrency-and-parallelism/README.md))
+    - Runtime
+    - Goroutines & channels
+    - Select
+    - Contexts, timers & tickers
+    - Synchronization primitives & atomics
+    - Patterns
+5. Advanced ([exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md))
+    - Libraries
     - Generics
-    - Standard library
+    - Testing
+6. Optimizations ([exercise](https://github.com/course-go/exercises/blob/master/06-pprof/README.md))
+    - Benchmarks
+    - Optimazations
+    - CGo
+7. Building APIs ([exercise](https://github.com/course-go/exercises/blob/master/07-rest-api/README.md))
+    - JSON
+    - REST API & OpenAPI specification
+    - HTTP package
+    - Routers
+    - Auth
+    - Air
+8. Docker ([exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md))
+    - Virtualization 
+    - Docker engine & basics
+    - Dockerfile
+    - YAML
+    - Docker compose
+    - Kubernetes
+9. Databases ([exercise](https://github.com/course-go/exercises/blob/master/09-databases/README.md))
+    - database/sql
+    - pgx
+    - sqlx
+    - sqlc
+    - GORM
+    - Migrations
+    - Caching
+10. CI/CD ([exercise](https://github.com/course-go/exercises/blob/master/10-cicd/README.md))
+    - Project setup
+    - Git, GitHub & GitLab
+    - GitHub Actions
+    - CI/CD
+    - GCP
+11. Observability ([exercise](https://github.com/course-go/exercises/blob/master/11-prometheus/README.md))
+    - Health checks
+    - Logging
+    - Monitoring
+    - Tracing
+    - Proxying
 
 ## Tooling
 
