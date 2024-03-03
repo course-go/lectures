@@ -4,7 +4,12 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- Go memory model
+- Goroutines
+- Channels
+- Sync package
+- Contexts
+- Patterns
 
 ## Concurrency
 
