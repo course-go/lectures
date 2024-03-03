@@ -191,14 +191,6 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 .play assets/lecture-05/34_whats_better.go
 
-## Generic linked list (1/2)
-
-.play assets/lecture-05/35_list.go
-
-## Generic linked list (2/2)
-
-.play assets/lecture-05/36_list2.go
-
 ## Testing
 
 ## Golang Testing Frameworks
