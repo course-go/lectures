@@ -47,7 +47,7 @@ This repository contains lecture slides for Course Go.
     - Testing
 6. Optimizations ([exercise](https://github.com/course-go/exercises/blob/master/06-pprof/README.md))
     - Benchmarks
-    - Optimazations
+    - Optimizations
     - CGo
 7. Building APIs ([exercise](https://github.com/course-go/exercises/blob/master/07-rest-api/README.md))
     - JSON
