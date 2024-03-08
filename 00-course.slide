@@ -4,22 +4,113 @@ Tags: golang, go
 
 ## Course
 
-- 10/11/12 lectures
-    - demos included
-- 4/5/6 exercises
+- 11 [lectures](https://github.com/course-go/lectures)
+    - Includes hands-on [exercises](https://github.com/course-go/exercises)
+- 5 [homework](https://github.com/course-go/homework) tasks
     - 14 days deadlines
-- final project
-    - solo
-    - team
-    - open source contribution
+- Final project
+    - Solo
+    - Team
+    - Open-source contribution
 
 ## Requirements
 
-- 10 points per exercise
-- 50 points for project
-- roughly 75 points to pass
+- ~10 points per homework
+- ~50 points for project
+- Roughly 75 points to pass
 
 ## Course Outline
 
-TODO
+## Introduction (Week 01)
 
+- Origins of Go
+- Key characteristics
+- Use cases & motivation
+- IDEs and editors
+- Installation of Go
+- Hello world!
+
+## Fundamentals #1 (Week 02)
+
+- Packages & visibility
+- Variables
+- Keywords
+- Data types
+- Control flow
+- Functions
+- Pointers
+- Structures
+
+## Fundamentals #2 (Week 03)
+
+- Interfaces
+- Errors
+- Arrays
+- Slices
+- Maps
+- Range
+
+## Concurrency & Parallelism (Week 04)
+
+- Runtime
+- Goroutines & channels
+- Select
+- Contexts, timers & tickers
+- Synchronization primitives & atomics
+- Patterns
+
+## Advanced (Week 05)
+
+- Libraries
+- Generics
+- Testing
+
+## Optimizations (Week 06)
+
+- Benchmarks
+- Optimizations
+- CGo
+
+## Building APIs (Week 07)
+
+- JSON
+- REST API & OpenAPI specification
+- HTTP package
+- Routers
+- Auth
+- Air
+
+## Docker (Week 08)
+
+- Virtualization 
+- Docker engine & basics
+- Dockerfile
+- YAML
+- Docker compose
+- Kubernetes
+
+## Databases (Week 09)
+
+- database/sql
+- pgx
+- sqlx
+- sqlc
+- GORM
+- Migrations
+- Caching
+
+## CI/CD (Week 10)
+
+- Project setup
+- Git, GitHub & GitLab
+- GitHub Actions
+- CI/CD
+- GCP
+
+## Observability (Week 11)
+
+- Health checks
+- Logging
+- Monitoring
+- Tracing
+- Proxying
