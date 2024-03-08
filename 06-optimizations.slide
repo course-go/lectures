@@ -100,12 +100,30 @@ Tags: golang, go
 - go tool pprof profile.out
 - go tool pprof -web profile.out
 - go tool pprof -http localhost:8080 profile.out
+
 ## Optimizations
 
 ## Simple but useful performance improvements in Go
 
 - Go compiler is pretty straightfoward (= dumb)
 - It needs some help from developers
+
+## Optimizations in Go
+
+- pass structures by reference, not by value
+
+## Pass structures by reference, not by value
+
+- all data types are passed by value into functions and methods
+- that's good from "state-space" perspective
+- not so good from performance point of view
+- (and no nice solution like `const` and `mut` exists in Go)
+
+## Problem definition
+
+- Large structures passed by value everywhere in the code
+- Even within inner loops
+- It causes overhead that is easy to avoid
 
 ## Some interesting areas backed by experience
 
