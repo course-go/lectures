@@ -4,27 +4,43 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- Types
+- Variables
+- Control flow
+- Functions
+- Types
+- Structures
+- Pointers
 
 ## Go keywords
 
-    break     case   chan    const       continue
-    default   defer  else    fallthrough for
-    func      go     goto    if          import
-    interface map    package range       return
-    select    struct switch  type        var
+```
+break     case   chan    const       continue
+default   defer  else    fallthrough for
+func      go     goto    if          import
+interface map    package range       return
+select    struct switch  type        var
+```
+
+This lecture covers most of them:
+
+```
+break     case           const       continue
+default   defer  else    fallthrough for
+func             goto    if
+                                     return
+struct           switch  type        var
+```
 
 [GothamGo 2018 - Things in Go I Never Use by Mat Ryer](https://youtu.be/5DVV36uqQ4E?si=hZDbgTxZiUAvAS3g)
 
-## Types and variables 
+## Types
 
 ## Types
 
 - Similar to C
 - No auto casts
 - Type inference and default types
-- Each type has clear zero value (0, false, "")
-
 ```
 bool
 
@@ -43,335 +59,386 @@ float32 float64
 complex64 complex128
 ```
 
+## Default values
+
+- Each type has it's default value
+    - Numeric types: **`0`**
+    - Strings: **`""`**
+    - Booleans: **`false`**
+
+## Variables
+
+## Variables
+
+- Declarations
+    - Using **`var`**
+    - Using **`:=`**
+        - Infers the type of the variable
+        - Cannot be used when declaring global variables (only function level)
+- Assignments
+    - Using **`=`**
+    - The variable has to be previously declared
+
 ## Variables
 
 .play assets/lecture-02/variables.go
 
+## Idiomatic declarations
+
+- Use **`var`** when you want to leverage the default value
+```
+ // YES
+var counter int
+
+ // NO
+counter := 0
+```
+- Use **`:=`** when initializating the variable with other than the default value
+```
+ // YES
+counter := 100
+
+ // NO
+var counter = 100
+```
+
 ## Constants
 
-.play assets/lecture-02/const.go
+- Declared and initialized using **`const`**
+- No changes are permitted beyond declaration
+- Only supports runes, string, bools, and numeric values 
+
+.play assets/lecture-02/variables-constants.go
 
 ## Type conversions
 
 - No auto casts
 
-.play assets/lecture-02/casts.go
+.play assets/lecture-02/variables-casting.go
+
+## Shadowing
+
+- Variables from outer blocks can be shadowed
+
+.play assets/lecture-02/variables-shadowing.go
+
+## Shadowing
+
+- Does not work in the same block
+
+.play assets/lecture-02/variables-shadowing-same-block.go
 
 ## Control Flow
 
 ## Conditions
 
-- Similarly to for loop allows init statement
-- Variables declared there don't exist outside of the if block
+- No parantheses around conditions
+- Allows init statement
+- Variables declared via init do not exist beyond the scope of the if block
 
 .play assets/lecture-02/if.go
 
 ## Else statement
 
-- Variables declared in the init statement do exist in the else block
+- Variables declared in the init statement are reachable in the (else-if)-else blocks
 
-.play assets/lecture-02/if2.go
+.play assets/lecture-02/if-else.go
 
 ## Switch statement
 
-- Again allows init statement
-- Like set of if-else statements
+- Also allows init statement
+- Like set of if-(else-if)-else statements
 - Evaluated top-bottom, first successful case is executed
-- Thus there's no break statement
+- No fallthrough by default
 
 .play assets/lecture-02/switch.go
 
-## Switch statement 2
+## Switch statement fallthrough
+
+- Fallthrough can be explicitly set
+- Generally not recommended
+
+.play assets/lecture-02/switch-fallthrough.go
+
+## Switch statement expressions
 
 - Allows non-constant and non-integer values
 
-.play assets/lecture-02/switch2.go
+.play assets/lecture-02/switch-expressions.go
 
-## Switch with no condition
+## Switch without condition
 
-- switch without condition is like switch true
+- Switch without condition is like `switch true`
 
-.play assets/lecture-02/switch3.go
+.play assets/lecture-02/switch-empty.go
 
 ## Loops
 
-- Only the `for` keyword exists
+- Only the `for` keyword exists (no `while`)
 
 .play assets/lecture-02/for.go
 
 ## Loops
 
-- break keyword
-- continue keyword
+- `break` keyword
+- `continue` keyword
+- Same as in other languages
 
-## Labels
+## Labels & goto statement
 
-TODO
+- It is here but just don't
+- Pretty please...
+- Your colleagues will hate you!
 
-## Ignoring return values
+.play assets/lecture-02/goto.go
 
-- '`_`' idiom can be used to drop return values
+[Edsger W. Dijkstra on goto](https://dl.acm.org/doi/10.1145/362929.362947)
 
-.play assets/lecture-02/ignore-return-values.go
+## Labels with loops
+
+- Can be used with `break` and `continue` in loops
+
+.play assets/lecture-02/for-labels.go
 
 ## Functions
 
 ## Functions
+
+- Defined using the `func` keyword
+- Arguments are passed by value
 
 .play assets/lecture-02/functions.go
 
 ## Multiple return values
 
-.play assets/lecture-02/functions2.go
+.play assets/lecture-02/functions-multiple-return-values.go
 
 ## Named return values
 
-.play assets/lecture-02/functions3.go
+.play assets/lecture-02/functions-named-return-values.go
 
-## Shortening argument type declaration
+## Shortening type declarations
 
-```
-func calculate(x int, y int, z bool) (a int, b int) {
-    // ...
-}
-```
+.play assets/lecture-02/functions-shortened-types.go
 
-```
-func calculate(x, y int, z bool) (a, b int) {
-    // ...
-}
-```
+## Ignoring return values
+
+- '`_`' idiom can be used to drop return values
+
+.play assets/lecture-02/functions-ignore-values.go
 
 ## Lambda functions
 
-- a.k.a. function literals
-- https://golang.org/ref/spec#Function_literals
-- can be assigned to a variable or invoked directly
+- AKA function literals
+- Can be invoked directly or assigned to a variable
+
+.play assets/lecture-02/functions-literals.go
 
 ## Typical usages for lambda functions
 
-- go blocks
-- defer statement
-- callback functions
-- 'compare' for sorting
+- `go` blocks
+- `defer` statement
+- Callback functions
+- Comparison functions for sorting
 
-## Function as a value (like any other value)
+## Higher order functions
 
-.play assets/lecture-02/01_func_type.go
+- Functions are like any other value
+    - "first-class citizens"
 
-## Function with parameters as a value (like any other value)
-
-.play assets/lecture-02/02_func_type.go
-
-## Functions stored in local variables (just a toy)
-
-.play assets/lecture-02/03_functions_as_values.go
-
-## Anonymous functions (just a toy again)
-
-.play assets/lecture-02/04_lambdas.go
-
-## Function types
-
-- a new type `BinaryOp` is defined
-- it is used to specify parameter type in `applyBinaryOp`
-
-.play assets/lecture-02/05_function_type.go /^package main/,/^func testBinaryOps/
-
-## Function types (cont.)
-
-.play assets/lecture-02/05_function_type.go /^func testBinaryOps/,/^}/
+.play assets/lecture-02/functions-higher-order.go
 
 ## Closures
 
-- lambda functions that refer to variables defined outside the function
-- it "closes over" another function -> the name closure
-- code pointer and environment pointer internally
-- useful for function that needs to store its state "somewhere"
+- Lambda functions that refer to variables defined outside the scope of the function
+- It "closes over" another function, hence the name
+- Contains code pointer and environment pointer internally
+- Useful for functions that need to store it's state "somewhere"
 
-## Practical example - sorting elements in slice
+## Closures
 
-.play assets/lecture-02/06_sort_function.go /^package main/,/^func main/
-
-## Practical example - sorting elements in slice (cont.)
-
-.play assets/lecture-02/06_sort_function.go /^func main/,/^}/
-
-## Practical example - sorting elements in a slice
-
-- implemented as a closure
-
-.play assets/lecture-02/07_sort_closure.go /^package main/,/^func main/
-
-## Practical example - sorting elements in slice (cont.)
-
-- implemented as a closure
-
-.play assets/lecture-02/07_sort_closure.go /^func main/,/^}/
-
-## Implementation of sort-by
-
-.play assets/lecture-02/08_sort_by.go /^package main/,/^func main/
-
-## Implementation of sort-by (cont.)
-
-.play assets/lecture-02/08_sort_by.go /^func main/,/^}/
+.play assets/lecture-02/functions-closure.go
 
 ## defer statement
 
-- `defer` is a keyword in the Go programming language
-- used to "remember" commands that will be called before `return` or exit
-- based on LIFO (stack) of remembered commands
-- parameters are evaluated when `defer` is declared (ie. in runtime)
-- (not when the specified code is called)
-- it is possible to change function return value(s) via `defer`
+- `defer` is a keyword in the Go
+- Used to "remember" commands that will be called before `return` or function exit
+- Based on LIFO (stack) of remembered commands
+    - The last defered call is called first
+- Parameters are evaluated when `defer` is declared (i.e. in runtime)
+    - Not when the specified code is called
+- It is possible to change function return value(s) via `defer`
+- Great for cleaning-up resources
 
 ## Basic usage of defer statement
 
-- function `on_finish()` is called before exit from `main()`
+- Function `on_finish()` is called before exit from `main()`
 
-.play assets/lecture-02/01_defer_basic_usage.go
+.play assets/lecture-02/defer.go
 
 ## Function declaration in defer statement
 
-- usually the function definition is part of `defer` statement
-- this function is anonymous - lambda, and usually it is a closure as well
-- (we will talk about lambdas and closures in the next lesson)
+- Usually, the function definition is part of `defer` statement
+- This function is anonymous - lambda, and usually it is a closure as well
 
-.play assets/lecture-02/02_defer_func.go
+.play assets/lecture-02/defer-lambda.go
 
-## Function declaration in defer statement (cont.)
+## defer in loop
 
-- parenthesis around lambda are not required
-
-.play assets/lecture-02/02B_defer_func.go
-
-## Function declaration with parameters in defer statement
-
-- it is possible to specify arguments passed into function in `defer`
-
-.play assets/lecture-02/03_defer_with_parameters.go
-
-## More defer statements in one function
-
-- ten `defer` statements
+- 10 `defer` statements
 - LIFO behaviour
-- (check in runtime how it works)
 
-.play assets/lecture-02/04_more_defers.go
+.play assets/lecture-02/defer-loop.go
 
-## Defer arguments evaluation
+## defer arguments evaluation
 
-- one function can be used in more `defer` statements
-- actual parameters are evaluated in runtime
-- (check in runtime)
+- Actual parameters are evaluated in runtime
 
-## Defer arguments evaluation (cont.)
+.play assets/lecture-02/defer-arguments-evaluation.go
 
-.play assets/lecture-02/05_defer_arguments_evaluation.go
-
-## Defer arguments evaluation (more complicated example)
-
-- arrays are a bit tricky
-- (call by value vs. call by reference)
-- (check in runtime, again)
-
-## Defer arguments evaluation (more complicated example, cont.)
-
-.play assets/lecture-02/06_defer_arguments_evaluation.go
-
-## Defer and (many) return statements
+## defer with multiple return statements
 
 - `defer` is called even when more `return` statements are used
 
-## Defer and (many) return statements
+.play assets/lecture-02/defer-multiple-returns.go /^package main/,/^func main/
 
-.play assets/lecture-02/07_defer_on_all_returns.go /^package main/,/^func main/
+## defer with multiple return statements (cont.)
 
-## Defer and (many) return statements (cont.)
-
-.play assets/lecture-02/07_defer_on_all_returns.go /^func main/,/^}/
+.play assets/lecture-02/defer-multiple-returns.go /^func main/,/^}/
 
 ## Practical usage of defer
 
-- how to use `defer` in an application to copy files
-
-.play assets/lecture-02/08_defer_practical_usage.go /^package main/,/func copyFile/
+.play assets/lecture-02/defer-io-example.go /^package main/,/^}/
 
 ## Practical usage of defer (cont.)
 
-.play assets/lecture-02/08_defer_practical_usage.go /^func copyFile/,/^}/
+.play assets/lecture-02/defer-io-example.go /^func main/,/^}/
 
-## Practical usage of defer (cont.)
+## defer and return values
 
-.play assets/lecture-02/08_defer_practical_usage.go /^func main/,/^}/
+- It is possible to change function's return value(s) via `defer`
+    - Works as function declared in defer is a closure
+- Function return values needs to be named
+- Sometimes used in applications to alter the `err` return value
 
-## Practical usage of defer
+## defer and return values
 
-- previous example refactored
+.play assets/lecture-02/defer-return-values.go
 
-.play assets/lecture-02/09_defer_practical_usage.go /^package main/,/func copyFile/
+## Types
 
-## Practical usage of defer (cont.)
+## Types
 
-.play assets/lecture-02/09_defer_practical_usage.go /^func copyFile/,/^}/
+- New types can be defined by the `type` keyword
 
-## Practical usage of defer (cont.)
+```
+type Email string
+```
 
-.play assets/lecture-02/09_defer_practical_usage.go /^func main/,/^}/
+- This is, for example, how the `byte` and `rune` types are defined:
 
-## Defer and return values
+```
+type byte = uint8
+type rune = int32
+```
 
-- it is possible to change function return value(s) via `defer`
-- (works because function declared in defer is closure)
-- function return values needs to be named!
-- used in applications to set `err` return value
+[builtin.go](https://cs.opensource.google/go/go/+/master:src/builtin/builtin.go)
 
-## Defer and return values
+- All custom types can easily be printed
+    - No need to define some kind of `toString()` function
 
-.play assets/lecture-02/10_defer_return_values.go
+## Structures
+
+## Structures
+
+- AKA records
+- Defined using `type` and `struct` keywords
+- User-defined data type
+    - Can also be anonymous
+- Dot operator to access struct members
+- Initialization using `{}`
+    - Members are explicitly named or follow the structure order as declared
+- Structs are comparable
+    - Note that the structure must not contain uncomparable types (slices, maps, ...)
+
+## Structs and dot operator
+
+.play assets/lecture-02/struct.go
+
+## Initialization of struct members
+
+- Similar to C language initialization
+- Usage of {} parenthesis
+- C-like initialization: order matters!
+
+## Initialization of struct members
+
+.play assets/lecture-02/struct-init.go
+
+## Explicit struct members initialization
+
+- Struct members are explicitly specified by name
+- Greatly increases readability 
+- Preferred approach
+
+## Explicit struct members initialization
+
+.play assets/lecture-02/struct-explicit-init.go
+
+## Structures can be compared
+
+- `==` and `!=` operators
+
+.play assets/lecture-02/struct-comparison.go /^func main/,/^}/
+
+## Calling functions with structs as arguments
+
+.play assets/lecture-02/struct-argument.go
+
+## Struct embedding
+
+.play assets/lecture-02/struct-embedding.go
+
+## Anonymous structure
+
+- Just declare new variable and specify its type to `struct` _something_
+
+.play assets/lecture-02/struct-anonymous.go
 
 ## Pointers
 
 ## Pointers
 
-- always points to an element of some type
-- ie. `void` pointers are not supported
-- implicit pointer value is `nil`
-- address of element can be retrieved using the `&` operator
-- access via pointer (reference in some other languages) using the `##` operator
+- Always points to an element of some type
+    - I.e. `void` pointers are not supported
+- Default pointer value is `nil`
+- Address of an element can be retrieved using the `&` operator
+- Access via pointer (dereference in some other languages) using the `*` operator
+- Go does not support pointer arithmetic
 
 ## Basic usage of pointers
 
-- please note the usage of `##p_i++`
+- Note the usage of `*p_i++`
 
-.play assets/lecture-02/22_pointer_to_int.go
+.play assets/lecture-02/pointer-to-int.go
+
+## Panic on nil dereference
+
+.play assets/lecture-02/pointer-panic.go
 
 ## Pointer to structure
 
-.play assets/lecture-02/23_pointer_to_struct.go /package main/,/func main//
+.play assets/lecture-02/pointer-to-struct.go /package main/,/func main//
 
-## Pointer to structure (cont.)
+## Pointer to structure
 
-- please note the possibility to write `p_u.id` instead of `(##p_u).id`
+- Note the possibility of writing `p_u.id` instead of `(*p_u).id`
 
-.play assets/lecture-02/23_pointer_to_struct.go /func main/,/^}//
+.play assets/lecture-02/pointer-to-struct.go /func main/,/^}//
 
-## Pointer to structure item/member
+## Pointer to structure member
 
-.play assets/lecture-02/24_pointer_to_struct_item.go /package main/,/func main//
-
-## Pointer to structure item/member (cont.)
-
-.play assets/lecture-02/24_pointer_to_struct_item.go /func main/,/^}//
-
-## Pointer to array item
-
-.play assets/lecture-02/25_pointer_to_array.go /package main/,/cont//
-
-## Pointer to array item (cont.)
-
-.play assets/lecture-02/25_pointer_to_array.go /cont/,/^}//
+.play assets/lecture-02/pointer-to-struct-member.go /func main/,/^}//
 
 ## Return pointer to local variable from C function
 
@@ -391,117 +458,48 @@ func calculate(x, y int, z bool) (a, b int) {
 
 ## Return pointer to local variable from Go function
 
-.play assets/lecture-02/25_B_return_pointer.go
+.play assets/lecture-02/pointer-return-reference.go
 
-
-## Structures
-
-## Structs (records)
-
-- a.k.a. records
-- user-defined data type (so called named structure)
-- or anonymous structure
-- dot operator to access struct members
-- initialization using {}
-- or by using named members (which is more explicit and better)
-- structs are comparable
-- it is possible to print whole struct
-- pass to functions as value or via pointer (by reference)
-
-## Structs and dot operator
-
-.play assets/lecture-02/11_struct.go
-
-## Initialization of struct members
-
-- similar to C language initialization
-- usage of {} parenthesis
-- C-like initialization: order matters!
-
-## Initialization of struct members (cont.)
-
-.play assets/lecture-02/12_struct_init.go
-
-## Better (more explicit) initialization of struct members
-
-- struct members are explicitly specified by name
-- better readability 
-- preferred approach
-
-## Better (more explicit) initialization of struct members (cont.)
-
-.play assets/lecture-02/13_better_struct_init.go
-
-## Comparison of whole structs is possible!
-
-- `==` and `!=` operators
-.play assets/lecture-02/14_struct_comparison.go /^func main/,/^}/
-
-## Comparison of whole structs is possible! (cont.)
-
-.play assets/lecture-02/14_struct_comparison.go /^func main/,/^}/
-
-## Passing structs as values into functions
-
-- by value
-- by reference (via pointer)
-
-.play assets/lecture-02/15_print_user.go /package main/,/^func main//
-
-## Passing structs as values into functions (cont.)
-
-.play assets/lecture-02/15_print_user.go /^func main/,/^}/
-
-## Struct embedding
-
-.play assets/lecture-02/40_struct_embedding.go
-
-## Anonymous structure
-
-- just declare new variable and specify its type to `struct` _something_
-
-    var employee struct {  
-            firstName, lastName string
-            age int
-    }
+## Back to types
 
 ## Methods on types
 
-- a _method_ is a function that has a defined receiver
-- (in OOP: a method is a function on an instance of an object)
-- concept of a _receiver_
-- usage - method declaration
+- A _method_ is a function that has a defined receiver
+    - In OOP: a method is a function on an instance of an object
+- Concept of a _receiver_
+- Method declaration:
 
-    func (receiver) method_name(parameters) return_types {
-        ...
-        ...
-        ...
-    }
+```
+func (receiver) methodName(parameters) returnTypes {
+    // body
+}
+```
 
-- method is called by
+- Methods are called like this:
 
-    some_object.method_name(parameters)
+```
+someType.methodName(parameters)
+```
 
-- methods can modify (mutate) a receiver
-- call by value vs. call by reference (via pointer)
+- Methods can modify the receiver
+    - Call by value vs. call by reference
 
-## User type with one method
+## User type with a single method
 
-.play assets/lecture-02/09_methods.go
+.play assets/lecture-02/methods.go
 
-## Receiver used as a value
+## Value receiver
 
-.play assets/lecture-02/10_methods_with_parameters.go
+.play assets/lecture-02/methods-value-receiver.go
 
-## Receiver used via pointer
+## Pointer receiver
 
-.play assets/lecture-02/11_methods_ptr.go
+.play assets/lecture-02/methods-pointer-receiver.go
 
 ## Nil receiver
 
-.play assets/lecture-02/21_nil_receiver.go
+.play assets/lecture-02/methods-nil-receiver.go
 
 ## More methods for the same type
 
-.play assets/lecture-02/12_more_methods.go /// Line/,/End OMIT/
-
+.play assets/lecture-02/methods-multiple.go
