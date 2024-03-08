@@ -1,7 +1,8 @@
 FROM golang:latest
 
 WORKDIR /usr/lectures
-COPY . .
+COPY *.slide .
+COPY assets assets
 
 RUN go install golang.org/x/tools/cmd/present@latest
 
