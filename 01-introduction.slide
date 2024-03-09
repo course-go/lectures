@@ -474,27 +474,25 @@ vet         report likely mistakes in packages
     - `/bin`: contains executable binaries 
         - `go install`
 
-## Go keywords
+## Keywords
 
 ```
-break     case   chan    const       continue
-default   defer  else    fallthrough for
-func      go     goto    if          import
-interface map    package range       return
-select    struct switch  type        var
+break       case     chan      const         continue
+default     defer    else      fallthrough   for
+func        go       goto      if            import
+interface   map      package   range         return
+select      struct   switch    type          var
 ```
 
-This lectures just covers two of these:
-
-```
-
-
-                                     import
-                 package
+This lectures covers just two of these:
 
 ```
 
 
+                                             import
+                     package
+
+```
 
 ## Packages
 

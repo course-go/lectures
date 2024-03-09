@@ -11,6 +11,38 @@ Tags: golang, go
 - Contexts
 - Patterns
 
+## Keywords
+
+
+```
+break       case     chan      const         continue
+default     defer    else      fallthrough   for
+func        go       goto      if            import
+interface   map      package   range         return
+select      struct   switch    type          var
+```
+
+You already know:
+
+```
+break       case               const         continue
+default     defer    else      fallthrough   for
+func                 goto      if            import
+interface   map      package   range         return
+            struct   switch    type          var
+```
+
+This lecture covers the rest:
+
+```
+                     chan
+            go
+
+select
+```
+
+After this lecture, you will know all of the Go keywords
+
 ## Concurrency
 
 - Definition: Computations happening at the same time

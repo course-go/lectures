@@ -14,30 +14,30 @@ Tags: golang, go
 ## Keywords
 
 ```
-break     case   chan    const       continue
-default   defer  else    fallthrough for
-func      go     goto    if          import
-interface map    package range       return
-select    struct switch  type        var
+break       case     chan      const         continue
+default     defer    else      fallthrough   for
+func        go       goto      if            import
+interface   map      package   range         return
+select      struct   switch    type          var
 ```
 
-Last lecture already covered:
+The first two lectures already covered:
 
 ```
-break     case           const       continue
-default   defer  else    fallthrough for
-func             goto    if
-                                     return
-struct           switch  type        var
+break       case               const         continue
+default     defer    else      fallthrough   for
+func                 goto      if            import
+                     package                 return
+            struct   switch    type          var
 ```
 
-This one covers:
+This one goes over:
 
 ```
 
 
 
-interface map            range       
+interface   map                range       
 
 ```
 

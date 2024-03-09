@@ -11,27 +11,36 @@ Tags: golang, go
 - User-defined data types
 - Pointers
 
-## Go keywords
+## Keywords
+
+[Mat Ryer: Things in Go I Never Use](https://youtu.be/5DVV36uqQ4E?si=hZDbgTxZiUAvAS3g)
 
 ```
-break     case   chan    const       continue
-default   defer  else    fallthrough for
-func      go     goto    if          import
-interface map    package range       return
-select    struct switch  type        var
+break       case     chan      const         continue
+default     defer    else      fallthrough   for
+func        go       goto      if            import
+interface   map      package   range         return
+select      struct   switch    type          var
+```
+
+Last first lecture covered:
+
+```
+
+                                             import
+                     package
+
 ```
 
 This lecture covers most of them:
 
 ```
-break     case           const       continue
-default   defer  else    fallthrough for
-func             goto    if
-                                     return
-struct           switch  type        var
+break       case               const         continue
+default     defer    else      fallthrough   for
+func                 goto      if
+                                             return
+struct               switch    type          var
 ```
-
-[GothamGo 2018 - Things in Go I Never Use by Mat Ryer](https://youtu.be/5DVV36uqQ4E?si=hZDbgTxZiUAvAS3g)
 
 ## Types
 
