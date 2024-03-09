@@ -6,15 +6,15 @@ Tags: golang, go
 
 - Introduction
     - Origins
-    - Key characteristics
-    - Comparison with other languages
-- Motivation
-- Environment
-    - IDEs and editors
-    - Installing Go
-- Packages
-- Go executable
-- Hello world
+    - Key characteristics & comparison with other languages
+    - Motivation
+- IDEs and editors
+- Installing Go
+- Go
+    - Go executable
+    - Modules
+    - Packages
+    - Hello world
 
 ## Is Go worth learning?
 
@@ -134,7 +134,7 @@ and I think that's beautiful...
         std::vector< std::vector <int> >::const_iterator it = std::find( v.begin(), v.end(), a );
     }
 
-- gcc -c error.cpp will produce 
+- `gcc -c error.cpp` will produce 
     - 15786 bytes of output
     - longest line of 330 characters
 
@@ -437,7 +437,7 @@ go version go<version> <os>/<platform>
     - [vim-go](https://github.com/fatih/vim-go)
 
 
-## Go executable
+## Go
 
 ## Go executable
 
@@ -494,7 +494,30 @@ This lectures covers just two of these:
 
 ```
 
-## Packages
+## Modules
+
+- Introduced in Go versions 1.12-13
+- Specifies project metadata and dependencies
+    - `go.mod`
+- Dependency check-sums are saved to a separate file
+    - `go.sum`
+- New modules can be create via `go` executable:
+
+```
+$ go mod init <name-of-module>
+```
+
+[Go Blog: Using Go Modules](https://go.dev/blog/using-go-modules)
+
+## Modules
+
+`go.mod`
+
+.code go.mod
+
+`go.sum`
+
+.code go.sum
 
 ## Packages
 
@@ -521,6 +544,8 @@ directory/
 └── db.go       // declares package as server - OK
 ```
 
+[Go Blog: Package names](https://go.dev/blog/package-names)
+
 ## Package imports
 
 - Packages can be imported by other programs and packages
@@ -541,8 +566,6 @@ main.Pi
 ```
 
 [Standard library packages](https://pkg.go.dev/std)
-
-
 
 ## Typical Go project layout
 
