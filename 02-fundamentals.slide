@@ -8,8 +8,7 @@ Tags: golang, go
 - Variables
 - Control flow
 - Functions
-- Types
-- Structures
+- User-defined data types
 - Pointers
 
 ## Go keywords
@@ -325,10 +324,12 @@ var counter = 100
 
 .play assets/lecture-02/defer-return-values.go
 
-## Types
+## User-defined data types
 
-## Types
+## User-defined data types
 
+- `type` keyword
+- Go is very strict in typing (see examples)
 - New types can be defined by the `type` keyword
 
 ```
@@ -347,7 +348,13 @@ type rune = int32
 - All custom types can easily be printed
     - No need to define some kind of `toString()` function
 
-## Structures
+## User-defined data types
+
+.play assets/lecture-02/user-types.go
+
+## User-defined data types (passing to function)
+
+.play assets/lecture-02/user-types-as-params.go
 
 ## Structures
 
