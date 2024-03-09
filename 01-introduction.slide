@@ -599,7 +599,7 @@ Hello world
 
 ## Go Format
 
-.play assets/lecture-01/unformatted-hello-world.go
+.play assets/lecture-01/hello-world-unformatted.go
 
 - Can be formatted using the built-in `fmt` formatter
 
@@ -609,21 +609,13 @@ $ go fmt main.go
 
 - Results in:
 
-```
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello world")
-}
-```
+.code assets/lecture-01/hello-world.go
 
 ## Unicode
 
 - All string literals use UTF-8
 
-.play assets/lecture-01/hello-world-unicode.go
+.play assets/lecture-01/hello-world-ukrainian.go
 
 ## Visibility
 
