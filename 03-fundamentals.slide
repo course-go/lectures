@@ -497,6 +497,10 @@ if set[key] { // returns bool
 - Provides an item index as well
     - Enumeration
 
+## Iterating over integers
+
+.play assets/lecture-03/range-ints.go
+
 ## Iterating over arrays
 
 - First item stores the index, second stores the values
