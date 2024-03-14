@@ -421,6 +421,24 @@ type rune = int32
 
 .play assets/lecture-02/struct-anonymous.go
 
+## Enums
+
+- No direct support
+- Can be somewhat simulated with 
+    - Custom types
+    - And a set of predefined constants
+- Go has a special **iota** for enumerating integer constants
+
+[Go Spec: iota](https://go.dev/ref/spec#Iota)
+
+## Enums
+
+.play assets/lecture-02/enums-days.go /START OMIT/,/END OMIT/
+
+## Enums
+
+.play assets/lecture-02/enums-iota.go /START OMIT/,/END OMIT/
+
 ## Pointers
 
 ## Pointers
