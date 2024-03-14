@@ -367,6 +367,10 @@ type error interface {
 
 .play assets/lecture-03/slices-make.go /START OMIT/,/END OMIT/
 
+## Variadic functions
+
+.play assets/lecture-03/slices-variadic-func.go /START OMIT/,/END OMIT/
+
 ## Maps
 
 ## Maps
