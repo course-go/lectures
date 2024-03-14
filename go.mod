@@ -1,6 +1,6 @@
 module github.com/course-go/lectures
 
-go 1.21.5
+go 1.22
 
 require (
 	github.com/yuin/goldmark v1.4.13 // indirect
