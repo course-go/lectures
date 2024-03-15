@@ -23,7 +23,7 @@ interface   map      package   range         return
 select      struct   switch    type          var
 ```
 
-Last first lecture covered:
+First lecture covered:
 
 ```
 
