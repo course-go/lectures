@@ -1,8 +1,5 @@
-FROM golang:latest
+FROM ghcr.io/stanislav-zeman/go-present:latest
 
-WORKDIR /usr/lectures
-COPY *.slide assets go.mod go.sum ./
-
-RUN go install golang.org/x/tools/cmd/present@latest
+COPY *.slide assets go.mod go.sum /usr/present/
 
 CMD present -http=:8080 -play=false
