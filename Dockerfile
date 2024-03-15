@@ -1,10 +1,7 @@
 FROM golang:latest
 
 WORKDIR /usr/lectures
-COPY *.slide .
-COPY assets assets
-COPY go.mod go.mod
-COPY go.sum go.sum
+COPY *.slide assets go.mod go.sum ./
 
 RUN go install golang.org/x/tools/cmd/present@latest
 
