@@ -5,15 +5,15 @@ import (
 	"time"
 )
 
-func f(s string) {
-	for i := 0; i < 5; i++ {
-		fmt.Println(s)
+func print(s string) {
+	for range 5 {
+		fmt.Printf("Hello from %s!\n", s)
 		time.Sleep(500 * time.Millisecond)
 	}
 }
 
 func main() {
-	go f("first")
-	go f("second")
-	f("main")
+	go print("first")
+	go print("second")
+	print("main")
 }

@@ -8,7 +8,6 @@ func main() {
 	chanA := make(chan int, 1)
 	chanB := make(chan int, 1)
 	chanA <- 0
-	chanB <- 0
 
 	select {
 	case <-chanA:

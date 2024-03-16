@@ -4,15 +4,12 @@ Tags: golang, go
 
 ## Outline
 
-- Go memory model
 - Goroutines
+- Runtime
 - Channels
-- Sync package
-- Contexts
-- Patterns
+- Packages
 
 ## Keywords
-
 
 ```
 break       case     chan      const         continue
@@ -32,7 +29,7 @@ interface   map      package   range         return
             struct   switch    type          var
 ```
 
-This lecture covers the rest:
+This session covers the rest:
 
 ```
                      chan
@@ -41,95 +38,272 @@ This lecture covers the rest:
 select
 ```
 
-After this lecture, you will know all of the Go keywords
+After this lecture, you will know all of the Go keywords! Yaay!
 
 ## Concurrency
 
-- Definition: Computations happening at the same time
-- Even on single CPU (kernel makes that feeling)
+## Concurrency
 
-## Communication via message queues
+*"Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once."*
 
-- Analogy of phone calls
-- Phone ringing: blocking call
-- Answerphone: non-blocking call (tape length = queue size)
-- Multiple receivers: Call centre
-- Multiple senders: Conf call
+~ [Rob Pike: Concurrency is not Parallelism](https://youtu.be/oV9rvDllKEg?t=143)
+- Concurrency is possible with even a single CPU core
+    - Parallelism is not
+- Backbone of concurrency in Go:
+    - Gouroutines
+    - Channels
+    - `select` construct
 
-## Threads and goroutines
+##
 
-- Reminder: Threads share memory
-- Go routines are light-weighted threads, cheap to spawn
-- It should be fine to spawn thousands of goroutines
-- Internally multiplexed across thread pool
-- Spawned with simple go keyword
+.image assets/lecture-04/concurrency-parallelism.svg 550 _
+
+## Goroutines
+
+## Goroutines
+
+- Core concept in Go
+- Basically light-weight threads
+    - Managed by the Go's runtime
+        - Limited context switching and interactions with the OS
+        - Goroutine scheduler is able to better optimize the workload
+    - Generally cheap to spawn
+        - Initial stack size is smaller compared to POSIX threads (8 KB vs 8 MB)
+        - But do not get the false sense you can spawn infinite number of them, it is still a resource
+            - Up to tens/hundreds of thousands are fine
+    - Internally multiplexed across on kernel thread pool (M:N)
 
 ## Goroutines
 
 .play assets/lecture-04/goroutines.go
 
+## Runtime
+
+## Runtime
+
+- Just a library
+    - Same as the `libc` library in C
+- Statically linked with your program upon compilation
+
+.play assets/lecture-04/runtime.go /START OMIT/,/END OMIT/
+
+[Go's runtime package](https://pkg.go.dev/runtime)
+
+## Scheduler
+
+- Orchestrator
+- Runs goroutines
+- Pauses and resumes them
+- Pre-emptive since Go 1.14
+    - Goroutines are pre-emted after [10ms](https://github.com/golang/go/blob/go1.19.1/src/runtime/proc.go#L5279-L5281)
+- Work-stealing
+- Coordinates system calls, I/O operations, runtime tasks etc.
+
+[Kavya Joshi: The Scheduler Saga](https://www.youtube.com/watch?v=YHRO5WQGh0k)
+
+[Ardan Labs: Scheduling in Go](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html)
+
+## Goroutine states
+
+- Runnable
+    - Can be run but is not assigned to a CPU core
+- Executing
+    - Currently running
+- Waiting
+    - System calls
+    - Synchronization calls
+    - I/O operations
+
+## Naming
+
+- **P** (Processor): Logical processor
+- **M** (Machine): OS Thread
+    - Initially, each P gets assigned one M
+    - More can be spawned by the runtime
+- **G** (Goroutine): Goroutine
+
+## Scheduling
+
+.image assets/lecture-04/scheduler.svg 450 _
+
+## Scheduling algorithm
+
+```
+runtime.schedule() {
+    // only 1/61 of the time, check the global runnable queue for a G.
+    // if not found, check the local queue.
+    // if not found,
+    //     try to steal from other Ps.
+    //     if not, check the global runnable queue.
+    //     if not found, poll network.
+}
+```
+[Jaana Dogan: Scheduler](https://rakyll.org/scheduler/) (CC BY SA 4.0)
+
+## Channels
+
 ## Channels
 
 - Way to transfer data between goroutines
-- Type of data is part of the channel type
-- By default blocks on both tx/rx (but can be buffered too)
-- Same operator to send and receive from channel
-- Created with make()
+- Data type is a part of the channel type
+- Buffered and unbuffered
+    - By default blocks on both read/write (unless buffered)
+- Channels can be created only with `make`:
+```
+ch := make(chan int)
+```
+- New operator `<-` used to send and receive messages from channels:
+```
+value := <-ch   // reading
+ch<-value       // writing
+```
 
-.code assets/lecture-04/chan.go
+## Communication via message queues
 
-## Channels
+- Analogy of phone calls
+    - Phone ringing: blocking call
+    - Answerphone: non-blocking call 
+    - Multiple receivers: call centre
+    - Multiple senders: conference call
 
-- Note that this is racy.. more about that later
+## Unbuffered channels
 
-.play assets/lecture-04/chan2.go
+.play assets/lecture-04/channels-unbuffered.go
 
-## Channels
+## Unbuffered channels
 
-- Unbuffered channels do block (and golang kindly detects deadlock)
+.image assets/lecture-04/channels-unbuffered.svg
 
-.play assets/lecture-04/chan3.go
+## Channel deadlocks
+
+- Unbuffered channels do block
+    - Buffered channels also block when full or empty
+    - Go kindly detects deadlocks
+
+.play assets/lecture-04/channels-deadlock.go
 
 ## Buffered channels
 
-- Size of buffer as second argument to make()
+- The size of the channel is provided as the second argument to `make`
 
-.play assets/lecture-04/chan4.go
+.play assets/lecture-04/channels-buffered.go /START OMIT/,/END OMIT/
+
+## Buffered channels
+
+.image assets/lecture-04/channels-buffered.svg 550 _
+
+## Buffered channels
+
+.image assets/lecture-04/channels-buffered-full.svg 550 _
 
 ## Closing channels
 
-- Channels can be closed with close()
+- Channels can be closed with `close` function
+    - Writers are responsible for closing the channels
+    - Note that closing channels is not neccesary
+        - Only used to signal the end of transmission to the readers
+```
+c := make(chan int)
+close(c)
+```
+- Reading from a closed channel returns a default value
 - Readers can check for closed channels using optional second return argument
+    - Same as with maps
 - Alternatively readers can detect closed channel with the loop over range
+    - Does the same "comma ok" idiom under the hood
 
-## Closed channel detection with return value
+## Closed channel operations
 
-.play assets/lecture-04/chan_close.go
+- Writing to a closed channel
 
-## Closed channel detection with range
+.play assets/lecture-04/channels-closed-write.go
 
-.play assets/lecture-04/range.go
+## Closed channel operations
 
-## Select on multiple channels
+- Reading from a closed channel
 
-- You can read wait on multiple channels at the same time using select
+.play assets/lecture-04/channels-closed-read.go /START OMIT/,/END OMIT/
 
-## Select on multiple channels
+- "Comma ok" idiom channel check
 
-.play assets/lecture-04/select.go
+.play assets/lecture-04/channels-closed-read-ok.go /START OMIT/,/END OMIT/
 
-## Quit + ack pattern
+## Range over channels
 
-.play assets/lecture-04/quit_ack.go /^package main/,/^func main/
+- For loop with range reads the messages when available
+    - The loop breaks when the channel gets closed
+    - Empties the channel's buffer first
 
-## Quit + ack pattern (cont.)
+.play assets/lecture-04/channels-range.go /START OMIT/,/END OMIT/
 
-.play assets/lecture-04/quit_ack.go /^func main/,/^}/
+## Select
 
-## Default selection
+## Select
 
-- Default action to take if all other actions would block
+- Special construct and the last Go keyword we have not yet covered
+- Sytanctically similar to the `switch` statement
+- Helps us manipulate multiple channels at the same time
+    - You can read on numerous channels at once
+    - Prevents reads that would otherwise block
 
-## Default selection
+## Select
 
-.play assets/lecture-04/default.go
+- The `select` statement always chooses a `case` that does not block
+- Both of the channels in the following example are ready to be read from
+    - Therefore, the `select` chooses one of them at random
+
+.play assets/lecture-04/select.go /START OMIT/,/END OMIT/
+
+## Select
+
+- The `chanB` would block on read
+    - The `select` therefore always chooses the `chanA`
+
+.play assets/lecture-04/select-single.go /START OMIT/,/END OMIT/
+
+## Select default
+
+- All channel reads block
+    - `select` would panic
+- We can leverage the `default` case
+    - The `default` gets selected only when all the `case`s would block
+
+.play assets/lecture-04/select-default.go /START OMIT/,/END OMIT/
+
+## Fan-in
+
+.play assets/lecture-04/select-fan-in.go /MIDDLE OMIT/,/END OMIT/
+
+## Fan-in
+
+.play assets/lecture-04/select-fan-in.go /START OMIT/,/MIDDLE OMIT/
+
+## Signalling termination
+
+- Usually done through `context`s
+
+.play assets/lecture-04/select-done.go /START OMIT/,/END OMIT/
+
+## Packages
+
+## Context package
+
+[Go packages: context](https://pkg.go.dev/context)
+
+## Time package
+
+- time
+
+[Go packages: time](https://pkg.go.dev/time)
+
+## Sync package
+
+- sync
+
+[Go packages: sync](https://pkg.go.dev/sync)
+
+## Sync/atomic package
+
+- sync/atomic
+
+[Go packages: sync/atomic](https://pkg.go.dev/sync/atomic)
