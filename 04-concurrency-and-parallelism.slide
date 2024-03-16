@@ -300,7 +300,79 @@ close(c)
 
 ## Context package
 
+- Introduced in Go 1.7
+- Structure used for carrying deadlines, context cancellations 
+and other request-scoped values across API boundaries
+- Contexts can be inherited to further propagate cancallations
+    - The changes to the child contexts are not propagated to the parents
+
+```
+type Context interface {
+	Deadline() (deadline time.Time, ok bool)
+	Done() <-chan struct{}      // channel used for signalling cancallation
+	Err() error
+	Value(key any) any          // map[any]any
+}
+```
+
 [Go packages: context](https://pkg.go.dev/context)
+
+## Context creation
+
+- **TODO**: should never be used in production applications
+
+```
+ctx := context.TODO()
+```
+
+- **Background**: used when cannot inherit from other contexts
+
+```
+ctx := context.Background()
+```
+
+- **WithValue**: adds value to an existing context and returns it
+
+```
+parent := context.Background()
+ctx := context.WithValue(parent, "API version", "v2")
+version := ctx.Value("API version")
+```
+
+## Context creation
+
+- **WithCancel**: returns a cancel function which can be called directly
+
+```
+parent := context.Background()
+ctx, cancel := context.WithCancel(parent)
+cancel()
+```
+
+- **WithDeadline**: adds deadline to an existing context and returns it
+    - `Done` channels gets closed when the specified time passes
+
+```
+time := time.Now().Add(shortDuration)
+parent := context.Background()
+ctx, cancel := context.WithDeadline(parent, time)
+```
+
+- **WithTimeout**: adds timeout to an existing context and returns it
+    - `Done` channels gets closed after the specified duration passes
+
+```
+parent := context.Background()
+ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
+```
+
+## Context
+
+.play assets/lecture-04/contexts.go /START OMIT/,/MIDDLE OMIT/
+
+## Context
+
+.play assets/lecture-04/contexts.go /MIDDLE OMIT/,/END OMIT/
 
 ## Time package
 
