@@ -118,7 +118,7 @@ type I3 interface {
 
 ## Declaration of two interfaces
 
-.play assets/lecture-03/interfaces.go
+.code assets/lecture-03/interfaces.go
 
 ## Missing interface implementation
 
