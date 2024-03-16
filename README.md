@@ -34,13 +34,12 @@ This repository contains lecture slides for Course Go.
     - Slices
     - Maps
     - Range
-4. Concurrency and parallelism ([exercise](https://github.com/course-go/exercises/blob/master/04-concurrency-and-parallelism/README.md))
+4. Concurrency & parallelism ([exercise](https://github.com/course-go/exercises/blob/master/04-concurrency-and-parallelism/README.md))
+    - Goroutines
     - Runtime
-    - Goroutines & channels
+    - Channels
     - Select
-    - Contexts, timers & tickers
-    - Synchronization primitives & atomics
-    - Patterns
+    - Related packages
 5. Advanced ([exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md))
     - Libraries
     - Generics
