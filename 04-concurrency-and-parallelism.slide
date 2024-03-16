@@ -7,6 +7,7 @@ Tags: golang, go
 - Goroutines
 - Runtime
 - Channels
+- Select
 - Packages
 
 ## Keywords
@@ -147,7 +148,6 @@ runtime.schedule() {
 - Way to transfer data between goroutines
 - Data type is a part of the channel type
 - Buffered and unbuffered
-    - By default blocks on both read/write (unless buffered)
 - Channels can be created only with `make`:
 ```
 ch := make(chan int)
@@ -161,12 +161,18 @@ ch<-value       // writing
 ## Communication via message queues
 
 - Analogy of phone calls
-    - Phone ringing: blocking call
-    - Answerphone: non-blocking call 
-    - Multiple receivers: call centre
-    - Multiple senders: conference call
+    - Phone ringing
+        - Blocking call
+    - Answerphone
+        - Non-blocking call 
+    - Multiple receivers
+        - Call centre
+    - Multiple senders
+        - Conference call
 
 ## Unbuffered channels
+
+- Note that this example is racy
 
 .play assets/lecture-04/channels-unbuffered.go
 
@@ -181,6 +187,12 @@ ch<-value       // writing
     - Go kindly detects deadlocks
 
 .play assets/lecture-04/channels-deadlock.go
+
+## Goroutine synchronization 
+
+- Unbuffered channels can be used to synchronize goroutines
+
+.play assets/lecture-04/channels-sync.go /START OMIT/,/END OMIT/
 
 ## Buffered channels
 
@@ -292,9 +304,77 @@ close(c)
 
 ## Time package
 
-- time
+- Package for manipulating time
+- Time
+
+```
+now := time.Now()
+hour := now.Hour()
+t, err := time.Parse(time.RFC3339, "2006-01-02T15:04:05Z")
+```
+
+- Time constants
+
+```
+threeSeconds := 3 * time.Second
+```
+
+- Durations
+
+```
+duration, err := time.ParseDuration("1h10m10s")
+```
+
+- Timer, Ticker, etc.
 
 [Go packages: time](https://pkg.go.dev/time)
+
+## Timer
+
+- Structure that delivers a tick after a specified time
+
+```
+timer := time.NewTimer(time.Second)
+timer.Stop()
+timer.Reset(3 * time.Second)
+```
+
+```
+type Timer struct {
+	C <-chan Time // The channel that delivers the tick.
+	// Other unexported fields...
+}
+```
+
+## Timer
+
+.play assets/lecture-04/timer.go /START OMIT/,/END OMIT/
+
+## Ticker
+
+- Structure for delivering ticks in a specified period
+- Same as `timer` but ticks endlessly or unless directly stopped
+
+```
+ticker := time.NewTicker(time.Second)
+ticker.Stop()
+ticker.Reset(3 * time.Second)
+```
+
+```
+type Ticker struct {
+	C <-chan Time // The channel on which the ticks are delivered.
+	// Other unexported fields...
+}
+```
+
+```
+<-ticker.C
+```
+
+## Ticker
+
+.play assets/lecture-04/ticker.go /START OMIT/,/END OMIT/
 
 ## Sync package
 
