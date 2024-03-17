@@ -12,8 +12,8 @@ func main() {
 			select {
 			case value := <-data:
 				fmt.Println(value)
-			case <-done: // not quranteed that all data will be read when done is signalled
-				fmt.Println("Receiver done")
+			case <-done: // Not quranteed that all data will be read when done is signalled
+				fmt.Println("Reader done!")
 				return
 			}
 		}
@@ -22,7 +22,7 @@ func main() {
 	data <- 1
 	data <- 2
 	done <- struct{}{}
-	fmt.Println("All done")
+	fmt.Println("All done!")
 }
 
 // END OMIT

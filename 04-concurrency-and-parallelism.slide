@@ -209,6 +209,18 @@ ch<-value       // writing
 
 .image assets/lecture-04/channels-buffered-full.svg 550 _
 
+## Pipeline
+
+.image assets/lecture-04/channels-pipeline.svg 200 _
+
+## Pipeline (1/2)
+
+.play assets/lecture-04/channels-pipeline.go /START OMIT/,/MIDDLE OMIT/
+
+## Pipeline (2/2)
+
+.play assets/lecture-04/channels-pipeline.go /MIDDLE OMIT/,/END OMIT/
+
 ## Closing channels
 
 - Channels can be closed with `close` function
@@ -291,13 +303,21 @@ close(c)
 
 .play assets/lecture-04/select-default.go /START OMIT/,/END OMIT/
 
+## Fan-out
+
+.image assets/lecture-04/channels-fanout.svg 500 _
+
 ## Fan-in
 
-.play assets/lecture-04/select-fan-in.go /MIDDLE OMIT/,/END OMIT/
+.image assets/lecture-04/channels-fanin.svg 500 _
 
-## Fan-in
+## Fan-in (1/2)
 
-.play assets/lecture-04/select-fan-in.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/select-fanin.go /MIDDLE OMIT/,/END OMIT/
+
+## Fan-in (2/2)
+
+.play assets/lecture-04/select-fanin.go /START OMIT/,/MIDDLE OMIT/
 
 ## Signalling termination
 
