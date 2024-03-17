@@ -12,7 +12,7 @@ func main() {
 			select {
 			case value := <-data:
 				fmt.Println(value)
-			case <-done: // Not quranteed that all data will be read when done is signalled
+			case <-done: // Not guaranteed that all data will be read when done is signalled
 				fmt.Println("Reader done!")
 				return
 			}
