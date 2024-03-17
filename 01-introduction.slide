@@ -198,7 +198,7 @@ and I think that's beautiful...
 
 .image assets/lecture-01/amdahls-law.png _ 650
 
-[Wikipedia: Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law)
+[Wikipedia: Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law) [(CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Bit of history
 
@@ -646,8 +646,6 @@ $ go fmt main.go
 - `Pi` is a constant exported by the [math package](https://cs.opensource.google/go/go/+/refs/tags/go1.22.1:src/math/const.go;l=13)
 
 .play assets/lecture-01/visibility.go
-
-## Resources
 
 ## Go Playground
 
