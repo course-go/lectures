@@ -403,6 +403,10 @@ ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
 
 .play assets/lecture-04/contexts.go /MIDDLE OMIT/,/END OMIT/
 
+## Context propagation
+
+.image assets/lecture-04/contexts-propagation.svg 550 _
+
 ## Time package
 
 - Package for manipulating time
