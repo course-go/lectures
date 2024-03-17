@@ -428,7 +428,7 @@ type Timer struct {
 
 ## Timer
 
-.play assets/lecture-04/timer.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time-timer.go /START OMIT/,/END OMIT/
 
 ## Ticker
 
@@ -454,13 +454,35 @@ type Ticker struct {
 
 ## Ticker
 
-.play assets/lecture-04/ticker.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time-ticker.go /START OMIT/,/END OMIT/
 
 ## Sync package
 
-- sync
+- Contains synchronizations primitives, most notably:
+    - **Mutex**: mutex
+    - **RWMutex**: read-write mutex
+    - **WaitGroup**: barrier
+    - **Cond**: conditional variable
+        - Can be simulated with just channels in most use cases
+    - **Map**: 
+        - Generally not recommended to be used
 
 [Go packages: sync](https://pkg.go.dev/sync)
+
+## Mutex
+
+.play assets/lecture-04/sync-mutex.go /START OMIT/,/END OMIT/
+
+## RWMutex
+
+- Works the same way as mutex
+- Additionally, exposes reader lock API:
+    - `RLock()`
+    - `RUnlock()`
+
+## WaitGroup
+
+.play assets/lecture-04/sync-waitgroup.go /START OMIT/,/END OMIT/
 
 ## Sync/atomic package
 
