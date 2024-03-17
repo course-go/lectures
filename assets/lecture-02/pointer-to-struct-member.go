@@ -2,12 +2,16 @@ package main
 
 import "fmt"
 
+// START OMIT
+
 // User is a new data type
 type User struct {
 	id      uint32
 	name    string
 	surname string
 }
+
+// MIDDLE OMIT
 
 func main() {
 	var u User
@@ -32,3 +36,5 @@ func main() {
 	fmt.Println(*pName)
 	fmt.Println(*pSurname)
 }
+
+// END OMIT

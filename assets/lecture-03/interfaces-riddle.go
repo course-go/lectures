@@ -4,7 +4,7 @@ import "fmt"
 
 // START OMIT
 
-// I represents a new interface type (in this case empty interface)
+// I represents a new interface type
 type I interface{}
 
 // T represents an user-defined data type
@@ -17,6 +17,7 @@ func main() {
 	} else {
 		fmt.Println("t is not nil")
 	}
+
 	var i I = t
 	if i == nil {
 		fmt.Println("i is nil")

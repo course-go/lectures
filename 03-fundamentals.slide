@@ -128,11 +128,11 @@ type I3 interface {
 
 .play assets/lecture-03/interfaces-implementation.go /^type OpenShape/,/END OMIT/
 
-## Multiple implementations of a single interface
+## Multiple implementations of a single interface (1/2)
 
 .play assets/lecture-03/interfaces-multiple-implementations.go /START OMIT/,/MIDDLE OMIT/
 
-## Multiple implementations of a single interface (cont.)
+## Multiple implementations of a single interface (2/2)
 
 .play assets/lecture-03/interfaces-multiple-implementations.go /MIDDLE OMIT/,/END OMIT/
 

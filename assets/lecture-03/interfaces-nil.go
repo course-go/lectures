@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	var p1 *int    /* = nil */
-	var p2 *string /* = nil */
+	var p1 *int    // nil
+	var p2 *string // nil
 
-	var i1 interface{} /* = nil */
+	var i1 interface{} // nil
 	var i2 interface{} = p1
 	var i3 interface{} = p2
 

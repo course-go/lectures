@@ -72,7 +72,10 @@ complex64 complex128
 - Each type has it's default value
     - Numeric types: **`0`**
     - Strings: **`""`**
+    - Runes: **`''`**
     - Booleans: **`false`**
+    - Pointer types: **`nil`**
+        - More on those later
 
 ## Variables
 
@@ -114,7 +117,7 @@ var counter = 100
 
 - Declared and initialized using **`const`**
 - No changes are permitted beyond declaration
-- Only supports runes, string, bools, and numeric values 
+- Only supports runes, strings, bools, and numeric values 
 
 .play assets/lecture-02/variables-constants.go
 
@@ -304,21 +307,21 @@ var counter = 100
 
 .play assets/lecture-02/defer-arguments-evaluation.go
 
-## defer with multiple return statements
+## defer with multiple return statements (1/2)
 
 - `defer` is called even when more `return` statements are used
 
 .play assets/lecture-02/defer-multiple-returns.go /^package main/,/^func main/
 
-## defer with multiple return statements (cont.)
+## defer with multiple return statements (2/2)
 
 .play assets/lecture-02/defer-multiple-returns.go /^func main/,/^}/
 
-## Practical usage of defer
+## Practical usage of defer (1/2)
 
 .play assets/lecture-02/defer-io-example.go /^package main/,/^}/
 
-## Practical usage of defer (cont.)
+## Practical usage of defer (2/2)
 
 .play assets/lecture-02/defer-io-example.go /^func main/,/^}/
 
@@ -460,19 +463,19 @@ type rune = int32
 
 .play assets/lecture-02/pointer-panic.go
 
-## Pointer to structure
+## Pointer to structure (1/2)
 
-.play assets/lecture-02/pointer-to-struct.go /package main/,/func main//
+.play assets/lecture-02/pointer-to-struct.go /START OMIT/,/MIDDLE OMIT/
 
-## Pointer to structure
+## Pointer to structure (2/2)
 
 - Note the possibility of writing `p_u.id` instead of `(*p_u).id`
 
-.play assets/lecture-02/pointer-to-struct.go /func main/,/^}//
+.play assets/lecture-02/pointer-to-struct.go /MIDDLE OMIT/,/END OMIT/
 
 ## Pointer to structure member
 
-.play assets/lecture-02/pointer-to-struct-member.go /func main/,/^}//
+.play assets/lecture-02/pointer-to-struct-member.go /MIDDLE OMIT/,/END OMIT/
 
 ## Return pointer to local variable from C function
 
