@@ -486,6 +486,18 @@ type Ticker struct {
 
 ## Sync/atomic package
 
-- sync/atomic
+- Low-level synchronization primitives
+- Atomic:
+    - Bool
+    - Integer
+        - Signed/unsigned
+        - 32/64
+    - Generic Value
+- Swaps
+- Compares and swaps (CAS)
 
 [Go packages: sync/atomic](https://pkg.go.dev/sync/atomic)
+
+## Atomics
+
+.play assets/lecture-04/sync-atomics.go /START OMIT/,/END OMIT/
