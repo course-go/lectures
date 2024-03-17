@@ -14,15 +14,15 @@ func main() {
 	data := make(chan int, 4)
 	producerDone := make(chan bool)
 	consumerDone := make(chan bool)
+
 	go func() { // producer
 		for {
 			select {
+			case data <- rand.IntN(1000):
 			case <-ctx.Done():
 				fmt.Println("Producer cancelled!")
 				producerDone <- true
 				return
-			default:
-				data <- rand.IntN(1000)
 			}
 		}
 	}()
@@ -46,6 +46,7 @@ func main() {
 
 	<-producerDone
 	<-consumerDone
+	fmt.Println("Program terminated...")
 }
 
 // END OMIT
