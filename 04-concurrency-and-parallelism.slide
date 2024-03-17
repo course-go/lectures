@@ -255,8 +255,8 @@ close(c)
 - Special construct and the last Go keyword we have not yet covered
 - Sytanctically similar to the `switch` statement
 - Helps us manipulate multiple channels at the same time
-    - You can read on numerous channels at once
-    - Prevents reads that would otherwise block
+    - You can read on/write to numerous channels at once
+    - Prevents reads/writes that would otherwise block
 
 ## Select
 
@@ -265,6 +265,14 @@ close(c)
     - Therefore, the `select` chooses one of them at random
 
 .play assets/lecture-04/select.go /START OMIT/,/END OMIT/
+
+## Select
+
+- The same works for writes
+    - Neither channels is full
+    - Writing to them would not block
+
+.play assets/lecture-04/select-writes.go /START OMIT/,/END OMIT/
 
 ## Select
 

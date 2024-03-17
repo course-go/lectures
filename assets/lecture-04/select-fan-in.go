@@ -35,6 +35,7 @@ func producer(c chan int) {
 	for range 10 {
 		c <- rand.IntN(1000)
 	}
+
 	close(c)
 }
 
@@ -43,6 +44,7 @@ func main() {
 	p2 := make(chan int)
 	go producer(p1)
 	go producer(p2)
+
 	sum := consumer(p1, p2)
 	fmt.Printf("Sum: %d\n", sum)
 }
