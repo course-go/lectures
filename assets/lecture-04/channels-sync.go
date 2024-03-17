@@ -7,7 +7,7 @@ import (
 
 // START OMIT
 
-func process(done chan struct{}) {
+func process(done chan<- struct{}) { // done is write-only channel
 	fmt.Println("Processing...")
 	time.Sleep(2 * time.Second)
 	fmt.Println("Finished!")

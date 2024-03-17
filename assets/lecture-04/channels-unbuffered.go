@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func readAndPrint(c chan int) {
+func readAndPrint(c <-chan int) { // c is read-only channel
 	value := <-c
 	fmt.Println("Received", value)
 }

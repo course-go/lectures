@@ -7,7 +7,7 @@ import (
 
 // START OMIT
 
-func readAndPrint(c chan int) {
+func readAndPrint(c <-chan int) {
 	value := <-c
 	fmt.Println("Received", value)
 }

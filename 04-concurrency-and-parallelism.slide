@@ -147,6 +147,7 @@ runtime.schedule() {
 
 - Way to transfer data between goroutines
 - Data type is a part of the channel type
+    - Functions can further specify whether channels passed as arguments are read/write-only
 - Buffered and unbuffered
 - Channels can be created only with `make`:
 ```
