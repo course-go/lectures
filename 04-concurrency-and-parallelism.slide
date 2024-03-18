@@ -97,7 +97,9 @@ After this lecture, you will know all of the Go keywords! Yaay!
 - Pauses and resumes them
 - Pre-emptive since Go 1.14
     - Goroutines are pre-emted after [10ms](https://github.com/golang/go/blob/go1.19.1/src/runtime/proc.go#L5279-L5281)
+    - Sysmon
 - Work-stealing
+- Handoffs
 - Coordinates system calls, I/O operations, runtime tasks etc.
 
 [Kavya Joshi: The Scheduler Saga](https://www.youtube.com/watch?v=YHRO5WQGh0k)
