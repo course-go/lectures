@@ -263,6 +263,10 @@ close(c)
 
 .play assets/lecture-04/channels-range.go /START OMIT/,/END OMIT/
 
+## Channel operations
+
+.image assets/lecture-04/channels-operations.png 450 _
+
 ## Select
 
 ## Select
