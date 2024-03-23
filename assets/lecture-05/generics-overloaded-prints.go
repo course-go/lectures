@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// START OMIT
+
 func printValue(value string) {
 	fmt.Println(value)
 }
@@ -11,5 +13,8 @@ func printValue(value int) {
 }
 
 func main() {
-	printValue("Go language!")
+	printValue("We need more Gophers!")
+	printValue(42)
 }
+
+// END OMIT

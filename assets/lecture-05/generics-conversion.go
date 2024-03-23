@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// START OMIT
+
 type Value string
 
 func printValue(value Value) {
@@ -9,6 +11,8 @@ func printValue(value Value) {
 }
 
 func main() {
-	v := "Go language!" // string
+	v := "We need more Gophers!" // string
 	printValue(v)
 }
+
+// END OMIT

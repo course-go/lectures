@@ -4,192 +4,236 @@ Tags: golang, go
 
 ## Outline
 
-- Libraries
 - Generics
+- Libraries
 - Testing
 
 ## Generics
 
 ## Why generics?
 
-- to be able to create something similar to Numpy in Go
-- true abstract data types
-- lists
-- trees
-- priority queues
-- ...
+- Generic algorithms and functions
+    - Sorting
+    - Comparing
+    - Maps, filters, etc.
+- True abstract data types
+    - Lists
+    - Trees
+    - Priority queues, etc.
+- Reusability
+- Safety
+
+[Go Blog: Why Generics?](https://go.dev/blog/why-generics)
+
+## Life without generics
+
+- You either:
+    - Have to define the same function for every type you would like to use
+    - Use `inferface{}` and type switch the concrete type at runtime
 
 ## Non-generic functions
 
-- good old "normal" functions as used for decades
+- Good old "normal" functions as used for decades
 
-.play assets/lecture-05/01_print.go
+.play assets/lecture-05/generics-normal-print.go /START OMIT/,/END OMIT/
 
-## Overloaded function in Go?
+## Function overloading
 
-- go does not permit overloading functions 
-- avoid ugly "name mangling" C++ problem
+- Not supported in Go
+- Avoids [name mangling](https://en.wikipedia.org/wiki/Name_mangling)
 
-.play assets/lecture-05/02_print_overload.go
+.play assets/lecture-05/generics-overloaded-prints.go /START OMIT/,/END OMIT/
 
-## No automatic type conversions
+## Multiple implementations
 
-- Go does not permit automatic type conversion (one of the best things)
+- An implemenetation for each type
 
-.play assets/lecture-05/03_print_no_conversion.go
+.play assets/lecture-05/generics-multiple-prints.go /START OMIT/,/END OMIT/
 
-## Generics implemented in runtime
+## Runtime "generics"
 
-- runtime "generics"
-- not very efficient nor elegant, but doable in a way
+- Has runtime overhead
+- Tidious to implement
+    - Usually combined with a type switch
 
-.play assets/lecture-05/04_print_interface.go
+.play assets/lecture-05/generics-runtime-print.go /START OMIT/,/END OMIT/
 
 ## Generic function
 
-- type parameters introduced in Go version 1.18
+- Generics introduced in [Go version 1.18](https://tip.golang.org/doc/go1.18)
+    - Adds type parameters to functions and structures
+        - Usually named `T`, `U`, `V`, ... but words can be used as well
+    - The type parameters have to be instantiated on use
 
-.play assets/lecture-05/05_generic_print.go
+.play assets/lecture-05/generics-print-instantiated.go /START OMIT/,/END OMIT/
 
 ## Selection of generic function
 
-- function variant can be manually specified
-    - redundant
+- The instance of the type parameter can sometimes be omitted
+    - Inferred by the compiler
 
-.play assets/lecture-05/06_type_parameter.go
+.play assets/lecture-05/generics-print.go /START OMIT/,/END OMIT/
 
 ## Compilation type checks
 
-.play assets/lecture-05/07_type_parameter_check.go
+- Compiler checks that the instantiated type and arguments match
 
-## Concrete comparable interface
+.play assets/lecture-05/generics-print-check.go /START OMIT/,/END OMIT/
 
-- the "good" old compare function defined for single data type
+## Comparable with multiple implementations
 
-.play assets/lecture-05/08_comparable.go
+.play assets/lecture-05/generics-orderable-multiple.go /START OMIT/,/END OMIT/
 
-## Problem with overloading
+## Type sets: orderable
 
-- it was not easy to make variants of such function in Go < 1.18
+- Used to constrain the type parameter
+- The type parameter then supports intersection of operations of given types
 
-.play assets/lecture-05/09_comparable_variable_types.go
+.play assets/lecture-05/generics-type-set-orderable.go /START OMIT/,/END OMIT/
 
-## Generic comparable interface
+## Type sets: unorderable
 
-- type sets also introduced in Go 1.18
+.play assets/lecture-05/generics-type-set-unorderable.go /START OMIT/,/END OMIT/
 
-.play assets/lecture-05/10_compare_type_parameters.go
+## Type sets: hierarchy
 
-## Python: compile time or runtime?
+.code assets/lecture-05/generics-type-set-hierarchy.go /START OMIT/,/END OMIT/
 
-.code assets/lecture-05/Test.py
+## Compile time or runtime?
 
-## Python: compile time or runtime?
-
-.code assets/lecture-05/Test.py.asm
-
-## Java: compile time or runtime?
-
-.code assets/lecture-05/Test.java
-
-## Java: compile time or runtime?
-
-.code assets/lecture-05/Test.java.asm / public static void main/,/^}/
-
-## Generic comparable interface (again)
-
-.play assets/lecture-05/10_compare_type_parameters.go
-
-## Go: compile time or runtime?
-
-- interface{}
-    - runtime
-- type parameters
-    - compile time
+- `interface{}`/`any`
+    - Runtime
+- Type parameters
+    - Compile time
 
 ```
-$ go tool compile -S 08_comparable.go > 08_comparable.s
+$ go tool compile -S file.go > file.s
 ```
 
-```
-$ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.s
-```
-
-## Compiled concrete function
+or
 
 ```
-  "".compare STEXT nosplit size=7 args=0x10 locals=0x0 funcid=0x0 align=0x0
-        0x0000 00000 (08_comparable.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
-        0x0000 00000 (08_comparable.go:7)       PCDATA  $3, $1
-        0x0000 00000 (08_comparable.go:8)       CMPQ    BX, AX
-        0x0003 00003 (08_comparable.go:8)       SETGT   AL
-        0x0006 00006 (08_comparable.go:8)       RET
+$ go build -gcflags=main=-S
 ```
 
-## Compiled generic function
+## Assembly: concrete implementation
+
+.code assets/lecture-05/generics-orderable-single.go /START OMIT/,/END OMIT/
+
+Compiles into:
 
 ```
-  "".compare[go.shape.int_0] STEXT dupok nosplit size=7 args=0x18 locals=0x0 funcid=0x0 align=0x0
-        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
-        0x0000 00000 (10_compare_type_parameters.go:11) PCDATA  $3, $1
-        0x0000 00000 (10_compare_type_parameters.go:12) CMPQ    CX, BX
-        0x0003 00003 (10_compare_type_parameters.go:12) SETGT   AL
-        0x0006 00006 (10_compare_type_parameters.go:12) RET
-  "".compare[go.shape.float64_0] STEXT dupok nosplit size=8 args=0x18 locals=0x0 funcid=0x0 align=0x0
-        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.float64_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
-        0x0000 00000 (10_compare_type_parameters.go:11) PCDATA  $3, $1
-        0x0000 00000 (10_compare_type_parameters.go:12) UCOMISD X0, X1
-        0x0004 00004 (10_compare_type_parameters.go:12) SETHI   AL
-        0x0007 00007 (10_compare_type_parameters.go:12) RET
-  "".compare[go.shape.string_0] STEXT dupok size=120 args=0x28 locals=0x28 funcid=0x0 align=0x0
-        0x0000 00000 (10_compare_type_parameters.go:11) TEXT    "".compare[go.shape.string_0](SB), DUPOK|ABIInternal, $40-40
-        0x0000 00000 (10_compare_type_parameters.go:11) CMPQ    SP, 16(R14)
-        0x0004 00004 (10_compare_type_parameters.go:11) PCDATA  $0, $-2
-        0x0004 00004 (10_compare_type_parameters.go:11) JLS     63
-        ...
-        ...
-        0x002a 00042 (10_compare_type_parameters.go:12) PCDATA  $1, $1
-        0x002a 00042 (10_compare_type_parameters.go:12) CALL    runtime.cmpstring(SB)
-        ...
-        ...
-        0x003e 00062 (10_compare_type_parameters.go:12) RET
+"".compare STEXT nosplit size=7 args=0x10 locals=0x0 funcid=0x0 align=0x0
+    0x0000 00000 (generics-orderable-single.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
+    0x0000 00000 (generics-orderable-single.go:7)       PCDATA  $3, $1
+    0x0000 00000 (generics-orderable-single.go:8)       CMPQ    BX, AX
+    0x0003 00003 (generics-orderable-single.go:8)       SETGT   AL
+    0x0006 00006 (generics-orderable-single.go:8)       RET
 ```
 
-## "Universal numeric" data type?
+## Assembly: generic implementation (1/2)
 
-.play assets/lecture-05/11_add_int.go
+.code assets/lecture-05/generics-type-set-orderable.go /START OMIT/,/END OMIT/
 
-## "Universal numeric" data type?
+Compiles into:
 
-.play assets/lecture-05/12_add_type_parameters.go
 
-## No automatic type conversion (1/2)
+## Assembly: generic implementation (2/2)
 
-.play assets/lecture-05/13_add_type_parameters.go /^package main/,/^func main/
+```
+"".compare[go.shape.int_0] STEXT dupok nosplit size=7 args=0x18 locals=0x0 funcid=0x0 align=0x0
+    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+    0x0000 00000 (generics-type-set-orderable.go:11) PCDATA  $3, $1
+    0x0000 00000 (generics-type-set-orderable.go:12) CMPQ    CX, BX
+    0x0003 00003 (generics-type-set-orderable.go:12) SETGT   AL
+    0x0006 00006 (generics-type-set-orderable.go:12) RET
+"".compare[go.shape.float64_0] STEXT dupok nosplit size=8 args=0x18 locals=0x0 funcid=0x0 align=0x0
+    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.float64_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+    0x0000 00000 (generics-type-set-orderable.go:11) PCDATA  $3, $1
+    0x0000 00000 (generics-type-set-orderable.go:12) UCOMISD X0, X1
+    0x0004 00004 (generics-type-set-orderable.go:12) SETHI   AL
+    0x0007 00007 (generics-type-set-orderable.go:12) RET
+"".compare[go.shape.string_0] STEXT dupok size=120 args=0x28 locals=0x28 funcid=0x0 align=0x0
+    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.string_0](SB), DUPOK|ABIInternal, $40-40
+    0x0000 00000 (generics-type-set-orderable.go:11) CMPQ    SP, 16(R14)
+    0x0004 00004 (generics-type-set-orderable.go:11) PCDATA  $0, $-2
+    0x0004 00004 (generics-type-set-orderable.go:11) JLS     63
+    ...
+    ...
+    0x002a 00042 (generics-type-set-orderable.go:12) PCDATA  $1, $1
+    0x002a 00042 (generics-type-set-orderable.go:12) CALL    runtime.cmpstring(SB)
+    ...
+    ...
+    0x003e 00062 (generics-type-set-orderable.go:12) RET
+```
 
-## No automatic type conversion (2/2)
+## No automatic type conversion
 
-.play assets/lecture-05/13_add_type_parameters.go /^func main/,/^}/
+- Reminder: Go does not coerce types
 
-## Type approximations (1/2)
+.play assets/lecture-05/generics-no-conversions.go 
 
-.play assets/lecture-05/14_add_type_parameters.go /^package main/,/^func main/
+## Type approximations
 
-## Type approximations (2/2)
+- Types can be approximated using the `~` operator
+    - `~int` includes: 
+        - The `int` type and 
+        - All other types that have `int` as their underlying type
 
-.play assets/lecture-05/14_add_type_parameters.go /^func main/,/^}/
-
-## Concrete "pow" function
-
-.play assets/lecture-05/21_pow_floats_B.go
-
-## Generic "pow" function
-
-.play assets/lecture-05/22_pow_generic_B.go
+.play assets/lecture-05/generics-type-approximations.go /START OMIT/,/END OMIT/
 
 ## Generic method vs. generic function
 
-.play assets/lecture-05/34_whats_better.go
+.play assets/lecture-05/generics-slice.go /START OMIT/,/END OMIT/
+
+## Map utilities (1/2)
+
+.play assets/lecture-05/generics-utilities-maps.go /START OMIT/,/MIDDLE OMIT/
+
+## Map utilities (2/2)
+
+.play assets/lecture-05/generics-utilities-maps.go /MIDDLE OMIT/,/END OMIT/
+
+## Slice utilities (1/2)
+
+.play assets/lecture-05/generics-utilities-slices.go /START OMIT/,/MIDDLE OMIT/
+
+## Slice utilities (2/2)
+
+.play assets/lecture-05/generics-utilities-slices.go /MIDDLE OMIT/,/END OMIT/
+
+## Libraries
+
+## cmp
+
+- As ordered types are often used it was defined in the **`cmp.Ordered`** interface
+    - I.e. the interface contains all built-in types that support **`<`**, **`>`**, **`<=`**, **`>=`** operations
+    - Do not confuse it with **`comparable`** interface built-in to the language
+        - Encapsulates types that can compared on equality using **`==`** and **`!=`** operator
+- Also contains generic functions for comparing values:
+    - `Cmp`
+    - `Less`
+    - `Or`
+
+[Go Packages: cmp](https://pkg.go.dev/cmp)
+
+## math
+
+## slices
+
+## maps
+
+## strings
+
+## strconv
+
+## path
+
+## io
+
+## bufio
+
+## os
 
 ## Testing
 
@@ -266,8 +310,8 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 ## Tests in its own package
 
-- this is preffered way
-- need proper project setup
+- This is preffered way
+- Need proper project setup
 
 .code assets/lecture-05/testing/tests01B/go.mod
 
@@ -278,8 +322,8 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 ## Local functions and tests in its own package
 
-- local functions are not visible by default
-- need global symbols pointing to local one
+- Local functions are not visible by default
+- Need global symbols pointing to local one
 
 ## Local functions and tests in its own package
 
@@ -288,7 +332,7 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 ## Local functions and tests in its own package
 
-- helper file
+- Helper file
 
 .code assets/lecture-05/testing/tests02B/export_test.go
 
@@ -403,139 +447,22 @@ $ go tool compile -S 10_compare_type_parameters.go > 10_compare_type_parameters.
 
 ## Extension for the standard `testify` package
 
-- package `require`
-- package `mock`
-- package `suite`
+- Package `require`
+- Package `mock`
+- Package `suite`
 
 ## Package `require`
+
 - Provides same global functions as the `assert` package
 - But instead of returning a boolean result they terminate current test
 - Tests written using this package are similar to unit tests in Python for example
 
 ## Package `mock`
+
 - Provides a mechanism for writing mock objects
 - They can be used in place of real objects when writing test code
 
 ## Package `suite`
-
-## Extensions (`testify`)
-
-## Alternative package `oglematchers`
-
-## Usage of package `oglematchers` - tested function
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial.go
-
-## First test written using `oglematchers` (1/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^package/,/^func TestFactorialForZero/
-
-## First test written using `oglematchers` (2/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForZero/,/^func TestFactorialForOne/
-
-## First test written using `oglematchers` (3/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForOne/,/^func TestFactorialForSmallNumber/
-
-## First test written using `oglematchers` (4/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForSmallNumber/,/^func TestFactorialForSmallNumberNegative/
-
-## First test written using `oglematchers` (5/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForSmallNumberNegative/,/^func TestFactorialForTen/
-
-## First test written using `oglematchers` (6/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForTen/,/^func TestFactorialForBigNumber/
-
-## First test written using `oglematchers` (7/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers1/factorial_test.go /^func TestFactorialForBigNumber/,/^func TestFactorialForEvenBiggerNumber/
-
-## Second test written using `oglematchers` (1/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^package/,/^func TestFactorialForZero/
-
-## Second test written using `oglematchers` (2/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForZero/,/^func TestFactorialForOne/
-
-## Second test written using `oglematchers` (3/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForOne/,/^func TestFactorialForSmallNumber/
-
-## Second test written using `oglematchers` (4/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForSmallNumber/,/^func TestFactorialForSmallNumberNegative/
-
-## Second test written using `oglematchers` (5/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForSmallNumberNegative/,/^func TestFactorialForTen/
-
-## Second test written using `oglematchers` (6/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForTen/,/^func TestFactorialForBigNumber/
-
-## Second test written using `oglematchers` (7/7)
-
-.code ./assets/lecture-05/oglematchers/oglematchers2/factorial_test.go /^func TestFactorialForBigNumber/,/^func TestFactorialForEvenBiggerNumber/
-
-## Combination of `ogletest` and `oglematchers`
-
-## Package `assertions`
-
-## Package `goblin`
-
-.image ./assets/lecture-05/goblin.png _ 600
-Author: https://github.com/leandroreox
-
-## Package `goblin`
-
-- Based on Mocha library from the JavaScript/TypeScript world
-- 'It' and 'Describe' clausules
-- Assertion functions are built-in
-
-## Stub for test based on Goblin
-
-.code ./assets/lecture-05/goblin/01_intro_test.go
-
-## Checking behaviour of + operator
-
-.code ./assets/lecture-05/goblin/02_passing_test.go
-
-## More 'It' blocks in one 'Describe' block
-
-.code ./assets/lecture-05/goblin/03_intro_test.go
-
-## Example of all test steps that are passing
-
-.code ./assets/lecture-05/goblin/04_all_passing_test.go
-
-## Nested 'Describe' blocks in one test function
-
-.code ./assets/lecture-05/goblin/06_nested_describe_test.go
-
-## Tests splitted into more functions
-
-.code ./assets/lecture-05/goblin/07_nested_struct_test.go
-
-## Behaviour of Goblin when some test fails
-
-.code ./assets/lecture-05/goblin/09_nested_struct_failed_test.go
-
-## Behaviour of Goblin when some test fails
-
-.code ./assets/lecture-05/goblin/10_split_failed_test.go
-
-## Usage of method Goblin.Before
-
-.code ./assets/lecture-05/goblin/11_before_test.go
-
-## Usage of method Goblin.Before
-
-.code ./assets/lecture-05/goblin/12_before_test.go
 
 ## BDD assets/lecture-05
 
@@ -871,9 +798,9 @@ Author: https://github.com/leandroreox
 
 ## Assertions in Go
 
-- `assert` is not keyword in Go
-- but assert-like functions and methods exist
-- third party libraries
+- There is no `assert` keyword
+- But assert-like functions and methods exist
+- Third party libraries
 
 ## Assertions in Go (factorial)
 
@@ -893,5 +820,5 @@ Author: https://github.com/leandroreox
 
 ## Go test tips&tricks
 
-- you can use build tags and/or short mode
-- good practice auxiliary data in testdata sub-directory/package, ignored by go build
+- You can use build tags and/or short mode
+- Good practice auxiliary data in testdata sub-directory/package, ignored by go build

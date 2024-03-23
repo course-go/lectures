@@ -2,15 +2,17 @@ package main
 
 import "fmt"
 
-type Slice[T any] []T
+// START OMIT
 
-func (s Slice[T]) Print() {
+type Slice[T any] []T // Generic structure
+
+func (s Slice[T]) Print() { // Method
 	for _, value := range s {
 		fmt.Println(value)
 	}
 }
 
-func Print[T any](s Slice[T]) {
+func Print[T any](s Slice[T]) { // Function
 	for _, value := range s {
 		fmt.Println(value)
 	}
@@ -22,3 +24,5 @@ func main() {
 	fmt.Println()
 	s.Print()
 }
+
+// END OMIT
