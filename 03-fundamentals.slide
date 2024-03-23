@@ -492,11 +492,11 @@ if set[key] { // returns bool
 ## Loops and the range clause
 
 - Other than the three types of loops presented in the previous fundamentals lecture:
-    - classic C-style for loop
-    - while with condition
-    - endless while
+    - Classic C-style for loop
+    - While with condition
+    - Endless while
 - A fourth type exists:
-    - for loop with range clause
+    - For loop with range clause
 - This `range` clause helps us iterate over array items, slice items, map pairs etc.
 - Provides an item index as well
     - Enumeration
@@ -522,5 +522,7 @@ if set[key] { // returns bool
 .play assets/lecture-03/range-strings.go
 
 ## Iterating over maps
+
+- Note that the order of the key-value pairs is undeterministic
 
 .play assets/lecture-03/range-maps.go
