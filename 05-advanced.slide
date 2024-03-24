@@ -1,11 +1,11 @@
-# Libraries, Generics & Testing
+# Generics, Standard library packages & Testing
 Course Go
 Tags: golang, go
 
 ## Outline
 
 - Generics
-- Libraries
+- Packages
 - Testing
 
 ## Generics
@@ -202,7 +202,7 @@ Compiles into:
 
 .play assets/lecture-05/generics-utilities-slices.go /MIDDLE OMIT/,/END OMIT/
 
-## Libraries
+## Packages
 
 ## cmp
 
@@ -217,23 +217,177 @@ Compiles into:
 
 [Go Packages: cmp](https://pkg.go.dev/cmp)
 
-## math
+## slices
+
+- Generic slice manipulating functions
+    - `Insert`, `Delete`
+    - `Contains`, `Index`
+    - `Sort`, `IsSorted`, `BinarySearch`
+    - `Min`, `Max`
+    - `Clone`, `Compare`, `Equal`
+    - `Grow`, `Clip`
+    - *And a few more...*
+- Most exist in the "`Func`" variant that is used to alter the default behavior
+
+[Go Packages: slices](https://pkg.go.dev/slices)
 
 ## slices
 
+.play assets/lecture-05/packages-slices.go /START OMIT/,/END OMIT/
+
 ## maps
+
+- A few generic map manipulating functions
+    - `DeleteFunc`
+    - `Clone`, `Copy`
+    - `Equal`, `EqualFunc`
+    - *Thats it...*
+
+[Go Packages: maps](https://pkg.go.dev/maps)
+
+## math
+
+- Maximum and minimum values for integer types
+- Math constants
+    - E, Pi, Phi
+- Common math functions
+    - Trigonometric functions
+    - Powers, logarithms
+    - Floor, ceil
+    - *And many more...*
+- Almost all functions are defined for `float64`
+
+[Go Packages: math](https://pkg.go.dev/math)
 
 ## strings
 
+- String manipulating functions
+    - `Cut`, `Trim`, `Split`, `Join`
+    - `Contains`, `Index`
+    - `ToLower`, `ToUpper`, `ToTitle`
+    - *And many more...*
+- String builder
+    - Use whenever dynamically building strings
+- String reader
+
+[Go Packages: strings](https://pkg.go.dev/strings)
+
+## bytes
+
+- Pretty much the same as with `strings` package
+
+[Go Packages: bytes](https://pkg.go.dev/bytes)
+
 ## strconv
 
-## path
+- Conversion functions
+    - `Atoi`, `Itoa`
+    - `FormatInt`, `ParseInt`
+    - `FormatFloat`, `ParseFloat`
+    - `FormatBool`, `ParseBool`
+    - `Quote`, `Unquote`
+    - *And a few more related functions...*
+
+[Go Packages: strconv](https://pkg.go.dev/strconv)
+
+## path/filepath
+
+- Package for operation filesystem paths
+    - Platform independent
+- Utility functions
+    - `Abs`, `Rel`
+    - `Base`, `Dir`, `Ext`
+    - `Join`, `Split`
+    - `Clean`
+    - `WalkDir`
+
+[Go Packages: path/filepath](https://pkg.go.dev/path/filepath)
 
 ## io
 
+- Mainly defines I/O interfaces
+    - `Reader`, `Writer`, `Seeker`, `Closer` 
+    - And some of their combinations
+- Also implements a few functions
+    - `Copy`, `ReadAll`, ...
+
+.play assets/lecture-05/packages-io.go /START OMIT/,/END OMIT/
+
+[Go Packages: io](https://pkg.go.dev/io)
+
+## io/fs
+
+- Extends basic I/O interfaces with filesystem interfaces
+    - `FS`, `StatFS`, `SubFS`
+    - `File`, `FileMode`, `FileInfo`
+
+[Go Packages: io](https://pkg.go.dev/io/fs)
+
 ## bufio
 
+- Implements buffered I/O which leverage the `io` package interfaces
+- Three main types
+    - `Reader`
+    - `Writer`
+    - `Scanner`
+
+[Go Packages: bufio](https://pkg.go.dev/bufio)
+
+## bufio
+
+.play assets/lecture-05/packages-bufio.go /START OMIT/,/END OMIT/
+
 ## os
+
+- Platform independant interface to OS functionalities
+- File management
+    - `File`, `FileInfo` types
+    - `Chmod`, `Chown`
+    - `Create`, `New`, `Open`, `Mkdir`, `Rename`, `Remove`
+- Process management
+    - `Process`, `ProcessState` types
+    - `Kill`, `Signal`, `Exit`
+- Environment
+    - `Environ`, `Getenv`, `Setenv`
+
+[Go Packages: os](https://pkg.go.dev/os)
+
+## os
+
+.play assets/lecture-05/packages-os.go /START OMIT/,/END OMIT/
+
+## log
+
+- Simple logging package
+- Introduces new type
+    - `Logger`
+- Logging functions
+    - `Print`, `Fatal`, `Panic`
+    - `Printf`, `Fatalf`, `Panicf`
+    - `Println`, `Fatalln`, `Panicln`
+- Logging format can be specified using flags
+    - `Ldate`, `Ltime`, `LUTC`, `Lmsgprefix`, ...
+
+[Go Packages: log](https://pkg.go.dev/log)
+
+## log/slog
+
+- More feature rich
+- New `Logger` type
+- `Handler`s
+    - `TextHandler` and `JSONHandler` are built-in
+    - Custom handlers can be also defined
+- Provides structured logging
+    - Levels: Debug, Info, Warn, Error
+    - Groups
+    - Contexts
+    - Atributtes
+
+[Go Packages: log/slog](https://pkg.go.dev/log/slog)
+
+## log/slog
+
+.play assets/lecture-05/packages-slog.go /START OMIT/,/END OMIT/
 
 ## Testing
 
