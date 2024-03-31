@@ -646,7 +646,64 @@ total:                                  (statements)    50.0%
 
 ## Fuzzing
 
-- As mentioned, the standard libarary also provides means to do fuzz testing
+- As mentioned, the standard library also provides means to do fuzz testing
+    - TLDR; automated input generating for tests
+- Like regural tests, fuzz tests are located in files with **`_test.go`** suffix
+- The fuzz test functions:
+    - Are preffixed with **`Fuzz`** instead of **`Test`**
+    - Require **`*testing.F`** argument instead of **`*testing.T`**
+
+## The F type
+
+- The F type API is similar to the T type with multiple additions
+- **`Add`**: seeds the fuzzing corpus with the given arguments
+    - The argument types must match the fuzz target
+- **`Fuzz`**: runs the fuzz function
+    - If the fuzz function fails on an input it gets added to the seed corpus
+    - The fuzz function takes in **`*testing.T`** as the first arguments
+    - Rest of the arguments are fuzzed
+        - Supports most of basic data types as of Go 1.22
+
+```
+f.Fuzz(func(t *testing.T, b []byte, i int) { ... })
+```
+
+[Go Blog: Go fuzzing](https://go.dev/doc/security/fuzz/)
+
+## Fuzzing example
+
+.code assets/lecture-05/fuzzing-add_test.go /START OMIT/,/END OMIT/
+
+- Can easily be run using the go toolkit
+    - **`go test -fuzz FuzzAdd -fuzztime 5s`**
+
+```
+fuzz: elapsed: 0s, gathering baseline coverage: 0/5 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 5/5 completed, now fuzzing with 12 workers
+fuzz: elapsed: 3s, execs: 1406894 (468956/sec), new interesting: 1 (total: 6)
+fuzz: elapsed: 5s, execs: 2376335 (461973/sec), new interesting: 1 (total: 6)
+PASS
+ok      test/internal/numbers   5.202s
+```
+
+## Fuzzing
+
+- The newly discovered faulty inputs get saved
+    - Are then run with regular tests
+    - Serve as regression tests
+
+```
+numbers/
+├── testdata/fuzz/FuzzAdd/a52d19fe334f7cf8
+├── numbers.go
+└── numbers_test.go
+```
+
+```
+go test fuzz v1
+int(-9)
+int(-8)
+```
 
 ## Third party libraries
 
