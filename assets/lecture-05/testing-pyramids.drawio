@@ -1,0 +1,76 @@
+<mxfile host="Electron" modified="2024-03-24T13:25:04.599Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.1.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="M0Ixqh05JbiqBQS0_ucQ" version="24.1.0" type="device">
+  <diagram name="Page-1" id="1R47VMinwflvl6iurGy_">
+    <mxGraphModel dx="642" dy="538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-1" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-90;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="191.25" y="130.5" width="57.5" height="132.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-2" value="E2E Testing" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="130" y="241" width="180" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-3" value="Unit Testing" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="81" y="383" width="279" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-4" value="Integration Testing" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="105" y="308" width="235" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-5" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap;&quot;&gt;Manual Testing&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="170" y="190" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-7" value="Testing Pyramid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=#f5f5f5;fontSize=16;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="152.5" y="80" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-8" value="" style="triangle;whiteSpace=wrap;html=1;rotation=90;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="490.62" y="343.25" width="57.5" height="132.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-9" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap;&quot;&gt;Unit Testing&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="474.37" y="388" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-10" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="430" y="308" width="178.75" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-11" value="Integration Testing" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="459.38" y="323" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-12" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="407.5" y="241" width="228.75" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-15" value="E2E Testing" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="474.37" y="250.5" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-16" value="Manual Testing" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="360" y="121" width="310" height="129.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-17" value="Ice-cream Cone" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=#f5f5f5;fontSize=16;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="445" y="80" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-18" value="" style="triangle;whiteSpace=wrap;html=1;rotation=90;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="786.25" y="345.25" width="57.5" height="132.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-19" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap;&quot;&gt;Unit Testing&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="770" y="390" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-20" value="" style="triangle;whiteSpace=wrap;html=1;rotation=-90;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="784.75" y="132" width="57.5" height="129.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-21" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap;&quot;&gt;Manual Testing&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="765" y="190" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-22" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#fff2cc;strokeColor=#d6b656;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="720.01" y="309" width="184.38" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-23" value="Integration Testing" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="755.01" y="324" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-24" value="E2E Testing" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="720" y="243" width="180" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="ZmA3L1-bfEiHu-SdeMgk-25" value="Testing Diamond" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=#f5f5f5;fontSize=16;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="745.01" y="80" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

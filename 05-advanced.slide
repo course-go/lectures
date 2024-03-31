@@ -1,4 +1,4 @@
-# Generics, Standard library packages & Testing
+# Generics, Packages & Testing
 Course Go
 Tags: golang, go
 
@@ -393,177 +393,220 @@ Compiles into:
 
 ## Golang Testing Frameworks
 
-- Unit testing
-- BDD testing
-- Expect-like frameworks and libraries
-- REST API testing
-- Performance analysis
+- Many testing frameworks
+    - Unit testing
+    - BDD testing
+    - Expect-like frameworks and libraries
+    - REST API testing
+    - Performance analysis
 
-## Test pyramid and ice-cream cone
+[Awesome Go: Testing](https://go.libhunt.com/categories/559-testing)
 
-- [Testing pyramid](https://watirmelon.files.wordpress.com/2018/02/automated-testing-pyramid-with-eye.jpg?w=840)
-- [Ice-cream cone](https://watirmelon.files.wordpress.com/2018/02/software-testing-icecream-cone-antipattern.jpg?w=840)
+## Pyramid, Ice-cream and Diamond
 
-## Unit testing
+.image assets/lecture-05/testing-pyramids.svg 400 _
 
-- Standard `testing` package
-- Helper tool `go-carpet`
-- Extensions (`testify`)
-- Alternative package `oglematchers`
-- Combination of `ogletest` and `oglematchers`
-- Package `assertions`
-- Package `goblin`
+## Standard library
 
-## Standard "testing" package
+## Standard testing framework
 
-- Based on [testing package](https://pkg.go.dev/testing])
-- Sources containing tests need to end with `_test.go`
-- Each test needs to be stored in a function named `func` `TestXxx(*testing.T)`
-- Basic methods for `testing.T` structure (data type)
+- Standard `testing` package is pretty powerful
+    - Sufficient for most of testing scenarios
+    - Also includes benchmarking and fuzzing
+        - More on that later/in the next lecture
+- Most third party libraries and frameworks build on top the standard library
 
-## Standard "testing" package
+[Go Packages: testing](https://pkg.go.dev/testing)
 
-- There are no "assertions" in the `testing` package!
-- `Log(args` `...interface{})`
-- `Skip(args` `...interface{})`
-- `Error(args` `...interface{})`
-- `Fatal(args` `...interface{})`
-- `Fail()`
-- `FailNow()`
+## Standard testing framework
 
-## Standard "testing" package
+- The framework looks for source files with the **`_test.go`** suffix
+- Each test is a function in these files that has to:
+    - Start with the **`Test`** prefix
+    - Take in a single argument of type **`*testing.T`**
 
-- Formatting output
-- `Logf(format` `string,` `args` `...interface{})`
-- `Skipf(format` `string,` `args` `...interface{})`
-- `Errorf(format` `string,` `args` `...interface{})`
-- `Fatalf(format` `string,` `args` `...interface{})`
+## The T type
 
-## Unit test files
+- Throughout the test you interact with the **`*testing.T`** argument
+    - It exports bunch of methods for evaluating the test
+- **`Log`**: prints additional information
+    - Only if the test eventually fails
+- **`Fail`**: marks the test as failed and continues execution
+- **`FailNow`**: marks the test as failed and exits
+- **`SkipNow`**: completely skips the test execution
+- **`Skip`**: equivalent to calling **`Log`** and **`SkipNow`**
+- **`Error`**: equivalent to calling **`Log`** and **`Fail`**
+- **`Fatal`**: equivalent to calling **`Log`** and **`FailNow`**
 
-- Usually stored in `package_test.go`
-- Can be split into as many files, as necessary
-- So called table-driven tests
-- Usually array/slice of structs with inputs and expected output is used
+## The T type
 
-## How to start unit tests
+- The methods which print information also exist in the "formatted" form
+- **`Logf`**
+- **`Skipf`**
+- **`Errorf`**
+- **`Fatalf`**
 
-- Basic command: `go` `test`
-- Usually: `go` `test` `./...`
-- It is possible to specify regexp to select just subset of tests
+## The T type
 
-## Simplest example
+- **`Cleanup`**: registers a function that gets called when the test completes
+    - Like `defer`
+- **`TempDir`**: returns a temporary directory for the test to use
+    - After the test is completed, it is aumatically removed
+- **`Helper`**: marks function as helper function
+    - When printing file and line information, it is skipped
+    - Makes test outputs cleaner
+- **`Run`**: runs a subtest in separate goroutine
+- **`Parallel`**: enables test to be run in parallel
+- And a few more...
 
-.code assets/lecture-05/testing/tests01/add.go
-.code assets/lecture-05/testing/tests01/add_test.go
+[Go Packages: testing T type](https://pkg.go.dev/testing#T)
 
-## It is possible to test local functions/methods
+## Unit tests
 
-.code assets/lecture-05/testing/tests02/add.go
-.code assets/lecture-05/testing/tests02/add_test.go
+- Stored in `X_test.go` files
+    - Where X is the name name of the file tested
+    - The files share the same directory
 
-## Tests in its own package
+```
+models/
+├── user.go
+├── user_test.go
+├── product.go
+└── product_test.go
+```
 
-- This is preffered way
-- Need proper project setup
+- The same usually goes for the packages
+    - This is the only case when multiple packages in a single directory are allowed
 
-.code assets/lecture-05/testing/tests01B/go.mod
+```
+models/
+├── user.go         // package models
+├── user_test.go    // package models_test
+├── product.go      // package models
+└── product_test.go // package models_test
+```
 
-## Tests in its own package
+## Separate test package
 
-.code assets/lecture-05/testing/tests01B/add.go
-.code assets/lecture-05/testing/tests01B/add_test.go
+- You could also stuff all tests and source code to the same package
 
-## Local functions and tests in its own package
+```
+models/
+├── user.go         // package models
+├── user_test.go    // package models
+├── product.go      // package models
+└── product_test.go // package models
+```
 
-- Local functions are not visible by default
-- Need global symbols pointing to local one
+- But separating them is generally the preffered way
+    - Makes the tests more focused on the exported API
+    - Tests do not depend on implementation details
+    - However, you may want to test unexported parts of your program
+        - Can it be done then?
 
-## Local functions and tests in its own package
+## Unit tests
 
-.code assets/lecture-05/testing/tests02B/add.go
-.code assets/lecture-05/testing/tests02B/add_test.go
+- You can export some unexported part of code for testing
+- Can be done with a neat trick
+    - Create **`export_test.go`** file in the original source code package
+    - As the file is part of the original non-test package
+        - It can reference unexported types
+    - As the file has **`_test.go`** suffix
+        - It is included in the testing phase
+        - Exluded from source code
 
-## Local functions and tests in its own package
+.code assets/lecture-05/testing-export_test.go
 
-- Helper file
+## Running tests
 
-.code assets/lecture-05/testing/tests02B/export_test.go
+- The testing toolkit is part of the **`go`** executable
+    - In the form of **`go test`** command
+- To run all tests recursivelly: **`go` `test` `./...`**
+- You can also specify a package or a single file
+    - Same as with running **`go build`**/**`go run`** etc.
+- You can also specify part of the test suite by matching the test's names
+    - **`go test -run $REGEX ./...`**
+    - The REGEX can be as simple as "Users" which runs all tests which contain the word "Users" in their names
 
-## Test failures (due to an error in source code)
+## Add example: separate package, exported
 
-.code assets/lecture-05/testing/tests03/add.go
-.code assets/lecture-05/testing/tests03/add_test.go
+.code assets/lecture-05/testing-exported-add-separated-package.go
+.code assets/lecture-05/testing-exported-add-separated-package_test.go
 
-## Tests can be stopped at any time
+## Add example: separate package, unexported (1/2)
 
-.code assets/lecture-05/testing/tests04/add_test.go
+.code assets/lecture-05/testing-unexported-add-separated-package.go
+.code assets/lecture-05/testing-unexported-add-separated-package_test.go
+
+## Add example: separate package, unexported (2/2)
+
+- Works if we export it via **`export_test.go`** file like so:
+
+.code assets/lecture-05/testing-add-export_test.go
+
+## Test failures: Error
+
+.code assets/lecture-05/testing-add-error.go
+.code assets/lecture-05/testing-add-error_test.go /START OMIT/,/END OMIT/
+
+## Test failures: Log, Skip, Fatal
+
+.code assets/lecture-05/testing-add-fatal_test.go /START OMIT/,/END OMIT/
 
 ## Table-driven tests
 
-.code assets/lecture-05/testing/tests05/add_test.go /^package main/,/^func TestAdd/
+.code assets/lecture-05/testing-add-table-driven_test.go /START OMIT/,/END OMIT/
 
-## Table-driven tests (cont.)
+## Running tests in parallel
 
-.code assets/lecture-05/testing/tests05/add_test.go /^func TestAdd/,/^}/
+- By default:
+    - Tests in different packages are run in parallel
+    - Tests that share package are run sequentially
+    - Go uses the number of available CPUs
+        - Can be changed with the **`-p`** option when calling **`go test`**
+- However, tests in the same package can be run in parallel
+    - Signalled by calling the **`t.Parallel()`** method
+- Sequential tests are run first, one by one
+- Parallel tests are run after all sequantial tests are done, all at once
 
-## Refactoring
+[Mercari Engineering: Test parallelization in Go by Yoshiki Shibata](https://engineering.mercari.com/en/blog/entry/20220408-how_to_use_t_parallel)
 
-.code assets/lecture-05/testing/tests07/add_test.go /^package main/,/^func TestAdd/
+## Running tests in parallel
 
-##  Refactoring (cont.)
+.code assets/lecture-05/testing-add-parallel_test.go /START OMIT/,/END OMIT/
 
-.code assets/lecture-05/testing/tests07/add_test.go /^func TestAdd/,/^}/
+## Notes on test names
 
-## Normal/fast/slow tests
+- Although test names like `TestUserInvalid` are generally fine
+    - They are ambiguous
+        - Is the operation in test invalid or is the user invalid?
+        - If so, what operation or in what state is the user?
+        - In the end, the programmer will have to study the test itself... 
+- It is often suggested to follow more verbose naming conventions
+    - [One such example](https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html) by [Roy Oshorove](https://osherove.com)
+        - "UnitOfWork_StateUnderTest_ExpectedBehavior"
+            - `TestCreateUser_MissingNameInBody_ReturnsBadRequest`
 
-- Normal tests
+[Medium: Naming tests in Golang by Diogo Mateus](https://medium.com/getground/naming-tests-in-golang-c58c188bb9a1)
 
-.code assets/lecture-05/testing/tests08/add_test.go
+## Tips & tricks
 
-## Normal/fast/slow tests
+- You can use build tags and/or short mode
+    - To learn more about build tags run: **`go help buildconstraint`**
+    - Short tests can be run with: **`go test -short ./...`** and checked via the T
 
-- Fast tests
+.code assets/lecture-05/testing-add-short_test.go /START OMIT/,/END OMIT/
 
-.code assets/lecture-05/testing/tests08/add_fast_test.go /^package main/,/^func checkAdd/
+- Auxilery data are stored in `testdata` directories
+    - Ignored by the compiler
 
-## Normal/fast/slow tests
-
-- Fast tests (cont.)
-
-.code assets/lecture-05/testing/tests08/add_fast_test.go /^func checkAdd/,/^}/
-
-## Normal/fast/slow tests
-
-- Fast tests (cont.)
-
-.code assets/lecture-05/testing/tests08/add_fast_test.go /^func TestAddBasic/,/^}/
-
-.code assets/lecture-05/testing/tests08/add_fast_test.go /^func TestAddNegative/,/^}/
-
-## Normal/fast/slow tests
-
-- Slow tests
-
-.code assets/lecture-05/testing/tests08/add_slow_test.go /^package main/,/^func checkAdd/
-
-## Normal/fast/slow tests
-
-- Slow tests (cont.)
-
-.code assets/lecture-05/testing/tests08/add_slow_test.go /^func checkAdd/,/^}/
-
-## Normal/fast/slow tests
-
-- Slow tests (cont.)
-
-.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMinValue/,/^}/
-.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMaxValue/,/^}/
-
-## Normal/fast/slow tests
-- Slow tests (cont.)
-
-.code assets/lecture-05/testing/tests08/add_slow_test.go /^func TestAddMinMaxValue/,/^}/
+```
+testdata/
+├── input.txt
+└── output-golden.txt
+processor.go
+processor_test.go
+```
 
 ## Code coverage
 
@@ -587,6 +630,35 @@ Compiles into:
 
 .image ./assets/lecture-05/coverage.png _ 600
 
+## Fuzzing
+
+- As mentioned, the standard libarary also provides means to do fuzz testing
+
+## Third party libraries
+
+## Assertions
+
+## Assertions
+
+- Go does not have an `assert` keyword
+- But assert-like functions and methods exist
+- Multiple third party libraries
+    - The [stretchr/testify](https://github.com/stretchr/testify) is the most used
+
+## Assertions
+
+.code assets/lecture-05/testing-recursive-factorial.go /START OMIT/,/END OMIT/
+
+## Assertions
+
+.code assets/lecture-05/testing-asserts-factorial_test.go /START OMIT/,/END OMIT/
+
+## Dot import
+
+.play assets/lecture-05/testing-asserts-factorial-dot-import_test.go /START OMIT/,/END OMIT/
+
+## go-carpet
+
 ## Helper tool `go-carpet`
 
 - Show test coverage in terminal for Go source files
@@ -599,38 +671,12 @@ Compiles into:
 
 .image ./assets/lecture-05/go-carpet.png _ 600
 
-## Extension for the standard `testify` package
-
-- Package `require`
-- Package `mock`
-- Package `suite`
-
-## Package `require`
-
-- Provides same global functions as the `assert` package
-- But instead of returning a boolean result they terminate current test
-- Tests written using this package are similar to unit tests in Python for example
-
-## Package `mock`
-
-- Provides a mechanism for writing mock objects
-- They can be used in place of real objects when writing test code
-
-## Package `suite`
-
-## BDD assets/lecture-05
-
-- GoConvey
-- Godog
-
-## BDD testing
-
-- Test pyramid
-- BDD: behavior-driven development
-- Simple DSL
+## GoConvey
 
 ## GoConvey
 
+- Example of BDD
+- Simple DSL
 - Test steps are written directly as Go source code
 - Pros: support in IDE, most issues can be detected by the compiler
 - Cons: no proper separation from Go language
@@ -675,6 +721,9 @@ Compiles into:
 
 ## Godog
 
+## Godog
+
+- Another example of BDD framework
 - Based on Gherkin language
 - Pros: behaviour tests are separated from the code
 - Cons: "glue" between test scenarios and test step implementations
@@ -751,6 +800,8 @@ Compiles into:
      |brammool|Bram Moolenaar|Zimbu Labs|
      |tisnik|Pavel Tišnovský|Red Hat, Inc.|
 
+## Expect
+
 ## Expect-like framework and libraries
 
 - Originally an extension to the TCL scripting language
@@ -792,187 +843,22 @@ Compiles into:
 - Verbose mode (for debugging/testing etc.)
 - Can be used in cooperation with the standard `testing` module
 
-## Examples
+## Stats
 
-- Bunch of examples for each expect-like library
-- go-expect
-- gexpect
-- goexpect
+## Gotestdox
 
-## REST API testing
+- TODO
 
-- in many aspects like software Testing at UI level
-- instead of input-output testing, REST API is validated
-- very important in niche where Go language is used
-- supports HTTP and HTTPS as well
+## Gotestsum
 
-## REST API Testing frameworks
+- TODO
 
-- several packages/frameworks are available
-- Frisby
-- RestIt
+## Mocking
 
-## Frisby
+## Gomock
 
-.image ./assets/lecture-05/frisby.png _ 600
+- Originally maintened under [golang/mock](https://github.com/golang/mock)
+    - Archived in June 2023
+- Now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
 
-## Frisby
-
-- All basic HTTP methods (GET, POST, PUT, PATCH, DELETE)
-- Built-in assertions
-- JSON parser
-- XML parser
-- Based of 'fluent API'
-- The whole test can be written as a chain of method of `*Frisby` object
-- Can be used as-is or as part of unit tests (usually not recommended)
-
-## Checking REST API with just GET method available
-
-.play assets/lecture-05/frisby/02_frisby_basic_usage.go
-
-## The same example, but with fluent API
-
-.play assets/lecture-05/frisby/01_frisby_basic_usage.go
-
-## Reporting similar to unit tests output
-
-.play assets/lecture-05/frisby/03_frisby_basic_usage.go
-
-## Behaviour when some tests fail
-
-.play assets/lecture-05/frisby/04_frisby_failures.go
-
-## Checking headers in the server response
-
-.play assets/lecture-05/frisby/05_frisby_check_headers.go
-
-## Checking headers in the server response (negative test)
-
-.play assets/lecture-05/frisby/06_frisby_check_headers.go
-
-## Using HTTP method POST
-
-.play assets/lecture-05/frisby/07_frisby_post.go
-
-## Sending JSON over HTTP/HTTPS
-
-.play assets/lecture-05/frisby/09_frisby_post_json.go
-
-## Checking content of HTTP response
-
-.play assets/lecture-05/frisby/10_frisby_check_content.go
-
-## Basic cookies handling
-
-.play assets/lecture-05/frisby/11_frisby_cookies.go
-
-## Method threading / Fluent API
-
-.play assets/lecture-05/frisby/12_frisby_threading.go
-
-## Using Frisby package in unit tests (passing tests)
-
-- (can not be run directly from slides!)
-
-.code assets/lecture-05/frisby/13_frisby_as_test_pass_test.go
-
-## Using Frisby package in unit tests (failing tests)
-
-- (can not be run directly from slides!)
-
-.code assets/lecture-05/frisby/14_frisby_as_test_fail_test.go
-
-## Using Frisby package in unit tests (combination)
-
-- (can not be run directly from slides!)
-
-.code assets/lecture-05/frisby/15_frisby_more_test.go
-
-## Some tips and tricks for Frisby
-
-## Performance analysis
-
-- very important part of testing
-
-## Useful links
-
-- [An introduction to programming in Go: testing](https://www.golang-book.com/books/intro/12)
-- [Package testing](https://golang.org/pkg/testing/)
-- [Go(lang) Unit Testing for Absolute Beginners](https://jonathanmh.com/golang-unit-testing-for-absolute-beginners/)
-- [testing in Go by example: Part 1](https://smartystreets.com/blog/2015/02/go-testing-part-1-vanillla)
-- [Go Test Your Code: An introduction to Testing in Go](https://medium.com/rate-engineering/go-test-your-code-an-introduction-to-effective-testing-in-go-6e4f66f2c259)
-- [Comparative Analysis Of GoLang Testing Frameworks](https://www.slideshare.net/DushyantBhalgami/comparative-analysis-of-golang-testing-frameworks)
-
-## Useful links (cont.)
-
-- [Code Coverage Tutorial: Branch, Statement, Decision, FSM](https://www.guru99.com/code-coverage.html)
-- [Exploring the landscape of Go Testing frameworks](https://bmuschko.com/blog/go-testing-frameworks/)
-- [Go coverage service](https://gocover.io/)
-- [GoConvey](http://goconvey.co/)
-- [GoConvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
-- [GoConvey FAQ](https://github.com/smartystreets/goconvey/wiki/FAQ)
-
-## Useful links (cont.)
-
-- [Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development)
-- [The Three Rules Of Tdd](http://butunclebob.com/ArticleS.UncleBob.TheThreeRulesOfTdd)
-- [The Difference Between TDD and BDD](https://joshldavis.com/2013/05/27/difference-between-tdd-and-bdd/)
-- [The difference between TDD and BDD](https://www.hindsightsoftware.com/blog/tdd-vs-bdd/)
-- [Package goexpect](https://github.com/google/goexpect)
-- [Package go-expect](https://github.com/Netflix/go-expect)
-- [Package gexpect](https://github.com/ThomasRooney/gexpect)
-
-## Testing and Benchmarking in Go
-
-- Unit test "framework" integral to the Go command
-- `go` `test`
-- (Micro)Benchmark "framework" part of it too
-- `go` `test` `-bench` `.`
-- package `testing`
-- code needs to be "vetable", pass `go` `vet` check
-
-## Tests
-
-- in `_test.go` files
-- all `Test*(t` `*testing.T)` functions get executed
-
-## Test main
-
-- `func` `TestMain(m` `*testing.M)`
-- `m.Run`
-- provides ability to do setup, passing CLI flags,...
-- execute tests that don't fit the basic framework, etc.
-- checkout misc/cgo GC tests
-
-## testing
-
-- in `_test.go` files
-- all `Benchmark*(b` `*testing.B)` functions get executed
-- can benchmark not only performance(`-bench`), but memory usage(`-benchmem`)
-
-## Assertions in Go
-
-- There is no `assert` keyword
-- But assert-like functions and methods exist
-- Third party libraries
-
-## Assertions in Go (factorial)
-
-.code assets/lecture-05/assertions/assertions1/factorial.go
-
-## Assertions in Go (factorial)
-
-.code assets/lecture-05/assertions/assertions1/factorial_test.go
-
-## More assertions-like functions
-
-.code assets/lecture-05/assertions/assertions2/factorial_test.go
-
-## "Dot import" usage
-
-.code assets/lecture-05/assertions/assertions3/factorial_test.go
-
-## Go test tips&tricks
-
-- You can use build tags and/or short mode
-- Good practice auxiliary data in testdata sub-directory/package, ignored by go build
+[Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
