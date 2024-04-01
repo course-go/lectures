@@ -92,7 +92,7 @@ complex64 complex128
 
 ## Variables
 
-.play assets/lecture-02/variables.go
+.play assets/lecture-02/variables/variables.go
 
 ## Idiomatic declarations
 
@@ -119,25 +119,25 @@ var counter = 100
 - No changes are permitted beyond declaration
 - Only supports runes, strings, bools, and numeric values 
 
-.play assets/lecture-02/variables-constants.go
+.play assets/lecture-02/variables/constants.go
 
 ## Type conversions
 
 - No auto casts
 
-.play assets/lecture-02/variables-casting.go
+.play assets/lecture-02/variables/casting.go
 
 ## Shadowing
 
 - Variables from outer blocks can be shadowed
 
-.play assets/lecture-02/variables-shadowing.go
+.play assets/lecture-02/variables/shadowing.go
 
 ## Shadowing
 
 - Does not work in the same block
 
-.play assets/lecture-02/variables-shadowing-same-block.go
+.play assets/lecture-02/variables/shadowing-same-block.go
 
 ## Control Flow
 
@@ -147,13 +147,13 @@ var counter = 100
 - Allows init statement
 - Variables declared via init do not exist beyond the scope of the if block
 
-.play assets/lecture-02/if.go
+.play assets/lecture-02/if/if.go
 
 ## Else statement
 
 - Variables declared in the init statement are reachable in the (else-if)-else blocks
 
-.play assets/lecture-02/if-else.go
+.play assets/lecture-02/if/if-else.go
 
 ## Switch statement
 
@@ -162,32 +162,32 @@ var counter = 100
 - Evaluated top-bottom, first successful case is executed
 - No fallthrough by default
 
-.play assets/lecture-02/switch.go
+.play assets/lecture-02/switch/switch.go
 
 ## Switch statement fallthrough
 
 - Fallthrough can be explicitly set
 - Generally not recommended
 
-.play assets/lecture-02/switch-fallthrough.go
+.play assets/lecture-02/switch/fallthrough.go
 
 ## Switch statement expressions
 
 - Allows non-constant and non-integer values
 
-.play assets/lecture-02/switch-expressions.go
+.play assets/lecture-02/switch/expressions.go
 
 ## Switch without condition
 
 - Switch without condition is like `switch true`
 
-.play assets/lecture-02/switch-empty.go
+.play assets/lecture-02/switch/empty.go
 
 ## Loops
 
 - Only the `for` keyword exists (no `while`)
 
-.play assets/lecture-02/for.go
+.play assets/lecture-02/for/for.go
 
 ## Loops
 
@@ -201,7 +201,7 @@ var counter = 100
 - Pretty please...
 - Your colleagues will hate you!
 
-.play assets/lecture-02/goto.go
+.play assets/lecture-02/goto/goto.go
 
 [Edsger W. Dijkstra on goto](https://dl.acm.org/doi/10.1145/362929.362947)
 
@@ -209,7 +209,7 @@ var counter = 100
 
 - Can be used with `break` and `continue` in loops
 
-.play assets/lecture-02/for-labels.go
+.play assets/lecture-02/for/labels.go
 
 ## Functions
 
@@ -218,32 +218,32 @@ var counter = 100
 - Defined using the `func` keyword
 - Arguments are passed by value
 
-.play assets/lecture-02/functions.go
+.play assets/lecture-02/functions/functions.go
 
 ## Multiple return values
 
-.play assets/lecture-02/functions-multiple-return-values.go
+.play assets/lecture-02/functions/multiple-return-values.go
 
 ## Named return values
 
-.play assets/lecture-02/functions-named-return-values.go
+.play assets/lecture-02/functions/named-return-values.go
 
 ## Shortening type declarations
 
-.play assets/lecture-02/functions-shortened-types.go
+.play assets/lecture-02/functions/shortened-types.go
 
 ## Ignoring return values
 
 - '`_`' idiom can be used to drop return values
 
-.play assets/lecture-02/functions-ignore-values.go
+.play assets/lecture-02/functions/ignore-values.go
 
 ## Lambda functions
 
 - AKA function literals
 - Can be invoked directly or assigned to a variable
 
-.play assets/lecture-02/functions-literals.go
+.play assets/lecture-02/functions/literals.go
 
 ## Typical usages for lambda functions
 
@@ -257,7 +257,7 @@ var counter = 100
 - Functions are like any other value
     - "first-class citizens"
 
-.play assets/lecture-02/functions-higher-order.go
+.play assets/lecture-02/functions/higher-order.go
 
 ## Closures
 
@@ -268,7 +268,7 @@ var counter = 100
 
 ## Closures
 
-.play assets/lecture-02/functions-closure.go
+.play assets/lecture-02/functions/closure.go
 
 ## defer statement
 
@@ -285,45 +285,45 @@ var counter = 100
 
 - Function `on_finish()` is called before exit from `main()`
 
-.play assets/lecture-02/defer.go
+.play assets/lecture-02/defer/defer.go
 
 ## Function declaration in defer statement
 
 - Usually, the function definition is part of `defer` statement
 - This function is anonymous - lambda, and usually it is a closure as well
 
-.play assets/lecture-02/defer-lambda.go
+.play assets/lecture-02/defer/lambda.go
 
 ## defer in loop
 
 - 10 `defer` statements
 - LIFO behaviour
 
-.play assets/lecture-02/defer-loop.go
+.play assets/lecture-02/defer/loop.go
 
 ## defer arguments evaluation
 
 - Actual parameters are evaluated in runtime
 
-.play assets/lecture-02/defer-arguments-evaluation.go
+.play assets/lecture-02/defer/arguments-evaluation.go
 
 ## defer with multiple return statements (1/2)
 
 - `defer` is called even when more `return` statements are used
 
-.play assets/lecture-02/defer-multiple-returns.go /^package main/,/^func main/
+.play assets/lecture-02/defer/multiple-returns.go /^package main/,/^func main/
 
 ## defer with multiple return statements (2/2)
 
-.play assets/lecture-02/defer-multiple-returns.go /^func main/,/^}/
+.play assets/lecture-02/defer/multiple-returns.go /^func main/,/^}/
 
 ## Practical usage of defer (1/2)
 
-.play assets/lecture-02/defer-io-example.go /^package main/,/^}/
+.play assets/lecture-02/defer/io-example.go /^package main/,/^}/
 
 ## Practical usage of defer (2/2)
 
-.play assets/lecture-02/defer-io-example.go /^func main/,/^}/
+.play assets/lecture-02/defer/io-example.go /^func main/,/^}/
 
 ## defer and return values
 
@@ -334,7 +334,7 @@ var counter = 100
 
 ## defer and return values
 
-.play assets/lecture-02/defer-return-values.go
+.play assets/lecture-02/defer/return-values.go
 
 ## User-defined data types
 
@@ -362,11 +362,11 @@ type rune = int32
 
 ## User-defined data types
 
-.play assets/lecture-02/user-types.go
+.play assets/lecture-02/types/user-types.go
 
 ## User-defined data types (passing to function)
 
-.play assets/lecture-02/user-types-as-params.go
+.play assets/lecture-02/types/user-types-as-params.go
 
 ## Structures
 
@@ -382,7 +382,7 @@ type rune = int32
 
 ## Structs and dot operator
 
-.play assets/lecture-02/struct.go
+.play assets/lecture-02/structs/struct.go
 
 ## Initialization of struct members
 
@@ -392,7 +392,7 @@ type rune = int32
 
 ## Initialization of struct members
 
-.play assets/lecture-02/struct-init.go
+.play assets/lecture-02/structs/init.go
 
 ## Explicit struct members initialization
 
@@ -402,27 +402,27 @@ type rune = int32
 
 ## Explicit struct members initialization
 
-.play assets/lecture-02/struct-explicit-init.go
+.play assets/lecture-02/structs/explicit-init.go
 
 ## Structures can be compared
 
 - `==` and `!=` operators
 
-.play assets/lecture-02/struct-comparison.go /^func main/,/^}/
+.play assets/lecture-02/structs/comparison.go /^func main/,/^}/
 
 ## Calling functions with structs as arguments
 
-.play assets/lecture-02/struct-argument.go
+.play assets/lecture-02/structs/argument.go
 
 ## Struct embedding
 
-.play assets/lecture-02/struct-embedding.go
+.play assets/lecture-02/structs/embedding.go
 
 ## Anonymous structure
 
 - Just declare new variable and specify its type to `struct` _something_
 
-.play assets/lecture-02/struct-anonymous.go
+.play assets/lecture-02/structs/anonymous.go
 
 ## Enums
 
@@ -436,11 +436,11 @@ type rune = int32
 
 ## Enums
 
-.play assets/lecture-02/enums-days.go /START OMIT/,/END OMIT/
+.play assets/lecture-02/enums/days.go /START OMIT/,/END OMIT/
 
 ## Enums
 
-.play assets/lecture-02/enums-iota.go /START OMIT/,/END OMIT/
+.play assets/lecture-02/enums/iota.go /START OMIT/,/END OMIT/
 
 ## Pointers
 
@@ -457,25 +457,25 @@ type rune = int32
 
 - Note the usage of `*p_i++`
 
-.play assets/lecture-02/pointer-to-int.go
+.play assets/lecture-02/pointers/to-int.go
 
 ## Panic on nil dereference
 
-.play assets/lecture-02/pointer-panic.go
+.play assets/lecture-02/pointers/panic.go
 
 ## Pointer to structure (1/2)
 
-.play assets/lecture-02/pointer-to-struct.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-02/pointers/to-struct.go /START OMIT/,/MIDDLE OMIT/
 
 ## Pointer to structure (2/2)
 
 - Note the possibility of writing `p_u.id` instead of `(*p_u).id`
 
-.play assets/lecture-02/pointer-to-struct.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-02/pointers/to-struct.go /MIDDLE OMIT/,/END OMIT/
 
 ## Pointer to structure member
 
-.play assets/lecture-02/pointer-to-struct-member.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-02/pointers/to-struct-member.go /MIDDLE OMIT/,/END OMIT/
 
 ## Return pointer to local variable from C function
 
@@ -495,7 +495,7 @@ type rune = int32
 
 ## Return pointer to local variable from Go function
 
-.play assets/lecture-02/pointer-return-reference.go
+.play assets/lecture-02/pointers/return-reference.go
 
 ## Back to types
 
@@ -523,20 +523,20 @@ someType.methodName(parameters)
 
 ## User type with a single method
 
-.play assets/lecture-02/methods.go
+.play assets/lecture-02/methods/methods.go
 
 ## Value receiver
 
-.play assets/lecture-02/methods-value-receiver.go
+.play assets/lecture-02/methods/value-receiver.go
 
 ## Pointer receiver
 
-.play assets/lecture-02/methods-pointer-receiver.go
+.play assets/lecture-02/methods/pointer-receiver.go
 
 ## Nil receiver
 
-.play assets/lecture-02/methods-nil-receiver.go
+.play assets/lecture-02/methods/nil-receiver.go
 
 ## More methods for the same type
 
-.play assets/lecture-02/methods-multiple.go
+.play assets/lecture-02/methods/multiple.go
