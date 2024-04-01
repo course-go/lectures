@@ -672,7 +672,7 @@ f.Fuzz(func(t *testing.T, b []byte, i int) { ... })
 
 ## Fuzzing example
 
-.code assets/lecture-05/fuzzing-add_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing-fuzzing-add_test.go /START OMIT/,/END OMIT/
 
 - Can easily be run using the go toolkit
     - **`go test -fuzz FuzzAdd -fuzztime 5s`**
@@ -715,6 +715,8 @@ int(-8)
 - But assert-like functions and methods exist
 - Multiple third party libraries
     - The [stretchr/testify](https://github.com/stretchr/testify) is the most used
+    - [gotestyourself/gotest.tools](https://github.com/gotestyourself/gotest.tools)
+    - [alecthomas/assert](https://github.com/alecthomas/assert)
 
 ## Assertions
 

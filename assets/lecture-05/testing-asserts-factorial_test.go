@@ -1,25 +1,34 @@
 package main
 
-// START OMIT
-
 import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
+// START OMIT
+
 func TestFactorialForZero(t *testing.T) {
-	result := Factorial(0)
+	result, err := Factorial(0)
+	assert.Nil(t, err)
 	assert.Equal(t, result, 1)
 }
 
 func TestFactorialForOne(t *testing.T) {
-	result := Factorial(1)
+	result, err := Factorial(1)
+	assert.Nil(t, err)
 	assert.Equal(t, result, 1)
 }
 
+func TestFactorialForNegative(t *testing.T) {
+	_, err := Factorial(-1)
+	assert.NotNil(t, err)
+	assert.ErrorIs(t, err, NegativeIntegerErr)
+}
+
 func TestFactorialForSmallNumber(t *testing.T) {
-	result := Factorial(5)
+	result, err := Factorial(5)
+	assert.Nil(t, err)
 	assert.Greater(t, result, 10)
 	assert.Less(t, result, 10000)
 }
