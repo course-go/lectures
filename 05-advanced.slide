@@ -637,6 +637,8 @@ test/internal/numbers/numbers.go:7:     subtract        0.0%
 total:                                  (statements)    50.0%
 ```
 
+[Go Blog: The cover story](https://go.dev/blog/cover)
+
 ## Inspecting code coverage
 
 - Preview coverage as HTML page:
@@ -730,144 +732,93 @@ int(-8)
 
 .code assets/lecture-05/testing/asserts-factorial-dot-import_test.go /START OMIT/,/END OMIT/
 
-## go-carpet
+## goconvey
 
-## Helper tool `go-carpet`
+## goconvey
 
-- Show test coverage in terminal for Go source files
-- With -256colors shows coverage in various shades of green
-- Installation: `go get -u github.com/msoap/go-carpet`
-- (`~/go/bin` should be put into `PATH`)
-- Run `go-carpet` in project directory
-
-## GoConvey
-
-## GoConvey
-
-- Example of BDD
-- Simple DSL
+- Behavior-driven development (BDD) framework
+    - Aims to close the gap between business people and developers
+- Simple domain-specific language (DSL)
+- Integrates with `go test`
 - Test steps are written directly as Go source code
-- Pros: support in IDE, most issues can be detected by the compiler
-- Cons: no proper separation from Go language
-- Supports web UI
-- Displays test coverage
-- Test code generator is included as well
+    - Self-documenting tests
+- Includes test code generator
+- Tests are automatically run on save
+- Supports an interactive Web UI
+    - Displays test coverage
 
-## GoConvey
+[GitHub: goconvey](https://github.com/smartystreets/goconvey)
 
-- `Convey`
-- `So`
-- `ShouldEqual`
-- `ShouldNotEqual`
-- `ShouldBeBetween`
-- `ShouldBeGreaterThan`
-- `ShouldNotBeEmpty`
-- ...
-- [[https://github.com/smartystreets/goconvey/wiki/Assertions]]
-- Possible to use: Convey("This isn't yet implemented", nil)
+## goconvey DSL
 
-## GoConvey output
+- **`Convey`**: used to define a new scope of a test
+- **`So`**: used to define assertions
+- Assertions:
+    - **`ShouldEqual`**
+    - **`ShouldNotEqual`**
+    - **`ShouldBeBetween`**
+    - **`ShouldNotBeEmpty`**
+    - **`ShouldBeNil`**
+    - ...
 
-- `convey.Print`
-- `convey.Printf`
-- `convey.Println`
+[GitHub: goconvey assertions](https://github.com/smartystreets/goconvey/wiki/Assertions)
 
-## GoConvey - tested code
+## goconvey factorial tests
 
-.code assets/lecture-05/go-convey/go_convey1/factorial.go
+.code assets/lecture-05/goconvey/factorial_test.go /START OMIT/,/END OMIT/
 
-## GoConvey - behaviour test
+## goconvey slice tests
 
-.code assets/lecture-05/go-convey/go_convey1/behaviour_test.go
+.code assets/lecture-05/goconvey/slice_test.go /START OMIT/,/END OMIT/
 
-## GoConvey - checking behaviour of slice
+## godog
 
-.code assets/lecture-05/go-convey/go_convey2/slice_test.go
+## godog
 
-## GoConvey - more checks for factorial implementation
+- Again, a BDD framework
+- Based on the **Gherkin** language
 
-.code assets/lecture-05/go-convey/go_convey3/behaviour_test.go
-
-## Godog
-
-## Godog
-
-- Another example of BDD framework
-- Based on Gherkin language
-- Pros: behaviour tests are separated from the code
-- Cons: "glue" between test scenarios and test step implementations
+[GitHub: godog](https://github.com/cucumber/godog)
 
 ## Gherkin language
 
-- Feature/Scenario/Scenario Outline
-- Given/when/then
-- Variable parameters in tests
-- Tables as data source
-- Tables for multiple test runs with variable parameters
-
-## Gherkin language
-
-- Based on natural language + a few keywords
-- usually English is used
-- translated into other languages as well
-- It is quite similar to Python, AsciiDoc etc.
-- indentation
-- based on keywords, not on special characters
-- tables "drawn" in ASCII
+- Based on natural language with a multiple keywords
+    - English is usually used
+        - Can be translated into [other languages](https://cucumber.io/docs/gherkin/reference/#spoken-languages) as well
 - It is not tightly bound with any real programming language
-- it can be used by non-developers
+- It can be used by non-developers
 
-## Given-When-Then
+[Cucumber: Gherkin Reference](https://cucumber.io/docs/gherkin/reference/)
 
-- Semi-structured way to write down test cases
+## Gherkin keywords
 
-## Three clauses
+- **`Feature`**: high-level description of software feature
+- **`Rule`**: represents a business rule
+- **`Example/Examples`**: concrete example of a business rule
+- **`Scenario/Scenarios`**: synonym for example
+- **`Scenario Outline/Template`**: used to trigger a single scenario with multiple inputs
+- **`Background`**: specifies "before-each" steps for each example
+- Steps:
+    - **`Given`**: puts the system in a known state
+    - **`When`**: represents an action
+    - **`Then`**: represents expected outcome
+    - **`And/But`**: used to chain steps
 
-- `Given`
-- `When`
-- `Then`
+## Gherkin language example
 
-## The same clause on more consecutive lines?
+.code assets/lecture-05/godog/godogs.feature
 
-- `And`
+## godog example (1/2)
 
-## Gherkin language - an example
+.code assets/lecture-05/godog/godogs_test.go /START OMIT/,/MIDDLE OMIT/
 
-    Given the customer has logged into their current account
-      And the balance is shown to be 100 euros
-     When the customer transfers 75 euros to their savings account
-     Then the new current account balance should be 25 euros
+## godog example (2/2)
 
-## Test scenario parts
-
-- Keywords/clauses:
-- `Given`, `And`, `When`, `Then`
-- The rest is written in "plain English":
-- Or in other supported language (ANY language in case of Godog)
-- Contains variable parts as well
-- `100`, `75`, `25`, `test`
-
-## Tables
-
-- has two purposes in Gherkin language
-- specify list of values used later in tests
-- specify multiple test scenarios with the same sentences, but with different parameters/variables.
+.code assets/lecture-05/godog/godogs_test.go /TEST OMIT/,/END OMIT/
 
 ## Scenario outlines
 
-  Scenario Outline: Check the user search feature, perform the search for more users
-    Given GitHub is accessible
-    When I search for user with nick <nick>
-    Then I should receive 200 status code
-     And I should receive proper JSON response
-     And I should find the user with full name <fullname>
-     And I should find that the user works for company <company>
-
-     Examples: users
-     |nick|fullname|company|
-     |torvalds|Linus Torvalds|Linux Foundation|
-     |brammool|Bram Moolenaar|Zimbu Labs|
-     |tisnik|Pavel Tišnovský|Red Hat, Inc.|
+.code assets/lecture-05/godog/scenario-outline.feature
 
 ## Expect
 
@@ -912,16 +863,6 @@ int(-8)
 - Verbose mode (for debugging/testing etc.)
 - Can be used in cooperation with the standard `testing` module
 
-## Stats
-
-## Gotestdox
-
-- TODO
-
-## Gotestsum
-
-- TODO
-
 ## Mocking
 
 ## Gomock
@@ -931,3 +872,23 @@ int(-8)
 - Now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
 
 [Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
+
+## Utilities
+
+## go-carpet
+
+- Tool for displaying code coverage in your terminal
+    - Can display colours with `-256colours` option
+- Usage: 
+    - Run **`go-carpet -256colors`** in your project
+
+[GitHub: go-carpet](https://github.com/msoap/go-carpet)
+
+## gotestsum
+
+- Tool for extending `go test` with various output formats and behavior
+    - JSON, JUNIT XML outputs
+    - Watch for changes
+        - Automatically runs tests
+    
+[GitHub: gotestsum](https://github.com/gotestyourself/gotestsum)
