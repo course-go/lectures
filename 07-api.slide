@@ -1,10 +1,171 @@
-# APIs
+# REST APIs
 Course Go
 Tags: golang, go
 
 ## Outline
 
-TODO
+- JSON
+- REST API
+- HTTP Web server
+- Routers
+- Middleware
+- OpenAPI
+- Testing
+
+## JSON
+
+- TODO
+- Struct tags
+- Marshal/Unmarshal
+
+## HTTP
+
+- TODO
+
+## REST API
+
+- TODO
+
+## Standard library
+
+## net package
+
+- TODO
+
+## net/http package
+
+- TODO
+
+## Middleware
+
+- TODO
+
+## Negroni
+
+- Middleware-focused library
+- Idiomatic approach to web middleware in Go
+- Encourages use of `net/http` handlers
+
+[GitHub: negroni](https://github.com/urfave/negroni)
+
+## Third party web routers & frameworks
+
+## mux
+
+- One of the oldest routers, if not the oldest
+    - Created in 2012
+- Part of the [gorilla web toolkit](https://github.com/gorilla)
+    - [sessions](https://github.com/gorilla/sessions) for cookie nad session management
+    - [websocket](https://github.com/gorilla/websocket) implements the WebSocket protocol
+    - [handlers](https://github.com/gorilla/handlers) is a collection of middleware handlers
+    - And a few more...
+- Lost maintainers and got archived for some time in December 2022
+    - [Revived in July 2023](https://gorilla.github.io/blog/2023-07-17-project-status-update/)
+
+[GitHub: mux](https://github.com/gorilla/mux)
+
+## chi
+
+- Lightweight, idiomatic router
+- Compatible with net/http
+    - Reuse any router or middleware
+- Comes with it's own [middleware package](https://pkg.go.dev/github.com/go-chi/chi/v5/middleware)
+
+[GitHub: chi](https://github.com/go-chi/chi)
+
+[Chi: documentation](https://go-chi.io/#/README)
+
+## fasthttp
+
+- Alternative HTTP implementation
+    - Up to 10x faster than [net/http](https://pkg.go.dev/net/http)
+    - Optimized for thousands of small to medium sized requests per second with consistent low millisecond response times
+- Does not provide `ServeMux`
+- Multiple routers build on top of it:
+    - [fiber](https://github.com/gofiber/fiber)
+    - [atreugo](https://github.com/savsgio/atreugo)
+    - [fasthttp-routing](https://github.com/qiangxue/fasthttp-routing)
+
+[GitHub: fasthttp](https://github.com/valyala/fasthttp)
+
+## Fiber
+
+- [Express](https://expressjs.com) inspired web framework
+    - Yes, that Javascript framework
+- Built on top of fasthttp
+
+[GitHub: fiber](https://github.com/gofiber/fiber)
+
+[Fiber: documentation](https://docs.gofiber.io)
+
+*You will like the docs if you like emojis*
+
+## Echo
+
+- Web framework
+
+[GitHub: fiber](https://github.com/labstack/echo)
+
+[Echo: documentation](https://echo.labstack.com/docs)
+
+## Iris
+
+- Web framework
+
+[GitHub: iris](https://github.com/kataras/iris)
+
+[Iris: documentation](https://www.iris-go.com/docs)
+
+## Gin
+
+- Fully fledged web framework
+- Features [martini](https://github.com/go-martini/martini)-like API
+    - Martini is no longer maintained
+- Most popular and used Go web framework
+     - ~75.000 stars on GitHub
+
+[GitHub: gin](https://github.com/gin-gonic/gin)
+
+[Gin Web Framework: documentation](https://gin-gonic.com/docs/)
+
+## Open API
+
+## Open API
+
+- TODO
+
+[OpenAPI.Tools](https://openapi.tools)
+
+## Generating Open API
+
+- Multiple libraries:
+    - [swag](https://github.com/swaggo/swag)
+    - [go-swagger](https://github.com/go-swagger/go-swagger)
+    - [kin-openapi](https://github.com/getkin/kin-openapi)
+
+## swag
+
+- Tool for generating Open API specification from source code
+- Multiple middleware plugins for major routers/frameworks
+    - [gin](https://github.com/swaggo/gin-swagger)
+    - [fiber](https://github.com/swaggo/fiber-swagger)
+    - [echo](https://github.com/swaggo/echo-swagger)
+    - [net/http](https://github.com/swaggo/http-swagger)
+
+[GitHub: swag](https://github.com/swaggo/swag)
+
+## Open API code generation
+
+- Code can also be generated from the specification
+- Multiple tools:
+    - [oapi-codegen](https://github.com/deepmap/oapi-codegen)
+    - [ogen](https://github.com/ogen-go/ogen)
+
+## Testing web servers
+
+- TODO
+
+## !!OLD SLIDES!!
 
 ## Web services in Go
 
