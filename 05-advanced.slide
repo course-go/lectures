@@ -35,20 +35,20 @@ Tags: golang, go
 
 - Good old "normal" functions as used for decades
 
-.play assets/lecture-05/generics-normal-print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/normal-print.go /START OMIT/,/END OMIT/
 
 ## Function overloading
 
 - Not supported in Go
 - Avoids [name mangling](https://en.wikipedia.org/wiki/Name_mangling)
 
-.play assets/lecture-05/generics-overloaded-prints.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/overloaded-prints.go /START OMIT/,/END OMIT/
 
 ## Multiple implementations
 
 - An implemenetation for each type
 
-.play assets/lecture-05/generics-multiple-prints.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/multiple-prints.go /START OMIT/,/END OMIT/
 
 ## Runtime "generics"
 
@@ -56,7 +56,7 @@ Tags: golang, go
 - Tidious to implement
     - Usually combined with a type switch
 
-.play assets/lecture-05/generics-runtime-print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/runtime-print.go /START OMIT/,/END OMIT/
 
 ## Generic function
 
@@ -65,39 +65,39 @@ Tags: golang, go
         - Usually named `T`, `U`, `V`, ... but words can be used as well
     - The type parameters have to be instantiated on use
 
-.play assets/lecture-05/generics-print-instantiated.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print-instantiated.go /START OMIT/,/END OMIT/
 
 ## Selection of generic function
 
 - The instance of the type parameter can sometimes be omitted
     - Inferred by the compiler
 
-.play assets/lecture-05/generics-print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print.go /START OMIT/,/END OMIT/
 
 ## Compilation type checks
 
 - Compiler checks that the instantiated type and arguments match
 
-.play assets/lecture-05/generics-print-check.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print-check.go /START OMIT/,/END OMIT/
 
 ## Comparable with multiple implementations
 
-.play assets/lecture-05/generics-orderable-multiple.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/orderable-multiple.go /START OMIT/,/END OMIT/
 
 ## Type sets: orderable
 
 - Used to constrain the type parameter
 - The type parameter then supports intersection of operations of given types
 
-.play assets/lecture-05/generics-type-set-orderable.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-set-orderable.go /START OMIT/,/END OMIT/
 
 ## Type sets: unorderable
 
-.play assets/lecture-05/generics-type-set-unorderable.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-set-unorderable.go /START OMIT/,/END OMIT/
 
 ## Type sets: hierarchy
 
-.code assets/lecture-05/generics-type-set-hierarchy.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/type-set-hierarchy.go /START OMIT/,/END OMIT/
 
 ## Compile time or runtime?
 
@@ -118,22 +118,22 @@ $ go build -gcflags=main=-S
 
 ## Assembly: concrete implementation
 
-.code assets/lecture-05/generics-orderable-single.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/orderable-single.go /START OMIT/,/END OMIT/
 
 Compiles into:
 
 ```
 "".compare STEXT nosplit size=7 args=0x10 locals=0x0 funcid=0x0 align=0x0
-    0x0000 00000 (generics-orderable-single.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
-    0x0000 00000 (generics-orderable-single.go:7)       PCDATA  $3, $1
-    0x0000 00000 (generics-orderable-single.go:8)       CMPQ    BX, AX
-    0x0003 00003 (generics-orderable-single.go:8)       SETGT   AL
-    0x0006 00006 (generics-orderable-single.go:8)       RET
+    0x0000 00000 (generics/orderable-single.go:7)       TEXT    "".compare(SB), NOSPLIT|ABIInternal, $0-16
+    0x0000 00000 (generics/orderable-single.go:7)       PCDATA  $3, $1
+    0x0000 00000 (generics/orderable-single.go:8)       CMPQ    BX, AX
+    0x0003 00003 (generics/orderable-single.go:8)       SETGT   AL
+    0x0006 00006 (generics/orderable-single.go:8)       RET
 ```
 
 ## Assembly: generic implementation (1/2)
 
-.code assets/lecture-05/generics-type-set-orderable.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/type-set-orderable.go /START OMIT/,/END OMIT/
 
 Compiles into:
 
@@ -142,36 +142,36 @@ Compiles into:
 
 ```
 "".compare[go.shape.int_0] STEXT dupok nosplit size=7 args=0x18 locals=0x0 funcid=0x0 align=0x0
-    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
-    0x0000 00000 (generics-type-set-orderable.go:11) PCDATA  $3, $1
-    0x0000 00000 (generics-type-set-orderable.go:12) CMPQ    CX, BX
-    0x0003 00003 (generics-type-set-orderable.go:12) SETGT   AL
-    0x0006 00006 (generics-type-set-orderable.go:12) RET
+    0x0000 00000 (generics/type-set-orderable.go:11) TEXT    "".compare[go.shape.int_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+    0x0000 00000 (generics/type-set-orderable.go:11) PCDATA  $3, $1
+    0x0000 00000 (generics/type-set-orderable.go:12) CMPQ    CX, BX
+    0x0003 00003 (generics/type-set-orderable.go:12) SETGT   AL
+    0x0006 00006 (generics/type-set-orderable.go:12) RET
 "".compare[go.shape.float64_0] STEXT dupok nosplit size=8 args=0x18 locals=0x0 funcid=0x0 align=0x0
-    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.float64_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
-    0x0000 00000 (generics-type-set-orderable.go:11) PCDATA  $3, $1
-    0x0000 00000 (generics-type-set-orderable.go:12) UCOMISD X0, X1
-    0x0004 00004 (generics-type-set-orderable.go:12) SETHI   AL
-    0x0007 00007 (generics-type-set-orderable.go:12) RET
+    0x0000 00000 (generics/type-set-orderable.go:11) TEXT    "".compare[go.shape.float64_0](SB), DUPOK|NOSPLIT|ABIInternal, $0-24
+    0x0000 00000 (generics/type-set-orderable.go:11) PCDATA  $3, $1
+    0x0000 00000 (generics/type-set-orderable.go:12) UCOMISD X0, X1
+    0x0004 00004 (generics/type-set-orderable.go:12) SETHI   AL
+    0x0007 00007 (generics/type-set-orderable.go:12) RET
 "".compare[go.shape.string_0] STEXT dupok size=120 args=0x28 locals=0x28 funcid=0x0 align=0x0
-    0x0000 00000 (generics-type-set-orderable.go:11) TEXT    "".compare[go.shape.string_0](SB), DUPOK|ABIInternal, $40-40
-    0x0000 00000 (generics-type-set-orderable.go:11) CMPQ    SP, 16(R14)
-    0x0004 00004 (generics-type-set-orderable.go:11) PCDATA  $0, $-2
-    0x0004 00004 (generics-type-set-orderable.go:11) JLS     63
+    0x0000 00000 (generics/type-set-orderable.go:11) TEXT    "".compare[go.shape.string_0](SB), DUPOK|ABIInternal, $40-40
+    0x0000 00000 (generics/type-set-orderable.go:11) CMPQ    SP, 16(R14)
+    0x0004 00004 (generics/type-set-orderable.go:11) PCDATA  $0, $-2
+    0x0004 00004 (generics/type-set-orderable.go:11) JLS     63
     ...
     ...
-    0x002a 00042 (generics-type-set-orderable.go:12) PCDATA  $1, $1
-    0x002a 00042 (generics-type-set-orderable.go:12) CALL    runtime.cmpstring(SB)
+    0x002a 00042 (generics/type-set-orderable.go:12) PCDATA  $1, $1
+    0x002a 00042 (generics/type-set-orderable.go:12) CALL    runtime.cmpstring(SB)
     ...
     ...
-    0x003e 00062 (generics-type-set-orderable.go:12) RET
+    0x003e 00062 (generics/type-set-orderable.go:12) RET
 ```
 
 ## No automatic type conversion
 
 - Reminder: Go does not coerce types
 
-.play assets/lecture-05/generics-no-conversions.go 
+.play assets/lecture-05/generics/no-conversions.go 
 
 ## Type approximations
 
@@ -180,27 +180,27 @@ Compiles into:
         - The `int` type and 
         - All other types that have `int` as their underlying type
 
-.play assets/lecture-05/generics-type-approximations.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-approximations.go /START OMIT/,/END OMIT/
 
 ## Generic method vs. generic function
 
-.play assets/lecture-05/generics-slice.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/slice.go /START OMIT/,/END OMIT/
 
 ## Map utilities (1/2)
 
-.play assets/lecture-05/generics-utilities-maps.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-05/generics/utilities-maps.go /START OMIT/,/MIDDLE OMIT/
 
 ## Map utilities (2/2)
 
-.play assets/lecture-05/generics-utilities-maps.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-05/generics/utilities-maps.go /MIDDLE OMIT/,/END OMIT/
 
 ## Slice utilities (1/2)
 
-.play assets/lecture-05/generics-utilities-slices.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-05/generics/utilities-slices.go /START OMIT/,/MIDDLE OMIT/
 
 ## Slice utilities (2/2)
 
-.play assets/lecture-05/generics-utilities-slices.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-05/generics/utilities-slices.go /MIDDLE OMIT/,/END OMIT/
 
 ## Packages
 
@@ -233,7 +233,7 @@ Compiles into:
 
 ## slices
 
-.play assets/lecture-05/packages-slices.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/slices.go /START OMIT/,/END OMIT/
 
 ## maps
 
@@ -311,7 +311,7 @@ Compiles into:
 - Also implements a few functions
     - `Copy`, `ReadAll`, ...
 
-.play assets/lecture-05/packages-io.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/io.go /START OMIT/,/END OMIT/
 
 [Go Packages: io](https://pkg.go.dev/io)
 
@@ -335,7 +335,7 @@ Compiles into:
 
 ## bufio
 
-.play assets/lecture-05/packages-bufio.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/bufio.go /START OMIT/,/END OMIT/
 
 ## os
 
@@ -354,7 +354,7 @@ Compiles into:
 
 ## os
 
-.play assets/lecture-05/packages-os.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/os.go /START OMIT/,/END OMIT/
 
 ## log
 
@@ -387,7 +387,7 @@ Compiles into:
 
 ## log/slog
 
-.play assets/lecture-05/packages-slog.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/slog.go /START OMIT/,/END OMIT/
 
 ## Testing
 
@@ -404,7 +404,7 @@ Compiles into:
 
 ## Pyramid, Ice-cream and Diamond
 
-.image assets/lecture-05/testing-pyramids.svg 400 _
+.image assets/lecture-05/testing/pyramids.svg 400 _
 
 ## Standard library
 
@@ -515,7 +515,7 @@ models/
         - It is included in the testing phase
         - Exluded from source code
 
-.code assets/lecture-05/testing-export_test.go
+.code assets/lecture-05/testing/export_test.go
 
 ## Running tests
 
@@ -530,32 +530,32 @@ models/
 
 ## Add example: separate package, exported
 
-.code assets/lecture-05/testing-exported-add-separated-package.go
-.code assets/lecture-05/testing-exported-add-separated-package_test.go
+.code assets/lecture-05/testing/exported-add-separated-package.go
+.code assets/lecture-05/testing/exported-add-separated-package_test.go
 
 ## Add example: separate package, unexported (1/2)
 
-.code assets/lecture-05/testing-unexported-add-separated-package.go
-.code assets/lecture-05/testing-unexported-add-separated-package_test.go
+.code assets/lecture-05/testing/unexported-add-separated-package.go
+.code assets/lecture-05/testing/unexported-add-separated-package_test.go
 
 ## Add example: separate package, unexported (2/2)
 
 - Works if we export it via **`export_test.go`** file like so:
 
-.code assets/lecture-05/testing-add-export_test.go
+.code assets/lecture-05/testing/add-export_test.go
 
 ## Test failures: Error
 
-.code assets/lecture-05/testing-add-error.go
-.code assets/lecture-05/testing-add-error_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-error.go
+.code assets/lecture-05/testing/add-error_test.go /START OMIT/,/END OMIT/
 
 ## Test failures: Log, Skip, Fatal
 
-.code assets/lecture-05/testing-add-fatal_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-fatal_test.go /START OMIT/,/END OMIT/
 
 ## Table-driven tests
 
-.code assets/lecture-05/testing-add-table-driven_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-table-driven_test.go /START OMIT/,/END OMIT/
 
 ## Running tests in parallel
 
@@ -573,7 +573,7 @@ models/
 
 ## Running tests in parallel
 
-.code assets/lecture-05/testing-add-parallel_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-parallel_test.go /START OMIT/,/END OMIT/
 
 ## Notes on test names
 
@@ -595,7 +595,7 @@ models/
     - To learn more about build tags run: **`go help buildconstraint`**
     - Short tests can be run with: **`go test -short ./...`** and checked via the T
 
-.code assets/lecture-05/testing-add-short_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-short_test.go /START OMIT/,/END OMIT/
 
 - Auxilery data are stored in `testdata` directories
     - Ignored by the compiler
@@ -642,7 +642,7 @@ total:                                  (statements)    50.0%
 - Preview coverage as HTML page:
     - **`go tool cover -html $PROFILE_NAME`**
 
-.image assets/lecture-05/testing-html-coverage-profile.png 350 _
+.image assets/lecture-05/testing/html-coverage-profile.png 350 _
 
 ## Fuzzing
 
@@ -672,7 +672,7 @@ f.Fuzz(func(t *testing.T, b []byte, i int) { ... })
 
 ## Fuzzing example
 
-.code assets/lecture-05/testing-fuzzing-add_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/fuzzing-add_test.go /START OMIT/,/END OMIT/
 
 - Can easily be run using the go toolkit
     - **`go test -fuzz FuzzAdd -fuzztime 5s`**
@@ -720,15 +720,15 @@ int(-8)
 
 ## Assertions
 
-.code assets/lecture-05/testing-recursive-factorial.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/recursive-factorial.go /START OMIT/,/END OMIT/
 
 ## Assertions
 
-.code assets/lecture-05/testing-asserts-factorial_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/asserts-factorial_test.go /START OMIT/,/END OMIT/
 
 ## Dot import
 
-.play assets/lecture-05/testing-asserts-factorial-dot-import_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/asserts-factorial-dot-import_test.go /START OMIT/,/END OMIT/
 
 ## go-carpet
 
@@ -739,10 +739,6 @@ int(-8)
 - Installation: `go get -u github.com/msoap/go-carpet`
 - (`~/go/bin` should be put into `PATH`)
 - Run `go-carpet` in project directory
-
-## Helper tool `go-carpet`
-
-.image ./assets/lecture-05/go-carpet.png _ 600
 
 ## GoConvey
 
