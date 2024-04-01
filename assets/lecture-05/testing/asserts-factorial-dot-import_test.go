@@ -11,7 +11,7 @@ import (
 func TestFactorialForZero(t *testing.T) {
 	result, err := Factorial(0)
 	Nil(t, err)
-	Equal(t, result, 1)
+	Equal(t, 1, result)
 }
 
 func TestFactorialForNegative(t *testing.T) {

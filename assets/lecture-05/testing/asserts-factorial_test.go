@@ -11,13 +11,13 @@ import (
 func TestFactorialForZero(t *testing.T) {
 	result, err := Factorial(0)
 	assert.Nil(t, err)
-	assert.Equal(t, result, 1)
+	assert.Equal(t, 1, result)
 }
 
 func TestFactorialForOne(t *testing.T) {
 	result, err := Factorial(1)
 	assert.Nil(t, err)
-	assert.Equal(t, result, 1)
+	assert.Equal(t, 1, result)
 }
 
 func TestFactorialForNegative(t *testing.T) {
