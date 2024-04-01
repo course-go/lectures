@@ -816,7 +816,7 @@ int(-8)
 
 .code assets/lecture-05/godog/godogs_test.go /TEST OMIT/,/END OMIT/
 
-## Scenario outlines
+## Scenario Outline
 
 .code assets/lecture-05/godog/scenario-outline.feature
 
@@ -824,44 +824,21 @@ int(-8)
 
 ## Expect-like framework and libraries
 
-- Originally an extension to the TCL scripting language
-- Written by Don Libes for Unix, then ported to other operation systems
+- Originally [an extension](https://en.wikipedia.org/wiki/Expect) to the [TCL scripting language](https://en.wikipedia.org/wiki/Tcl)
+    - Written by [Don Libes](https://en.wikipedia.org/wiki/Don_Libes) for Unix
+    - Then ported to other operation systems
 - Automates interactions with programs that expose a text terminal interface
-- Also used to test such applications
-- Examples: Telnet, FTP, passwd, fsck, rlogin, tip, SSH
-- Used heavily in telco
+    - Also used to test applications such as:
+        - Telnet, FTP, passwd, fsck, rlogin, tip, SSH
+- Used heavily in telecommunications
+- Go libraries:
+    - [goexpect](https://github.com/google/goexpect) by Google, archived in 2023
+    - [go-expect](https://github.com/Netflix/go-expect) by Netflix
+    - [gexpect](https://github.com/ThomasRooney/gexpect)
 
-## Expect-like framework and libraries
+## go-expect
 
-- Package goexpect [[https://github.com/google/goexpect]]
-- Package go-expect [[https://github.com/Netflix/go-expect]]
-- Package gexpect [[https://github.com/ThomasRooney/gexpect]]
-
-## Package go-expect
-
-- One of expect-like golang library to automate control of terminal or console based programs
-- Unlike expect it does not spawn or manage process lifecycle
-- Only focuses on expecting output and sending input through it's pseudoterminal
-- Can be used in cooperation with the standard `assets/lecture-05` module
-
-## Package gexpect
-
-- Pure golang expect-like module.
-- (IMHO) easiest to use
-- Regexp support in 'expect' commands
-- Two goroutines for `stdout` and `stdin` to make some use cases simpler
-- Can be used in cooperation with the standard `testing` module
-
-## Package goexpect
-
-- Another expect-like golang library
-- Native SSH spawner is included
-- Generic spawner that can be reused by additional spawners
-- Support for batch of commands (Batcher)
-- Support for conditionals in brach (Caser)
-- Go channel with exit status of automated/tested application
-- Verbose mode (for debugging/testing etc.)
-- Can be used in cooperation with the standard `testing` module
+.code assets/lecture-05/go-expect/curl.go /START OMIT/,/END OMIT/
 
 ## Mocking
 
