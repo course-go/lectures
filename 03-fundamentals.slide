@@ -78,7 +78,7 @@ type XI interface {
 
 ## Satisfying an interface
 
-.play assets/lecture-03/interfaces-satisfy.go
+.play assets/lecture-03/interfaces/satisfy.go
 
 ## Embedding other interface(s)
 
@@ -118,30 +118,30 @@ type I3 interface {
 
 ## Declaration of two interfaces
 
-.code assets/lecture-03/interfaces.go
+.code assets/lecture-03/interfaces/interfaces.go
 
 ## Missing interface implementation
 
-.play assets/lecture-03/interfaces-missing-implementation.go /^type OpenShape/,/END OMIT/
+.play assets/lecture-03/interfaces/missing-implementation.go /^type OpenShape/,/END OMIT/
 
 ## Implementation of an interface
 
-.play assets/lecture-03/interfaces-implementation.go /^type OpenShape/,/END OMIT/
+.play assets/lecture-03/interfaces/implementation.go /^type OpenShape/,/END OMIT/
 
 ## Multiple implementations of a single interface (1/2)
 
-.play assets/lecture-03/interfaces-multiple-implementations.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-03/interfaces/multiple-implementations.go /START OMIT/,/MIDDLE OMIT/
 
 ## Multiple implementations of a single interface (2/2)
 
-.play assets/lecture-03/interfaces-multiple-implementations.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-03/interfaces/multiple-implementations.go /MIDDLE OMIT/,/END OMIT/
 
 ## Empty interface
 
 - Is automatically satisfied by any type
 - Value of any type can be assigned to such interface type variable
 
-.play assets/lecture-03/interfaces-empty.go
+.play assets/lecture-03/interfaces/empty.go
 
 ## Type any
 
@@ -167,11 +167,11 @@ type any interface{}
 
 ## nil interface
 
-.play assets/lecture-03/interfaces-riddle.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/interfaces/riddle.go /START OMIT/,/END OMIT/
 
 ## nil interface
 
-.play assets/lecture-03/interfaces-nil.go
+.play assets/lecture-03/interfaces/nil.go
 
 ## Type assertions
 
@@ -196,11 +196,11 @@ variable, ok := iface.(Type)
 
 ## Type assertions
 
-.play assets/lecture-03/interfaces-assertions.go
+.play assets/lecture-03/interfaces/assertions.go
 
 ## Type assertions
 
-.play assets/lecture-03/interfaces-server-error-assertions.go
+.play assets/lecture-03/interfaces/server-error-assertions.go
 
 ## Errors
 
@@ -223,7 +223,7 @@ type error interface {
 
 [Go Blog: Error handling and Go](https://go.dev/blog/error-handling-and-go)
 
-.play assets/lecture-03/errors.go
+.play assets/lecture-03/errors/errors.go
 
 ## Wrapping errors
 
@@ -236,19 +236,19 @@ type error interface {
 
 ## Wrapping errors
 
-.play assets/lecture-03/errors-wrapping.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/errors/wrapping.go /START OMIT/,/END OMIT/
 
 ## Sentinel errors
 
-.play assets/lecture-03/errors-sentinel.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/errors/sentinel.go /START OMIT/,/END OMIT/
 
 ## Custom errors
 
-.code assets/lecture-03/errors-custom.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-03/errors/custom.go /START OMIT/,/MIDDLE OMIT/
 
 ## Custom errors
 
-.play assets/lecture-03/errors-custom.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-03/errors/custom.go /MIDDLE OMIT/,/END OMIT/
 
 ## Line of sight
 
@@ -288,25 +288,25 @@ type error interface {
 
 ## Basic operations with arrays
 
-.play assets/lecture-03/arrays.go
+.play assets/lecture-03/arrays/arrays.go
 
 ## Matrix
 
 - Arrays can be nested
 
-.play assets/lecture-03/arrays-matrix.go
+.play assets/lecture-03/arrays/matrix.go
 
 ## Array copy
 
 - Unlike slices, arrays are copied
 
-.play assets/lecture-03/arrays-reassignment.go
+.play assets/lecture-03/arrays/reassignment.go
 
 ## Array index out of bounds
 
-.play assets/lecture-03/arrays-bounds.go
+.play assets/lecture-03/arrays/bounds.go
 
-.play assets/lecture-03/arrays-panic.go
+.play assets/lecture-03/arrays/panic.go
 
 ## Slices
 
@@ -326,13 +326,13 @@ type error interface {
 
 ## Usage of slices
 
-.play assets/lecture-03/slices.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-03/slices/slices.go /START OMIT/,/MIDDLE OMIT/
 
-[Go Blog: slice usage and internals](https://go.dev/blog/slices-intro)
+[Go Blog: slice usage and internals](https://go.dev/blog/slices/intro)
 
 ## Usage of slices (cont.)
 
-.play assets/lecture-03/slices.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-03/slices/slices.go /MIDDLE OMIT/,/END OMIT/
 
 ## Slices and arrays as data source for them
 
@@ -342,11 +342,11 @@ type error interface {
 
 ## Slices and arrays as data source for them
 
-.play assets/lecture-03/slices-modifications.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/slices/modifications.go /START OMIT/,/END OMIT/
 
 ## Slice from slice
 
-.play assets/lecture-03/slices-slicing.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/slices/slicing.go /START OMIT/,/END OMIT/
 
 ## append function
 
@@ -355,7 +355,7 @@ type error interface {
 - The capacity of new slice can be increased
     - Realloc magic inside!
 
-.play assets/lecture-03/slices-append.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/slices/append.go /START OMIT/,/END OMIT/
 
 ## make function
 
@@ -365,11 +365,11 @@ type error interface {
     - Length
     - Capacity (optional)
 
-.play assets/lecture-03/slices-make.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/slices/make.go /START OMIT/,/END OMIT/
 
 ## Variadic functions
 
-.play assets/lecture-03/slices-variadic-func.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/slices/variadic-func.go /START OMIT/,/END OMIT/
 
 ## Maps
 
@@ -421,49 +421,49 @@ delete(m3, 0) // 0 is the key
     - Reading return the default value
     - Writing is forbidden
 
-.play assets/lecture-03/maps-nil.go
+.play assets/lecture-03/maps/nil.go
 
 ## Initialized map
 
 - Make can help you specify expected number of elements for the map
 
-.play assets/lecture-03/maps-initialized.go
+.play assets/lecture-03/maps/initialized.go
 
 ## Map literals
 
-.play assets/lecture-03/maps-literals.go
+.play assets/lecture-03/maps/literals.go
 
 ## Structs as values
 
-.play assets/lecture-03/maps-struct-values.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/maps/struct-values.go /START OMIT/,/END OMIT/
 
 ## Struct as both value and key
 
-.code assets/lecture-03/maps-structs.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-03/maps/structs.go /START OMIT/,/MIDDLE OMIT/
 
 ## Struct as both value and key (cont.)
 
-.play assets/lecture-03/maps-structs.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-03/maps/structs.go /MIDDLE OMIT/,/END OMIT/
 
 ## Non-existent values
 
-.play assets/lecture-03/maps-nonexistent.go
+.play assets/lecture-03/maps/nonexistent.go
 
 So how can we differentiate between actual default value and missing key?
 
 ## Reading items from map
 
-.play assets/lecture-03/maps-reading.go /START OMIT/,/END OMIT/ 
+.play assets/lecture-03/maps/reading.go /START OMIT/,/END OMIT/ 
 
 ## Deleting items from map
 
 - built-in `delete` function
 
-.play assets/lecture-03/maps-deleting.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-03/maps/deleting.go /START OMIT/,/MIDDLE OMIT/
 
 ## Deleting items from map (cont.)
 
-.play assets/lecture-03/maps-deleting.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-03/maps/deleting.go /MIDDLE OMIT/,/END OMIT/
 
 ## Sets
 
@@ -503,26 +503,26 @@ if set[key] { // returns bool
 
 ## Iterating over integers
 
-.play assets/lecture-03/range-ints.go
+.play assets/lecture-03/range/ints.go
 
 ## Iterating over arrays
 
 - First item stores the index, second stores the values
 
-.play assets/lecture-03/range-arrays.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/range/arrays.go /START OMIT/,/END OMIT/
 
 ## Iterating over slices
 
 - Works the same way as range with arrays
 
-.play assets/lecture-03/range-slices.go /START OMIT/,/END OMIT/
+.play assets/lecture-03/range/slices.go /START OMIT/,/END OMIT/
 
 ## Iterating over strings
 
-.play assets/lecture-03/range-strings.go
+.play assets/lecture-03/range/strings.go
 
 ## Iterating over maps
 
 - Note that the order of the key-value pairs is undeterministic
 
-.play assets/lecture-03/range-maps.go
+.play assets/lecture-03/range/maps.go
