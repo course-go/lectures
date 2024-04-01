@@ -1,21 +1,15 @@
 package main
 
+// START OMIT
+
 import (
 	"testing"
 
 	. "github.com/stretchr/testify/assert" // Mind the dot!
 )
 
-// START OMIT
-
 func TestFactorialForZero(t *testing.T) {
 	result, err := Factorial(0)
-	Nil(t, err)
-	Equal(t, result, 1)
-}
-
-func TestFactorialForOne(t *testing.T) {
-	result, err := Factorial(1)
 	Nil(t, err)
 	Equal(t, result, 1)
 }
