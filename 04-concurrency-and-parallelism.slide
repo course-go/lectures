@@ -57,7 +57,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 
 ##
 
-.image assets/lecture-04/concurrency-parallelism.svg 550 _
+.image assets/lecture-04/goroutines/concurrency-parallelism.svg 550 _
 
 ## Goroutines
 
@@ -76,7 +76,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 
 ## Goroutines
 
-.play assets/lecture-04/goroutines.go
+.play assets/lecture-04/goroutines/goroutines.go
 
 ## Runtime
 
@@ -86,7 +86,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
     - Same as the `libc` library in C
 - Statically linked with your program upon compilation
 
-.play assets/lecture-04/runtime.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/runtime/runtime.go /START OMIT/,/END OMIT/
 
 [Go's runtime package](https://pkg.go.dev/runtime)
 
@@ -127,7 +127,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 
 ## Scheduling
 
-.image assets/lecture-04/scheduler.svg 450 _
+.image assets/lecture-04/runtime/scheduler.svg 450 _
 
 ## Scheduling algorithm
 
@@ -403,15 +403,15 @@ ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
 
 ## Context
 
-.play assets/lecture-04/contexts.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/contexts/contexts.go /START OMIT/,/MIDDLE OMIT/
 
 ## Context
 
-.play assets/lecture-04/contexts.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/contexts/contexts.go /MIDDLE OMIT/,/END OMIT/
 
 ## Context propagation
 
-.image assets/lecture-04/contexts-propagation.svg 550 _
+.image assets/lecture-04/contexts/contexts-propagation.svg 550 _
 
 ## Time package
 
