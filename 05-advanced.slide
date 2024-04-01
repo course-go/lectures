@@ -842,13 +842,38 @@ int(-8)
 
 ## Mocking
 
-## Gomock
+## gomock
 
-- Originally maintened under [golang/mock](https://github.com/golang/mock)
+- Originally developed under [golang/mock](https://github.com/golang/mock) by Google
     - Archived in June 2023
-- Now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
+- Forked and now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
+    - **Sidenote**: Uber also has public [Go style guide](https://github.com/uber-go/guide/blob/master/style.md)
+        - Definitely worth checking out
 
 [Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
+
+## gomock usage
+
+- Install mockgen executable:
+    - **`go install go.uber.org/mock/mockgen@latest`**
+- Define interface to mock:
+
+.code assets/lecture-05/gomock/interface.go
+
+- Generate mock:
+    - **`mockgen -source interfaces.go -destination mock.go -package calculator`**
+
+## gomock mock (1/2)
+
+.code assets/lecture-05/gomock/mock.go /START OMIT/,/MIDDLE OMIT/
+
+## gomock mock (2/2)
+
+.code assets/lecture-05/gomock/mock.go /MIDDLE OMIT/,/END OMIT/
+
+## gomock testing with mock
+
+.code assets/lecture-05/gomock/calculator_test.go /START OMIT/,/END OMIT/
 
 ## Utilities
 
