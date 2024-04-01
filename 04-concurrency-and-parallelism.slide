@@ -177,11 +177,11 @@ ch<-value       // writing
 
 - Note that this example is racy
 
-.play assets/lecture-04/channels-unbuffered.go
+.play assets/lecture-04/channels/unbuffered.go
 
 ## Unbuffered channels
 
-.image assets/lecture-04/channels-unbuffered.svg
+.image assets/lecture-04/channels/unbuffered.svg
 
 ## Channel deadlocks
 
@@ -189,39 +189,39 @@ ch<-value       // writing
     - Buffered channels also block when full or empty
     - Go kindly detects deadlocks
 
-.play assets/lecture-04/channels-deadlock.go
+.play assets/lecture-04/channels/deadlock.go
 
 ## Goroutine synchronization 
 
 - Unbuffered channels can be used to synchronize goroutines
 
-.play assets/lecture-04/channels-sync.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/sync.go /START OMIT/,/END OMIT/
 
 ## Buffered channels
 
 - The size of the channel is provided as the second argument to `make`
 
-.play assets/lecture-04/channels-buffered.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/buffered.go /START OMIT/,/END OMIT/
 
 ## Buffered channels
 
-.image assets/lecture-04/channels-buffered.svg 550 _
+.image assets/lecture-04/channels/buffered.svg 550 _
 
 ## Buffered channels
 
-.image assets/lecture-04/channels-buffered-full.svg 550 _
+.image assets/lecture-04/channels/buffered-full.svg 550 _
 
 ## Pipeline
 
-.image assets/lecture-04/channels-pipeline.svg 200 _
+.image assets/lecture-04/channels/pipeline.svg 200 _
 
 ## Pipeline (1/2)
 
-.play assets/lecture-04/channels-pipeline.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/channels/pipeline.go /START OMIT/,/MIDDLE OMIT/
 
 ## Pipeline (2/2)
 
-.play assets/lecture-04/channels-pipeline.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/channels/pipeline.go /MIDDLE OMIT/,/END OMIT/
 
 ## Closing channels
 
@@ -243,17 +243,17 @@ close(c)
 
 - Writing to a closed channel
 
-.play assets/lecture-04/channels-closed-write.go
+.play assets/lecture-04/channels/closed-write.go
 
 ## Closed channel operations
 
 - Reading from a closed channel
 
-.play assets/lecture-04/channels-closed-read.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/closed-read.go /START OMIT/,/END OMIT/
 
 - "Comma ok" idiom channel check
 
-.play assets/lecture-04/channels-closed-read-ok.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/closed-read-ok.go /START OMIT/,/END OMIT/
 
 ## Range over channels
 
@@ -261,11 +261,11 @@ close(c)
     - The loop breaks when the channel gets closed
     - Empties the channel's buffer first
 
-.play assets/lecture-04/channels-range.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/range.go /START OMIT/,/END OMIT/
 
 ## Channel operations
 
-.image assets/lecture-04/channels-operations.png 450 _
+.image assets/lecture-04/channels/operations.png 450 _
 
 ## Select
 
@@ -283,7 +283,7 @@ close(c)
 - Both of the channels in the following example are ready to be read from
     - Therefore, the `select` chooses one of them at random
 
-.play assets/lecture-04/select.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/select.go /START OMIT/,/END OMIT/
 
 ## Select
 
@@ -291,14 +291,14 @@ close(c)
     - Neither channels is full
     - Writing to them would not block
 
-.play assets/lecture-04/select-writes.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/writes.go /START OMIT/,/END OMIT/
 
 ## Select
 
 - The `chanB` would block on read
     - The `select` therefore always chooses the `chanA`
 
-.play assets/lecture-04/select-single.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/single.go /START OMIT/,/END OMIT/
 
 ## Select default
 
@@ -307,29 +307,29 @@ close(c)
 - We can leverage the `default` case
     - The `default` gets selected only when all the `case`s would block
 
-.play assets/lecture-04/select-default.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/default.go /START OMIT/,/END OMIT/
 
 ## Fan-out
 
-.image assets/lecture-04/channels-fanout.svg 500 _
+.image assets/lecture-04/channels/fanout.svg 500 _
 
 ## Fan-in
 
-.image assets/lecture-04/channels-fanin.svg 500 _
+.image assets/lecture-04/channels/fanin.svg 500 _
 
 ## Fan-in (1/2)
 
-.play assets/lecture-04/select-fanin.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/select/fanin.go /MIDDLE OMIT/,/END OMIT/
 
 ## Fan-in (2/2)
 
-.play assets/lecture-04/select-fanin.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/select/fanin.go /START OMIT/,/MIDDLE OMIT/
 
 ## Signalling termination
 
 - Usually done through `context`s
 
-.play assets/lecture-04/select-done.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/done.go /START OMIT/,/END OMIT/
 
 ## Packages
 
@@ -459,7 +459,7 @@ type Timer struct {
 
 ## Timer
 
-.play assets/lecture-04/time-timer.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time/timer.go /START OMIT/,/END OMIT/
 
 ## Ticker
 
@@ -485,7 +485,7 @@ type Ticker struct {
 
 ## Ticker
 
-.play assets/lecture-04/time-ticker.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time/ticker.go /START OMIT/,/END OMIT/
 
 ## Sync package
 
@@ -502,7 +502,7 @@ type Ticker struct {
 
 ## Mutex
 
-.play assets/lecture-04/sync-mutex.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/mutex.go /START OMIT/,/END OMIT/
 
 ## RWMutex
 
@@ -513,7 +513,7 @@ type Ticker struct {
 
 ## WaitGroup
 
-.play assets/lecture-04/sync-waitgroup.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup.go /START OMIT/,/END OMIT/
 
 ## Sync/atomic package
 
@@ -531,4 +531,4 @@ type Ticker struct {
 
 ## Atomics
 
-.play assets/lecture-04/sync-atomics.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/atomics.go /START OMIT/,/END OMIT/
