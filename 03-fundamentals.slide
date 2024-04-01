@@ -265,11 +265,11 @@ type error interface {
 - So errors are nice
 - What about the panics?
 
-.play assets/lecture-03/panic.go
+.play assets/lecture-03/panic/panic.go
 
 ## Recover
 
-.play assets/lecture-03/recover.go
+.play assets/lecture-03/panic/recover.go
 
 [Go Blog: Defer, Panic, and Recover](https://go.dev/blog/defer-panic-and-recover)
 
