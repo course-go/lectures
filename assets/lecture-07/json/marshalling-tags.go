@@ -38,7 +38,7 @@ func main() {
 	u := User{
 		Name:   "Bob",
 		Active: true,
-		Age:    0, // Will be omitted
+		Age:    27,
 		Address: Address{
 			Street:     "Botanická 68A",
 			City:       "Brno - Královo pole",
@@ -50,7 +50,7 @@ func main() {
 				Number: "269 555-1234",
 			},
 		},
-		AssignedCar: nil,
+		AssignedCar: nil, // Will be omitted
 		Children:    []string{"Bob", "Rob"},
 	}
 
