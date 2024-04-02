@@ -38,6 +38,7 @@ Tags: golang, go
 ## JSON in Go
 
 - JSON serialization and deserialization supported by standard library
+    - Called marshalling and unmarshalling in Go
     - Under the `encoding` packages
         - Also supports other common formats:
             - CSV
@@ -45,7 +46,6 @@ Tags: golang, go
             - Base64 & Base32
             - Binary
             - And a few more...
-    - Called marshalling and unmarshalling in Go
 - Uses reflection
 
 [Go Packages: encoding/json](https://pkg.go.dev/encoding/json)
@@ -79,13 +79,113 @@ Tags: golang, go
 
 ## HTTP
 
-- TODO
+- Hypertext Transfer Protocol
+    - Application layer protocol
+    - Client-server
+- Proposed by [Time Bernars-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) in 1989
+    - Foundation of World Wide Web
+    - Originally designed to transmit HTML documents
+        - Later made extensible via headers
+
+[mdn web docs: HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+
+## HTTP requests
+
+- HTTP version
+- HTTP method
+    - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+- URL
+- HTTP request headers
+    - Key-value pairs
+- Optional HTTP body
+
+.code assets/lecture-07/http/request.txt
+
+## HTTP response
+
+- HTTP version
+- HTTP status code
+- HTTP status message
+- HTTP response headers
+- Optional HTTP body
+
+.code assets/lecture-07/http/response.txt
+
+## HTTP status codes
+
+- Informational: 1**
+- Successful: 2**
+- Redirection: 3**
+- Client error: 4**
+- Server error: 5**
+
+[mdn web docs: HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+## HTTP versions
+
+- Purely text versions
+- HTTP 0.9
+    - The one-line protocol
+- HTTP 1.0
+    - Used since 1991
+    - Standardized in 1996 [[RFC 1945]](https://datatracker.ietf.org/doc/html/rfc1945)
+    - Creates new TCP connection per request
+- HTTP 1.1
+    - Standardized in 1997 [[RFC 2068]](https://datatracker.ietf.org/doc/html/rfc2068)
+    - Persistent connections
+    - Introduced pipelining 
+
+## HTTP versions
+
+- HTTP 2.0
+    - Standardized in 2015 [[RFC 9113]](https://datatracker.ietf.org/doc/html/rfc9113)
+    - Aimed to improve performance
+    - Messages are embedded into a binary structure
+        - Compresses headers
+    - Multiplexes messages over a single connection
+- HTTP 3.0 
+    - Standardized in 2022 [[RFC 9114]](https://datatracker.ietf.org/doc/html/rfc9114)
+    - Builds on top of QUIC protocol
+        - Runs multiple streams over UDP
+
+[Web Almanac: HTTP](https://almanac.httparchive.org/en/2021/http)
+
+## CORS
+
+- Cross-Origin Resource Sharing
+- HTTP-header based mechanism
+- Allows servers to specify origins from which browsers can fetch resources
+
+[mdn web docs: HTTP CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+## Cookies
+
+- Piece of data sent from server to user
+- The cookie is stored on the client side
+    - Afterwards sent with every request
+- Common use cases:
+    - Session management
+    - Personalization
+    - Tracking
+    
+.code assets/lecture-07/http/cookies.txt
+
+[mdn web docs: HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
 ## REST API
 
-- TODO
+- Emerged in 2000
+- Reused already existing HTTP 1.1 methods
+    - No changes were required
+- Set of architectural constaints
+    - Uniform interface
+    - Client-server architecture
+    - Defines a set of resources
+    - Stateless communication
 
-## Standard library
+[mdn web docs: REST](https://developer.mozilla.org/en-US/docs/Glossary/REST)
+
+## Go standard library & HTTP
 
 ## net package
 

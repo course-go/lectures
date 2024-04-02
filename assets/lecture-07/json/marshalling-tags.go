@@ -45,10 +45,7 @@ func main() {
 			PostalCode: "60200",
 		},
 		Phones: []Phone{
-			{
-				Type:   "mobile",
-				Number: "269 555-1234",
-			},
+			{Type: "mobile", Number: "269 555-1234"},
 		},
 		AssignedCar: nil, // Will be omitted
 		Children:    []string{"Bob", "Rob"},
@@ -56,6 +53,10 @@ func main() {
 
 	userBytes, _ := json.Marshal(u)
 	fmt.Println(string(userBytes))
+
+	var u2 User
+	_ = json.Unmarshal(userBytes, &u2)
+	fmt.Println(u2)
 }
 
 // END OMIT
