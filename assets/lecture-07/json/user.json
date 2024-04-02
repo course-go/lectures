@@ -1,0 +1,21 @@
+{
+    "first_name": "Bob",
+    "active": true,
+    "age": 27,
+    "address": {
+        "street": "Botanická 68A",
+        "city": "Brno - Královo pole",
+        "postal_code": "602 00"
+    },
+    "phone_numbers": [
+        {
+            "type": "mobile",
+            "number": "269 555-1234"
+        },
+    ],
+    "assigned_car": null,
+    "children": [
+        "Bob",
+        "Rob",
+    ],
+}

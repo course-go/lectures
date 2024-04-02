@@ -14,9 +14,68 @@ Tags: golang, go
 
 ## JSON
 
-- TODO
-- Struct tags
-- Marshal/Unmarshal
+## JSON
+
+- JavaScript Object Notation
+    - Standardized file format
+    - Human readable
+    - Based on attribute-value pairs
+- Nowadays, de-facto standard format for web services communication
+
+## JSON data types
+
+- Number
+- String
+- Boolean
+- Array
+- Object
+- Null
+
+## JSON
+
+.code assets/lecture-07/json/user.json
+
+## JSON in Go
+
+- JSON serialization and deserialization supported by standard library
+    - Under the `encoding` packages
+        - Also supports other common formats:
+            - CSV
+            - YAML
+            - Base64 & Base32
+            - Binary
+            - And a few more...
+    - Called marshalling and unmarshalling in Go
+- Uses reflection
+
+[Go Packages: encoding/json](https://pkg.go.dev/encoding/json)
+
+## JSON in Go (1/2)
+
+.code assets/lecture-07/json/marshalling.go /START OMIT/,/MIDDLE OMIT/
+
+## JSON in Go (2/2)
+
+.play assets/lecture-07/json/marshalling.go /MIDDLE OMIT/,/END OMIT/
+
+## Struct tags
+
+- Encoding formats can be customized using struct tags
+    - Discoverable via reflection
+        - [StructTag.Get()](https://pkg.go.dev/reflect#StructTag.Get)
+    - Also used for ORMs, etc.
+
+[Go Wiki: Well-known struct tags](https://go.dev/wiki/Well-known-struct-tags)
+
+## JSON in Go (1/2)
+
+.code assets/lecture-07/json/marshalling-tags.go /START OMIT/,/MIDDLE OMIT/
+
+## JSON in Go (2/2)
+
+.play assets/lecture-07/json/marshalling-tags.go /MIDDLE OMIT/,/END OMIT/
+
+## HTTP
 
 ## HTTP
 
