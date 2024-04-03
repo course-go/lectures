@@ -5,8 +5,9 @@ Tags: golang, go
 ## Outline
 
 - JSON
+- HTTP
 - REST API
-- HTTP Web server
+- Go & HTTP
 - Routers
 - Middleware
 - OpenAPI
@@ -174,14 +175,16 @@ Tags: golang, go
 
 ## REST API
 
-- Emerged in 2000
-- Reused already existing HTTP 1.1 methods
-    - No changes were required
+- REpresentational State Transfer
+- Introduced by [Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) in 2000
 - Set of architectural constaints
     - Uniform interface
-    - Client-server architecture
     - Defines a set of resources
     - Stateless communication
+    - Client-server architecture
+    - Layered system
+- Reused already existing HTTP 1.1 methods
+    - No changes were required
 
 [mdn web docs: REST](https://developer.mozilla.org/en-US/docs/Glossary/REST)
 
