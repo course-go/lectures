@@ -192,19 +192,64 @@ Tags: golang, go
 
 ## net package
 
-- TODO
+- Interfaces for network I/O
+    - TCP/IP
+    - UDP
+    - DNS
+    - Unix sockets
+- Provides low-level primitives
+- Most notable:
+    - `Dial`/`Listen` functions
+    - And the associated `Conn`/`Listener` interfaces
+
+[Go Packages: net](https://pkg.go.dev/net)
+
+## Dial
+
+.play assets/lecture-07/net/dial.go
+
+## Listen
+
+.play assets/lecture-07/net/listen.go /START OMIT/,/END OMIT/
 
 ## net/http package
 
-- TODO
+- Provides HTTP client and server implementations
 
 [Go Internals: HTTP request multiplexing in Go](https://akshay-kumar.hashnode.dev/go-internals-http-request-multiplexing-in-go-1)
 
 [Dreams of Code: The standard library now has all you need for routing in Go](https://www.youtube.com/watch?v=H7tbjKFSg58)
 
+## Simple get
+
+.play assets/lecture-07/net/http/get.go /START OMIT/,/END OMIT/
+
+## Client
+
+.play assets/lecture-07/net/http/client.go /START OMIT/,/END OMIT/
+
+## Server with default handler
+
+.play assets/lecture-07/net/http/server.go /START OMIT/,/END OMIT/
+
+## Server with router
+
+.play assets/lecture-07/net/http/server-mux.go /START OMIT/,/END OMIT/
+
+## Path parameters
+
+- Added in Go 1.22
+- Accessed via `PathValue` method
+
+.play assets/lecture-07/net/http/path-parameters.go /START OMIT/,/END OMIT/
+
+## Methods
+
+.play assets/lecture-07/net/http/methods.go /START OMIT/,/END OMIT/
+
 ## Middleware
 
-- TODO
+.play assets/lecture-07/net/http/middleware.go /START OMIT/,/END OMIT/
 
 ## Negroni
 
