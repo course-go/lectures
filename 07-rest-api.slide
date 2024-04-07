@@ -251,15 +251,25 @@ Tags: golang, go
 
 .play assets/lecture-07/net/http/middleware.go /START OMIT/,/END OMIT/
 
-## Negroni
+## Third party routers, frameworks & utilities
+
+## negroni
 
 - Middleware-focused library
 - Idiomatic approach to web middleware in Go
 - Encourages use of `net/http` handlers
+- `negroni.Classic()`
+    - `negroni.Recovery`: recovery middleware
+        - Catches panics and returns 500 status code
+    - `negroni.Logger`: logger middleware
+    - `negroni.Static`: static file serving middleware
+- [Bunch of third party negroni compatible middlewares](https://github.com/urfave/negroni?tab=readme-ov-file#third-party-middleware)
 
 [GitHub: negroni](https://github.com/urfave/negroni)
 
-## Third party web routers & frameworks
+## negroni
+
+.play assets/lecture-07/negroni/negroni.go
 
 ## mux
 
@@ -278,13 +288,31 @@ Tags: golang, go
 ## chi
 
 - Lightweight, idiomatic router
-- Compatible with net/http
-    - Reuse any router or middleware
+- Compatible with `net/http`
+    - Any router or middleware can be reused
 - Comes with it's own [middleware package](https://pkg.go.dev/github.com/go-chi/chi/v5/middleware)
 
 [GitHub: chi](https://github.com/go-chi/chi)
 
-[Chi: documentation](https://go-chi.io/#/README)
+[Chi documentation](https://go-chi.io/#/README)
+
+## chi
+
+.code assets/lecture-07/chi/chi.go /START OMIT/,/END OMIT/
+
+[Chi documentation: routing patterns](https://go-chi.io/#/pages/routing?id=routing-patterns-amp-url-parameters)
+
+## chi: subrouters
+
+.code assets/lecture-07/chi/subrouters.go /START OMIT/,/END OMIT/
+
+[Chi documentation: subrouters](https://go-chi.io/#/pages/routing?id=sub-routers)
+
+## chi: routing groups
+
+.code assets/lecture-07/chi/routing-groups.go /START OMIT/,/END OMIT/
+
+[Chi documentation: routing groups](https://go-chi.io/#/pages/routing?id=routing-groups)
 
 ## fasthttp
 
@@ -303,41 +331,111 @@ Tags: golang, go
 
 - [Express](https://expressjs.com) inspired web framework
     - Yes, that Javascript framework
-- Built on top of fasthttp
+- Built on top of `fasthttp`
+- Plenty of [middleware](https://docs.gofiber.io/category/-middleware) built-in
+- Handlers use custom context: [fiber.Ctx](https://docs.gofiber.io/api/ctx)
 
 [GitHub: fiber](https://github.com/gofiber/fiber)
 
-[Fiber: documentation](https://docs.gofiber.io)
+[Fiber documentation](https://docs.gofiber.io)
 
 *You will like the docs if you like emojis*
+
+## Fiber
+
+.code assets/lecture-07/fiber/fiber.go /START OMIT/,/END OMIT/
+
+[Fiber documentation: Routing](https://docs.gofiber.io/guide/routing)
 
 ## Echo
 
 - Web framework
+- Nice documentation
+    - Also contains a bunch of [cookbooks](https://echo.labstack.com/docs/category/cookbook)
+- Plenty of [middleware](https://echo.labstack.com/docs/category/middleware) built-in
+- Handlers also use custom context: [echo.Context](https://echo.labstack.com/docs/context)
 
-[GitHub: fiber](https://github.com/labstack/echo)
+[GitHub: echo](https://github.com/labstack/echo)
 
-[Echo: documentation](https://echo.labstack.com/docs)
+[Echo documentation](https://echo.labstack.com/docs)
 
-## Iris
+## Echo: quick start
 
-- Web framework
+.code assets/lecture-07/echo/echo.go /START OMIT/,/END OMIT/
 
-[GitHub: iris](https://github.com/kataras/iris)
+[Echo documentation: Quick Start](https://echo.labstack.com/docs/quick-start#hello-world)
 
-[Iris: documentation](https://www.iris-go.com/docs)
+## Echo: binding
+
+.code assets/lecture-07/echo/binding.go /START OMIT/,/END OMIT/
+
+[Echo documentation: Binding](https://echo.labstack.com/docs/binding)
 
 ## Gin
 
 - Fully fledged web framework
+    - Pretty feature rich, but somewhat bloated
 - Features [martini](https://github.com/go-martini/martini)-like API
     - Martini is no longer maintained
+- Documentation is based on [unstructures examples](https://gin-gonic.com/docs/examples/)
+    - "Meh..."
+- Handlers also use custom context: [gin.Context](https://pkg.go.dev/github.com/gin-gonic/gin#Context)
 - Most popular and used Go web framework
      - ~75.000 stars on GitHub
 
 [GitHub: gin](https://github.com/gin-gonic/gin)
 
 [Gin Web Framework: documentation](https://gin-gonic.com/docs/)
+
+## Gin: Model binding
+
+.code assets/lecture-07/gin/model-binding.go /START OMIT/,/END OMIT/
+
+[Gin Web Framework documentation: Model binding and validation](https://gin-gonic.com/docs/examples/binding-and-validation/) 
+
+## Gin: URI binding
+
+.code assets/lecture-07/gin/uri-binding.go /START OMIT/,/END OMIT/
+
+[Gin Web Framework documentation: Bind Uri](https://gin-gonic.com/docs/examples/bind-uri/) 
+
+## Gin: Router groups
+
+.code assets/lecture-07/gin/router-groups.go /START OMIT/,/END OMIT/
+
+[Gin Web Framework documentation: Grouping routes](https://gin-gonic.com/docs/examples/grouping-routes/) 
+
+## Honorable mentions
+
+- [Beego](https://github.com/beego/beego)
+- [Revel](https://github.com/revel/revel)
+- [Buffalo](https://github.com/gobuffalo/buffalo)
+- [Atreugo](https://github.com/savsgio/atreugo)
+- [Goji](https://github.com/goji/goji)
+
+## So many options!
+
+- What should I use then?
+- Sticking to the **`net/http`** standard libary is a viable option since Go 1.22 release
+    - Previously, the package was somewhat unusable
+        - A lot of boiler plate had to be written (methods, path parameters)
+- When you need to squeeze-out extra performance `fasthttp` could be the way
+    - **Fiber/Atreugo**
+- When writing complex apps where you can leverage the extra features offered by more advanced frameworks, use them
+    - **Gin/Echo**
+- No matter the choice, you will, most likely, be fine with any of them
+
+[TechEmpower: Web Framework Benchmarks](https://www.techempower.com/benchmarks/#hw=ph&test=fortune&section=data-r22&l=zijocf-cn3)
+
+## Testing web servers
+
+## net/httptest
+
+- Utilities for HTTP testing
+
+## net/httptest
+
+.code assets/lecture-07/net/httptest/httptest.go
 
 ## Open API
 
@@ -371,10 +469,6 @@ Tags: golang, go
 - Multiple tools:
     - [oapi-codegen](https://github.com/deepmap/oapi-codegen)
     - [ogen](https://github.com/ogen-go/ogen)
-
-## Testing web servers
-
-- TODO
 
 ## !!OLD SLIDES!!
 

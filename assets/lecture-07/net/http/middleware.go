@@ -7,6 +7,8 @@ import (
 	"time"
 )
 
+// START OMIT
+
 func main() {
 	router := http.NewServeMux()
 	router.HandleFunc("/users/{id}", handleUser)
@@ -29,3 +31,5 @@ func logging(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+// END OMIT
