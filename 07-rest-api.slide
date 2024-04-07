@@ -8,10 +8,10 @@ Tags: golang, go
 - HTTP
 - REST API
 - Go & HTTP
-- Routers
-- Middleware
+    - Standard library
+    - Third party libraries
+- Testing webservers
 - OpenAPI
-- Testing
 
 ## JSON
 
