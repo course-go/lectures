@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -13,8 +12,6 @@ func main() {
 	router.HandleFunc("POST /users/{id}", handlePostUser)
 	router.HandleFunc("DELETE /users/{id}", handleDeleteUser)
 	router.HandleFunc("/users/{id}", handleRest) // Handles rest of the methods
-
-	fmt.Println("Listening on port 8080...")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 

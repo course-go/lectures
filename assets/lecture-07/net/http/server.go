@@ -16,7 +16,7 @@ func main() {
 	http.HandleFunc("/status", handleStatus)
 
 	fmt.Println("Listening on port 8080...")
-	err := http.ListenAndServe(":8080", nil) // Global `Handler` is used
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatalf("could not start server: %v", err)
 	}
