@@ -1,0 +1,23 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/main ."
+bin = "tmp/main"
+args_bin = ["hello", "world"]
+log = "air.log"
+kill_delay = 500 # nanoseconds
+rerun = false
+rerun_delay = 500 # nanoseconds
+
+[log]
+time = true
+main_only = false
+
+[color]
+main = "magenta"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true

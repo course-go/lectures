@@ -441,6 +441,34 @@ Tags: golang, go
 
 [TechEmpower: Web Framework Benchmarks](https://www.techempower.com/benchmarks/#hw=ph&test=fortune&section=data-r22&l=zijocf-cn3)
 
+## Air
+
+- Live-reloading command line utility for Go apps
+- Uses `air.toml` for configuration
+- Initialize config:
+
+```
+$ air init
+```
+
+- Running air:
+
+```
+$ air
+
+ # Will run ./tmp/main -h
+$ air -- -h
+
+ # Will run air with custom config and pass -h argument to the built binary
+$ air -c .air.toml -- -h
+```
+
+[GitHub: Air](https://github.com/cosmtrek/air)
+
+## Air: config
+
+.code assets/lecture-07/air/config.toml
+
 ## Testing web servers
 
 ## net/httptest
