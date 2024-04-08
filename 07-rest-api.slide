@@ -474,13 +474,28 @@ $ air -c .air.toml -- -h
 
 ## Testing web servers
 
-## net/httptest
+## net/http/httptest
 
 - Utilities for HTTP testing
+    - **`NewRequest()`**
+        - Returns `*http.Request`
+        - Used for setting up the request
+    - **`ResponseRecorder`**
+        - Implementation of `http.ResponseWriter`
+        - Records mutations for later inspection
+    - **`Server`**
+        - Runs a HTTP server on a system port
+        - Suitable for testing clients
 
-## net/httptest
+[Go Packages: net/http/httptest](https://pkg.go.dev/net/http/httptest#ResponseRecorder)
 
-.code assets/lecture-07/net/httptest/httptest.go
+## httptest recorder
+
+.code assets/lecture-07/net/http/httptest/recorder.go
+
+## httptest server
+
+.code assets/lecture-07/net/http/httptest/server.go /START OMIT/,/END OMIT/
 
 ## Open API
 
