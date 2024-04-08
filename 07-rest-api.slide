@@ -10,7 +10,7 @@ Tags: golang, go
 - Go & HTTP
     - Standard library
     - Third party libraries
-- Testing webservers
+    - Testing webservers
 - OpenAPI
 
 ## JSON
@@ -497,22 +497,44 @@ $ air -c .air.toml -- -h
 
 .code assets/lecture-07/net/http/httptest/server.go /START OMIT/,/END OMIT/
 
-## Open API
+## OpenAPI
 
-## Open API
+## OpenAPI
+
+- Machine-readable specification for describing web service interfaces
+    - Previously known as _Swagger Specification_
+    - Published in 2011
+    - Latest version is 3.1 (2021)
+    - Written in YAML or JSON
+- Swagger Tools
+    - Tooling around OpenAPI
+        - [Editor](https://editor.swagger.io), [UI](https://petstore.swagger.io), Codegen, Parser, ...
+
+[OpenAPI Specification](https://swagger.io/specification/)
 
 [OpenAPI.Tools](https://openapi.tools)
 
-## Generating Open API
+## OpenAPI example
+
+.code assets/lecture-07/openapi/example.yaml
+
+[Swagger: Basic Structure](https://swagger.io/docs/specification/basic-structure/)
+
+## Generating OpenAPI
 
 - Multiple libraries:
     - [swag](https://github.com/swaggo/swag)
+        - Only supports version 2.0
     - [go-swagger](https://github.com/go-swagger/go-swagger)
-    - [kin-openapi](https://github.com/getkin/kin-openapi)
+        - Again, supports only version 2.0
 
 ## swag
 
 - Tool for generating Open API specification from source code
+- Relies on annotations
+- Ships with it's own CLI
+    - Can reformat your annotations
+    - Can run you Swagger UI for you
 - Multiple middleware plugins for major routers/frameworks
     - [gin](https://github.com/swaggo/gin-swagger)
     - [fiber](https://github.com/swaggo/fiber-swagger)
@@ -521,9 +543,24 @@ $ air -c .air.toml -- -h
 
 [GitHub: swag](https://github.com/swaggo/swag)
 
-## Open API code generation
+## swag annotations
+
+.code assets/lecture-07/openapi/annotations.go /START OMIT/,/END OMIT/
+
+## OpenAPI code generation
 
 - Code can also be generated from the specification
+    - Generally good at generating boilerplate code
 - Multiple tools:
     - [oapi-codegen](https://github.com/deepmap/oapi-codegen)
     - [ogen](https://github.com/ogen-go/ogen)
+
+## OpenAPI parsing and processing
+
+- [kin-openapi](https://github.com/getkin/kin-openapi)
+    - Handles OpenAPI version 2.0 and 3.0
+    - Version 3.1 got [somewhat stuck](https://github.com/getkin/kin-openapi/issues/230)
+- [libopenapi](https://github.com/pb33f/libopenapi)
+    - Relatively new (2022)
+    - Handlers all major versions
+        - 2.0/3.0/3.1
