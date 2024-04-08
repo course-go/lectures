@@ -242,7 +242,7 @@ Tags: golang, go
 
 ## Configuring server
 
-.play assets/lecture-07/net/http/server-mux.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/server-config.go /START OMIT/,/END OMIT/
 
 ## Path parameters
 
@@ -252,6 +252,9 @@ Tags: golang, go
 .play assets/lecture-07/net/http/path-parameters.go /START OMIT/,/END OMIT/
 
 ## Query parameters
+
+- Accessed via `r.URL.Query()`
+    - Returns `Values` type: `map[string][]string` underneath
 
 .play assets/lecture-07/net/http/query-parameters.go /START OMIT/,/END OMIT/
 

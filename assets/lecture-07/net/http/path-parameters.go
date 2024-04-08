@@ -11,11 +11,11 @@ import (
 func main() {
 	router := http.NewServeMux()
 	router.HandleFunc("/users/{id}", handleUser)
-
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "Homepage\n\n")
 		fmt.Fprintf(w, "You are visiting from: %s", r.RemoteAddr)
 	})
+
 	fmt.Println("Listening on port 8080...")
 	err := http.ListenAndServe(":8080", router)
 	if err != nil {
