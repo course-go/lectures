@@ -7,6 +7,8 @@ Tags: golang, go
 - Benchmarks
 - Optimizations
 - CGo
+- Unsafe
+- Reflection
 
 ## Performance analysis
 
@@ -1245,27 +1247,3 @@ int main(void)
 - Look at the CGo docs
 - BEWARE! it has extreme overhead
 
-## Dependency management
-
-## The Past
-
-- go get and GOPATH
-- vendoring aka bundling
-- plethora of tools, godep, govendor, glide
-
-## The Present
-
-- Go modules, go mod
-- local cache instead of GOPATH
-- go mod
-- go.mod storing informations for module
-- init, vendor, download
-- go get bar@...
-- go list -m
-- go list -u -m -json all
-- go list -u -m -json all | go-mod-outdated -update
-
-## Proxies and sumdbs
-
-- Proxies facilitates fetches, instead of direct
-- SumDBs hashes of repos for corresponding versions
