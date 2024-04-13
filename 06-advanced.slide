@@ -1134,8 +1134,13 @@ return sb.String()
 - Unsafe operations
     - Not protected by the compatibility promise
 - Steps around the type system of Go
+- Allows to directly access memory
 
 [Go Packages: unsafe](https://pkg.go.dev/unsafe)
+
+## Unsafe
+
+.play assets/lecture-06/unsafe/unsafe.go /START OMIT/,/END OMIT/
 
 ## Reflection
 
@@ -1157,4 +1162,3 @@ return sb.String()
 .play assets/lecture-06/reflect/struct.go /START OMIT/,/END OMIT/
 
 [Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)
-
