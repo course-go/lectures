@@ -1,0 +1,19 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/benchmarks
+BenchmarkSliceCreation
+BenchmarkSliceCreation-12                	     494	   2412684 ns/op	41678228 B/op	      39 allocs/op
+BenchmarkSliceCreation-12                	     475	   2426669 ns/op	41678212 B/op	      39 allocs/op
+BenchmarkSliceCreation-12                	     494	   2449332 ns/op	41678209 B/op	      39 allocs/op
+BenchmarkSliceCreation-12                	     492	   2440795 ns/op	41678202 B/op	      39 allocs/op
+BenchmarkSliceCreation-12                	     494	   2492067 ns/op	41678212 B/op	      39 allocs/op
+BenchmarkSliceCreation-12                	     502	   2464317 ns/op	41678176 B/op	      39 allocs/op
+BenchmarkSliceCreationPreallocated
+BenchmarkSliceCreationPreallocated-12    	    2119	    510172 ns/op	 8003589 B/op	       1 allocs/op
+BenchmarkSliceCreationPreallocated-12    	    2270	    513067 ns/op	 8003589 B/op	       1 allocs/op
+BenchmarkSliceCreationPreallocated-12    	    2301	    511576 ns/op	 8003589 B/op	       1 allocs/op
+BenchmarkSliceCreationPreallocated-12    	    2179	    510534 ns/op	 8003590 B/op	       1 allocs/op
+BenchmarkSliceCreationPreallocated-12    	    2317	    512082 ns/op	 8003590 B/op	       1 allocs/op
+BenchmarkSliceCreationPreallocated-12    	    2293	    509944 ns/op	 8003591 B/op	       1 allocs/op
+PASS
+ok  	github.com/course-go/lectures/assets/lecture-06/benchmarks	16.012s

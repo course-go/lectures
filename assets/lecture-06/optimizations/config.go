@@ -230,13 +230,21 @@ func createURL(server, endpoint string) (string, error) {
 	return u.String(), nil
 }
 
+// VALUE START OMIT
+
 func GetStorageConfigurationByValue(configuration ConfigStruct) StorageConfiguration {
 	return configuration.Storage
 }
 
+// VALUE END OMIT
+// REFERENCE START OMIT
+
 func GetStorageConfigurationByReference(configuration *ConfigStruct) StorageConfiguration {
 	return configuration.Storage
 }
+
+// REFERENCE END OMIT
+// RECEIVER START OMIT
 
 func (configuration ConfigStruct) GetStorageConfigurationByValue() StorageConfiguration {
 	return configuration.Storage
@@ -245,3 +253,5 @@ func (configuration ConfigStruct) GetStorageConfigurationByValue() StorageConfig
 func (configuration *ConfigStruct) GetStorageConfigurationByReference() StorageConfiguration {
 	return configuration.Storage
 }
+
+// RECEIVER END OMIT

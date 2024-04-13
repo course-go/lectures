@@ -14,21 +14,18 @@ const (
 	defaultConfigFileName     = "./config"
 )
 
-// loadConfiguration function loads configuration prepared to be used by
-// benchmarks
+// HELPER START OMIT
+
 func loadConfiguration() (conf.ConfigStruct, error) {
 	os.Clearenv()
-
 	err := os.Setenv(configFileEnvVariableName, defaultConfigFileName)
 	if err != nil {
 		return conf.ConfigStruct{}, err
 	}
-
 	config, err := conf.LoadConfiguration(configFileEnvVariableName, defaultConfigFileName)
 	if err != nil {
 		return conf.ConfigStruct{}, err
 	}
-
 	return config, nil
 }
 
@@ -40,50 +37,41 @@ func mustLoadBenchmarkConfiguration(b *testing.B) conf.ConfigStruct {
 	return configuration
 }
 
-func BenchmarkGetStorageConfigurationFunctionByValue(b *testing.B) {
-	b.StopTimer()
-	configuration := mustLoadBenchmarkConfiguration(b)
-	b.StartTimer()
+// HELPER END OMIT
+// BENCHMARK START OMIT
 
-	for i := 0; i < b.N; i++ {
-		// call benchmarked function
+func BenchmarkGetStorageConfigurationFunctionByValue(b *testing.B) {
+	configuration := mustLoadBenchmarkConfiguration(b)
+	b.ResetTimer()
+	for range b.N {
 		conf.GetStorageConfigurationByValue(configuration)
 	}
-
 }
 
 func BenchmarkGetStorageConfigurationFunctionByReference(b *testing.B) {
-	b.StopTimer()
 	configuration := mustLoadBenchmarkConfiguration(b)
-	b.StartTimer()
-
-	for i := 0; i < b.N; i++ {
-		// call benchmarked function
+	b.ResetTimer()
+	for range b.N {
 		conf.GetStorageConfigurationByReference(&configuration)
 	}
-
 }
 
-func BenchmarkGetStorageConfigurationMethodByValue(b *testing.B) {
-	b.StopTimer()
-	configuration := mustLoadBenchmarkConfiguration(b)
-	b.StartTimer()
+// BENCHMARK MIDDLE OMIT
 
-	for i := 0; i < b.N; i++ {
-		// call benchmarked function
+func BenchmarkGetStorageConfigurationMethodByValue(b *testing.B) {
+	configuration := mustLoadBenchmarkConfiguration(b)
+	b.ResetTimer()
+	for range b.N {
 		configuration.GetStorageConfigurationByValue()
 	}
-
 }
 
 func BenchmarkGetStorageConfigurationMethodByReference(b *testing.B) {
-	b.StopTimer()
 	configuration := mustLoadBenchmarkConfiguration(b)
-	b.StartTimer()
-
-	for i := 0; i < b.N; i++ {
-		// call benchmarked function
+	b.ResetTimer()
+	for range b.N {
 		configuration.GetStorageConfigurationByReference()
 	}
-
 }
+
+// BENCHMARK END OMIT
