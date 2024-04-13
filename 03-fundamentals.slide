@@ -69,6 +69,8 @@ type XI interface {
 - Interface type — variable of interface type, can hold any value implementing an interface
 - Variable of interface type *I* can hold any value _implementing_ *I*
 
+[Go Data Structures: Interfaces by Russ Cox](https://research.swtch.com/interfaces)
+
 ## Implementing an interface
 
 - AKA _satisfying_ an interface
