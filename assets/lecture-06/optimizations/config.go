@@ -1,4 +1,4 @@
-package conf
+package optimizations
 
 import (
 	"bytes"

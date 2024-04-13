@@ -149,22 +149,6 @@ geomean                        6.245
 - Go compiler is pretty straightfoward (= dumb)
 - It needs some help from developers
 
-## Optimizations in Go
-
-- pass structures by reference, not by value
-
-## Pass structures by reference, not by value
-
-- All data types are passed by value into functions and methods
-    - Good from "state-space" perspective
-    - Not so good from performance point of view
-
-## Problem definition
-
-- Large structures passed by value everywhere in the code
-- Even within inner loops
-- It causes overhead that is easy to avoid
-
 ## Some interesting areas backed by experience
 
 1. _"Pass structures by reference, not by value"_
@@ -177,25 +161,25 @@ geomean                        6.245
 ## Pass structures by reference, not by value
 
 - All data types are passed by value into functions and methods
-    - that's good from "state-space" perspective
-    - not so good from performance point of view
-- Java/Python have different semantic!
-- And no nice solution like `const` and `mut` exists in Go
-
-## Problem definition
-
-- Large structures passed by value everywhere in the code
+    - Good from "state-space" perspective
+    - Not so good from performance point of view
+- Problem definition:
+    - Large structures passed by value everywhere in the code
     - Even within inner loops
-- It causes overhead that is super easy to avoid
-    - But at cost: wrong semantic is used
+    - It causes overhead that is easy to avoid
+        - But at cost: wrong semantic is used
 
-## Large config (1/2)
+## Large config (1/3)
+
+.code assets/lecture-06/optimizations/config.toml /START OMIT/,/END OMIT/
+
+## Large config (2/3)
 
 .code assets/lecture-06/optimizations/config.go /^type Config/,/^}/
 
 .code assets/lecture-06/optimizations/config.go /^type StorageConfiguration/,/^}/
 
-## Large config (2/2)
+## Large config (3/3)
 
 .code assets/lecture-06/optimizations/config.go /^type KafkaConfiguration/,/^}/
 
@@ -295,44 +279,21 @@ ok      config-struct/conf      27.166s
 
 ## Maps pre-allocation
 
-- In Go it is possible to specify number of map items during map allocation
+- Map allocations via `make` allows to specify expected number of map items
 
-```go
-m1 := make(map[UUID]time.Time)
-m2 := make(map[UUID]time.Time, b.N)
+```
+m1 := make(map[uuid.UUID]time.Time)
+m2 := make(map[uuid.UUID]time.Time, 1000)
 ```
 
-- Not strictly needed, so developers took "Python approach"
-- Does it make sense to try to estimate number of items?
-- Who knows? Probably only the benchmark...
+- Not strictly needed
+    - Developers tend to ignore it
+- Does it even make sense to try to estimate number of items?
+    - Who knows? Probably only the benchmark...
 
 ## Benchmark
 
-```go
-type UUID string
-
-func BenchmarkInsertIntoPreallocatedMapUUIDKey(b *testing.B) {
-        m := make(map[UUID]time.Time, b.N)
-        t := time.Now()
-        for i := 0; i < b.N; i++ {
-                b.StopTimer()
-                id := UUID(uuid.New().String())
-                b.StartTimer()
-                m[id] = t
-        }
-}
-
-func BenchmarkInsertIntoEmptyMapUUIDKey(b *testing.B) {
-        m := map[UUID]time.Time{}
-        t := time.Now()
-        for i := 0; i < b.N; i++ {
-                b.StopTimer()
-                id := UUID(uuid.New().String())
-                b.StartTimer()
-                m[id] = t
-        }
-}
-```
+.code assets/lecture-06/optimizations/maps_test.go /START OMIT/,/END OMIT/
 
 ## Benchmark results
 
@@ -835,12 +796,15 @@ BenchmarkMutexVariant-8     100000  29044 ns/op
 BenchmarkChannelVariant-8   100000  49570 ns/op
 ```
 
+## Strings
+
 ## String builders
 
-- very frequent operation
-    - templates
-    - JSON and XML serializers
-- usually 'hidden' inside libraries
+- Used for concatenation of strings
+    - Very frequent operation
+        - Templates
+        - JSON and XML serializers
+- Usually used inside libraries
 
 ## Strings are immutable
 
@@ -851,100 +815,31 @@ type stringStruct struct {
 }
 ```
 
-## String concatenation is slow
+- So how can one append strings?
+    - Naive builder
+        - String concatenation
 
-```go
-func concatstrings(buf *tmpBuf, a []string) string {
-        idx := 0
-        l := 0
-        count := 0
-        for i, x := range a {
-                n := len(x)
-                if n == 0 {
-                        continue
-                }
-                if l+n < l {
-                        throw("string concatenation too long")
-                }
-                l += n
-                count++
-                idx = i
-        }
-        // more code...
-        s, b := rawstringtmp(buf, l)
-        for _, x := range a {
-                copy(b, x)
-                b = b[len(x):]
-        }
-        return s
-}
-```
-
-## So how to append strings?
-
-```go
-s := ""
-
-for i := 0; i < n; i++ {
-        s += "*"
-}
-```
+.code assets/lecture-06/optimizations/builders.go /NAIVE OMIT/,/BYTES OMIT/
 
 ## Bytes buffer
 
-- default
+- Default
 
-```go
-var bb bytes.Buffer
+.code assets/lecture-06/optimizations/builders.go /BYTES OMIT/,/BYTES-PREALLOCATED OMIT/
 
-for i := 0; i < n; i++ {
-        bb.WriteRune('*')
-}
+- With pre-allocation
 
-return bb.String()
-```
-
-- with pre-allocation
-
-```go
-var bb bytes.Builder
-
-bb.Grow(n)
-
-for i := 0; i < n; i++ {
-        bb.WriteRune('*')
-}
-
-return bb.String()
-```
+.code assets/lecture-06/optimizations/builders.go /BYTES-PREALLOCATED OMIT/,/STRING OMIT/
 
 ## String builder
 
-- default
+- Default
 
-```go
-var sb strings.Builder
+.code assets/lecture-06/optimizations/builders.go /STRING OMIT/,/STRING-PREALLOCATED OMIT/
 
-for i := 0; i < n; i++ {
-        sb.WriteRune('*')
-}
+- With pre-allocation
 
-return sb.String()
-```
-
-- with pre-allocation
-
-```go
-var sb strings.Builder
-
-sb.Grow(n)
-
-for i := 0; i < n; i++ {
-        sb.WriteRune('*')
-}
-
-return sb.String()
-```
+.code assets/lecture-06/optimizations/builders.go /STRING-PREALLOCATED OMIT/,/END OMIT/
 
 ## Benchmark results
 

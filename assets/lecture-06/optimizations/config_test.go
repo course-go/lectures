@@ -1,4 +1,4 @@
-package conf_test
+package optimizations_test
 
 // Benchmark for config module
 
@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"config-struct/conf"
+	"github.com/course-go/lectures/assets/lecture-06/optimizations"
 )
 
 const (
@@ -16,20 +16,20 @@ const (
 
 // HELPER START OMIT
 
-func loadConfiguration() (conf.ConfigStruct, error) {
+func loadConfiguration() (optimizations.ConfigStruct, error) {
 	os.Clearenv()
 	err := os.Setenv(configFileEnvVariableName, defaultConfigFileName)
 	if err != nil {
-		return conf.ConfigStruct{}, err
+		return optimizations.ConfigStruct{}, err
 	}
-	config, err := conf.LoadConfiguration(configFileEnvVariableName, defaultConfigFileName)
+	config, err := optimizations.LoadConfiguration(configFileEnvVariableName, defaultConfigFileName)
 	if err != nil {
-		return conf.ConfigStruct{}, err
+		return optimizations.ConfigStruct{}, err
 	}
 	return config, nil
 }
 
-func mustLoadBenchmarkConfiguration(b *testing.B) conf.ConfigStruct {
+func mustLoadBenchmarkConfiguration(b *testing.B) optimizations.ConfigStruct {
 	configuration, err := loadConfiguration()
 	if err != nil {
 		b.Fatal(err)
@@ -44,7 +44,7 @@ func BenchmarkGetStorageConfigurationFunctionByValue(b *testing.B) {
 	configuration := mustLoadBenchmarkConfiguration(b)
 	b.ResetTimer()
 	for range b.N {
-		conf.GetStorageConfigurationByValue(configuration)
+		optimizations.GetStorageConfigurationByValue(configuration)
 	}
 }
 
@@ -52,7 +52,7 @@ func BenchmarkGetStorageConfigurationFunctionByReference(b *testing.B) {
 	configuration := mustLoadBenchmarkConfiguration(b)
 	b.ResetTimer()
 	for range b.N {
-		conf.GetStorageConfigurationByReference(&configuration)
+		optimizations.GetStorageConfigurationByReference(&configuration)
 	}
 }
 
