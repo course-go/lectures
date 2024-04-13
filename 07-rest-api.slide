@@ -12,6 +12,7 @@ Tags: golang, go
     - Third party libraries
     - Testing webservers
 - OpenAPI
+- Templating
 
 ## JSON
 
@@ -564,3 +565,44 @@ $ air -c .air.toml -- -h
     - Relatively new (2022)
     - Handlers all major versions
         - 2.0/3.0/3.1
+
+## Templating
+
+## Templating
+
+- Rendering documents
+    - Dynamic data
+- Built-in templating engine
+- Two standard library packages:
+    - text/template
+    - html/template
+
+[Go Packages: text/template](https://pkg.go.dev/text/template)
+
+## Template data
+
+.code assets/lecture-07/template/text/render.go /DATA START OMIT/,/DATA END OMIT/
+
+## Template
+
+- Variables are templated using `{{ ... }}` syntax
+- Supports loops, function calls and conditions
+
+.code assets/lecture-07/template/text/user.tmpl 
+
+## Rendering template
+
+- Templates are executed by appling a data structure
+- Templates can be referenced by their names after they are parsed
+    - Allows nesting
+
+.play assets/lecture-07/template/text/render.go /RENDER START OMIT/,/RENDER END OMIT/
+
+## html/template
+
+- Exposes the same API as `text/template`
+- Provides more security
+    - Prevents code injection
+    - Assumes the template authors are trusted while data is not
+
+[Go Packages: html/template](https://pkg.go.dev/html/template)

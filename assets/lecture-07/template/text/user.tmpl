@@ -1,0 +1,14 @@
+--- User ---
+Name: {{ .Name }}
+Status: {{ if .Active }}ONLINE{{ else }}OFFLINE{{ end }}
+Age: {{ .Age }}
+Street: {{ .Address.Street }}
+Phones [{{ len .Phones }}]:
+{{- range .Phones }}
+	{{ .Type }}: {{ .Number -}}
+{{- end }}
+Children:
+{{- range .Children }} 
+	Name: {{ . }} {{ if eq . "Bob" }}[My favourite child]{{ end -}}
+{{- end }}
+--- User ---
