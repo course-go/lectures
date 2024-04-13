@@ -1131,11 +1131,30 @@ return sb.String()
 
 ## Unsafe
 
-- TODO
+- Unsafe operations
+    - Not protected by the compatibility promise
+- Steps around the type system of Go
+
+[Go Packages: unsafe](https://pkg.go.dev/unsafe)
 
 ## Reflection
 
 ## Reflection
 
-- TODO
+- Run-time reflection
+- Allows to manipulate objects with arbitrary types
+
+[Go Packages: reflect](https://pkg.go.dev/reflect)
+
+## Reflection
+
+.play assets/lecture-06/reflect/reflect.go /START OMIT/,/END OMIT/
+
+[Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)
+
+## Reflecting structures
+
+.play assets/lecture-06/reflect/struct.go /START OMIT/,/END OMIT/
+
+[Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)
 
