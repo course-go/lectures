@@ -1090,127 +1090,7 @@ return sb.String()
 
 .image assets/lecture-06/benchmark8.png 500 _
 
-## SIMD instructions
-
-- Sets of special instructions
-    - operate on short fixed-length arrays
-    - specialized data-processing operations
-    - (not available outside SIMD world)
-    - min, max, abs, saturated arithmetic
-- Very important feature of today CPUs
-    - sometimes more important than multicore(s)
-
-## SIMD extensions on x86-64 CPUs
-
-- MMX
-- 3Dnow!
-- SSE
-    - SSE 2, SSE 3, SSE 4.1, SSE 4.2
-- AVX
-    - splitted into multiple sets
-    - F16C etc.
-
-## How are these used?
-
-- Auto-vectorization
-    - performed by compiler
-- Intrinsic
-    - available made by compiler/headers/packages
-- Assembler
-    - built-in (if available)
-    - external one
-
-## Typical vectors used in SIMD
-
-.image assets/lecture-06/simd.png 450 _
-
-## Operations with vectors (GCC)
-
-```c
-typedef signed int v16si __attribute__((vector_size(16)));
- 
-void add16ui(v16si x, v16si y, v16si - z)
-{
-    *z = x + y;
-}
-
-v16si x = { 0, 1, 2, 3 };
-v16si y = { 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff };
-v16si z;
-
-add16ui(x, y,  z);
-
-int i;
-
-puts("vector of signed ints");
-
-for (i = 0; i < sizeof(v16si) / sizeof(signed int); i++) {
-    printf("%d %d\n", i, z[i]);
-}
-```
-
-## Intrinsic
-
-```
-Technology  Header file
---
-MMX         mmintrin.h
-SSE1        xmmintrin.h
-SSE2        emmintrin.h
-SSE4.1      smmintrin.h
-AVX2        avx2intrin.h
-```
-
-## Intrinsic usage
-
-```c
- #include <xmmintrin.h>
- 
-int main(void)
-{
-    __v4sf x = { 1.0, 2.0, 3.0, 4.0 };
-    __v4sf y = { 0.1, 0.1, 0.1, 0.1 };
-    __v4sf z;
-    int i;
- 
-    z = __builtin_ia32_addps(x, y);
- 
-    for (i = 0; i < sizeof(x) / sizeof(float); i++) {
-        printf("%2d %f %f %f\n", i, x[i], y[i], z[i]);
-    }
-}
-```
-
-## Generated machine code
-
-```asm
-   z = __builtin_ia32_addps(x, y);
-  31:   0f 28 45 d0             movaps xmm0,XMMWORD PTR [rbp-0x30]
-  35:   0f 28 4d c0             movaps xmm1,XMMWORD PTR [rbp-0x40]
-  39:   0f 58 c1                addps  xmm0,xmm1
-  3c:   0f 29 45 e0             movaps XMMWORD PTR [rbp-0x20],xmm0
-```
-
-## SIMD support in Go
-
-- Auto-vectorization
-    - not provided by Google's compiler
-    - gccgo can use it
-- Intrinsic
-    - not available in Go
-    - and very probably never will!
-- Assembler
-    - built-in N/A in Go
-    - external one is cumbersome to use
-    - gccgo + GNU assembler (gas)
-
-## SIMD support in Go
-
-- Not ideal situation today
-    - we don't invest into this approach
-    - anyway most processing is performed against UTF-8 chars
-
-## CGo {#cgo}
+## CGo
 
 ## CGo?
 
@@ -1246,4 +1126,16 @@ int main(void)
 - Again don't!
 - Look at the CGo docs
 - BEWARE! it has extreme overhead
+
+## Unsafe
+
+## Unsafe
+
+- TODO
+
+## Reflection
+
+## Reflection
+
+- TODO
 
