@@ -605,15 +605,15 @@ type stringStruct struct {
 
 ## Benchmark results
 
-.image assets/lecture-06/benchmark6.png 550 _
+.image assets/lecture-06/optimizations/builders-lower-graph.png 550 _
 
 ## Benchmark results
 
-.image assets/lecture-06/benchmark7.png 550 _
+.image assets/lecture-06/optimizations/builders-higher-graph.png 550 _
 
 ## Benchmark results
 
-.image assets/lecture-06/benchmark8.png 500 _
+.image assets/lecture-06/optimizations/builders-pprof.png 500 _
 
 ## CGo
 
