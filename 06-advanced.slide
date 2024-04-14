@@ -322,8 +322,6 @@ PASS
 - So keys might be pretty large
     - Imagine structs
 
-
-
 .code assets/lecture-06/optimizations/maps_test.go /COMPOUND-KEY-VALUE START OMIT/,/COMPOUND START OMIT/
 
 ```
@@ -482,7 +480,6 @@ BenchmarkFindInSlice1000-8  100000000  281.4 ns/op
 
 - C-proselytes and Java-proselytes seems to use arrays a lot
 - But in fact arrays are not used much in idiomatic Go code
-
 - Array in Go
     - passed by value (COPY!)
     - not the case in C/Java/Python
@@ -682,67 +679,59 @@ BenchmarkPassArrayByReference-8   100000000    0.5629 ns/op
 
 .image assets/lecture-06/benchmark3.png 500 _
 
-## for-each implementation (arrays, slices)
+## Loops
 
-- idiomatic
-- more performant
+## Slice benchmark
 
-## for-each implementations
+.code assets/lecture-06/optimizations/for-each_test.go /SLICE START OMIT/,/SLICE END OMIT/
 
-```go
-for _, item := range items {
-        sum += item.value
-}
-```
-
-```go
-for j := 0; j < len(items); j++ {
-        sum += items[j].value
-}
-```
-
-## Benchmark results
+## Slice benchmark results
 
 ```
-BenchmarkCountValues1-8   100000  70310 ns/op
-BenchmarkCountValues2-8   100000  10687 ns/op
+$ go test -bench SliceFor -benchtime 5s --count 5
 ```
 
-## Benchmark results
-
-.image assets/lecture-06/benchmark4.png 500 _
-
-## for-each implementation (maps)
-
-- idiomatic
-- more performant
-
-## for-each implementations
-
-```go
-for key, value := range items {
-        ...
-}
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkSliceForRange-12          21450            279475 ns/op
+BenchmarkSliceForRange-12          21447            279290 ns/op
+BenchmarkSliceForRange-12          21434            280112 ns/op
+BenchmarkSliceForRange-12          21457            279247 ns/op
+BenchmarkSliceForRange-12          21453            279403 ns/op
+BenchmarkSliceForIndex-12          21393            280281 ns/op
+BenchmarkSliceForIndex-12          21530            281256 ns/op
+BenchmarkSliceForIndex-12          20725            292346 ns/op
+BenchmarkSliceForIndex-12          20601            286812 ns/op
+BenchmarkSliceForIndex-12          20893            282034 ns/op
 ```
 
-```go
-for key, _ := range items {
-        ...
-        items[key]
-        ...
-}
-```
+## Map benchmark
 
-## Benchmark results
+.code assets/lecture-06/optimizations/for-each_test.go /MAP START OMIT/,/MAP END OMIT/
+
+## Map benchmark results
 
 ```
-BenchmarkCountValues1-8   100000   144225 ns/op
-BenchmarkCountValues2-8   100000    12300 ns/op
+$ go test -bench MapForLoop -benchtime 5s --count 5
 ```
 
-## Benchmark results
-
-.image assets/lecture-06/benchmark5.png 500 _
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkMapForLoopValue-12               760           7864646 ns/op
+BenchmarkMapForLoopValue-12               762           7976435 ns/op
+BenchmarkMapForLoopValue-12               751           8124824 ns/op
+BenchmarkMapForLoopValue-12               738           8135197 ns/op
+BenchmarkMapForLoopValue-12               732           8108427 ns/op
+BenchmarkMapForLoopKey-12                 484          12443618 ns/op
+BenchmarkMapForLoopKey-12                 480          12498248 ns/op
+BenchmarkMapForLoopKey-12                 477          12452687 ns/op
+BenchmarkMapForLoopKey-12                 477          12548773 ns/op
+BenchmarkMapForLoopKey-12                 472          12461708 ns/op
+```
 
 ## Strings
 
