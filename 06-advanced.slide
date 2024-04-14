@@ -361,118 +361,55 @@ PASS
 
 ## Set implementations
 
-- First devel instinct
+- First developer instinct
     - The usage of `map` of course
-- But linear data structure can be used too!
+- But linear data structures can be used too!
 
-## Set implementations (1/2)
+## Benchmark helper functions
 
-```go
-type ID int
- 
-func genID(i int) ID {
-        return ID(3*i + 1)
-}
- 
-func fillInMap(b *testing.B, items int) map[ID]struct{} {
-        b.StopTimer()
- 
-        m := make(map[ID]struct{}, items)
- 
-        for i := 0; i < items; i++ {
-                id := genID(i)
-                m[id] = struct{}{}
-        }
- 
-        b.StartTimer()
-        return m
-}
-```
+.code assets/lecture-06/optimizations/maps_test.go /SET-FILL START OMIT/,/SET-FILL END OMIT/
 
-## Set implementations (2/2)
+## Benchmark for map read/in-set operation
 
-```go
- 
-func fillInSlice(b *testing.B, items int) []ID {
-        b.StopTimer()
- 
-        s := make([]ID, items)
- 
-        for i := 0; i < items; i++ {
-                id := genID(i)
-                s[i] = id
-        }
- 
-        b.StartTimer()
-        return s
-}
-```
+.code assets/lecture-06/optimizations/maps_test.go /SET START OMIT/,/SET MIDDLE OMIT/
 
-## Benchmark for read/in-set operation
+## Benchmark for slice read/in-set operation
 
-```go
-func performBenchmarkFindInMap(b *testing.B, m map[ID]struct{}) {
-        items := len(m)
-        for i := 0; i < b.N; i++ {
-                _, found := m[genID(i%items)]
-                if !found {
-                        b.Fatal("not found")
-                }
-        }
-}
-```
- 
-## Benchmark for read/in-set operation
-
-```go
-func performBenchmarkFindInSlice(b *testing.B, s []ID) {
-        items := len(s)
-        for i := 0; i < b.N; i++ {
-                found := false
-                id := genID(i % items)
-                for _, p := range s {
-                        if p == id {
-                                found = true
-                                break
-                        }
-                }
-                if !found {
-                        b.Fatal("not found")
-                }
-        }
-}
-```
+.code assets/lecture-06/optimizations/maps_test.go /SET MIDDLE OMIT/,/SET END OMIT/
 
 ## Benchmark results
 
 ```
-BenchmarkFindInMap1-8       100000000   12.01 ns/op
-BenchmarkFindInSlice1-8     100000000    7.208 ns/op
-BenchmarkFindInMap5-8       100000000   12.61 ns/op
-BenchmarkFindInSlice5-8     100000000    8.346 ns/op
-BenchmarkFindInMap10-8      100000000   14.57 ns/op
-BenchmarkFindInSlice10-8    100000000    9.498 ns/op
-BenchmarkFindInMap20-8      100000000   14.28 ns/op
-BenchmarkFindInSlice20-8    100000000   11.61 ns/op
-BenchmarkFindInMap100-8     100000000   14.63 ns/op
-BenchmarkFindInSlice100-8   100000000   35.57 ns/op
-BenchmarkFindInMap1000-8    100000000   22.53 ns/op
-BenchmarkFindInSlice1000-8  100000000  281.4 ns/op
+$ go test -bench FindIn -benchtime 3s
 ```
 
-## Graphical interpretation
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkFindInMap-1-12           1000000000               2.317 ns/op
+BenchmarkFindInSlice-1-12         1000000000               0.5603 ns/op
+BenchmarkFindInMap-5-12           1000000000               3.471 ns/op
+BenchmarkFindInSlice-5-12         1000000000               1.982 ns/op
+BenchmarkFindInMap-10-12           732660619               4.749 ns/op
+BenchmarkFindInSlice-10-12         885275379               4.077 ns/op
+BenchmarkFindInMap-100-12          698380580               5.092 ns/op
+BenchmarkFindInSlice-100-12        184744255               19.39 ns/op
+BenchmarkFindInMap-1000-12         632352885               5.264 ns/op
+BenchmarkFindInSlice-1000-12        22378456               153.9 ns/op
+```
 
 ## Low number of items
 
-.image assets/lecture-06/set1.png 500 _
+.image assets/lecture-06/optimizations/set-graph.png 500 _
 
 ## Higher number of items
 
-.image assets/lecture-06/set2.png 500 _
+.image assets/lecture-06/optimizations/set-all-graph.png 500 _
 
 ## Map vs slice for set implementation
 
-.image assets/lecture-06/set3.png 500 _
+.image assets/lecture-06/optimizations/set-scaling-graph.png 500 _
 
 ## Slices
 

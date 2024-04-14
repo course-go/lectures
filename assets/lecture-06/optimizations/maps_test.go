@@ -74,65 +74,56 @@ func genID(i int) ID {
 	return ID(3*i + 1)
 }
 
-func fillInMap(b *testing.B, n int) map[ID]struct{} {
-	b.StopTimer()
-
+func fillInMap(n int) map[ID]struct{} {
 	m := make(map[ID]struct{}, n)
-
 	for i := 0; i < n; i++ {
 		id := genID(i)
 		m[id] = struct{}{}
 	}
-
-	b.StartTimer()
 	return m
 }
 
-func fillInSlice(b *testing.B, n int) []ID {
-	b.StopTimer()
-
+func fillInSlice(n int) []ID {
 	s := make([]ID, n)
-
 	for i := 0; i < n; i++ {
 		id := genID(i)
 		s[i] = id
 	}
-
-	b.StartTimer()
 	return s
 }
 
 // SET-FILL END OMIT
+
+const findInSetSize = 1
+
 // SET START OMIT
 
 func BenchmarkFindInMap(b *testing.B) {
-	s := fillInSlice(b, 1_000_000)
-	m := fillInMap(b, 1_000_000)
-	performBenchmarkFindInMap(b, m)
-	performBenchmarkFindInSlice(b, s)
-}
-
-func performBenchmarkFindInMap(b *testing.B, m map[ID]struct{}) {
-	items := len(m)
+	m := fillInMap(findInSetSize)
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_, found := m[genID(i%items)]
+		_, found := m[genID(i%findInSetSize)]
 		if !found {
 			b.Fatal("not found")
 		}
 	}
 }
 
-func performBenchmarkFindInSlice(b *testing.B, s []ID) {
-	items := len(s)
+// SET MIDDLE OMIT
+
+func BenchmarkFindInSlice(b *testing.B) {
+	s := fillInSlice(findInSetSize)
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		found := false
-		id := genID(i % items)
+		id := genID(i % findInSetSize)
 		for _, p := range s {
 			if p == id {
 				found = true
 				break
 			}
 		}
+
 		if !found {
 			b.Fatal("not found")
 		}
