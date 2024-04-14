@@ -415,206 +415,94 @@ BenchmarkFindInSlice-1000-12        22378456               153.9 ns/op
 
 ## Use slices instead of arrays (if possible)
 
-- C-proselytes and Java-proselytes seems to use arrays a lot
-- But in fact arrays are not used much in idiomatic Go code
-- Array in Go
-    - passed by value (COPY!)
-    - not the case in C/Java/Python
-    - semantic is totally different
+- C and Java proselytes tend to use arrays a lot
+- But in fact, arrays are not used much in idiomatic Go code
+- Arrays in Go:
+    - Passed by value
+        - Copied!
+        - Not the case in most other languages
+            - C, Java, or Python
+    - Semantic is totally different
 
 ## Slices in Go
 
-- Struct/record with three items
-   - pointer to data (array)
-   - length
-   - capacity
+- Structure with three items
+   - Pointer to the data
+        - Array
+   - Length
+        - Count of array elements
+   - Capacity
+        - Size of the allocated array
 - Passed by value
-   - but it is not deep clone
+   - But only the structure is copied
 
-## Benchmark (1/4)
+## Benchmark helper functions
 
-```go
-func changeMe1(values []int) {
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-}
+.code assets/lecture-06/optimizations/slices_test.go /CHANGE START OMIT/,/CHANGE END OMIT/
 
-func changeMe2(values [MAX_VALS]int) {
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-}
+## Slice benchmark
 
-func changeMe3(values *[MAX_VALS]int) {
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-}
-```
+.code assets/lecture-06/optimizations/slices_test.go /SLICE START OMIT/,/SLICE END OMIT/
 
-## Benchmark (2/4)
+## Arrays benchmark
 
-```go
-func BenchmarkPassSlice(b *testing.B) {
-	var values []int = make([]int, MAX_VALS)
-
-	for i := 0; i < b.N; i++ {
-		changeMe1(values)
-	}
-	if values[0] != FIRST_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != LAST_VALUE {
-		b.Fatal()
-	}
-}
-```
-
-## Benchmark (3/4)
-
-```go
-func BenchmarkPassArrayByValue(b *testing.B) {
-	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
-
-	for i := 0; i < b.N; i++ {
-		changeMe2(values)
-	}
-	if values[0] != DEFAULT_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != DEFAULT_VALUE {
-		b.Fatal()
-	}
-}
-
-## Benchmark (4/4)
-
-```go
-func BenchmarkPassArrayByReference(b *testing.B) {
-	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
-
-	for i := 0; i < b.N; i++ {
-		changeMe3(&values)
-	}
-	if values[0] != FIRST_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != LAST_VALUE {
-		b.Fatal()
-	}
-}
-```
+.code assets/lecture-06/optimizations/slices_test.go /ARRAY START OMIT/,/ARRAY END OMIT/
 
 ## Benchmark results
 
 ```
-BenchmarkPassSlice-8              100000000    0.4799 ns/op
-BenchmarkPassArrayByValue-8       100000000    0.2371 ns/op
-BenchmarkPassArrayByReference-8   100000000    0.4740 ns/op
+$ go test -bench Pass -benchtime 3s
+```
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkPassSlice-12                   1000000000               0.3139 ns/op
+BenchmarkPassArrayByValue-12            1000000000               0.2793 ns/op
+BenchmarkPassArrayByReference-12        1000000000               0.3140 ns/op
 ```
 
 - What?
-    - compiler detected that local changes are not visible outside function
-    - and the whole function was dropped
+    - Compiler detected that local changes are not visible outside the `changeMe2` function
+    - Hence, it dropped the function call
 
 ## Is it really the case?
 
 .image assets/lecture-06/profiler4.png 450 _
 
-## Now with side effect
+## Now with a side effect
 
-```go
-func changeMe1(values []int) int {
-        values[0] = FIRST_VALUE
-        values[MAX_VALS-1] = LAST_VALUE
-        return values[MAX_VALS/2]
-}
+.code assets/lecture-06/optimizations/slices-mutation_test.go /CHANGE START OMIT/,/CHANGE END OMIT/
 
-func changeMe2(values [MAX_VALS]int) int {
-        values[0] = FIRST_VALUE
-        values[MAX_VALS-1] = LAST_VALUE
-        return values[MAX_VALS/2]
-}
+## Benchmark slice
 
-func changeMe3(values *[MAX_VALS]int) int {
-        values[0] = FIRST_VALUE
-        values[MAX_VALS-1] = LAST_VALUE
-        return values[MAX_VALS/2]
-}
-```
+.code assets/lecture-06/optimizations/slices-mutation_test.go /SLICE START OMIT/,/SLICE END OMIT/
 
-## Benchmark (1/3)
+## Benchmark arrays
 
-```go
-func BenchmarkPassSlice(b *testing.B) {
-	var values []int = make([]int, MAX_VALS)
-
-	for i := 0; i < b.N; i++ {
-		r := changeMe1(values)
-		if r != DEFAULT_VALUE {
-			b.Fatal()
-		}
-	}
-	if values[0] != FIRST_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != LAST_VALUE {
-		b.Fatal()
-	}
-}
-```
-
-## Benchmark (2/3)
-
-```go
-func BenchmarkPassArrayByValue(b *testing.B) {
-	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
-
-	for i := 0; i < b.N; i++ {
-		r := changeMe2(values)
-		if r != DEFAULT_VALUE {
-			b.Fatal()
-		}
-	}
-	if values[0] != DEFAULT_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != DEFAULT_VALUE {
-		b.Fatal()
-	}
-}
-```
-
-## Benchmark (3/3)
-
-```go
-func BenchmarkPassArrayByReference(b *testing.B) {
-	var values [MAX_VALS]int = [MAX_VALS]int{DEFAULT_VALUE}
-
-	for i := 0; i < b.N; i++ {
-		r := changeMe3(&values)
-		if r != DEFAULT_VALUE {
-			b.Fatal()
-		}
-	}
-	if values[0] != FIRST_VALUE {
-		b.Fatal()
-	}
-	if values[MAX_VALS-1] != LAST_VALUE {
-		b.Fatal()
-	}
-}
-```
+.code assets/lecture-06/optimizations/slices-mutation_test.go /ARRAY START OMIT/,/ARRAY END OMIT/
 
 ## Benchmark results
 
-```go
-BenchmarkPassSlice-8              100000000    0.4768 ns/op
-BenchmarkPassArrayByValue-8       100000000  135.3 ns/op
-BenchmarkPassArrayByReference-8   100000000    0.5629 ns/op
 ```
+$ go test -bench Pass -benchtime 3s
+```
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkPassSlice-12                   1000000000               0.3851 ns/op
+BenchmarkPassArrayByValue-12            354620946               10.22 ns/op
+BenchmarkPassArrayByReference-12        1000000000               0.3894 ns/op
+```
+
+- That's more like it...
 
 ## Benchmark results
 
-.image assets/lecture-06/benchmark3.png 500 _
+.image assets/lecture-06/optimizations/array-value-benchmark.png 500 _
 
 ## Loops
 
