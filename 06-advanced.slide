@@ -744,45 +744,6 @@ BenchmarkCountValues2-8   100000    12300 ns/op
 
 .image assets/lecture-06/benchmark5.png 500 _
 
-## Synchronization
-
-## Synchronization
-
-- Using channels
-- Using mutexes
-
-## Synchronization by mutexes
-
-```go
-func (value *valueWithMutex) lock() {
-        value.mutex.Lock()
-}
-
-func (value *valueWithMutex) unlock() {
-        value.mutex.Unlock()
-}
-```
-
-## Synchronization by using channel
-
-```go
-func (value *valueWithChannel) lock() {
-    // blocking
-    <-value.channel
-}
-
-func (value *valueWithChannel) unlock() {
-    value.channel <- struct{}{}
-}
-```
-
-## Benchmarks
-
-```
-BenchmarkMutexVariant-8     100000  29044 ns/op
-BenchmarkChannelVariant-8   100000  49570 ns/op
-```
-
 ## Strings
 
 ## String builders
