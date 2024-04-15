@@ -61,9 +61,11 @@ $ go test -bench Slice -benchmem -count 5 -benchtime 3s
 
 .code assets/lecture-06/benchmarks/slices_test.go /START OMIT/,/END OMIT/
 
-## Benchmark output
+## Benchmark result
 
 .code assets/lecture-06/benchmarks/slices-out.txt
+
+_Note that all benchmarks in these slides were run using Go 1.22 on MacBook Pro M2 Max_
 
 ## Benchstat
 
@@ -221,7 +223,7 @@ geomean                        6.245
 ## Benchmark results
 
 ```
-$ go test -bench ConfigurationFunction -benchtime 3s -cpuprofile profile.out
+$ go test -bench ConfigurationFunction -benchtime 3s -cpuprofile config.profile
 ```
 
 ```
@@ -235,13 +237,9 @@ BenchmarkGetStorageConfigurationFunctionByReference-12     1000000000           
 - That is **5516%** speed increase
     - `memcpy` operation elimination
 
-## Graphical output
+## Profile
 
-.image assets/lecture-06/optimizations/config-benchmark.png 520 _
-
-## Table output
-
-.image assets/lecture-06/optimizations/config-pprof.png 250 _
+.image assets/lecture-06/optimizations/config-profile.png 550 _
 
 ## What about methods?
 
@@ -287,23 +285,25 @@ m2 := make(map[uuid.UUID]time.Time, 1000)
 
 ## Benchmark
 
-.code assets/lecture-06/optimizations/maps_test.go /UUID START OMIT/,/UUID END OMIT/
+.code assets/lecture-06/optimizations/maps_test.go /MAP-INSERT START OMIT/,/MAP-INSERT END OMIT/
 
 ## Benchmark results
 
 ```
-goos: linux
-goarch: amd64
-pkg: map-bench
-cpu: Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz
-BenchmarkInsertIntoEmptyMapUUIDKey-8            1000000   354.7 ns/op
-BenchmarkInsertIntoPreallocatedMapUUIDKey-8     1000000   163.9 ns/op
-PASS
+$ go test -bench MapInsert -benchtime 3s -cpuprofile maps-insertion.profile
 ```
 
-## Graphical output
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkMapInsert-12                   45841477               110.2 ns/op
+BenchmarkPreallocatedMapInsert-12       100000000               69.12 ns/op
+```
 
-.image assets/lecture-06/profiler1.png 500 _
+## Profile
+
+.image assets/lecture-06/optimizations/maps-insertion-profile.png 500 _
 
 ## Maps with large keys
 
@@ -313,11 +313,6 @@ PASS
 
 .code assets/lecture-06/optimizations/maps_test.go /COMPOUND-KEY-VALUE START OMIT/,/COMPOUND START OMIT/
 
-```
-m1 := make(map[key]value)
-m2 := make(map[key]value, capacity)
-```
-
 ## Benchmark
 
 .code assets/lecture-06/optimizations/maps_test.go /COMPOUND START OMIT/,/COMPOUND END OMIT/
@@ -325,28 +320,31 @@ m2 := make(map[key]value, capacity)
 ## Benchmark results for maps with large keys
 
 ```
-goos: linux
-goarch: amd64
-pkg: map-bench
-cpu: Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz
-BenchmarkInsertIntoEmptyMapCompoundKey-8         1000000  332.2 ns/op
-BenchmarkInsertIntoPreallocatedMapCompoundKey-8  1000000  177.7 ns/op
-PASS
+$ go test -bench CompoundKey \
+    -cpuprofile maps-compound-key.cpu.profile \
+    -memprofile maps-compound-key.mem.profile
 ```
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkInsertIntoPreallocatedMapCompoundKey-12        12507632               110.1 ns/op
+BenchmarkInsertIntoEmptyMapCompoundKey-12                8367021               196.1 ns/op
+```
+
+- Well, that seems twice as fast
+    - Any other difference?
 
 ## Memory requirements
 
-- For us much more relevant
+- In many cases much more relevant
     - Pods might be killed due to OOM
     - Additional memory has to be bought
 
 ## Go profiler to the rescue
 
-.image assets/lecture-06/profiler2.png 420 _
-
-## Go profiler to the rescue
-
-.image assets/lecture-06/profiler3.png 500 _
+.image assets/lecture-06/optimizations/maps-compound-key-mem-profile.png 400 _
 
 ## Set implementations
 
@@ -434,7 +432,7 @@ BenchmarkPreallocatedSliceInsertion-12          1000000000               1.566 n
 
 ## Profile
 
-.image assets/lecture-06/optimizations/slices-insertion-profile.png
+.image assets/lecture-06/optimizations/slices-insertion-profile.png 550 _
 
 ## Use slices instead of arrays (if possible)
 
@@ -474,7 +472,7 @@ BenchmarkPreallocatedSliceInsertion-12          1000000000               1.566 n
 ## Benchmark results
 
 ```
-$ go test -bench Pass -benchtime 3s
+$ go test -bench Pass -benchtime 3s -cpuprofile slices-arrays.profile
 ```
 
 ```
@@ -492,7 +490,7 @@ BenchmarkPassArrayByReference-12        1000000000               0.3140 ns/op
 
 ## Is it really the case?
 
-.image assets/lecture-06/profiler4.png 450 _
+.image assets/lecture-06/optimizations/slices-arrays-profile.png 450 _
 
 ## Now with a side effect
 
@@ -509,23 +507,23 @@ BenchmarkPassArrayByReference-12        1000000000               0.3140 ns/op
 ## Benchmark results
 
 ```
-$ go test -bench Pass -benchtime 3s
+$ go test -bench Pass -benchtime 3s -cpuprofile slices-arrays-mutation.profile
 ```
 
 ```
 goos: darwin
 goarch: arm64
 pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
-BenchmarkPassSlice-12                   1000000000               0.3851 ns/op
-BenchmarkPassArrayByValue-12            354620946               10.22 ns/op
-BenchmarkPassArrayByReference-12        1000000000               0.3894 ns/op
+BenchmarkPassSlice-12                   1000000000               0.3855 ns/op
+BenchmarkPassArrayByValue-12            359728718               10.02 ns/op
+BenchmarkPassArrayByReference-12        1000000000               0.3857 ns/op
 ```
 
 - That's more like it...
 
 ## Benchmark results
 
-.image assets/lecture-06/optimizations/array-value-benchmark.png 500 _
+.image assets/lecture-06/optimizations/slices-arrays-mutation-profile.png 550 _
 
 ## Loops
 
@@ -626,17 +624,34 @@ type stringStruct struct {
 
 .code assets/lecture-06/optimizations/builders.go /STRING-PREALLOCATED OMIT/,/END OMIT/
 
-## Benchmark results
+## Benchmark result
+
+```
+$ go test -bench Builder -cpuprofile builders.profile
+```
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkNaiveBuilder-12                          1000000                28445 ns/op
+BenchmarkBytesBuilder-12                        477188485                2.551 ns/op
+BenchmarkBytesBuilderPreallocated-12            499121337                2.404 ns/op
+BenchmarkStringBuilder-12                       464275903                2.665 ns/op
+BenchmarkStringBuilderPreallocated-12           500871392                2.378 ns/op
+```
+
+## Profile
+
+.image assets/lecture-06/optimizations/builders-profile.png 550 _
+
+##
 
 .image assets/lecture-06/optimizations/builders-lower-graph.png 550 _
 
-## Benchmark results
+##
 
 .image assets/lecture-06/optimizations/builders-higher-graph.png 550 _
-
-## Benchmark results
-
-.image assets/lecture-06/optimizations/builders-pprof.png 500 _
 
 ## CGo
 

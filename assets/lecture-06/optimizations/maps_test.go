@@ -2,9 +2,6 @@ package optimizations_test
 
 import (
 	"testing"
-	"time"
-
-	"github.com/google/uuid"
 )
 
 // COMPOUND-KEY-VALUE START OMIT
@@ -29,7 +26,7 @@ func BenchmarkInsertIntoPreallocatedMapCompoundKey(b *testing.B) {
 }
 
 func BenchmarkInsertIntoEmptyMapCompoundKey(b *testing.B) {
-	m := map[key]value{}
+	m := make(map[key]value)
 	for i := 0; i < b.N; i++ {
 		k := key{
 			ID: i,
@@ -40,31 +37,23 @@ func BenchmarkInsertIntoEmptyMapCompoundKey(b *testing.B) {
 
 // COMPOUND END OMIT
 
-// UUID START OMIT
-
-func BenchmarkPreallocatedMapInsert(b *testing.B) {
-	m := make(map[uuid.UUID]time.Time, b.N)
-	t := time.Now()
-	for range b.N {
-		b.StopTimer()
-		id := uuid.New()
-		b.StartTimer()
-		m[id] = t
-	}
-}
+// MAP-INSERT START OMIT
 
 func BenchmarkMapInsert(b *testing.B) {
-	m := make(map[uuid.UUID]time.Time)
-	t := time.Now()
-	for range b.N {
-		b.StopTimer()
-		id := uuid.New()
-		b.StartTimer()
-		m[id] = t
+	m := make(map[int]struct{})
+	for id := range b.N {
+		m[id] = struct{}{}
 	}
 }
 
-// UUID END OMIT
+func BenchmarkPreallocatedMapInsert(b *testing.B) {
+	m := make(map[int]struct{}, b.N)
+	for id := range b.N {
+		m[id] = struct{}{}
+	}
+}
+
+// MAP-INSERT END OMIT
 
 // SET-FILL START OMIT
 
@@ -94,7 +83,7 @@ func fillInSlice(n int) []ID {
 
 // SET-FILL END OMIT
 
-const findInSetSize = 1
+const findInSetSize = 100
 
 // SET START OMIT
 
