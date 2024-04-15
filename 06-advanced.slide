@@ -5,11 +5,12 @@ Tags: golang, go
 ## Outline
 
 - Benchmarks
+- Profiling
 - Optimizations
     - References & Values
     - Maps
     - Slices
-    - For-each loops
+    - Loops
     - Strings
 - CGo
 - Unsafe
