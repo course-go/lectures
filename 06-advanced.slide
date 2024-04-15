@@ -133,21 +133,55 @@ geomean                        6.245
 
 ## Profiling
 
-- TODO
+- Go has a built-in profiler
+- Pretty user friendly
+- Workflow:
+    - A profile has to be generated first
+        - Tests using [flags](https://pkg.go.dev/cmd/go/internal/test)
+        - During the [runtime of the application](https://pkg.go.dev/runtime/pprof)
+        - By invoking [HTTP requests](https://pkg.go.dev/net/http/pprof)
+    - The profile can be inspected using the `pprof` tool
 
-## Memory profile
+[Go Blog: Profiling Go Programs](https://go.dev/blog/pprof)
 
-- go test -bench=. -benchmem -memprofile profile.out
-- go tool pprof profile.out
-- go tool pprof -web profile.out
-- go tool pprof -http localhost:8080 profile.out
+## Profiles
 
-## CPU profile
+- Multiple predefined profile types:
+    - CPU
+    - Goroutine
+    - Heap/Memory
+    - Mutex
+    - Block
+- The options slightly vary by the way you generate the profile
 
-- go test -bench=. -benchmem -cpuprofile profile.out
-- go tool pprof profile.out
-- go tool pprof -web profile.out
-- go tool pprof -http localhost:8080 profile.out
+[Go Packages: runtime/pprof Profile type](https://pkg.go.dev/runtime/pprof#Profile)
+
+## Usage
+
+- Memory profile
+
+```
+$ go test -bench . -memprofile profile.out
+$ go tool pprof profile.out
+$ go tool pprof -http localhost:8080 profile.out
+```
+
+- CPU profile
+
+```
+$ go test -bench . -cpuprofile profile.out
+$ go tool pprof profile.out
+```
+
+- HTTP
+
+```
+$ go tool pprof http://localhost:6060/debug/pprof/heap
+```
+
+- Many other commands/outputs:
+    - web/pdf/png/gif/dot/proto
+- Configurable options and what to display
 
 ## Optimizations
 
