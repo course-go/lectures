@@ -63,3 +63,20 @@ func BenchmarkPassArrayByReference(b *testing.B) {
 }
 
 // ARRAY END OMIT
+// SLICES-PREALLOCATION START OMIT
+
+func BenchmarkSliceInsertion(b *testing.B) {
+	s := make([]int, 0)
+	for i := range b.N {
+		s = append(s, i)
+	}
+}
+
+func BenchmarkPreallocatedSliceInsertion(b *testing.B) {
+	s := make([]int, 0, b.N)
+	for i := range b.N {
+		s = append(s, i)
+	}
+}
+
+// SLICES-PREALLOCATION END OMIT

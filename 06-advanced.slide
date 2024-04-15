@@ -402,6 +402,40 @@ BenchmarkFindInSlice-1000-12        22378456               153.9 ns/op
 
 ## Slices
 
+## Slices pre-allocation
+
+- `make` allows to specify initial capacity and length for slices
+
+```
+s1 := make([]uuid.UUID, 0)
+s2 := make([]uuid.UUID, 0, 1000)
+```
+
+- The capacity can be ommited
+    - But that is rarely wise if you know the size upfront
+
+## Benchmark
+
+.code assets/lecture-06/optimizations/slices_test.go /SLICES-PREALLOCATION START OMIT/,/SLICES-PREALLOCATION END OMIT/
+
+## Benchmark result
+
+```
+$ go test -bench Pass -benchtime 3s -cpuprofile slice-insertion.profile
+```
+
+```
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
+BenchmarkSliceInsertion-12                      989681653                9.837 ns/op
+BenchmarkPreallocatedSliceInsertion-12          1000000000               1.566 ns/op
+```
+
+## Profile
+
+.image assets/lecture-06/optimizations/slices-insertion-profile.png
+
 ## Use slices instead of arrays (if possible)
 
 - C and Java proselytes tend to use arrays a lot
