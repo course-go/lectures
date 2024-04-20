@@ -4,7 +4,73 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- SQL
+- Go & SQL:
+    - SQL
+    - SQLX
+    - SQLC
+    - GORM
+- NoSQL
+
+## SQL
+
+## SQL
+
+- **Structured Query Language**
+    - Data definition language
+        - `CREATE`/`ALTER`/`DROP`
+    - Data query language
+        - `SELECT`/`FROM`/`WHERE`
+    - Data manipulation language
+        - `SELECT`/`INSERT`/`UPDATE`/`DELETE`
+    - Data control language
+        - `GRANT`/`REVOKE`
+- Standard way of communicating with RDBMSs
+
+[Wikipedia: SQL](https://en.wikipedia.org/wiki/SQL)
+
+## SQL
+
+.code assets/lecture-09/sql/example.sql
+
+## RDBMS
+
+- Oracle
+    - Commercial product
+    - Heavily used in enterprise systems
+    - Fintech etc.
+- [MySQL](https://www.mysql.com)
+    - Owned by Oracle after the aquisition of Sun Microsystems [2009]
+    - Open-source
+    - Dual-licensing
+- MSSQL
+
+[DB-Engines: Ranking](https://db-engines.com/en/ranking)
+
+## RDBMS
+
+- [PostgreSQL](https://www.postgresql.org)
+    - Originated from `Ingres` project at University of California, Berkeley
+    - Free and open-source, MIT-like license
+    - Feature-rich
+    - Plenty of extensions
+- [MariaDB](https://mariadb.com)
+    - Fork of MySQL
+    - Community-driven
+    - Remains highly compatible with MySQL
+
+[DB-Engines: Ranking](https://db-engines.com/en/ranking)
+
+## RDBMS
+
+- [SQLite](https://www.sqlite.org)
+    - Open-source, public domain
+    - Lightweight, serverless
+    - Uses ordinary disk files
+
+[DB-Engines: Ranking](https://db-engines.com/en/ranking)
+
+## Go & SQL
 
 ## Standard library
 
@@ -33,6 +99,18 @@ TODO
 - *Query*: multiple values are returned
 
 .code assets/lecture-09/sql_query.go
+
+## SQLX
+
+## SQLX
+
+- TODO
+
+## SQLC
+
+## SQLC
+
+- TODO
 
 ## GORM
 
