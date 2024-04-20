@@ -1,0 +1,18 @@
+version: "2"
+cloud:
+  project: "01HVYGAAHZN71HCY53B69NYA4B"
+sql:
+- name: "My amazing queries"
+  schema: "schema.sql"
+  queries: "query.sql"
+  engine: "postgresql"
+  gen:
+    go: 
+      package: "product"
+      out: "generated"
+      sql_package: "pgx/v5"
+  database:
+    managed: false
+    uri: "postgres://postgres:postgres@localhost:5432/postgres"
+  rules:
+    - sqlc/db-prepare

@@ -8,7 +8,7 @@ Tags: golang, go
 - Go & SQL:
     - sql
     - sqlx
-    - SQLC
+    - sqlc
     - GORM
 - NoSQL
 
@@ -171,11 +171,67 @@ Tags: golang, go
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
-## SQLC
+## sqlc
 
-## SQLC
+## sqlc
 
-- TODO
+- A SQL compiler
+- An interesting take on query creation
+    - Create SQL file with annotations
+    - Generate Go code from annotations
+- Supports additional languages
+    - [Kotlin](https://github.com/sqlc-dev/sqlc-gen-kotlin), [Python](https://github.com/sqlc-dev/sqlc-gen-python), [TypeScript](https://github.com/sqlc-dev/sqlc-gen-typescript)
+- Currently supports MySQL, PostgreSQL & SQLite for Go
+
+[Go Packages: sqlc](https://pkg.go.dev/github.com/kyleconroy/sqlc)
+
+## sqlc CLI
+
+```
+Usage:
+  sqlc [command]
+
+Available Commands:
+  compile     Statically check SQL for syntax and type errors
+  completion  Generate the autocompletion script for the specified shell
+  createdb    Create an ephemeral database
+  diff        Compare the generated files to the existing files
+  generate    Generate source code from SQL
+  help        Help about any command
+  init        Create an empty sqlc.yaml settings file
+  push        Push the schema, queries, and configuration for this project
+  verify      Verify schema, queries, and configuration for this project
+  version     Print the sqlc version number
+  vet         Vet examines queries
+
+Flags:
+  -f, --file string    specify an alternate config file (default: sqlc.yaml)
+  -h, --help           help for sqlc
+      --no-database    disable database connections (default: false)
+      --no-remote      disable remote execution (default: false)
+```
+
+[sqlc documentation](https://docs.sqlc.dev/en/latest/)
+
+## Configuration
+
+.code assets/lecture-09/sqlc/sqlc.yaml
+
+[sqlx documentation: configuration](https://docs.sqlc.dev/en/latest/reference/config.html)
+
+## Schema
+
+.code assets/lecture-09/sqlc/schema.sql
+
+## Query
+
+.code assets/lecture-09/sqlc/query.sql
+
+## Generated code
+
+.code assets/lecture-09/sqlc/generated/query.sql.go /START OMIT/,/END OMIT/
+
+## GORM
 
 ## GORM
 
