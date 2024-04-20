@@ -6,8 +6,8 @@ Tags: golang, go
 
 - SQL
 - Go & SQL:
-    - SQL
-    - SQLX
+    - sql
+    - sqlx
     - SQLC
     - GORM
 - NoSQL
@@ -125,11 +125,51 @@ Tags: golang, go
 
 .code assets/lecture-09/std/sql.go /TRANSACTION START OMIT/,/TRANSACTION END OMIT/
 
-## SQLX
+## sqlx
 
-## SQLX
+## sqlx
 
-- TODO
+- Extension to the standard `sql` library
+- Provides plenty of additional features
+    - Marshalling rows to structs
+    - Named parameters
+- The usage is not as tidious
+- There is also a [SQLx](https://github.com/launchbadge/sqlx) library for Rust
+    - Keep in mind when looking it up
+
+[Go Packages: sqlx](https://pkg.go.dev/github.com/jmoiron/sqlx)
+
+[GitHub IO: Illustrated guide to SQLX](http://jmoiron.github.io/sqlx/)
+
+## Connecting to DB
+
+.code assets/lecture-09/sqlx/sqlx.go /MAIN START OMIT/,/MAIN END OMIT/
+
+[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+
+## Seed
+
+.code assets/lecture-09/sqlx/sqlx.go /SEED START OMIT/,/SEED END OMIT/
+
+[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+
+## Unmarshalling to structs
+
+.code assets/lecture-09/sqlx/sqlx.go /SELECT START OMIT/,/SELECT END OMIT/
+
+[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+
+## Maps in selects
+
+.code assets/lecture-09/sqlx/sqlx.go /MAP START OMIT/,/MAP END OMIT/
+
+[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+
+## Batch inserts
+
+.code assets/lecture-09/sqlx/sqlx.go /BATCH-INSERT START OMIT/,/BATCH-INSERT END OMIT/
+
+[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## SQLC
 
