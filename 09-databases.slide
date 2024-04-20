@@ -43,7 +43,7 @@ Tags: golang, go
     - Owned by Oracle after the aquisition of Sun Microsystems [2009]
     - Open-source
     - Dual-licensing
-- MSSQL
+- MS SQL
 
 [DB-Engines: Ranking](https://db-engines.com/en/ranking)
 
@@ -74,31 +74,56 @@ Tags: golang, go
 
 ## Standard library
 
-- [databases/sql](https://pkg.go.dev/database/sql) package
-- low-level
-- only provides generic interface around SQL databases
-- needs to be used in conjuntion with a database driver 
-    - list of [supported drivers](https://github.com/golang/go/wiki/SQLDrivers)
+- Rather low-level
+- Defines generic interfaces for SQL databases
+- Needs to be used in conjuntion with a specific database driver
+    - Plenty of [supported drivers](https://go.dev/wiki/SQLDrivers)
+    - Drivers for all previously mentioned RDBMSs exist
 
-## Usage
+[Go Packages: database/sql](https://pkg.go.dev/database/sql)
 
-.code assets/lecture-09/sql.go
+## Connection to a DB
 
-## Types of queries
+.code assets/lecture-09/std/sql.go /MAIN START OMIT/,/MAIN END OMIT/
 
-- *Exec*: when no rows are returned
+## DB type
 
-.code assets/lecture-09/sql_exec.go
+- Returned by the `Open` functions
+- Represents a connection pool
+    - Can be tinkered with using methods like:
+        - `SetConnMaxIdleTime(time.Duration)`
+        - `SetConnMaxLifetime(time.Duration)`
+        - `SetMaxIdleConns(int)`
+        - `SetMaxOpenConns(int)`
+- Safe for concurrent use
+- Connections are represented by the [Conn](https://pkg.go.dev/database/sql#Conn) type
+    - Always prefer the `DB` pool
 
-- *QueryRow*: when at most one row is expected
+[Go Packages: database/sql DB type](https://pkg.go.dev/database/sql#DB)
 
-.code assets/lecture-09/sql_query_row.go
+## Query types
 
-## Types of queries
+- All of these exist in a `Context` variant
+    - Again, always preferred
+- **Exec**: no rows are returned
 
-- *Query*: multiple values are returned
+.code assets/lecture-09/std/sql.go /EXEC START OMIT/,/EXEC END OMIT/
 
-.code assets/lecture-09/sql_query.go
+- **QueryRow**: at most one row is expected
+
+.code assets/lecture-09/std/sql.go /QUERYROW START OMIT/,/QUERYROW END OMIT/
+
+## Query types
+
+- **Query**: multiple values are expected
+
+.code assets/lecture-09/std/sql.go /QUERY START OMIT/,/QUERY END OMIT/
+
+## Transactions
+
+- Manipulated via the [Tx](https://pkg.go.dev/database/sql#Tx) type returned by `Begin` functions
+
+.code assets/lecture-09/std/sql.go /TRANSACTION START OMIT/,/TRANSACTION END OMIT/
 
 ## SQLX
 
