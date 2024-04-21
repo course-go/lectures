@@ -15,11 +15,11 @@ This repository contains lecture slides for Course Go.
     - Origins of Go
     - Key characteristics
     - Use cases & motivation
-    - IDEs and editors
-    - Installation of Go
+    - Editors & IDEs
+    - Environment setup
     - Hello world!
 2. Fundamentals #1 ([exercise](https://github.com/course-go/exercises/blob/master/02-simple-katas/README.md))
-    - Packages & visibility
+    - Packages & Visibility
     - Variables
     - Keywords
     - Data types
@@ -40,21 +40,23 @@ This repository contains lecture slides for Course Go.
     - Channels
     - Select
     - Related packages
-5. Advanced ([exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md))
-    - Libraries
+5. Advanced #1 ([exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md))
     - Generics
+    - Packages
     - Testing
-6. Optimizations ([exercise](https://github.com/course-go/exercises/blob/master/06-pprof/README.md))
+6. Advanced #2 ([exercise](https://github.com/course-go/exercises/blob/master/06-pprof/README.md))
     - Benchmarks
     - Optimizations
     - CGo
-7. Building APIs ([exercise](https://github.com/course-go/exercises/blob/master/07-rest-api/README.md))
+    - Unsafe & Reflect
+7. REST APIs ([exercise](https://github.com/course-go/exercises/blob/master/07-rest-api/README.md))
     - JSON
-    - REST API & OpenAPI specification
+    - HTTP
+    - REST API
     - HTTP package
-    - Routers
-    - Auth
-    - Air
+    - Routers & Web frameworks
+    - OpenAPI
+    - Templating
 8. Docker ([exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md))
     - Virtualization 
     - Docker engine & basics
@@ -63,13 +65,13 @@ This repository contains lecture slides for Course Go.
     - Docker compose
     - Kubernetes
 9. Databases ([exercise](https://github.com/course-go/exercises/blob/master/09-databases/README.md))
-    - database/sql
-    - pgx
+    - SQL
+    - RDBMSs
+    - Migrations
+    - sql
     - sqlx
     - sqlc
     - GORM
-    - Migrations
-    - Caching
 10. CI/CD ([exercise](https://github.com/course-go/exercises/blob/master/10-cicd/README.md))
     - Project setup
     - Git, GitHub & GitLab
