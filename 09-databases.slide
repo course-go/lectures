@@ -5,13 +5,13 @@ Tags: golang, go
 ## Outline
 
 - SQL
+- RDBMSs
 - Database migrations
 - Go & SQL:
     - sql
     - sqlx
     - sqlc
     - GORM
-- NoSQL
 
 ## SQL
 
@@ -70,6 +70,94 @@ Tags: golang, go
     - Uses ordinary disk files
 
 [DB-Engines: Ranking](https://db-engines.com/en/ranking)
+
+## Database Migrations
+
+## Database Migrations
+
+- Changes to you database schema have to be made as your application evolves
+- Done using database migrations
+    - Can be easily tracked in time
+    - Automated migration application
+    - Versioned
+- The migration tools usually create a custom table in database
+    - Tracks current schema state
+
+## Migrations
+
+```
+migrations/
+├── 20240420114809_init.up.sql
+├── 20240420114809_init.down.sql
+├── 20240421013210_alter_user.up.sql
+├── 20240421013210_alter_user.down.sql
+└── 20240422221345_add_product.up.sql
+└── 20240422221345_add_product.down.sql
+```
+
+`add_product` migration:
+
+.code assets/lecture-09/migrations/product.up.sql
+
+.code assets/lecture-09/migrations/product.down.sql
+
+## migrate
+
+- Offers both a Go library and a CLI
+- Multiple [migration sources](https://github.com/golang-migrate/migrate?tab=readme-ov-file#migration-sources)
+    - Filesystem
+    - GitHub
+    - Gitlab
+    - AWS S3
+    - Google Cloud Storage
+
+[GitHub: migrate](https://github.com/golang-migrate/migrate)
+
+## migrate CLI
+
+- Creating new migrations:
+
+```
+$ migrate create -ext sql -dir migrations add_customer
+/course-go/lectures/migrations/20240421124900_add_customer.up.sql
+/course-go/lectures/migrations/20240421124900_add_customer.down.sql
+```
+
+- Applying migrations:
+
+```
+$ migrate -source file://migrations -database postgres://localhost:5432/postgres up
+```
+
+```
+$ migrate -source file://migrations -database postgres://localhost:5432/postgres down 1
+```
+
+```
+$ docker run -v app/migrations:/migrations --network host migrate/migrate
+    -path=/migrations/ -database postgres://localhost:5432/database up 2
+```
+
+- Dropping the database:
+
+```
+$ migrate -source file://migrations \
+    -database "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable" drop
+```
+
+[GitHub: migrate CLI](https://github.com/golang-migrate/migrate/tree/v4.17.1/cmd/migrate)
+
+## migrate in code
+
+.code assets/lecture-09/migrations/migrate.go /START OMIT/,/END OMIT
+
+[Go Packages: migrate](https://pkg.go.dev/github.com/golang-migrate/migrate/v4)
+
+## Alternatives
+
+- [goose](https://github.com/pressly/goose)
+- [atlas](https://github.com/ariga/atlas)
+- [dbmate](https://github.com/amacneil/dbmate)
 
 ## Go & SQL
 
