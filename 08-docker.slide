@@ -4,4 +4,90 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- Containers
+- Docker
+    - Desktop
+    - Engine
+    - Hub
+    - Build
+    - Compose
+- Podman
+- Testcontainers
+
+## Containers
+
+## Open Container Initiative (OCI)
+
+- Specifies industry standards around container technology
+- Formed under the Linux Foundation
+- Launched by Docker and other leaders in the container industry [2015]
+- Three specifications:
+    - [Runtime Specification](https://github.com/opencontainers/runtime-spec?tab=readme-ov-file)
+    - [Image Specification](https://github.com/opencontainers/image-spec)
+    - [Distrubution Specification](https://github.com/opencontainers/distribution-spec)
+
+[GitHub: Open Container Initiative](https://github.com/opencontainers)
+
+## Docker
+
+## Docker
+
+_Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription._
+
+[Docker documentation](https://docs.docker.com)
+
+## Docker Desktop
+
+## Docker Desktop
+
+- "One-click-install"
+- Includes all necessary tools:
+    - Docker Engine
+    - Docker CLI
+    - Docker Build
+    - Docker Compose
+    - And a few more tool...
+
+[Docker documentation: Docker Desktop](https://docs.docker.com/desktop/)
+
+## Docker Hub
+
+## Docker Hub
+
+[Docker documentation: Docker Hub](https://docs.docker.com/docker-hub/)
+
+## Docker Build
+
+## Docker Build
+
+[Docker documentation: Docker Build](https://docs.docker.com/build/)
+
+## Multi-stage builds
+
+[Docker documentation: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
+
+## Multi-platform builds
+
+[Docker documentation: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
+
+## Docker Compose
+
+## Docker Compose
+
+[Docker documentation: Docker Compose](https://docs.docker.com/compose/)
+
+## Podman
+
+## Podman
+
+- An alternative to Docker
+- Open-source
+
+[GitHub: Container](https://github.com/containers/)
+
+## Testcontainers
+
+## Testcontainers
+
+https://go.libhunt.com/testcontainers-go-alternatives
+https://go.libhunt.com/dockertest-alternatives
