@@ -35,8 +35,8 @@ func main() {
 	fmt.Println(product.ID) // backfills primary key values
 
 	products := []*Product{
-		&Product{Name: "Gopher", Price: 21.99},
-		&Product{Name: "Hamster", Price: 15.49},
+		{Name: "Gopher", Price: 21.99},
+		{Name: "Hamster", Price: 15.49},
 	}
 	result = db.Create(products)
 
@@ -128,7 +128,7 @@ func main() {
 	// DELETE FROM products WHERE price > 100.0;
 	db.Delete(&Product{}, "price > ?", 100.0)
 
-	products = []*Product{&Product{Model: gorm.Model{ID: 1}}, &Product{Model: gorm.Model{ID: 2}}}
+	products = []*Product{{Model: gorm.Model{ID: 1}}, {Model: gorm.Model{ID: 2}}}
 	// DELETE FROM products WHERE id IN (1,2);
 	db.Delete(&products)
 

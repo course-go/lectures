@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -10,24 +11,24 @@ import (
 // START OMIT
 
 type Event struct {
-	ID uuid.UUID
+	ID       uuid.UUID
+	Time     time.Time
+	Readonly bool
 }
 
-func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
-	u.UUID = uuid.New()
-	if !u.IsValid() {
-		err = errors.New("can't save invalid data")
+func (e *Event) BeforeCreate(tx *gorm.DB) error {
+	if e.Time.Before(time.Now()) {
+		return errors.New("event time is in the past")
 	}
-
-	return
+	e.ID = uuid.New()
+	return nil
 }
 
-func (u *User) AfterCreate(tx *gorm.DB) (err error) {
-	if u.ID == 1 {
-		tx.Model(u).Update("role", "admin")
+func (e *Event) BeforeUpdate(tx *gorm.DB) error {
+	if e.Readonly {
+		return errors.New("event is read-only")
 	}
-
-	return
+	return nil
 }
 
 // END OMIT

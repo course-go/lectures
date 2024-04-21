@@ -351,6 +351,8 @@ Flags:
 
 .code assets/lecture-09/gorm/hooks.go /START OMIT/,/END OMIT/
 
+[GORM: Hooks](https://gorm.io/docs/hooks.html)
+
 ## Associations: Belongs To
 
 .code assets/lecture-09/gorm/associations.go /IMPLICIT START OMIT/,/IMPLICIT END OMIT/
