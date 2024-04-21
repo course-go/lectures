@@ -5,6 +5,7 @@ Tags: golang, go
 ## Outline
 
 - SQL
+- Database migrations
 - Go & SQL:
     - sql
     - sqlx
@@ -235,160 +236,150 @@ Flags:
 
 ## GORM
 
-- full-featured ORM
-- high-level
-- [GORM project page](https://gorm.io/index.html)
+- Go object-relational mapping (ORM)
+    - High-level
+- Full-featured ORM
+    - Associations
+    - Hooks
+    - Eager loading
+    - SQL builder
+    - Automigrations
+- Implements its own drivers
+    - MySQL, PostgreSQL, SQLite, SQL Server, and TiDB
+
+[GORM](https://gorm.io/index.html)
 
 ## Showcase
 
-.code assets/lecture-09/gorm/showcase.go
+.code assets/lecture-09/gorm/gorm.go /OPEN START OMIT/,/OPEN END OMIT/
 
 ## Model
 
-.code assets/lecture-09/gorm/model.go
+- Utility type
+    - Designed for embedding
 
-## CRUD - Create
+.code assets/lecture-09/gorm/models.go /MODEL START OMIT/,/MODEL END OMIT/
 
-- creating single record
+## Primary key conventions
 
-.code assets/lecture-09/gorm/create.go
+- Field named **ID** is used as the default primary key
 
-- create multiple records
+.code assets/lecture-09/gorm/models.go /USER START OMIT/,/USER END OMIT/
 
-.code assets/lecture-09/gorm/create_multiple.go
+- Can be overwritten with a tag
 
-- create with selected fields
+.code assets/lecture-09/gorm/models.go /ANIMAL START OMIT/,/ANIMAL END OMIT/
 
-.code assets/lecture-09/gorm/create_selected_fields.go
+## Naming conventions
 
-## CRUD - Read
+- Can be adjusted using the [GORM config](https://gorm.io/docs/gorm_config.html#naming_strategy)
+- All names are converted to snake case by default
 
-- reading a single record
+.code assets/lecture-09/gorm/models.go /CATEGORY START OMIT/,/CATEGORY END OMIT/
 
-.code assets/lecture-09/gorm/read.go
+- Uses pluralized struct names as table names
+    - Can be overwritten using the `Tabler` interface
 
-## CRUD - Read
+.code assets/lecture-09/gorm/models.go /TABLENAME START OMIT/,/TABLENAME END OMIT/
 
-- reading using primary key
+## Naming conventions
 
-.code assets/lecture-09/gorm/read_pk.go
+- Column names can be overwritten using tags
 
-- read all records
+.code assets/lecture-09/gorm/models.go /SHOP START OMIT/,/SHOP END OMIT/
 
-.code assets/lecture-09/gorm/read_all.go
+## Timestamp conventions
 
-## CRUD - Read
+- `CreatedAt` and `UpdatedAt` are automatically managed for you
 
-- reading using conditions
+.code assets/lecture-09/gorm/gorm.go /CONVENTIONS START OMIT/,/CONVENTIONS END OMIT/
 
-.code assets/lecture-09/gorm/read_conditions.go
+- Can be disabled
 
-## CRUD - Update
+.code assets/lecture-09/gorm/models.go /ORDER START OMIT/,/ORDER END OMIT/
 
-- *Save## saves all fields
+## CRUD: Create
 
-.code assets/lecture-09/gorm/save.go
+.code assets/lecture-09/gorm/gorm.go /CREATE START OMIT/,/CREATE END OMIT/
 
-- if *Save## value does not contain primary key, it will execute create instead
+[GORM: Create](https://gorm.io/docs/create.html)
 
-.code assets/lecture-09/gorm/save_create.go
+## CRUD: Read
 
-## CRUD - Update
+.code assets/lecture-09/gorm/gorm.go /READ START OMIT/,/READ END OMIT/
 
-- update single column
+[GORM: Query](https://gorm.io/docs/query.html)
 
-.code assets/lecture-09/gorm/update_single.go
+## CRUD: Read with conditions
 
-- update multiple columns
+.code assets/lecture-09/gorm/gorm.go /READ-CONDITIONS START OMIT/,/READ-CONDITIONS END OMIT/
 
-.code assets/lecture-09/gorm/update_multiple.go
+[GORM: Query](https://gorm.io/docs/query.html)
 
-- without specifying the user using the Model, GORM executes batch update 
+## CRUD: Update
 
-.code assets/lecture-09/gorm/update_batch.go
+.code assets/lecture-09/gorm/gorm.go /UPDATE START OMIT/,/UPDATE END OMIT/
 
-## CRUD - Delete 
+[GORM: Update](https://gorm.io/docs/update.html)
 
-- deleting using primary key
+## CRUD: Delete 
 
-.code assets/lecture-09/gorm/delete_pk.go
+.code assets/lecture-09/gorm/gorm.go /DELETE START OMIT/,/DELETE END OMIT/
 
-## CRUD - Delete 
+[GORM: Delete](https://gorm.io/docs/delete.html)
 
-- batch delete using where
+## CRUD: Soft deletes 
 
-.code assets/lecture-09/gorm/batch_delete.go
-.code assets/lecture-09/gorm/batch_delete_with_pk.go
+.code assets/lecture-09/gorm/gorm.go /SOFT-DELETE START OMIT/,/SOFT-DELETE END OMIT/
 
-## CRUD - Delete 
+[GORM: Soft Delete](https://gorm.io/docs/delete.html#Soft-Delete)
 
-- does soft delete when structure containts gorm.DeletedAt field 
+## Hooks
 
-.code assets/lecture-09/gorm/soft_delete.go
+- Functions triggered on before/after specified event
+    - Creation/Querying/Updating/Deletion
+- Hooks
+    - `BeforeSave`/`AfterSave`
+    - `BeforeCreate`/`AfterCreate`
+    - `BeforeUpdate`/`AfterUpdate`
+    - `BeforeDelete`/`AfterDelete`
+    - `AfterFind`
 
-## Associations - Has Many
+[GORM: Hooks](https://gorm.io/docs/hooks.html)
 
-- 1:N - declaration using slice and foreign key
+## Hooks
 
-.code assets/lecture-09/gorm/has_many_declare.go
+.code assets/lecture-09/gorm/hooks.go /START OMIT/,/END OMIT/
 
-- retrieving the data
+## Associations: Belongs To
 
-.code assets/lecture-09/gorm/has_many_retrieve.go
+.code assets/lecture-09/gorm/associations.go /IMPLICIT START OMIT/,/IMPLICIT END OMIT/
 
-## Associations - Many to Many
+.code assets/lecture-09/gorm/associations.go /EXPLICIT START OMIT/,/EXPLICIT END OMIT/
 
-- N:M - automatically add a join table
-- declaration using slices and tags
+[GORM: Belongs To](https://gorm.io/docs/belongs_to.html)
 
-.code assets/lecture-09/gorm/many_to_many_declare.go
+## Associations: Has One
 
-## Associations - Many to Many
+.code assets/lecture-09/gorm/associations.go /HAS-ONE START OMIT/,/HAS-ONE END OMIT/
 
-- retrieving the data
+[GORM: Has One](https://gorm.io/docs/has_one.html)
 
-.code assets/lecture-09/gorm/many_to_many_retrieve.go
+## Associations: Has Many
 
-## Conventions
+.code assets/lecture-09/gorm/associations.go /HAS-MANY START OMIT/,/HAS-MANY END OMIT/
 
-- uses field *ID## as the table's primary key by default
+[GORM: Has Many](https://gorm.io/docs/has_many.html)
 
-.code assets/lecture-09/gorm/id.go
+## Associations: Many To Many
 
-- can be overwritten with a tag
+.code assets/lecture-09/gorm/associations.go /MANY-TO-MANY START OMIT/,/MANY-TO-MANY END OMIT/
 
-.code assets/lecture-09/gorm/overwritten_id.go
-
-## Conventions
-
-- uses struct names as table names
-- converts all names to snake_case
-
-.code assets/lecture-09/gorm/snake_case.go
-
-- table names can be overwritten using Tabler interface
-
-.code assets/lecture-09/gorm/tabler.go
-
-## Conventions
-
-- column names can be overwritten using tags
-
-.code assets/lecture-09/gorm/column_tags.go
-
-## Conventions
-
-- *CreatedAt## and *UpdatedAt## are automatically tracked for you
-
-.code assets/lecture-09/gorm/created_at.go
-
-- can be disabled
-
-.code assets/lecture-09/gorm/disabled_created_at.go
+[GORM: Many To Many](https://gorm.io/docs/many_to_many.html)
 
 ## Raw SQL 
 
-- also supports raw sql execution
+- Not all SQL queries can be executed using the ORM itself
+- Supports raw SQL execution
 
-.code assets/lecture-09/gorm/raw_sql.go
-.code assets/lecture-09/gorm/raw_sql_exec.go
+.code assets/lecture-09/gorm/gorm.go /RAW START OMIT/,/RAW END OMIT/
