@@ -270,6 +270,17 @@ var counter = 100
 
 .play assets/lecture-02/functions/closure.go
 
+## The infamous init function
+
+- Basically a function for side effects
+    - Sets-up an initial state
+- Gets called when a package is imported
+- Allows multiple declarations even per file/package
+    - They are processed as declared/alphabetically
+- Avoid it whenever possible
+
+.play assets/lecture-02/functions/init.go /START OMIT/,/END OMIT/
+
 ## defer statement
 
 - `defer` is a keyword in the Go
