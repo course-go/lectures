@@ -4,4 +4,140 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- Linters
+- CI/CD
+    - GitLab CI/CD
+    - GitHub Actions
+- Deployments
+- Cloud
+    - GCP
+
+## Linters
+
+## Linters
+
+- TODO
+
+## golanci-lint
+
+- TODO
+
+[golangci-lint.run](https://golangci-lint.run)
+
+## CI/CD
+
+## CI/CD
+
+.image assets/lecture-10/cicd/cicd.svg 500 _
+
+## CI/CD
+
+- TODO
+
+## CI
+
+- TODO
+
+## CD
+
+- TODO
+
+## Gitlab CI/CD
+
+- Built-in
+- Configured using the `.gitlab-ci.yaml`
+- TODO
+
+[GitLab Docs: CI/CD](https://docs.gitlab.com/ee/topics/build_your_application.html)
+
+## GitHub Actions
+
+- TODO
+
+[GitHub Docs: GitHub Actions](https://docs.github.com/en/actions)
+
+## GitHub Packages
+
+- TODO
+
+[GitHub Docs: GitHub Packages](https://docs.github.com/en/packages)
+
+## Alternatives
+
+- [Jenkins](https://www.jenkins.io)
+- [Circle CI](https://circleci.com)
+- [TeamCity](https://www.jetbrains.com/teamcity/)
+
+## Deployments
+
+## Deployments
+
+- Apps are useless unless deployed
+
+## Simple
+
+.image assets/lecture-10/deployments/simple.svg 400 _
+
+## Simple
+
+- What if I want to run more services?
+- How can I scale service instances?
+    - Fault tolerance
+    - Distribute load
+- HTTPS?
+    - Managing certificates
+
+## Caddy
+
+- TODO
+
+[Caddy](https://caddyserver.com)
+
+[GitHub: Caddy](https://github.com/caddyserver/caddy)
+
+## Traefik
+
+- TODO
+
+[Traefik](https://traefik.io/traefik/)
+
+[GitHub: Traefik](https://github.com/traefik/traefik/)
+
+## Advanced
+
+.image assets/lecture-10/deployments/advanced.svg 420 _
+
+## Advanced
+
+- Nice
+    - Single exposed endpoint
+    - Multiple services
+    - Multiple instances
+- What if our VM dies?
+    - Lack of hardware resources
+    - Network outage
+    - Datacenters can [caught on fire](https://dgtlinfra.com/data-center-fires/)
+
+## Complex
+
+.image assets/lecture-10/deployments/complex.svg 550 _
+
+## Cloud
+
+## Cloud
+
+- TODO
+
+## GCP
+
+## GCP
+
+- TODO
+
+## Artifact Registry
+
+- TODO
+
+## Cloud Run
+
+- TODO
