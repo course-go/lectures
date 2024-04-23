@@ -88,10 +88,50 @@ _Commercial use of Docker Desktop in larger enterprises (more than 250 employees
 
 ## Testcontainers
 
+## Testing with dependencies
+
+- Not all tests require real dependencies
+    - Fakes can be used
+- However, integration with real services has to be tested at some point
+- Isolation of tests
+    - Multiple tests share a single database instance
+        - Create a new database per each test
+        - The single instance has to actually exist
+            - Docker Compose
+    - Or spawn per test instance
+        - Testcontainers
+
 ## Testcontainers
 
-https://go.libhunt.com/testcontainers-go-alternatives
-https://go.libhunt.com/dockertest-alternatives
+- Allows running containers directly in code
+- Simplifies testing against real services
+- SDK for many languages:
+    - Go, Rust, Java, .NET, Python, Node.js, Haskell...
+- Keep in mind that spawning containers is not cheap
+    - [postgres:16](https://hub.docker.com/_/postgres) image has around 450 MB
+
+[Testcontainers](https://testcontainers.com)
+
+## Testcontainers
+
+.code assets/lecture-08/testcontainers/quickstart.go /START OMIT/,/END OMIT/
+
+[Testcontainers for Go: Quickstart](https://golang.testcontainers.org/quickstart/)
+
+## Modules
+
+- Preconfigured implementations of various dependencies
+    - All major databases
+    - Message brokers
+    - Cloud SDKs
+
+[Testcontainers: Modules](https://testcontainers.com/modules/)
+
+## Modules
+
+.code assets/lecture-08/testcontainers/module.go /START OMIT/,/END OMIT/
+
+[Testcontainers for Go: Postgres module](https://golang.testcontainers.org/modules/postgres/)
 
 ## Kubernetes
 
