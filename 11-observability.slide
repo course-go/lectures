@@ -4,4 +4,68 @@ Tags: golang, go
 
 ## Outline
 
-TODO
+- Logs
+    - Loggers
+    - Loki
+- Metrics
+    - Prometheus
+    - Grafana
+- Tracing
+    - Jaeger
+- OpenTelemetry
+
+## Logs
+
+## Logs
+
+- TODO
+
+## zerolog
+
+- TODO
+
+[BetterStack: Complete Guide to Zerolog](https://betterstack.com/community/guides/logging/zerolog/)
+
+## zap
+
+- Maintained by Uber
+
+[BetterStack: Complete Guide to Zap](https://betterstack.com/community/guides/logging/go/zap/)
+
+## Loki
+
+- Product by Grafana
+
+[GrafanaLab: Loki](https://grafana.com/oss/loki/)
+
+[GitHub: Loki](https://github.com/grafana/loki)
+
+## Metrics
+
+## Metrics
+
+- TODO
+
+## Prometheus
+
+- TODO
+
+## Grafana
+
+- TODO
+
+## Tracing
+
+## Tracing
+
+- TODO
+
+## Jaeger
+
+- TODO
+
+## OpenTelemetry
+
+## OpenTelemetry
+
+- TODO
