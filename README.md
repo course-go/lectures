@@ -58,11 +58,8 @@ This repository contains lecture slides for Course Go.
     - OpenAPI
     - Templating
 8. Docker [[slides](https://lectures.course-go.dev/08-docker.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md)]
-    - Virtualization 
-    - Docker engine & basics
-    - Dockerfile
-    - YAML
-    - Docker compose
+    - Containerization 
+    - Docker
     - Kubernetes
 9. Databases [[slides](https://lectures.course-go.dev/09-databases.slide) | [exercise](https://github.com/course-go/exercises/blob/master/09-databases/README.md)]
     - SQL
@@ -72,18 +69,15 @@ This repository contains lecture slides for Course Go.
     - sqlx
     - sqlc
     - GORM
-10. CI/CD [[slides](https://lectures.course-go.dev/10-cicd.slide) | [exercise](https://github.com/course-go/exercises/blob/master/10-cicd/README.md)]
-    - Project setup
-    - Git, GitHub & GitLab
-    - GitHub Actions
+10. Deployment [[slides](https://lectures.course-go.dev/10-deployment.slide) | [exercise](https://github.com/course-go/exercises/blob/master/10-deployment/README.md)]
     - CI/CD
+    - Deployments
     - GCP
 11. Observability [[slides](https://lectures.course-go.dev/11-observability.slide) | [exercise](https://github.com/course-go/exercises/blob/master/11-prometheus/README.md)]
-    - Health checks
-    - Logging
-    - Monitoring
+    - Health
+    - Logs
+    - Metrics
     - Tracing
-    - Proxying
 
 ## Tooling
 
