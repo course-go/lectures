@@ -3,11 +3,13 @@
 run:
   timeout: 5m
   tests: false
+
 output:
   sort-results: true
   formats:
     - format: json
       path: stderr
+
 linters:
   enable-all: true
   disable:
@@ -18,12 +20,12 @@ linters:
     - funlen
     - nonamedreturns
     - gochecknoglobals
-    - depguard
-    - godox
-    - wsl
 
 # // CONFIG END OMIT
 
+    - depguard
+    - godox
+    - wsl
     - nakedret
     - wrapcheck
     - whitespace
