@@ -16,13 +16,41 @@ Tags: golang, go
 
 ## Linters
 
-- TODO
+- Go has a:
+    - Built-in formatter
+        - `go fmt`
+    - Built-in linter
+        - `go vet`
+- Is there anything better?
+    - More static analysis checks
+    - Configurable
 
 ## golanci-lint
 
-- TODO
+- Go linters runner
+    - Runs them in parallel
+- Configured using YAML
+    - Using `.golangci.yaml`
+- Over a hundred of [linters](https://golangci-lint.run/usage/linters/)
+- [Custom CLI](https://golangci-lint.run/welcome/install/)
+
+```
+$ golangci-lint run
+```
 
 [golangci-lint.run](https://golangci-lint.run)
+
+## Configuring golangci-lint
+
+.code assets/lecture-10/linters/golangci.yaml /CONFIG START OMIT/,/CONFIG END OMIT/
+
+[golang-ci-lint.run configuration](https://golangci-lint.run/usage/configuration/)
+
+## Configuring specific golangci-lint linters
+
+.code assets/lecture-10/linters/golangci.yaml /LINTER CONFIG START OMIT/,/LINTER CONFIG END OMIT/
+
+[golang-ci-lint.run configuration](https://golangci-lint.run/usage/configuration/)
 
 ## CI/CD
 

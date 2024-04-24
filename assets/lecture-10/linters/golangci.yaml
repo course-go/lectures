@@ -1,0 +1,68 @@
+# // CONFIG START OMIT
+
+run:
+  timeout: 5m
+  tests: false
+output:
+  sort-results: true
+  formats:
+    - format: json
+      path: stderr
+linters:
+  enable-all: true
+  disable:
+    # restrictive
+    - exhaustruct
+    - varnamelen
+    - nlreturn
+    - funlen
+    - nonamedreturns
+    - gochecknoglobals
+    - depguard
+    - godox
+    - wsl
+
+# // CONFIG END OMIT
+
+    - nakedret
+    - wrapcheck
+    - whitespace
+    - containedctx
+    # deprecated
+    - forbidigo
+    - scopelint
+    - maligned
+    - varcheck
+    - structcheck
+    - interfacer
+    - exhaustivestruct
+    - golint
+    - nosnakecase
+    - deadcode
+    - ifshort
+    # not relevant
+    - copyloopvar
+    - intrange
+    # to possibly enable in future
+    - forcetypeassert
+    - goerr113
+    - noctx
+    - cyclop
+
+# // LINTER CONFIG START OMIT
+
+linters-settings:
+  cyclop:
+    max-complexity: 5
+  errorlint:
+    errorf: false
+  gofumpt:
+    extra-rules: true
+  goconst:
+    min-len: 2
+    min-occurences: 2
+  gomnd:
+    ignored-numbers:
+      - '0o644'
+
+# // LINTER CONFIG END OMIT
