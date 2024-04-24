@@ -1,0 +1,44 @@
+# // START OMIT
+
+image: golang:latest
+
+stages:
+  - lint
+  - test
+  - build
+  - release
+
+lint:
+    image: golangci/golangci-lint:latest
+    stage: lint
+    script:
+      - golangci-lint run
+
+build:
+  stage: build
+  script:
+    - go build ./...
+
+# // MIDDLE OMIT
+
+test:
+  stage: test
+  script:
+    - go test -race -cover -coverprofile coverage.out ./...
+  artifacts:
+    paths:
+      - coverage.out
+
+
+docker:
+  image: docker:stable
+  stage: release
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
+    - docker push "$CI_REGISTRY_IMAGE${tag}"
+
+# // END OMIT

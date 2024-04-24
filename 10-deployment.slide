@@ -32,33 +32,140 @@ Tags: golang, go
 
 ## CI/CD
 
-- TODO
+- _Continuous integration and continuous delivery/deployment_
+- Aims to automate software development process
 
 ## CI
 
-- TODO
+- Continuous integration
+- Involves:
+    - Running linters and formatters
+    - Checking that code is buildable
+    - And that all tests pass
+- Generally always triggered
+    - On "each" commit
+- The CI can be sped up by running just a subset of tests
+    - Smoke tests
 
 ## CD
 
-- TODO
+- Mostly setup on pushes to the _main_ branch
+    - Releases/tags
+- Continuous Delivery
+    - Shipping update
+        - Container/package repositories
+- Continuous Deployment
+    - Deploying update to production
+    - Not always practiced
+        - Manual trigger
 
-## Gitlab CI/CD
+## Semantic versioning
 
-- Built-in
+- **Major.Minor.Patch**
+    - `v1.17.5`
+- Major
+    - Incompatible API changes
+- Minor
+    - New features
+- Patch
+    - Bug fixes
+- Release candidates
+    - Suffixed with `.rc-[NUMBER]`
+
+[Semver](https://semver.org)
+
+## Tags
+
+- Annotated 
+
+```
+$ git tag -a v1.17.5 -m "Gophers would approve"
+```
+
+- Lightweight
+
+```
+$ git tag v1.17.5
+```
+
+- Specific commit
+
+```
+$ git tag v1.17.5 c3d5e1
+```
+
+- Tags have to be pushed explicitly
+
+```
+$ git push origin --tags
+```
+
+[Git Book: Git Basics - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+
+## GitLab CI/CD
+
+- Built into GitLab
 - Configured using the `.gitlab-ci.yaml`
-- TODO
+    - Root of project
 
 [GitLab Docs: CI/CD](https://docs.gitlab.com/ee/topics/build_your_application.html)
 
+## GitLab CI/CD (1/2)
+
+.code assets/lecture-10/cicd/gitlab-ci.yaml /START OMIT/,/MIDDLE OMIT/
+
+## GitLab CI/CD (2/2)
+
+.code assets/lecture-10/cicd/gitlab-ci.yaml /MIDDLE OMIT/,/END OMIT/
+
 ## GitHub Actions
 
-- TODO
+- GitHub's CI/CD
+    - Built into GitHub
+- No restrictions for public repositories
+- Defined as [worklows](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#workflows)
+    - Configured using YAML
+    - In `.github/workflows/` directory
+    - Single workflow can have multiple `jobs`
+        - [Job](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#jobs) is just a set of steps
+- The workflows are then run using [runners](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#runners) when a specified [event](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#events) occurs
 
 [GitHub Docs: GitHub Actions](https://docs.github.com/en/actions)
 
+## GitHub Actions (1/4)
+
+.code assets/lecture-10/cicd/github-workflow.yaml /START OMIT/,/LINT OMIT/
+
+## GitHub Actions (2/4)
+
+.code assets/lecture-10/cicd/github-workflow.yaml /LINT OMIT/,/TEST OMIT/
+
+## GitHub Actions (3/4)
+
+.code assets/lecture-10/cicd/github-workflow.yaml /TEST OMIT/,/DOCKER SETUP OMIT/
+
+## GitHub Actions (4/4)
+
+.code assets/lecture-10/cicd/github-workflow.yaml /DOCKER SETUP OMIT/,/DOCKER PUSH OMIT/
+
+## GitHub Actions
+
+- Pre-prepared worklow steps
+    - No need to write repeating shell command sequences
+        - You just use the action
+    - Regural GitHub repositories
+        - [golangci/golangci-lint-action](https://github.com/golangci/golangci-lint-action)
+- Simplify usage of frequent tasks
+- [Custom actions](https://docs.github.com/en/actions/creating-actions) can be created
+
+[GitHub Marketplace: Actions](https://github.com/marketplace?type=actions)
+
 ## GitHub Packages
 
-- TODO
+- Alternative to [Docker Hub](https://hub.docker.com)
+    - Or [GitLab container registry](https://docs.gitlab.com/ee/user/packages/container_registry/)
+- Directly linked with repository
+    - [course-go/lectures packages](https://github.com/course-go/lectures/pkgs/container/lectures)
 
 [GitHub Docs: GitHub Packages](https://docs.github.com/en/packages)
 
