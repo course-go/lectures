@@ -1,0 +1,21 @@
+localhost {
+	metrics /metrics
+	respond /ping "Pong!"
+}
+
+files.course-go.dev {
+	handle {
+		file_server /var/www
+	}
+}
+
+api.course-go.dev {
+	handle {
+		reverse_proxy localhost:8000 localhost:8001 localhost:8002 {
+			health_uri /status
+			health_interval 10s
+			lb_policy round_robin
+			lb_try_duration 5s
+		}
+	}
+}

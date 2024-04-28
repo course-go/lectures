@@ -207,7 +207,11 @@ $ git push origin --tags
 
 ## Deployments
 
-- Apps are useless unless deployed
+- What do we build apps for?
+    - Provides a service to customers
+- Apps are useless unless used by customers
+    - Developing them is nice
+    - But you have to deploy them
 
 ## Simple
 
@@ -224,19 +228,53 @@ $ git push origin --tags
 
 ## Caddy
 
-- TODO
+- Web server, reverse proxy, load-balancer
+    - Alternative to NGINX, Apache etc.
+- Native config format is JSON
+    - `Caddyfile`
+        - More handy
+- [Automatic HTTPS](https://caddyserver.com/docs/automatic-https) configuration using [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment)
+    - [ZeroSSL](https://zerossl.com) project
+- Supports all HTTP versions
+- Extensible using [modules](https://caddyserver.com/docs/modules/)
 
 [Caddy](https://caddyserver.com)
 
 [GitHub: Caddy](https://github.com/caddyserver/caddy)
 
+## Caddyfile
+
+.code assets/lecture-10/deployments/Caddyfile
+
+```
+$ caddy run
+```
+
 ## Traefik
 
-- TODO
+- Proxy, edge router (reverse proxy)
+    - Alternative to NGINX, HAProxy, Envoy etc.
+- Also [supports ACME](https://doc.traefik.io/traefik/https/acme/) providers like [Let's Encrypt](https://letsencrypt.org)
+- Includes a CLI, API and GUI dashboard
+- Static configuration at startup
+- [Dynamic configuration](https://doc.traefik.io/traefik/providers/overview) via providers
+    - Docker, Kubernetes, Consul, Nomad, HTTP, ...
+
+```
+    labels:
+      - traefik.http.routers.my-container.rule=Host(`course-go.dev`)
+      - traefik.http.services.my-service.loadbalancer.server.port=12345
+```
 
 [Traefik](https://traefik.io/traefik/)
 
 [GitHub: Traefik](https://github.com/traefik/traefik/)
+
+## Traefik Configuration
+
+.code assets/lecture-10/deployments/traefik-docker-compose.yaml
+
+.code assets/lecture-10/deployments/traefik.yml
 
 ## Advanced
 
@@ -244,8 +282,8 @@ $ git push origin --tags
 
 ## Advanced
 
-- Nice
-    - Single exposed endpoint
+- Progress
+    - Single entrypoint
     - Multiple services
     - Multiple instances
 - What if our VM dies?

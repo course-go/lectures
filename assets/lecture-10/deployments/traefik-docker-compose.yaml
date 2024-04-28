@@ -1,0 +1,9 @@
+services:
+  traefik:
+     image: traefik:3.0
+     ports:
+       - "80:80"
+       - "8080:8080"
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+       - /path/to/config/traefik.yml:/etc/traefik/traefik.yml

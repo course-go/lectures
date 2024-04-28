@@ -29,7 +29,6 @@ test:
     paths:
       - coverage.out
 
-
 docker:
   image: docker:stable
   stage: release

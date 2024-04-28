@@ -1,88 +1,88 @@
-<mxfile host="Electron" modified="2024-04-23T22:01:44.792Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="m3cTvf-oAjWrtzlfFBdR" version="24.2.5" type="device">
+<mxfile host="Electron" modified="2024-04-28T19:12:57.965Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="j0wJHbVPB_6N5xfbDy_R" version="24.2.5" type="device">
   <diagram name="Page-1" id="AVqs-29l7rqCjDmvb-u1">
-    <mxGraphModel dx="4130" dy="1640" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1842" dy="938" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="cm763DPiKegs-Cz6ihyl-120" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-120" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="-740" y="-340" width="640" height="630" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-32" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-32" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="-732" y="-90" width="312" height="370" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-33" value="VM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-732" y="-120" width="50" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-33" value="VPS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-732" y="-120" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-35" value="Reverse Proxy" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#82b366;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#d5e8d4;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-35" value="Reverse Proxy" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#82b366;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#d5e8d4;" parent="1" vertex="1">
           <mxGeometry x="-630" y="81.25" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-36" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-36" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="-761" y="50" width="62" height="122.5" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-37" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-37" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fontFamily=Helvetica;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="-1134" y="30" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-38" value="Internet" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-38" value="Internet" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="-1034" y="57" width="169" height="103" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-40" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-35" target="cm763DPiKegs-Cz6ihyl-36">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-40" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-35" target="cm763DPiKegs-Cz6ihyl-36" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-649" y="66" as="sourcePoint" />
             <mxPoint x="-599" y="16" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-43" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-40">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-43" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-40" vertex="1" connectable="0">
           <mxGeometry x="-0.2546" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-45" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-45" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-690" y="80" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-46" value="DNS" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;fillColor=#f5f5f5;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-46" value="DNS" style="rhombus;whiteSpace=wrap;html=1;strokeColor=#666666;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#333333;fillColor=#f5f5f5;" parent="1" vertex="1">
           <mxGeometry x="-989.5" y="-70" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-48" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=1;" edge="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-48" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=1;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-949" y="60" as="sourcePoint" />
             <mxPoint x="-949" y="20" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-49" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;startFill=0;" edge="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-49" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;startFill=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-1100" y="60" as="sourcePoint" />
             <mxPoint x="-1030" y="110" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-51" value="app.dev" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-51" value="app.dev" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-1080" y="45" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-53" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=1;startFill=0;exitX=0.875;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-38">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-53" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=1;startFill=0;exitX=0.875;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-38" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-865" y="108.5" as="sourcePoint" />
             <mxPoint x="-770" y="109" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-54" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;49.12.200.54:443&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-54" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;49.12.200.54:443&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-881" y="70" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-56" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fontFamily=Helvetica;fontSize=12;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-56" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;align=center;fontFamily=Helvetica;fontSize=12;" parent="1" vertex="1">
           <mxGeometry x="-1134" y="148.5" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-57" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;startFill=0;" edge="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-57" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;startFill=0;" parent="1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-1094" y="177" as="sourcePoint" />
             <mxPoint x="-1030" y="120" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-58" value="nap.io" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-58" value="nap.io" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-1075" y="160" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-63" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-35" target="cm763DPiKegs-Cz6ihyl-73">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-63" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-35" target="cm763DPiKegs-Cz6ihyl-73" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-390" y="80" as="sourcePoint" />
             <mxPoint x="-360" y="-30" as="targetPoint" />
@@ -93,12 +93,12 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-64" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-63">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-64" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-63" vertex="1" connectable="0">
           <mxGeometry x="0.1524" y="3" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-65" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="cm763DPiKegs-Cz6ihyl-116">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-65" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="cm763DPiKegs-Cz6ihyl-116" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-300" y="-10" as="sourcePoint" />
             <mxPoint x="-360" y="40" as="targetPoint" />
@@ -109,14 +109,14 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-66" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="cm763DPiKegs-Cz6ihyl-102">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-66" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="cm763DPiKegs-Cz6ihyl-102" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-460" y="-10" as="sourcePoint" />
             <mxPoint x="-300" y="127" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-67" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="cm763DPiKegs-Cz6ihyl-109">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-67" value="" style="endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="cm763DPiKegs-Cz6ihyl-109" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-460" y="110" as="sourcePoint" />
             <mxPoint x="-360" y="220" as="targetPoint" />
@@ -125,122 +125,122 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-68" value="nap.io/*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-68" value="nap.io/*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-530" y="163.5" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-69" value="app.dev/*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-69" value="app.dev/*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-540" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-70" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-70" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="-710" y="-288.51" width="200" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-71" value="NETWORK" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-740" y="-370" width="110" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-71" value="NETWORK" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-740" y="-380" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-72" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-72" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="-674" y="-258.52" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-73" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-73" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-678" y="-161.51" width="138" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-74" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-74" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-610" y="-191.51" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-75" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startFill=1;endFill=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-72" target="cm763DPiKegs-Cz6ihyl-73">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-75" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startFill=1;endFill=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-72" target="cm763DPiKegs-Cz6ihyl-73" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-601" y="-79.01" as="sourcePoint" />
             <mxPoint x="-670" y="-79.01" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-76" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-75">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-76" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-75" vertex="1" connectable="0">
           <mxGeometry x="-0.2546" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-99" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-99" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="-348" y="-90" width="240" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-100" value="VM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-348" y="-120" width="50" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-100" value="VPS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-348" y="-120" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-101" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-101" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="-268" y="-40" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-102" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-102" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-368" y="-60.629999999999995" width="52" height="101.25" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-103" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-103" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-316" y="-40" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-104" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-101" target="cm763DPiKegs-Cz6ihyl-102">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-104" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-101" target="cm763DPiKegs-Cz6ihyl-102" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-209" y="139.5" as="sourcePoint" />
             <mxPoint x="-278" y="139.5" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-105" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-104">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-105" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-104" vertex="1" connectable="0">
           <mxGeometry x="-0.2546" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-106" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-106" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="-348" y="120" width="240" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-107" value="VM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-348" y="90" width="50" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-107" value="VPS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-348" y="90" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-108" value="nap.io API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-108" value="nap.io API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="-268" y="170" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-109" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-109" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-368" y="149.37" width="52" height="101.25" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-110" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-110" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-316" y="170" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-111" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-108" target="cm763DPiKegs-Cz6ihyl-109">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-111" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;startFill=1;endFill=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-108" target="cm763DPiKegs-Cz6ihyl-109" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-209" y="349.5" as="sourcePoint" />
             <mxPoint x="-278" y="349.5" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-112" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-111">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-112" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-111" vertex="1" connectable="0">
           <mxGeometry x="-0.2546" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-113" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-113" value="" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=none;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
           <mxGeometry x="-480" y="-288.51" width="200" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-114" value="VM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-480" y="-318.51" width="50" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-114" value="VPS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-480" y="-318.51" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-115" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-115" value="app.dev API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="-444" y="-258.52" width="130" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-116" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-116" value="Firewall" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="-448" y="-161.51" width="138" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-117" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-117" value="443" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="-380" y="-191.51" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-118" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startFill=1;endFill=0;" edge="1" parent="1" source="cm763DPiKegs-Cz6ihyl-115" target="cm763DPiKegs-Cz6ihyl-116">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-118" value="" style="endArrow=none;startArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startFill=1;endFill=0;" parent="1" source="cm763DPiKegs-Cz6ihyl-115" target="cm763DPiKegs-Cz6ihyl-116" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="-371" y="-79.01" as="sourcePoint" />
             <mxPoint x="-440" y="-79.01" as="targetPoint" />
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-119" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" vertex="1" connectable="0" parent="cm763DPiKegs-Cz6ihyl-118">
+        <mxCell id="cm763DPiKegs-Cz6ihyl-119" value="" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;strokeColor=#0e8088;fontFamily=Helvetica;fontColor=default;fillColor=#CFE3E6;" parent="cm763DPiKegs-Cz6ihyl-118" vertex="1" connectable="0">
           <mxGeometry x="-0.2546" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cm763DPiKegs-Cz6ihyl-122" value="VM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" vertex="1" parent="1">
-          <mxGeometry x="-710" y="-318.51" width="50" height="30" as="geometry" />
+        <mxCell id="cm763DPiKegs-Cz6ihyl-122" value="VPS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-710" y="-318.51" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
