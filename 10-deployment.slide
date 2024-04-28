@@ -299,18 +299,112 @@ $ caddy run
 
 ## Cloud
 
-- TODO
+- Allows access to computer system resource and storage
+- Major service providers:
+    - **Amazon Web Services (AWS)** [~33 %]
+    - **Microsoft Azure** [~22 %]
+    - **Google Cloud Platform (GCP)** [~11 %]
+- All major providers offer plenty of services
+- For only hosting VPSs or dedicated servers, consider smaller providers
+    - Generally cheaper
+    - Honorable mentions:
+        - [Hetzner](https://www.hetzner.com), [netcup](https://www.netcup.eu), [Digital Ocean](https://www.digitalocean.com)
+
+[N-iX: AWS vs Azure vs GCP](https://www.n-ix.com/comparing-big-3-aws-azure-gcp/)
 
 ## GCP
 
 ## GCP
 
-- TODO
+- Google Cloud Platform
+    - One of the top three cloud services providers
+- Launched in 2008
+- Includes plenty of APIs to Google services:
+    - Machine learning
+        - Gemini
+    - Computing
+    - Storage
+    - Data anylytics
+
+[GCP: Cloud APIs](https://cloud.google.com/apis?hl=en)
 
 ## Artifact Registry
 
-- TODO
+- Google's container registry
+    - Docker Hub, GitHub Packages, ...
+- Allows for easy [CI/CD setup](https://cloud.google.com/docs/application-development#expandable-2)
+    - Upload containers to AR
+    - Deploy them right away
+- Additional features:
+    - Vulnerability scanning
+- You can setup building of containers in GCP directly
+    - [Cloud Build](https://cloud.google.com/build/docs)
+
+[GCP: Artifact Registry](https://cloud.google.com/artifact-registry)
+
+## Compute Engine
+
+- Service for setting up VMs
+- Alternatives:
+    - Amazon: Elastic Compute Cloud (EC2)
+    - Azure: Virtual Machine
+
+[GCP: Compute Engine](https://cloud.google.com/products/compute?hl=en)
 
 ## Cloud Run
 
-- TODO
+- Service for running containers
+    - Serverless
+- Allows you to scale to 0
+    - Cost
+- Alternatives:
+    - Amazon: App Runner
+    - Azure: Container Apps
+
+[GCP: Cloud Run](https://cloud.google.com/run?hl=en)
+
+## GKE
+
+- Google Kubernetes Engine
+- [Autopilot](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview) can manage your infrastructure
+    - Serverless
+- Alternatives:
+    - Amazon: Elastic Kubernetes Service (EKS)
+    - Azure: Azure Kubernetes Service (AKS)
+
+[GCP: GKE](https://cloud.google.com/kubernetes-engine?hl=en)
+
+## VPC
+
+- Virtual Private Cloud
+- Network service
+    - Allows you to setup virtual topology
+    - Allows network sharing across projects
+- Alternatives:
+    - Amazon: Virtual Private Cloud
+    - Azure: Virtual Network
+
+[GCP: VPC](https://cloud.google.com/vpc?hl=en)
+
+## Cloud SQL
+
+- Service for running SQL database instances
+- Currently supports MySQL, PostgresSQL, and SQL Server
+- Alternatives:
+    - Amazon: Simple Storage Service (S3)
+    - Azure: Blob Storage
+
+[GCP: Cloud SQL](https://cloud.google.com/sql?hl=en)
+
+## Cloud Storage
+
+- Object storage
+    - Files, videos, photos, ...
+- Structured using buckets
+    - Directory structure
+- Alternatives:
+    - Amazon: Simple Storage Service (S3)
+    - Azure: Blob Storage
+    - Open-source: [Minio](https://github.com/minio/minio)
+
+[GCP: Cloud Storage](https://cloud.google.com/storage?hl=en)
