@@ -69,11 +69,11 @@ This repository contains lecture slides for Course Go.
     - sqlx
     - sqlc
     - GORM
-10. Deployment [[slides](https://lectures.course-go.dev/10-deployment.slide) | [exercise](https://github.com/course-go/exercises/blob/master/10-deployment/README.md)]
+10. Infrastructure [[slides](https://lectures.course-go.dev/10-infrastructure.slide) | [exercise](https://github.com/course-go/exercises/blob/master/10-infrastructure/README.md)]
     - CI/CD
-    - Deployments
+    - Infrastructure
     - GCP
-11. Observability [[slides](https://lectures.course-go.dev/11-observability.slide) | [exercise](https://github.com/course-go/exercises/blob/master/11-prometheus/README.md)]
+11. Observability [[slides](https://lectures.course-go.dev/11-observability.slide) | [exercise](https://github.com/course-go/exercises/blob/master/11-observability/README.md)]
     - Health
     - Logs
     - Metrics
