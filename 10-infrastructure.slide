@@ -1,4 +1,4 @@
-# Deployment
+# Infrastructure
 Course Go
 Tags: golang, go
 
@@ -8,7 +8,7 @@ Tags: golang, go
 - CI/CD
     - GitLab CI/CD
     - GitHub Actions
-- Deployments
+- Infrastructure
 - Cloud
     - GCP
 
@@ -215,7 +215,7 @@ $ git push origin --tags
 
 ## Simple
 
-.image assets/lecture-10/deployments/simple.svg 400 _
+.image assets/lecture-10/infrastructure/simple.svg 400 _
 
 ## Simple
 
@@ -244,7 +244,7 @@ $ git push origin --tags
 
 ## Caddyfile
 
-.code assets/lecture-10/deployments/Caddyfile
+.code assets/lecture-10/infrastructure/Caddyfile
 
 ```
 $ caddy run
@@ -272,13 +272,13 @@ $ caddy run
 
 ## Traefik Configuration
 
-.code assets/lecture-10/deployments/traefik-docker-compose.yaml
+.code assets/lecture-10/infrastructure/traefik-docker-compose.yaml
 
-.code assets/lecture-10/deployments/traefik.yml
+.code assets/lecture-10/infrastructure/traefik.yml
 
 ## Advanced
 
-.image assets/lecture-10/deployments/advanced.svg 420 _
+.image assets/lecture-10/infrastructure/advanced.svg 420 _
 
 ## Advanced
 
@@ -293,7 +293,7 @@ $ caddy run
 
 ## Complex
 
-.image assets/lecture-10/deployments/complex.svg 550 _
+.image assets/lecture-10/infrastructure/complex.svg 550 _
 
 ## Cloud
 
