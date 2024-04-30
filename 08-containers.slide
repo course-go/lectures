@@ -73,21 +73,37 @@ Tags: golang, go
 
 ## Docker
 
-_Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription._
+- Containers & their related technologies existed well before Docker
+    - Google's Borg [2003]
+    - cgroups [2008]
+    - [LXC](https://linuxcontainers.org) [2008]
+- Docker just created a platform around them [2013]
+    - User friendly API
+- Platform as a Service
 
-[Docker documentation](https://docs.docker.com)
+_"Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription."_
+
+[Docker](https://docker.com)
+
+[Tech Target: Evolution of containers](https://www.techtarget.com/searchitoperations/feature/Dive-into-the-decades-long-history-of-container-technology)
+
+##
+
+.image assets/lecture-08/docker/ship-your-machine.jpg 500 _
+
+[Reddit: ProgrammerHumor](https://www.reddit.com/r/ProgrammerHumor/comments/cw58z7/it_works_on_my_machine/)
 
 ## Docker Desktop
 
 ## Docker Desktop
 
-- "One-click-install"
+- All-in-one package
 - Includes all necessary tools:
     - Docker Engine
     - Docker CLI
     - Docker Build
     - Docker Compose
-    - And a few more tool...
+    - And a few more tools...
 
 [Docker: Docker Desktop](https://docs.docker.com/desktop/)
 
@@ -95,19 +111,35 @@ _Commercial use of Docker Desktop in larger enterprises (more than 250 employees
 
 ## Docker Hub
 
+- Image registry
+
 [Docker: Docker Hub](https://docs.docker.com/docker-hub/)
 
 ## Docker Build
 
 ## Docker Build
 
+- Tool for building Docker images
+
 [Docker: Docker Build](https://docs.docker.com/build/)
 
 ## Multi-stage builds
 
+- Out runtime usually does not require the SDK, it's dependencies or the compiler
+    - In Go, we only need the final binary
+- Multi-stage builds allow us to separate the image creation into multiple stages
+- Pros:
+    - Smaller image size
+    - Flexibility
+        - Different images can be used for each step
+
 [Docker: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
 
 ## Multi-platform builds
+
+- By default, Docker creates images compatible with the builder's platform
+    - E.g. `linux/amd64`
+- Multi-platform builds allow us to create images supporting multiple platforms
 
 [Docker: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
 
@@ -120,6 +152,8 @@ _Commercial use of Docker Desktop in larger enterprises (more than 250 employees
 
 ## Docker Compose
 
+- Tools for orchestrating multiple images at once
+
 [Docker: Docker Compose](https://docs.docker.com/compose/)
 
 ## Podman
@@ -127,9 +161,9 @@ _Commercial use of Docker Desktop in larger enterprises (more than 250 employees
 ## Podman
 
 - An alternative to Docker
-- Open-source
+    - Part of a `containers` collection of open-source tools
 
-[GitHub: Container](https://github.com/containers/)
+[GitHub: Containers](https://github.com/containers/)
 
 ## Testcontainers
 
