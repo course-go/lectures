@@ -7,9 +7,9 @@ Tags: golang, go
 - Containers
 - Docker
     - Desktop
-    - Engine
     - Hub
     - Build
+    - Engine
     - Compose
 - Podman
 - Testcontainers
@@ -95,25 +95,126 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
 
 ## Docker Desktop
 
-## Docker Desktop
-
-- All-in-one package
+- Primarily a desktop GUI application
 - Includes all necessary tools:
     - Docker Engine
     - Docker CLI
     - Docker Build
     - Docker Compose
     - And a few more tools...
+- "All-in-one package"
+- You can also install the separately
 
 [Docker: Docker Desktop](https://docs.docker.com/desktop/)
 
-## Docker Hub
+## Docker Images & Containers
+
+## Docker Images & Containers
+
+- Container images
+    - A form of snaphost or template for container construction
+    - They declare what the snapshot contains
+    - What is run when the image gets deployed in the form of a container
+- Containers are actual running instances constructed from container images
+    - Run using a container runtime
 
 ## Docker Hub
 
 - Image registry
+    - Largest
+    - De facto a standard
+        - Docker uses it by default
+- You can easily [create your own container repository](https://docs.docker.com/docker-hub/repos/)
+
+[Docker Hub](https://hub.docker.com)
 
 [Docker: Docker Hub](https://docs.docker.com/docker-hub/)
+
+## Pulling images
+
+- Images can be easily downloaded
+    - Implicitly uses Docker Hub
+    - Downloads a `postgres` image with the tag `latest`
+
+```
+$ docker pull postgres
+```
+
+- You can also specify a version using a tag
+
+```
+$ docker pull postgres:16
+```
+
+- You can also use a different registry
+    - GitHub Container Registry
+
+```
+$ docker pull ghcr.io/course-go/lectures:latest
+```
+
+## Running containers (1/3)
+
+```
+$ docker run postgres
+```
+
+- Fails as `postgres` requires a password for the instance
+    - We can easily provide it with the `-e`/`--env` option
+
+```
+$ docker run -e "POSTGRES_PASSWORD=gophers" postgres
+```
+
+- This successfully runs the instance
+    - However, you will not be able to connect to it as no ports are exposed by default
+    - Postgres listens on port `5432` by default by only inside the container
+    - We have to bind the port to our `localhost` machine
+
+```
+$ docker run -e "POSTGRES_PASSWORD=gophers" -p 5432:5432 postgres
+```
+
+## Running containers (2/3)
+
+- You can also run containers in detached mode
+    - Frees up your terminal
+
+```
+$ docker run -e "POSTGRES_PASSWORD=gophers" -p 5432:5432 -d postgres
+```
+
+- Running containers can be easily listed
+
+```
+$ docker ps
+CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS        PORTS                                       NAMES
+9a6a02b6f0d4   postgres   "docker-entrypoint.s…"   2 seconds ago   Up 1 second   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   serene_jemison
+```
+
+- You can also inspect images by running a interactive shell session inside of them
+    - Requires running container ID and command to execute
+    - Great for debugging
+
+```
+$ docker exec -it 9a6a02b6f0d4 /bin/sh
+```
+
+## Running containers (3/3)
+
+- Containers do not persist memory
+    - Any changes done inside of the container are then discarded when the container is dropped
+- You can mount a disk volume to persist data in the given directory
+
+```
+$ docker run \
+	-e POSTGRES_PASSWORD=mysecretpassword \
+	-e PGDATA=/var/lib/postgresql/data/pgdata \
+	-v /var/lib/pgsql/container-data:/var/lib/postgresql/data \
+	postgres
+```
+
+[Docker Hub: postgres](https://hub.docker.com/_/postgres)
 
 ## Docker Build
 
