@@ -57,7 +57,7 @@ This repository contains lecture slides for Course Go.
     - Routers & Web frameworks
     - OpenAPI
     - Templating
-8. Docker [[slides](https://lectures.course-go.dev/08-docker.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md)]
+8. Containers [[slides](https://lectures.course-go.dev/08-containers.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-containers/README.md)]
     - Containerization 
     - Docker
     - Kubernetes
