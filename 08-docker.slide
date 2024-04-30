@@ -17,6 +17,46 @@ Tags: golang, go
 
 ## Containers
 
+## Containers
+
+- A form of virtualization
+- Lightweight version of virtual machines (VMs)
+    - Does not use a hypervisor
+    - Reuses host OS
+    - Requires:
+        - Compatible kernel
+        - Container runtime
+- Shipped in a form of images
+    - The image generally includes all of its dependencies
+
+[Google Cloud: Containers](https://cloud.google.com/learn/what-are-containers)
+
+##
+
+.image assets/lecture-08/containers/containers-and-vms.svg 450 _
+
+## Containers vs VMs
+
+- VMs are generally used for infrastructure provisioning
+    - Provide better resource isolation
+        - Virtualizes at the hardware level
+- Containers serve as a tool for developers for shipping software
+    - More lightweight
+        - Virtualizes at the OS level
+        - Share the OS kernel
+            - Fraction of the memory is used
+
+[Google Cloud: Containers vs VMs](https://cloud.google.com/discover/containers-vs-vms)
+
+## Motivation
+
+- Local development
+    - Running dependecies
+    - Minimal overhead
+- Production environment
+    - Shipping deyployable units of software
+    - Simplifies collaboration with DevOps/Ops engineers
+
 ## Open Container Initiative (OCI)
 
 - Specifies industry standards around container technology
@@ -49,33 +89,38 @@ _Commercial use of Docker Desktop in larger enterprises (more than 250 employees
     - Docker Compose
     - And a few more tool...
 
-[Docker documentation: Docker Desktop](https://docs.docker.com/desktop/)
+[Docker: Docker Desktop](https://docs.docker.com/desktop/)
 
 ## Docker Hub
 
 ## Docker Hub
 
-[Docker documentation: Docker Hub](https://docs.docker.com/docker-hub/)
+[Docker: Docker Hub](https://docs.docker.com/docker-hub/)
 
 ## Docker Build
 
 ## Docker Build
 
-[Docker documentation: Docker Build](https://docs.docker.com/build/)
+[Docker: Docker Build](https://docs.docker.com/build/)
 
 ## Multi-stage builds
 
-[Docker documentation: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
+[Docker: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
 
 ## Multi-platform builds
 
-[Docker documentation: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
+[Docker: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
 
 ## Docker Compose
 
+## YAML
+
+- _Yet Another Markup Language_
+    - _YAML Ain't Markup Language_
+
 ## Docker Compose
 
-[Docker documentation: Docker Compose](https://docs.docker.com/compose/)
+[Docker: Docker Compose](https://docs.docker.com/compose/)
 
 ## Podman
 
