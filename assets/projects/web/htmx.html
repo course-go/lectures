@@ -1,0 +1,20 @@
+<button hx-post="/clicked" hx-trigger="click" hx-target="#parent-div" hx-swap="outerHTML">
+    Click Me!
+</button>
+
+<div hx-post="/mouse_entered" hx-trigger="mouseenter">
+    [Here Mouse, Mouse!]
+</div>
+
+<div hx-get="/news" hx-trigger="every 2s"></div>
+
+<input type="text" name="q" hx-get="/trigger_delay" hx-trigger="keyup delay:500ms changed" hx-target="#search-results"
+    placeholder="Search...">
+<div id="search-results"></div>
+
+<div hx-ws="connect:wss:/chatroom">
+    <div id="chat_room"></div>
+    <form hx-ws="send:submit">
+        <input name="chat_message">
+    </form>
+</div>

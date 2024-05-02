@@ -1,0 +1,165 @@
+# Projects
+
+## Use cases
+
+- CLI
+- TUI
+- Desktop
+- Web
+
+## CLI
+
+## cobra
+
+- Used by [many projects](https://github.com/spf13/cobra/blob/main/site/content/projects_using_cobra.md)
+    - Kubernetes, GitHub CLI, ...
+- From the creator of [Viper](https://github.com/spf13/viper)
+- The app is built using a structure of [commands](https://pkg.go.dev/github.com/spf13/cobra#Command), arguments and flags
+- Includes a `cobra-cli`
+    - Setup the project
+    - Add new commands
+    - Generate autocompletion scripts
+
+[GitHub: cobra](https://github.com/spf13/cobra)
+
+[Digital Ocean: How To Use the Cobra Package](https://www.digitalocean.com/community/tutorials/how-to-use-the-cobra-package-in-go)
+
+## cobra (1/2)
+
+.code assets/projects/cli/cobra.go /START OMIT/,/MIDDLE OMIT/
+
+## cobra (2/2)
+
+.code assets/projects/cli/cobra.go /MIDDLE OMIT/,/END OMIT/
+
+## cli
+
+- Backed by the same maintainers as [negroni](https://github.com/urfave/negroni)
+- Features:
+    - Flexible and permissive help system
+    - Shell completions
+    - `man` and markdown docs generating
+- Again, custom structures for commands and flags
+
+[GitHub: cli](https://github.com/urfave/cli)
+
+[Urfave CLI: Manual](https://cli.urfave.org/v2/getting-started/)
+
+## cli (1/2)
+
+.code assets/projects/cli/cli.go /START OMIT/,/MIDDLE OMIT/
+
+## cli (2/2)
+
+.code assets/projects/cli/cli.go /MIDDLE OMIT/,/END OMIT/
+
+[Urfave CLI: Examples](https://cli.urfave.org/v2/examples/greet/)
+
+## TUI
+
+## Bubbletea
+
+- Project under [charmbracelet](https://github.com/charmbracelet) organization
+    - TUI componenets with [bubbles](https://github.com/charmbracelet/bubbles)
+    - Style layouts with [lipgloss](https://github.com/charmbracelet/lipgloss)
+    - Animations with [harmonica](https://github.com/charmbracelet/harmonica)
+    - Foms and prompts with [huh](https://github.com/charmbracelet/huh)
+- Pretty rich ecosystem with plenty of projects
+
+```
+type Model interface {
+	Init() Cmd
+	Update(Msg) (Model, Cmd)
+	View() string
+}
+```
+
+[Charm](https://charm.sh)
+
+[GitHub: bubletea](https://github.com/charmbracelet/bubbletea)
+
+## Bubbletea (1/3)
+
+.code assets/projects/tui/bubbletea.go /START OMIT/,/UPDATE OMIT/
+
+## Bubbletea (2/3)
+
+.code assets/projects/tui/bubbletea.go /UPDATE OMIT/,/VIEW OMIT/
+
+## Bubbletea (3/3)
+
+.code assets/projects/tui/bubbletea.go /VIEW OMIT/,/END OMIT/
+
+## Desktop
+
+## Wails
+
+- Lightweight alternative to [Electron](https://www.electronjs.org) or [Tauri](https://tauri.app)
+    - Uses web technologies for the frontend
+        - Javascript, CSS & HTML
+    - With a Go backend
+- Built-in templates for Svelte, React, Preact, Vue, Lit and Vanilla JS
+- Wails generates Javascript bindings for your exposed Go code
+
+[Wails](https://wails.io)
+
+[GitHub: wails](https://github.com/wailsapp/wails)
+
+## Wails
+
+.code assets/projects/desktop/wails.go /START OMIT/,/END OMIT/
+
+## Fyne
+
+- GUI toolkit
+    - Inspired by Material Design
+- Supports many platforms
+    - All major OSs and even mobile
+- Custom `fyne` CLI for building the apps
+- Defines containers, layouts, widgets, collections etc.
+- Supports two-way data bindings
+- The maintainars also built a Linux distro using Fyne
+    - [FyshOS](https://github.com/FyshOS/fynedesk)
+
+[Fyne](https://fyne.io)
+
+[GitHub: Fyne](https://github.com/fyne-io/fyne)
+
+## fyne
+
+.code assets/projects/desktop/fyne.go /START OMIT/,/END OMIT/
+
+## Web
+
+## HTMX
+
+- HTML extension
+    - Allows to access AJAX using mark-up
+        - `GET`/`POST`/`PUT`/`PATCH`/`DELETE`
+    - Triggers
+    - Targets
+    - Swapping
+    - Supports Web Sockets
+- HTMX expects HTML fragments in reponses
+- Can be easily added to the mark-up
+
+```
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+```
+
+[HTMX](https://htmx.org)
+
+## HTMX
+
+.code assets/projects/web/htmx.html
+
+[HTMX: Examples](https://htmx.org/examples/)
+
+## Go with a frontend framework
+
+- [React](https://react.dev) is not the only way
+    - [Vue.js](https://vuejs.org)
+    - [Angular](https://angular.io)
+    - [Svelte](https://svelte.dev)
+    - [SolidJS](https://www.solidjs.com)
+- Or just wait a couple of days for the next one to drop
