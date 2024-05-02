@@ -1,0 +1,21 @@
+services:
+  content:
+    image: course-go/content
+    networks: [content, apis]
+  content-db:
+    image: postgres:16
+    networks: [content]
+  users:
+    image: course-go/content
+    networks: [users, apis]
+  users-db:
+    image: postgres:16
+    networks: [users]
+
+networks:
+  content:
+    driver: bridge
+  users:
+    driver: bridge
+  apis:
+    driver: bridge

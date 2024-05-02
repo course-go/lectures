@@ -1,0 +1,46 @@
+<mxfile host="Electron" modified="2024-05-02T09:36:05.949Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="rOSlp7YTos3m4eBqXk1z" version="24.2.5" type="device">
+  <diagram name="Page-1" id="kJDacviRhrzIkb0vXsPF">
+    <mxGraphModel dx="1042" dy="538" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-10" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="MoVXmPiZNE-OgqrZ4deM-1" target="MoVXmPiZNE-OgqrZ4deM-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-1" value="Buildx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="143" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-11" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="MoVXmPiZNE-OgqrZ4deM-2" target="MoVXmPiZNE-OgqrZ4deM-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-12" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;dashed=1;" edge="1" parent="1" source="MoVXmPiZNE-OgqrZ4deM-2" target="MoVXmPiZNE-OgqrZ4deM-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="MoVXmPiZNE-OgqrZ4deM-2" target="MoVXmPiZNE-OgqrZ4deM-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-2" value="BuildKit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="86" y="143" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-4" value="Docker Engine" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="302" y="157" width="120" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-5" value="Container registry" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="302" y="98.5" width="120" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-6" value="Local filesystem" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="302" y="216.5" width="120" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-7" value="Client" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-107" y="48" width="67" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-8" value="Server" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="106" y="48" width="75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MoVXmPiZNE-OgqrZ4deM-9" value="&amp;nbsp;Outputs&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="327" y="48" width="70" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DATABASE_URL=postgres://api:gophers@postgres:5432/api
+    profiles: [all]
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=api
+      - POSTGRES_PASSWORD=gophers
+      - POSTGRES_DATABASE=api
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    profiles: [all, depedendencies]

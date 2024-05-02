@@ -1,0 +1,17 @@
+FROM golang:alpine AS builder
+
+ARG SERVICE
+WORKDIR /usr/app
+
+COPY . .
+RUN go build -v -o /usr/app/bin/${SERVICE} cmd/${SERVICE}/main.go
+
+
+FROM alpine:latest
+
+EXPOSE 8080/tcp
+
+WORKDIR /usr/app
+COPY --from=builder /usr/app/bin/${SERVICE} /usr/app/${SERVICE}
+
+ENTRYPOINT ["/usr/app/${SERVICE}"]

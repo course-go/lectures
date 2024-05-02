@@ -122,13 +122,17 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
 
 - Image registry
     - Largest
-    - De facto a standard
+    - De facto the standard
         - Docker uses it by default
 - You can easily [create your own container repository](https://docs.docker.com/docker-hub/repos/)
 
 [Docker Hub](https://hub.docker.com)
 
 [Docker: Docker Hub](https://docs.docker.com/docker-hub/)
+
+## Docker Architecture
+
+.image assets/lecture-08/docker/docker-architecture.svg 400 _
 
 ## Pulling images
 
@@ -153,7 +157,7 @@ $ docker pull postgres:16
 $ docker pull ghcr.io/course-go/lectures:latest
 ```
 
-## Running containers (1/3)
+## Running containers (1/2)
 
 ```
 $ docker run postgres
@@ -167,15 +171,20 @@ $ docker run -e "POSTGRES_PASSWORD=gophers" postgres
 ```
 
 - This successfully runs the instance
-    - However, you will not be able to connect to it as no ports are exposed by default
-    - Postgres listens on port `5432` by default by only inside the container
+    - Postgres runs on port `5432` by default    
+    - However, you will not be able to connect to it from localhost
+    - Docker does not automatically export it
     - We have to bind the port to our `localhost` machine
 
 ```
 $ docker run -e "POSTGRES_PASSWORD=gophers" -p 5432:5432 postgres
 ```
 
-## Running containers (2/3)
+## Exposing container ports
+
+.image assets/lecture-08/docker/container-ports.svg 500 _
+
+## Running containers (2/2)
 
 - You can also run containers in detached mode
     - Frees up your terminal
@@ -193,14 +202,19 @@ CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS       
 ```
 
 - You can also inspect images by running a interactive shell session inside of them
-    - Requires running container ID and command to execute
     - Great for debugging
 
 ```
 $ docker exec -it 9a6a02b6f0d4 /bin/sh
 ```
 
-## Running containers (3/3)
+- You can also kill a running container
+
+```
+$ docker kill 9a6a02b6f0d4
+```
+
+## Container volumes
 
 - Containers do not persist memory
     - Any changes done inside of the container are then discarded when the container is dropped
@@ -214,35 +228,171 @@ $ docker run \
 	postgres
 ```
 
+- You can also create a named volume
+
+```
+$ docker volume create postgres-container
+$ docker run -d \
+  -v postgres-container:/var/lib/postgresql/data \
+  postgres
+```
+
 [Docker Hub: postgres](https://hub.docker.com/_/postgres)
+
+## Custom images
+
+- We can now pull and run existing images
+    - But what if we want to create our own?
 
 ## Docker Build
 
 ## Docker Build
 
 - Tool for building Docker images
+- Uses a custom file 
+    - `Dockerfile`
+    - Custom format
 
-[Docker: Docker Build](https://docs.docker.com/build/)
+[Docker Build](https://docs.docker.com/build/)
+
+## Dockerfile keywords
+
+```
+ADD	Add local or remote files and directories.
+ARG	Use build-time variables.
+CMD	Specify default commands.
+COPY	Copy files and directories.
+ENTRYPOINT	Specify default executable.
+ENV	Set environment variables.
+EXPOSE	Describe which ports your application is listening on.
+FROM	Create a new build stage from a base image.
+HEALTHCHECK	Check a container's health on startup.
+LABEL	Add metadata to an image.
+MAINTAINER	Specify the author of an image.
+ONBUILD	Specify instructions for when the image is used in a build.
+RUN	Execute build commands.
+SHELL	Set the default shell of an image.
+STOPSIGNAL	Specify the system call signal for exiting a container.
+USER	Set user and group ID.
+VOLUME	Create volume mounts.
+WORKDIR	Change working directory.
+```
+
+[Docker: Dockerfile](https://docs.docker.com/reference/dockerfile/)
+
+## Dockerfile 
+
+.code assets/lecture-08/docker/Dockerfile
+
+[Docker Build: Dockerfile](https://docs.docker.com/reference/dockerfile/)
+
+## Building and pushing images
+
+- You can easily build the image
+    - `-t` arguments specifies the tag at build time
+
+```
+$ docker build -t <NAME>:<TAG> .
+```
+
+- It can be alternatively specified after building the image    
+    - Image can also have multiple tags
+
+```
+$ docker tag <EXISTING-NAME>:<EXISTING-TAG> <NEW-NAME>:<NEW:TAG>
+```
+
+- You have to login before pushing images to a remote registry
+
+```
+$ docker login
+```
+
+```
+$ docker push <NAME>:<TAG>
+```
+
+## Build context
+
+```
+$ docker build .
+```
+
+- The build command requires a path to `Dockerfile` and a build context
+    - Searches for `Dockerfile` in the current directory
+        - Can be specified with `-f`/`--file`
+
+```
+$ docker build -f build/Dockerfile .
+```
+- The context specifies where the build is executed
+
+```
+$ docker build my-cool-app/src
+```
+
+[Docker Build: Context](https://docs.docker.com/build/building/context/)
+
+## Build architecture
+
+- `build` uses the `buildx` client in the background
+- Buildkit is the building backend
+    - `buildkitd`
+
+.image assets/lecture-08/docker/build-architecture.svg 300 _
+
+[Docker Build: Architecture](https://docs.docker.com/build/architecture/)
 
 ## Multi-stage builds
 
-- Out runtime usually does not require the SDK, it's dependencies or the compiler
+- The runtime usually does not require the SDK, it's dependencies or the compiler
     - In Go, we only need the final binary
 - Multi-stage builds allow us to separate the image creation into multiple stages
-- Pros:
+- Benefits
     - Smaller image size
     - Flexibility
         - Different images can be used for each step
 
-[Docker: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
+[Docker Build: Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
+
+## Multi-stage builds
+
+.code assets/lecture-08/docker/Dockerfile.multistage
+
 
 ## Multi-platform builds
 
 - By default, Docker creates images compatible with the builder's platform
-    - E.g. `linux/amd64`
-- Multi-platform builds allow us to create images supporting multiple platforms
+    - You can specify the platform when building an image
+        - Only up to a single platform
 
-[Docker: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
+```
+$ docker build --platform linux/amd64 .
+```
+
+- Multi-platform builds allow us to create multiple images supporting multiple platforms at one
+    - Three stategies
+        - [QEMU](https://docs.docker.com/build/building/multi-platform/#qemu)
+        - [Multiple nodes of different architecture](https://docs.docker.com/build/building/multi-platform/#multiple-native-nodes)
+        - [Cross-compilation](https://docs.docker.com/build/building/multi-platform/#cross-compilation)
+
+[Docker Build: Multi-platform builds](https://docs.docker.com/build/building/multi-platform/)
+
+## Multi-platform build using cross-compilation
+
+- `BuildKit` supports [multiple build arguments](https://docs.docker.com/reference/dockerfile/#automatic-platform-args-in-the-global-scope) out of the box
+
+.code assets/lecture-08/docker/Dockerfile.cross-compilation
+
+[Docker: Cross-Compilation Guide](https://www.docker.com/blog/faster-multi-platform-builds-dockerfile-cross-compilation-guide/)
+
+## Motivation
+
+- We can now
+    - Create, pull and push custom images
+    - Run them using the CLI
+- What if we want to orchestrate multiple services
+    - Do we have to run all of them manually?
 
 ## Docker Compose
 
@@ -250,12 +400,118 @@ $ docker run \
 
 - _Yet Another Markup Language_
     - _YAML Ain't Markup Language_
+- Superset of JSON
+    - More readable compared to JSON
+        - Basically a JSON without the brackets and the obligatory quotation marks
+    - Depends on indentation
+        - Criticism
+
+[YAML](https://yaml.org)
+
+## YAML
+
+.code assets/lecture-08/docker/yaml.yaml
+
+[YAML specification](https://yaml.org/spec/1.2.2/)
 
 ## Docker Compose
 
-- Tools for orchestrating multiple images at once
+- Tools for orchestrating multiple containers at once
+- Specified using a `docker-compose.yaml` file
+    - Also supports `compose.yaml` (preferred nowadays)
 
-[Docker: Docker Compose](https://docs.docker.com/compose/)
+[Docker Compose](https://docs.docker.com/compose/)
+
+## Docker Compose
+
+.code assets/lecture-08/docker/compose.yaml
+
+[GitHub: Compose specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
+
+## Running Docker Compose
+
+- Running the compose
+    - `up` = `create` + `start`
+
+```
+$ docker compose up
+$ docker compose up -d
+```
+
+- Shuting down the compose services
+    - `down` = `stop` + `rm`
+
+```
+$ docker compose down
+```
+
+- You can restart individual services
+
+```
+$ docker compose restart <SERVICE>
+```
+
+- And also display aggregated logs for all services
+
+```
+$ docker compose logs -f
+```
+
+## Networking
+
+- Docker Compose automatically creates a network for your services
+    - The network gets shared by all of your services
+    - `bridge` type
+    - `default_network`
+- You can explicitly specify the networks for each service
+    - Docker defines a [default set of drivers](https://docs.docker.com/network/drivers/)
+
+[Docker: Networking](https://docs.docker.com/network/)
+
+## Networking
+
+.code assets/lecture-08/docker/compose-networking.yaml
+
+## Networking
+
+.image assets/lecture-08/docker/compose-networking.svg 500 _
+
+## Profiles
+
+- You may not  want to run all services each time
+    - Running tests for the service may only require dependencies
+- Custom profiles can be specified
+- You can then run the subset of services sharing the profile
+
+```
+$ docker compose --profile <PROFILE-NAME> up
+$ COMPOSE_PROFILES=<PROFILE-NAME> docker compose up
+
+$ docker compose --profile products --profile orders up
+```
+
+[Docker Compose: Profiles](https://docs.docker.com/compose/profiles/)
+
+## Profiles
+
+.code assets/lecture-08/docker/compose-profiles.yaml
+
+## Dependencies
+
+- You can declare how services depend on each other
+    - Define start-up and shutdown order
+    - You avoid unnecessary crashing
+- `depends_on`
+    - `service_started`
+    - `service_healthy`
+    - `service_completed_successfully`
+- `healthcheck`
+
+[Docker Compose: Control order](https://docs.docker.com/compose/startup-order/)
+
+## Dependencies
+
+.code assets/lecture-08/docker/compose-dependencies.yaml
 
 ## Podman
 
@@ -263,6 +519,15 @@ $ docker run \
 
 - An alternative to Docker
     - Part of a `containers` collection of open-source tools
+- It mostly has the same API
+    - Same CLI commands
+
+```
+$ podman run postgres:16
+$ podman compose up
+```
+
+[Podman Desktop](https://podman-desktop.io)
 
 [GitHub: Containers](https://github.com/containers/)
 
@@ -318,3 +583,5 @@ $ docker run \
 ## Kubernetes
 
 - TODO
+
+[Kubernetes](https://kubernetes.io)

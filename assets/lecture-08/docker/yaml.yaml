@@ -1,0 +1,18 @@
+---
+service:
+  name: Customer API
+  enabled: true
+  port: 8080
+  database_url: "postgres://postgres:5432/api"
+  banner: |
+    Hello from Customer API
+    Running in 3, 2, 1...
+      PS: ASCII Art does not work very well
+
+dependencies:
+  product:
+    urls: ["product.gcp.course-go.dev", "product.aws.course-go.dev"]
+  order:
+    urls:
+      - "order.gcp.course-go.dev"
+      - "order.aws.course-go.dev"
