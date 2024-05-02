@@ -9,7 +9,6 @@ Tags: golang, go
     - Desktop
     - Hub
     - Build
-    - Engine
     - Compose
 - Podman
 - Testcontainers
@@ -363,7 +362,6 @@ $ docker build my-cool-app/src
 
 .code assets/lecture-08/docker/Dockerfile.multistage
 
-
 ## Multi-platform builds
 
 - By default, Docker creates images compatible with the builder's platform
@@ -584,8 +582,111 @@ $ podman compose up
 
 ## Kubernetes
 
+## Motivation
+
+- What if we want to scale our applications?
+    - Horizontal scaling
+    - High availability
+    - Configuration management
+- What if our node (server) dies?
+    - Self-healing
+
 ## Kubernetes
 
-- TODO
+- K8s
+- Platform for managing container workloads and services
+    - Distributed
+- Developed by Google
+- Open-sourced in 2014
+    - Handed over to [CNCF](https://www.cncf.io)
 
 [Kubernetes](https://kubernetes.io)
+
+[Kubernetes: Cluster architecture](https://kubernetes.io/docs/concepts/architecture/)
+
+## Kubernetes glossary
+
+- **Pod**: a set of running containers
+- **Node**: machine that processes workload
+    - **kubelet**: manages and monitors containers in pods
+    - **kube-proxy**: manages network traffic to pods
+- **Control Plane**: cluster orchestration layer
+    - **kube-api-server**: exposes orchestration  API
+    - **kube-scheduler**: makes pods deployment decisions
+    - **kube-controller-manager**: monitors cluster state using the API
+    - **etcd**: key-value storage
+
+[Kubernetes Componenets](https://kubernetes.io/docs/concepts/overview/components/#node-components)
+
+## Kubernetes architecture
+
+.image assets/lecture-08/kubernetes/kubernetes-components.svg 550 _
+
+## Kubernetes architecture
+
+.image assets/lecture-08/kubernetes/kubernetes-architecture.svg 500 _
+
+## Minikube
+
+- You can easily set-up local cluster using Minikube
+    - Great for learning or local development
+
+```
+$ minikube start
+$ minikube status
+$ minikube stop
+```
+
+- Minikube supports the Kubernetes Dashboard UI
+    - You can easily preview allocated resources
+
+```
+$ minikube dashboard
+```
+
+[Minikube](https://minikube.sigs.k8s.io/docs/)
+
+## Kubectl
+
+- You can interact with the cluster using the [kubectl](https://kubernetes.io/docs/reference/kubectl/) command line tool
+
+```
+$ kubectl get nodes
+$ kubectl get pods
+```
+
+- Apps are deployed using `deployments`
+
+```
+$ kubectl create deployment k8s-bc --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+$ kubectl get deployments
+```
+
+- The deployments can easily be replicated
+
+```
+$ kubectl scale deployments/k8s-bc --replicas=3
+```
+
+- Or updated
+
+```
+$ kubectl set image deployments/k8s-bc k8s-bc=docker.io/jocatalin/kubernetes-bootcamp:v2
+$ kubectl describe deployments/k8s-bc
+```
+
+[Kubernetes: Learn Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+
+## Deployment using a specification
+
+.code assets/lecture-08/kubernetes/nginx-deployment.yaml
+
+## Deployment using a specification
+
+- The then apply the specification to the cluster
+
+```
+$ kubectl apply -f nginx-deployment.yaml
+```
+
+[Kubernets: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
