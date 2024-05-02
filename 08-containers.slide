@@ -130,9 +130,9 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
 
 [Docker: Docker Hub](https://docs.docker.com/docker-hub/)
 
-## Docker Architecture
+## Docker workflow
 
-.image assets/lecture-08/docker/docker-architecture.svg 400 _
+.image assets/lecture-08/docker/docker-flow.svg 400 _
 
 ## Pulling images
 
@@ -238,6 +238,10 @@ $ docker run -d \
 ```
 
 [Docker Hub: postgres](https://hub.docker.com/_/postgres)
+
+## Docker architecture
+
+.image assets/lecture-08/docker/docker-architecture.svg 520 _
 
 ## Custom images
 
