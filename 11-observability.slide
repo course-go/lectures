@@ -4,21 +4,55 @@ Tags: golang, go
 
 ## Outline
 
+- Health
 - Logs
     - Loggers
     - Loki
 - Metrics
     - Prometheus
     - Grafana
-- Tracing
+- Traces
     - Jaeger
 - OpenTelemetry
 
-## Logs
+## Health
+
+## Health
+
+- Used to ping or to healthcheck a service instance
+- Reports on service components/dependencies health
+- Usually exposed as `/health` or `/status`
+
+```
+{
+  "name": "API",
+  "version": "v1.15.3"
+  "status": "NOK",
+  "components": {
+    "database": {
+      "status": "OK",
+      "timestamp": "2024-05-04T12:10:18.001547Z"
+    },
+    "exporter": {
+      "status": "NOK",
+      "timestamp": "2024-05-04T12:13:45.652785Z",
+      "error": "corrupted data"
+    }
+  }
+}
+```
+
+## Health
+
+.code assets/lecture-11/health/health.go /START OMIT/,/END OMIT/
+
+[GitHub: alexliesenfeld/health](https://github.com/alexliesenfeld/health)
 
 ## Logs
 
-- TODO
+## Logs
+
+- The most basic form of telemetry
 
 ## zerolog
 
@@ -30,11 +64,14 @@ Tags: golang, go
 
 - Maintained by Uber
 
+[GitHub: uber-go/zap](https://github.com/uber-go/zap)
+
 [BetterStack: Complete Guide to Zap](https://betterstack.com/community/guides/logging/go/zap/)
 
 ## Loki
 
-- Product by Grafana
+- Created by Grafana Labs
+    - Part of the CNCF project
 
 [GrafanaLab: Loki](https://grafana.com/oss/loki/)
 
@@ -44,28 +81,141 @@ Tags: golang, go
 
 ## Metrics
 
-- TODO
-
 ## Prometheus
 
-- TODO
+- System monitoring tool
+- Open-source
+- Built at SoundCloud [2012]
+    - A CNCF project since 2016
+- Custom Prometheus Query Language ([PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/))
+- [Stores data](https://prometheus.io/docs/prometheus/latest/storage/) as time series
+- Exercises the pull strategy by default
+    - Pushing can be set-up using the [pushgateway](https://github.com/prometheus/pushgateway)
+- Supports [alerting](https://prometheus.io/docs/alerting/latest/overview/) out of the box
+
+[Prometheus](https://prometheus.io)
+
+[GitHub: Prometheus](https://github.com/prometheus/prometheus)
+
+## Prometheus Configuration
+
+.code assets/lecture-11/metrics/prometheus.yaml
+
+[Prometheus: Configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
+
+## Metric types
+
+- Counter
+    - Incrementing counter
+- Gauge
+    - Numerical value
+- Histogram
+    - Samples observations
+    - Distributes values into buckets
+- Summary
+    - [Similar to Histogram](https://prometheus.io/docs/practices/histograms/)
+    - Exposes quantiles
+
+[Prometheus: Metric Types](https://prometheus.io/docs/concepts/metric_types/)
+
+## Prometheus Metrics
+
+.code assets/lecture-11/metrics/prometheus-metrics.text
+
+## Instrumenting
+
+.code assets/lecture-11/metrics/prometheus-instrumenting.go /START OMIT/,/END OMIT/
+
+[Prometheus: Instrumenting Go Application](https://prometheus.io/docs/guides/go-application/)
+
+## PromQL
+
+- Metrics are requested by name
+
+```
+promhttp_metric_handler_requests_total
+```
+
+- Can be filtered using labels
+
+```
+promhttp_metric_handler_requests_total{code="200"}
+```
+
+- Number of unique metrics with given name
+
+```
+count(promhttp_metric_handler_requests_total)
+```
+
+- Average `/metrics` handler requests with status OK across 3 minute windows
+
+```
+rate(promhttp_metric_handler_requests_total{code="200"}[3m])
+```
+
+- Average HTTP request duration split by 3 minute windows
+
+```
+sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duration_seconds_count[3m]))
+```
+
+##
+
+.image assets/lecture-11/metrics/prometheus-query-table.png 550 _
+
+##
+
+.image assets/lecture-11/metrics/prometheus-query-graph.png 580 _
+
+##
+
+.image assets/lecture-11/metrics/prometheus-query-graph-rate.png 600 _
 
 ## Grafana
 
-- TODO
+- Visualization tool
 
-## Tracing
+[Grafana Labs: Grafana](https://grafana.com/grafana/)
 
-## Tracing
+## Traces
+
+## Traces
 
 - TODO
 
 ## Jaeger
 
-- TODO
+- Distrubuted tracing platform
+- Inspired by Dapper and OpenZepkin
+- Created by Uber
+    - Part of the CNCF project
+
+[Jaeger](https://www.jaegertracing.io)
 
 ## OpenTelemetry
 
 ## OpenTelemetry
 
-- TODO
+- OTel
+- Create by merging [OpenCensus](https://opencensus.io) and [OpenTracing](https://opentracing.io) in 2019
+    - CNCF project
+
+[OpenTelemetry](https://opentelemetry.io)
+
+## Instrumentation
+
+- Many libraries provide automatic intrumentation via plugins
+    - [OpenTelemetry Registry](https://opentelemetry.io/ecosystem/registry/?s=sqlx&component=&language=)
+- Or you can use the SDK directly
+    - [OpenTelemetry-Go](https://github.com/open-telemetry/opentelemetry-go)
+
+## Demo
+
+- OpenTelemetry maintains a up-to-date demo
+    - Microservice-based distributed system
+    - Showcases OTel usage
+
+[OpenTelemetry Demo Documentation](https://opentelemetry.io/docs/demo/)
+
+[GitHub: OpenTelemetry Astronomy Shop](https://github.com/open-telemetry/opentelemetry-demo)
