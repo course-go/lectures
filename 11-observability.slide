@@ -5,12 +5,12 @@ Tags: golang, go
 ## Outline
 
 - Health
-- Logs
-    - Loggers
-    - Loki
 - Metrics
     - Prometheus
     - Grafana
+- Logs
+    - Loggers
+    - Loki
 - Traces
     - Jaeger
 - OpenTelemetry
@@ -47,95 +47,6 @@ Tags: golang, go
 .code assets/lecture-11/health/health.go /START OMIT/,/END OMIT/
 
 [GitHub: alexliesenfeld/health](https://github.com/alexliesenfeld/health)
-
-## Logs
-
-## Logs
-
-- The most basic form of telemetry
-- Timestamped text records
-    - Structured
-    - Unstructured
-- Generally supported by programming languages out of the box
-    - [log](https://pkg.go.dev/log)
-    - [slog](https://pkg.go.dev/slog)
-
-## zap
-
-- Created by Uber
-- Focuses on performance
-- Minimalizes allocations
-- [Extendable](https://pkg.go.dev/go.uber.org/zap#hdr-Extending_Zap)
-
-.code assets/lecture-11/logs/zap.go /START OMIT/,/END OMIT/
-
-[GitHub: zap](https://github.com/uber-go/zap)
-
-[BetterStack: Complete Guide to Zap](https://betterstack.com/community/guides/logging/go/zap/)
-
-## zerolog
-
-- Inspired by zap
-- Comes out the fastest according to [benchmarks](https://github.com/uber-go/zap?tab=readme-ov-file#performance)
-
-.code assets/lecture-11/logs/zerolog.go /START OMIT/,/END OMIT/
-
-[GitHub: zerolog](https://github.com/rs/zerolog)
-
-[BetterStack: Complete Guide to Zerolog](https://betterstack.com/community/guides/logging/zerolog/)
-
-## Loki
-
-- Horizontally-scalable, highly-available, log aggregation system
-    - Inspired by Prometheus
-    - Focuses on logs instead of metrics
-- Created by Grafana Labs and maintained under the CNCF
-- The log data are compressed and [stored](https://grafana.com/docs/loki/latest/get-started/architecture/#storage) in chunks
-    - Object storage
-- [Labels](https://grafana.com/docs/loki/latest/get-started/labels/) the data and uses the labels to index them
-- Multiple clients can be configured to collect the logs
-- Custom [LogQL](https://grafana.com/docs/loki/latest/query/) query language similar to PromQL
-
-[Grafana Lab: Loki](https://grafana.com/oss/loki/)
-
-[GitHub: Loki](https://github.com/grafana/loki)
-
-## Architecture
-
-- Modular system composed of multiple [components](https://grafana.com/docs/loki/latest/get-started/components/)
-    - Can be deployed:
-        - All-in-one
-        - In logical groups
-        - Individually
-
-```
-$ loki -config.file=loki.yaml -target all
-$ loki -config.file=loki.yaml -target write
-$ loki -config.file=loki.yaml -target compactor
-```
-
-[Grafana Labs: Loki deployment modes](https://grafana.com/docs/loki/latest/get-started/deployment-modes/)
-
-## Configuration
-
-.code assets/lecture-11/logs/loki.yaml
-
-[Grafana Lab: Loki configuration](https://grafana.com/docs/loki/latest/configure/)
-
-## Clients
-
-- [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/)
-    - Logging agent
-    - Reuses Prometheus `scrape_configs` configuration
-- [Docker Driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/)
-    - Docker plugin that reads container logs and pushes them to Loki
-- [OpenTelemetry Collector](https://grafana.com/docs/loki/latest/send-data/otel/)
-    - Loki can ingest OTel logs
-    - More on OpenTelemetry later
-- [Grafana Alloy](https://grafana.com/docs/alloy/latest/)
-    - Grafanas distribution of OpenTelemetry Collector
-
-[Grafana Labs: Send log data to Loki](https://grafana.com/docs/loki/latest/send-data/)
 
 ## Metrics
 
@@ -238,6 +149,95 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 - Visualization tool
 
 [Grafana Labs: Grafana](https://grafana.com/grafana/)
+
+## Logs
+
+## Logs
+
+- The most basic form of telemetry
+- Timestamped text records
+    - Structured
+    - Unstructured
+- Generally supported by programming languages out of the box
+    - [log](https://pkg.go.dev/log)
+    - [slog](https://pkg.go.dev/slog)
+
+## zap
+
+- Created by Uber
+- Focuses on performance
+- Minimalizes allocations
+- [Extendable](https://pkg.go.dev/go.uber.org/zap#hdr-Extending_Zap)
+
+.code assets/lecture-11/logs/zap.go /START OMIT/,/END OMIT/
+
+[GitHub: zap](https://github.com/uber-go/zap)
+
+[BetterStack: Complete Guide to Zap](https://betterstack.com/community/guides/logging/go/zap/)
+
+## zerolog
+
+- Inspired by zap
+- Comes out the fastest according to [benchmarks](https://github.com/uber-go/zap?tab=readme-ov-file#performance)
+
+.code assets/lecture-11/logs/zerolog.go /START OMIT/,/END OMIT/
+
+[GitHub: zerolog](https://github.com/rs/zerolog)
+
+[BetterStack: Complete Guide to Zerolog](https://betterstack.com/community/guides/logging/zerolog/)
+
+## Loki
+
+- Horizontally-scalable, highly-available, log aggregation system
+    - Inspired by Prometheus
+    - Focuses on logs instead of metrics
+- Created by Grafana Labs and maintained under the CNCF
+- The log data are compressed and [stored](https://grafana.com/docs/loki/latest/get-started/architecture/#storage) in chunks
+    - Object storage
+- [Labels](https://grafana.com/docs/loki/latest/get-started/labels/) the data and uses the labels to index them
+- Multiple clients can be configured to collect the logs
+- Custom [LogQL](https://grafana.com/docs/loki/latest/query/) query language similar to PromQL
+
+[Grafana Lab: Loki](https://grafana.com/oss/loki/)
+
+[GitHub: Loki](https://github.com/grafana/loki)
+
+## Architecture
+
+- Modular system composed of multiple [components](https://grafana.com/docs/loki/latest/get-started/components/)
+    - Can be deployed:
+        - All-in-one
+        - In logical groups
+        - Individually
+
+```
+$ loki -config.file=loki.yaml -target all
+$ loki -config.file=loki.yaml -target write
+$ loki -config.file=loki.yaml -target compactor
+```
+
+[Grafana Labs: Loki deployment modes](https://grafana.com/docs/loki/latest/get-started/deployment-modes/)
+
+## Configuration
+
+.code assets/lecture-11/logs/loki.yaml
+
+[Grafana Lab: Loki configuration](https://grafana.com/docs/loki/latest/configure/)
+
+## Clients
+
+- [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/)
+    - Logging agent
+    - Reuses Prometheus `scrape_configs` configuration
+- [Docker Driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/)
+    - Docker plugin that reads container logs and pushes them to Loki
+- [OpenTelemetry Collector](https://grafana.com/docs/loki/latest/send-data/otel/)
+    - Loki can ingest OTel logs
+    - More on OpenTelemetry later
+- [Grafana Alloy](https://grafana.com/docs/alloy/latest/)
+    - Grafanas distribution of OpenTelemetry Collector
+
+[Grafana Labs: Send log data to Loki](https://grafana.com/docs/loki/latest/send-data/)
 
 ## Traces
 
