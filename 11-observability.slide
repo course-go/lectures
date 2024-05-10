@@ -52,7 +52,13 @@ Tags: golang, go
 
 ## Metrics
 
-- TODO
+- Runtime service measurements
+    - Quantifiable
+- Examples:
+    - "Service uptime"
+    - "Memory allocations"
+    - "HTTP requests count"
+    - "HTTP response time"
 
 ## Prometheus
 
