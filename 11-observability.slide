@@ -13,6 +13,7 @@ Tags: golang, go
     - Loki
 - Traces
     - Jaeger
+- Sampling
 - OpenTelemetry
 
 ## Observability
@@ -339,6 +340,23 @@ $ loki -config.file=loki.yaml -target compactor
 .image assets/lecture-11/traces/jaeger-architecture.svg 320 _ 
 
 [Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
+
+## Sampling
+
+## Sampling
+
+- Telemetry data are often pretty rich
+- Saving everything results in large storage costs
+- Instrumentation also has some runtime overhead
+- Sampling helps us mitigate these problems
+    - Head-based sampling
+        - The decision is done right at the start
+        - E.g. based on the generated trace ID
+    - Tail-based sampling
+        - Inspects the data as a whole and decides based on specified criteria
+        - E.g. the trace contains an error
+
+[OpenTelemetry: Sampling](https://opentelemetry.io/docs/concepts/sampling/)
 
 ## OpenTelemetry
 
