@@ -153,8 +153,23 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 ## Grafana
 
 - Visualization tool
+    - Supports alerting
+- Supports over [150 datasources](https://grafana.com/grafana/plugins/data-source-plugins/)
+- Grafana also provides its own fully managed [Grafana Cloud](https://grafana.com/products/cloud/)
+    - [Free plan](https://grafana.com/pricing/)
+        - 10k metrics
+        - 14-day retention
+        - 50 GB of logs and metrics
 
 [Grafana Labs: Grafana](https://grafana.com/grafana/)
+
+[GitHub: Grafana](https://github.com/grafana/grafana)
+
+## 
+
+.video assets/lecture-11/metrics/grafana.mp4 video/mp4 520 _
+
+[Grafana Labs: Grafana sandbox](https://play.grafana.org/d/000000012/grafana-play-home?orgId=1)
 
 ## Logs
 
