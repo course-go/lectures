@@ -296,12 +296,12 @@ $ loki -config.file=loki.yaml -target compactor
 
 - Distrubuted tracing platform
 - Inspired by Dapper and OpenZepkin
-- Created by Uber
+- Created by Uber in 2015
     - A CNCF graduated project
 - Nowadays uses OpenTelemetry for instrumentation
-    - Previously had own clients
+    - Previously had its own clients
 - Supports multiple storage backends
-    - Most notable are Cassandra, Elasticsearch, and Kafta
+    - Most notable are Cassandra, Elasticsearch, and Kafka
 - Jaeger maintains a [hotrod demo](https://github.com/jaegertracing/jaeger/tree/main/examples/hotrod)
 
 [Jaeger](https://www.jaegertracing.io)
@@ -322,7 +322,7 @@ $ loki -config.file=loki.yaml -target compactor
 ## Architecture
 
 - Similarily to Loki, Jaeger can be:
-    - Deployed as a all-in-one bianry
+    - Deployed as a all-in-one binary
     - Or split by components
 - Components
     - Collector
@@ -352,6 +352,18 @@ $ loki -config.file=loki.yaml -target compactor
     - Again, a CNCF project
 
 [OpenTelemetry](https://opentelemetry.io)
+
+## Non-OpenTelemetry architecture
+
+.image assets/lecture-11/opentelemetry/non-opentelemetry-architecture.svg 480 _
+
+[OpenTelemetry: Logging specification](https://opentelemetry.io/docs/specs/otel/logs/)
+
+## OpenTelemetry architecture
+
+.image assets/lecture-11/opentelemetry/opentelemetry-architecture.svg 480 _
+
+[OpenTelemetry: Logging specification](https://opentelemetry.io/docs/specs/otel/logs/)
 
 ## Instrumentation
 
