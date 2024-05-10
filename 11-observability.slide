@@ -264,16 +264,70 @@ $ loki -config.file=loki.yaml -target compactor
 
 ## Traces
 
-- TODO
+- Model work in distributed systems
+- Each trace models a transaction through your system 
+    - End-to-end request/response
+- Traces are basically a set of interconnected logs
+    - Even through multiple services
+- Each trace is made up of a single or multiple spans
+    - Span models a part of the transaction
+        - A span can model a service interaction or a interaction within a component etc.
+    - Each spans contains tags/attributes
+        - Provide additional context
+
+## Spans
+
+.image assets/lecture-11/traces/spans.svg 450 _
+
+[Jaeger: Spans](https://www.jaegertracing.io/docs/1.57/architecture/#span)
 
 ## Jaeger
 
 - Distrubuted tracing platform
 - Inspired by Dapper and OpenZepkin
 - Created by Uber
-    - Part of the CNCF project
+    - A CNCF graduated project
+- Nowadays uses OpenTelemetry for instrumentation
+    - Previously had own clients
+- Supports multiple storage backends
+    - Most notable are Cassandra, Elasticsearch, and Kafta
+- Jaeger maintains a [hotrod demo](https://github.com/jaegertracing/jaeger/tree/main/examples/hotrod)
 
 [Jaeger](https://www.jaegertracing.io)
+
+##
+
+.image assets/lecture-11/traces/jaeger-traces-view.png 520 _
+
+[Jaeger: Introduction](https://www.jaegertracing.io/docs/1.57/#screenshots)
+
+##
+
+.image assets/lecture-11/traces/jaeger-traces-detail-view.png 520 _
+
+[Jaeger: Introduction](https://www.jaegertracing.io/docs/1.57/#screenshots)
+
+
+## Architecture
+
+- Similarily to Loki, Jaeger can be:
+    - Deployed as a all-in-one bianry
+    - Or split by components
+- Components
+    - Collector
+        - Receives traces, runs them through a pipeline and saves it
+    - Query
+        - Exposes query API and hosts UI
+    - Ingester
+        - Adds support for Kafka
+
+[Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
+
+## Architecture
+
+.image assets/lecture-11/traces/jaeger-architecture.svg 320 _ 
+
+[Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
 
 ## OpenTelemetry
 
@@ -281,7 +335,7 @@ $ loki -config.file=loki.yaml -target compactor
 
 - OTel
 - Create by merging [OpenCensus](https://opencensus.io) and [OpenTracing](https://opentracing.io) in 2019
-    - CNCF project
+    - Again, a CNCF project
 
 [OpenTelemetry](https://opentelemetry.io)
 
