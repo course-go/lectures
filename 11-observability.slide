@@ -15,6 +15,17 @@ Tags: golang, go
     - Jaeger
 - OpenTelemetry
 
+## Observability
+
+- The ability to understand the internal state of a system
+- The inspection is done by analyzing telemetry data outputted by the system
+    - Telemetry data describe how the application is used and how it performs
+- [Four common telemetry data types](https://developer.newrelic.com/opentelemetry-masterclass/telemetry/telemetry-data-types/) exist (MELT):
+    - Metrics
+    - Events
+    - Logs
+    - Traces
+
 ## Health
 
 ## Health
@@ -333,8 +344,11 @@ $ loki -config.file=loki.yaml -target compactor
 
 ## OpenTelemetry
 
-- OTel
-- Create by merging [OpenCensus](https://opencensus.io) and [OpenTracing](https://opentracing.io) in 2019
+- AKA OTel
+- Vendor-neutral observability framework
+    - Defines industry standards
+    - Instrumenting, generating, collecting, and exporting telemetry data
+- Created by merging [OpenCensus](https://opencensus.io) and [OpenTracing](https://opentracing.io) in 2019
     - Again, a CNCF project
 
 [OpenTelemetry](https://opentelemetry.io)
