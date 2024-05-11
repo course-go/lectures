@@ -57,7 +57,7 @@ This repository contains lecture slides for Course Go.
     - Routers & Web frameworks
     - OpenAPI
     - Templating
-8. Containers [[slides](https://lectures.course-go.dev/08-containers.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-containers/README.md)]
+8. Containers [[slides](https://lectures.course-go.dev/08-containers.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md)]
     - Containerization 
     - Docker
     - Kubernetes
@@ -79,14 +79,42 @@ This repository contains lecture slides for Course Go.
     - Metrics
     - Tracing
 
-## Tooling
+## Running the slides
 
-The slides are made using the [go present syntax](https://pkg.go.dev/golang.org/x/tools/present).
-You can run the slides locally using the go present CLI command.
+The slides are made using the [go present syntax](https://pkg.go.dev/golang.org/x/tools/present) which has its own tooling.
 
-### Installation
+The project maintains an up-to-date deployed slides version on [lectures.course-go.dev](lectures.course-go.dev).
 
-You can install the CLI command via go install like so:
+The only disadvantage is that this version does not allow you to run the Go code presented on the slides for security reasons. 
+To run the Go code, you must run the slides locally.
+
+### Running locally
+
+#### Using Docker
+
+You can use an already pre-built container with lecture slides.
+
+```
+docker run -p "3999:3999" \
+    ghcr.io/course-go/lectures:latest \
+    present -http=:3999
+```
+
+#### Using present directly
+
+Or you can run the slides locally using the Go present CLI.
+
+##### Clone the repository
+
+```
+git clone git@github.com:course-go/lectures.git
+```
+
+##### Installation
+
+[Install Go](https://go.dev/doc/install) if you do not have it yet.
+
+Install the CLI tool using Go install:
 
 ```
 go install golang.org/x/tools/cmd/present@latest
@@ -96,12 +124,20 @@ This installs the **present** executable into your
 **$GOPATH/bin** directory if **GOPATH** is set or the 
 **$HOME/go/bin** directory otherwise.
 
-### Usage
+##### Usage
 
-Make sure that the directory with the **present** binary is in your $PATH. After that, running the present tool is simple:
+Make sure that the directory with the **present** executable is in your $PATH. 
+
+After that, running the present tool is simple:
 
 ```
 present
+```
+
+Alternatively, you can specify on which address the server should listen:
+
+```
+present http=:8080
 ```
 
 A webserver is run on localhost where you can preview the slides using your favourite web browser.
