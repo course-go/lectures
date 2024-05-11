@@ -2,10 +2,6 @@
 
 This repository contains lecture slides for Course Go.
 
-> [!NOTE]
-> The course is currently a WIP! \
-> All of the things stated here are still being determined and are due to change.
-
 ## Content
 
 0. Course [[slides](https://lectures.course-go.dev/00-course.slide)]
