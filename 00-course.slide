@@ -28,12 +28,10 @@ Tags: golang, go
 
 ## Introduction (Week 01)
 
-- Origins of Go
-- Key characteristics
-- Use cases & motivation
-- Editors & IDEs
-- Environment setup
-- Hello world!
+- Introduction to Go
+- IDEs and editors
+- Installing Go
+- Running Go
 
 ## Fundamentals #1 (Week 02)
 

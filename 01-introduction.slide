@@ -4,13 +4,13 @@ Tags: golang, go
 
 ## Outline
 
-- Introduction
+- Introduction to Go
     - Origins
     - Key characteristics & comparison with other languages
     - Motivation
 - IDEs and editors
 - Installing Go
-- Go
+- Running Go
     - Go executable
     - Modules
     - Packages

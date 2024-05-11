@@ -5,15 +5,14 @@ This repository contains lecture slides for Course Go.
 ## Content
 
 0. Course [[slides](https://lectures.course-go.dev/00-course.slide)]
-    - Introduction & requirements
-    - Course overview
+    - Introduction
+    - Requirements
+    - Overview
 1. Introduction [[slides](https://lectures.course-go.dev/01-introduction.slide) | [exercise](https://github.com/course-go/exercises/blob/master/01-workspace-setup-and-project-basics/README.md)]
-    - Origins of Go
-    - Key characteristics
-    - Use cases & motivation
-    - Editors & IDEs
-    - Environment setup
-    - Hello world!
+    - Introduction to Go
+    - IDEs & Editors
+    - Installing Go
+    - Running Go
 2. Fundamentals #1 [[slides](https://lectures.course-go.dev/02-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/02-simple-katas/README.md)]
     - Packages & Visibility
     - Variables
