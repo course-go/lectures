@@ -371,31 +371,133 @@ $ loki -config.file=loki.yaml -target compactor
 
 [OpenTelemetry](https://opentelemetry.io)
 
-## Non-OpenTelemetry architecture
+## Components
+
+- Specification
+    - APIs
+    - SDKs
+    - Data: OpenTelemetry Protocol (OTLP)
+- Collector
+    - Proxy that receives, processes, and exports telemetry data
+- APIs & SDKs implementations
+- K8s operator
+- FaaS assets
+
+[OpenTelemetry: Components](https://opentelemetry.io/docs/concepts/components/)
+
+## Signals
+
+- AKA categories of telemetry
+- [Traces](https://opentelemetry.io/docs/concepts/signals/traces/)
+- [Metrics](https://opentelemetry.io/docs/concepts/signals/metrics/)
+- [Logs](https://opentelemetry.io/docs/concepts/signals/logs/)
+- [Baggage](https://opentelemetry.io/docs/concepts/signals/baggage/)
+    - Contextual information passed between signals
+- _Profiles_ (WIP)
+- _Sessions_ (WIP)
+
+[OpenTelemetry: Signals](https://opentelemetry.io/docs/concepts/signals/)
+
+## Non-OpenTelemetry Architecture
 
 .image assets/lecture-11/opentelemetry/non-opentelemetry-architecture.svg 480 _
 
 [OpenTelemetry: Logging specification](https://opentelemetry.io/docs/specs/otel/logs/)
 
-## OpenTelemetry architecture
+## OpenTelemetry Architecture
 
 .image assets/lecture-11/opentelemetry/opentelemetry-architecture.svg 480 _
 
 [OpenTelemetry: Logging specification](https://opentelemetry.io/docs/specs/otel/logs/)
 
-## Instrumentation
+## OpenTelemetry Collector
+
+- Telemetry data are received, processed, and exported using pipelines
+    - Multiple pipelines can be defined at once
+
+Pipeline
+
+.image assets/lecture-11/opentelemetry/collector-pipeline.svg 250 _
+
+[OpenTelemetry: Collector Architecture](https://opentelemetry.io/docs/collector/architecture/)
+
+## OpenTelemetry Collector Configuration
+
+.code assets/lecture-11/opentelemetry/collector.yaml
+
+[OpenTelemetry: Collector Configuration](https://opentelemetry.io/docs/collector/configuration/)
+
+## OpenTelemetry Instrumentation
 
 - Many libraries provide automatic intrumentation via plugins
     - [OpenTelemetry Registry](https://opentelemetry.io/ecosystem/registry/?s=sqlx&component=&language=)
-- Or you can use the SDK directly
+        - [zap](https://pkg.go.dev/github.com/uptrace/opentelemetry-go-extra/otelzap)
+        - [net/http](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/net/http)
+        - [gin](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin)
+        - [sqlx](https://pkg.go.dev/github.com/uptrace/opentelemetry-go-extra/otelsqlx)
+        - [gorm](https://pkg.go.dev/github.com/uptrace/opentelemetry-go-extra/otelgorm)
+        - [grpc](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc)
+        - [runtime](https://pkg.go.dev/go.opentelemetry.io/contrib/instrumentation/runtime)
+- Or you can use the OpenTelemetry API and SDK directly
     - [OpenTelemetry-Go](https://github.com/open-telemetry/opentelemetry-go)
+
+## Instrumentation: Resources
+
+.code assets/lecture-11/opentelemetry/otel.go /START RESOURCE OMIT/,/END RESOURCE OMIT/
+
+[OpenTelemetry: Resources](https://opentelemetry.io/docs/languages/go/resources/)
+
+## Instrumentation: Providers & Exporter
+
+.code assets/lecture-11/opentelemetry/otel.go /START TRACE-PROVIDER OMIT/,/END TRACE-PROVIDER OMIT/
+
+.code assets/lecture-11/opentelemetry/otel.go /START METRIC-PROVIDER OMIT/,/END METRIC-PROVIDER OMIT/
+
+## Instrumentation: Initialization
+
+.code assets/lecture-11/opentelemetry/otel.go /START TRACE-INIT OMIT/,/END TRACE-INIT OMIT/
+
+[OpenTelemetry: Instrumentation](https://opentelemetry.io/docs/languages/go/instrumentation/)
+
+## OpenTelemetry Instrumentation: Traces
+
+.code assets/lecture-11/opentelemetry/otel.go /START CREATING-SPAN OMIT/,/END CREATING-SPAN OMIT/
+
+.code assets/lecture-11/opentelemetry/otel.go /START SPAN-ATTRIBUTES OMIT/,/END SPAN-ATTRIBUTES OMIT/
+
+.code assets/lecture-11/opentelemetry/otel.go /START SPAN-STATUS OMIT/,/END SPAN-STATUS OMIT/
+
+## OpenTelemetry Instrumentation: Metrics
+
+.code assets/lecture-11/opentelemetry/otel.go /START METRIC OMIT/,/END METRIC OMIT/
+
+## OpenTelemetry Metric Instruments
+
+- Synchronous
+    - Counter
+    - UpDownCounter
+    - Histogram
+- Asynchronous (Observable)
+    - Counter
+    - UpDownCounter
+    - Gauge
+
+[Go Packages: OpenTelemetry API Instruments](https://pkg.go.dev/go.opentelemetry.io/otel/metric#hdr-Instruments)
+
+## OpenTelemetry SDK
+
+- The SDK has to be enabled for applications to expose telemetry
+    - Otherwise, all telemetry related actions are no-ops
+- The SDK can be configured using [environmental variables](https://opentelemetry.io/docs/languages/sdk-configuration/general/)
+    - [Implementation Compliance Matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#environment-variables)
 
 ## Demo
 
-- OpenTelemetry maintains a up-to-date demo
+- Additional [Go examples](https://github.com/open-telemetry/opentelemetry-go/tree/main/example)
+- OpenTelemetry also maintains an up-to-date demo
     - Microservice-based distributed system
     - Showcases OTel usage
 
-[OpenTelemetry Demo Documentation](https://opentelemetry.io/docs/demo/)
+[OpenTelemetry: Demo Documentation](https://opentelemetry.io/docs/demo/)
 
 [GitHub: OpenTelemetry Astronomy Shop](https://github.com/open-telemetry/opentelemetry-demo)
