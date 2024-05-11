@@ -6,8 +6,9 @@ Tags: golang, go
 
 - 11 [lectures](https://github.com/course-go/lectures)
     - Includes hands-on [exercises](https://github.com/course-go/exercises)
-- 5 [homework](https://github.com/course-go/homework) tasks
-    - 14 days deadlines
+- 4 [homework](https://github.com/course-go/homework) tasks
+    - 14-day deadlines
+    - 7-day review periods
 - Final project
     - Solo
     - Team
@@ -15,12 +16,13 @@ Tags: golang, go
 
 ## Requirements
 
-- ~10 points per homework
-- ~50 points for project
-- Roughly 75 points to pass
+- Total of 100 points
+    - ~12.5 points per homework
+    - ~50 points for project
+- 70 points to pass
 - Bonus points for:
     - Activity at the seminars
-    - Exceptional solutions 
+    - Exceptional or creative solutions 
 
 ## Course Outline
 
@@ -29,8 +31,8 @@ Tags: golang, go
 - Origins of Go
 - Key characteristics
 - Use cases & motivation
-- IDEs and editors
-- Installation of Go
+- Editors & IDEs
+- Environment setup
 - Hello world!
 
 ## Fundamentals #1 (Week 02)
@@ -55,65 +57,62 @@ Tags: golang, go
 
 ## Concurrency & Parallelism (Week 04)
 
+- Goroutines
 - Runtime
-- Goroutines & channels
+- Channels
 - Select
-- Contexts, timers & tickers
-- Synchronization primitives & atomics
-- Patterns
+- Related packages
 
-## Advanced (Week 05)
+## Advanced #1 (Week 05)
 
-- Libraries
 - Generics
+- Packages
 - Testing
 
-## Optimizations (Week 06)
+## Advanced #2 (Week 06)
 
 - Benchmarks
 - Optimizations
 - CGo
+- Unsafe & Reflect
 
-## Building APIs (Week 07)
+## REST APIs (Week 07)
 
 - JSON
-- REST API & OpenAPI specification
+- HTTP
+- REST API
 - HTTP package
-- Routers
-- Auth
-- Air
+- Routers & Web frameworks
+- OpenAPI
+- Templating
 
-## Docker (Week 08)
+## Containers (Week 08)
 
-- Virtualization 
-- Docker engine & basics
-- Dockerfile
+- Containerization 
 - YAML
-- Docker compose
+- Docker
 - Kubernetes
 
 ## Databases (Week 09)
 
-- database/sql
-- pgx
+- SQL
+- RDBMSs
+- Migrations
+- databases/sql
 - sqlx
 - sqlc
 - GORM
-- Migrations
-- Caching
 
-## CI/CD (Week 10)
+## Infrastructure (Week 10)
 
-- Project setup
-- Git, GitHub & GitLab
-- GitHub Actions
 - CI/CD
+- Infrastructure
 - GCP
 
 ## Observability (Week 11)
 
-- Health checks
-- Logging
-- Monitoring
-- Tracing
-- Proxying
+- Health
+- Logs
+- Metrics
+- Traces
+- OpenTelemetry
