@@ -13,7 +13,6 @@ Tags: golang, go
     - Loki
 - Traces
     - Jaeger
-- Sampling
 - OpenTelemetry
 
 ## Observability
@@ -319,7 +318,6 @@ $ loki -config.file=loki.yaml -target compactor
 
 [Jaeger: Introduction](https://www.jaegertracing.io/docs/1.57/#screenshots)
 
-
 ## Architecture
 
 - Similarily to Loki, Jaeger can be:
@@ -340,8 +338,6 @@ $ loki -config.file=loki.yaml -target compactor
 .image assets/lecture-11/traces/jaeger-architecture.svg 320 _ 
 
 [Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
-
-## Sampling
 
 ## Sampling
 
