@@ -75,15 +75,16 @@ This repository contains lecture slides for Course Go.
     - GCP
 11. Observability [[slides](https://lectures.course-go.dev/11-observability.slide) | [exercise](https://github.com/course-go/exercises/blob/master/11-observability/README.md)]
     - Health
-    - Logs
     - Metrics
-    - Tracing
+    - Logs
+    - Traces
+    - OpenTelemetry
 
 ## Running the slides
 
 The slides are made using the [go present syntax](https://pkg.go.dev/golang.org/x/tools/present) which has its own tooling.
 
-The project maintains an up-to-date deployed slides version on [lectures.course-go.dev](lectures.course-go.dev).
+The project maintains an up-to-date deployed version of the slides on [lectures.course-go.dev](lectures.course-go.dev).
 
 The only disadvantage is that this version does not allow you to run the Go code presented on the slides for security reasons. 
 To run the Go code, you must run the slides locally.
