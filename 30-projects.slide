@@ -6,6 +6,7 @@
 - TUI
 - Desktop
 - Web
+- Open-source
 
 ## CLI
 
@@ -163,3 +164,16 @@ type Model interface {
     - [Svelte](https://svelte.dev)
     - [SolidJS](https://www.solidjs.com)
 - Or just wait a couple of days for the next one to drop
+
+## Open-source
+
+## Open-source
+
+- Most of the technologies presented throughout this course are written in Go
+- Getting started:
+    - [Introduction to GitHub and Open-Source Projects](https://www.digitalocean.com/community/tutorial-series/an-introduction-to-open-source)
+    - [Github Trending Go Repositories](https://github.com/trending/go?since=monthly)
+    - [Github Hacktoberfest Go Pepositories](https://github.com/topics/hacktoberfest?l=go)
+    - [Hacktoberfest Go Projects](https://hacktoberfest-projects.vercel.app/repos/Go?p=2)
+    - [Up for Grabs Go](https://up-for-grabs.net/#/filters?tags=go)
+    - [Awesome Go](https://github.com/avelino/awesome-go)
