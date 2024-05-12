@@ -126,7 +126,7 @@ type Model interface {
 
 [GitHub: Fyne](https://github.com/fyne-io/fyne)
 
-## fyne
+## Fyne
 
 .code assets/projects/desktop/fyne.go /START OMIT/,/END OMIT/
 
