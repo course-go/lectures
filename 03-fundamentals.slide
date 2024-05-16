@@ -262,6 +262,8 @@ type error interface {
     - No else returns style statements (`golint` is able to detect it)
     - "Happy return" at the very last line
 
+[Uncyclopedia: Go](https://en.uncyclopedia.co/wiki/Go_%28programming_language%29)
+
 ## Panic
 
 - So errors are nice
