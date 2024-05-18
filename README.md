@@ -8,12 +8,12 @@ This repository contains lecture slides for Course Go.
     - Introduction
     - Requirements
     - Overview
-1. Introduction [[slides](https://lectures.course-go.dev/01-introduction.slide) | [exercise](https://github.com/course-go/exercises/blob/master/01-workspace-setup-and-project-basics/README.md)]
+1. Introduction [[slides](https://lectures.course-go.dev/01-introduction.slide) | [exercise](https://github.com/course-go/exercises/blob/master/01-workspace-and-project-basics/README.md)]
     - Introduction to Go
     - IDEs & Editors
     - Installing Go
     - Running Go
-2. Fundamentals #1 [[slides](https://lectures.course-go.dev/02-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/02-simple-katas/README.md)]
+2. Fundamentals #1 [[slides](https://lectures.course-go.dev/02-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/02-katas/README.md)]
     - Packages & Visibility
     - Variables
     - Keywords
@@ -22,14 +22,14 @@ This repository contains lecture slides for Course Go.
     - Functions
     - Pointers
     - Structures
-3. Fundamentals #2 [[slides](https://lectures.course-go.dev/03-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/03-data-structures-katas/README.md)]
+3. Fundamentals #2 [[slides](https://lectures.course-go.dev/03-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/03-katas/README.md)]
     - Interfaces
     - Errors
     - Arrays
     - Slices
     - Maps
     - Range
-4. Concurrency & parallelism [[slides](https://lectures.course-go.dev/04-concurrency-and-parallelism.slide) | [exercise](https://github.com/course-go/exercises/blob/master/04-concurrency-and-parallelism/README.md)]
+4. Concurrency & parallelism [[slides](https://lectures.course-go.dev/04-concurrency-and-parallelism.slide) | [exercise](https://github.com/course-go/exercises/blob/master/04-concurrency/README.md)]
     - Goroutines
     - Runtime
     - Channels
