@@ -35,7 +35,7 @@ This repository contains lecture slides for Course Go.
     - Channels
     - Select
     - Related packages
-5. Advanced #1 ([slides](https://lectures.course-go.dev/05-advanced.slide) | [exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md))
+5. Advanced #1 [[slides](https://lectures.course-go.dev/05-advanced.slide) | [exercise](https://github.com/course-go/exercises/blob/master/05-generics-and-testing/README.md)]
     - Generics
     - Packages
     - Testing
