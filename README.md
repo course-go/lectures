@@ -88,7 +88,7 @@ To run the Go code, you must run the slides locally.
 
 #### Using Docker
 
-You can use an already pre-built container with lecture slides.
+You can use an already pre-built container image with lecture slides.
 
 ```
 docker run -p "3999:3999" \
@@ -110,7 +110,7 @@ git clone git@github.com:course-go/lectures.git
 
 [Install Go](https://go.dev/doc/install) if you do not have it yet.
 
-Install the CLI tool using Go install:
+Install the CLI present tool using Go install:
 
 ```
 go install golang.org/x/tools/cmd/present@latest
@@ -136,7 +136,7 @@ Alternatively, you can specify on which address the server should listen:
 present http=:8080
 ```
 
-A webserver is run on localhost where you can preview the slides using your favourite web browser.
+A webserver is run on the specified address. You can now preview the slides using your favourite web browser.
 
 ## Attribution
 
