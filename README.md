@@ -13,6 +13,7 @@ This repository contains lecture slides for Course Go.
     - IDEs & Editors
     - Installing Go
     - Running Go
+    - Resources
 2. Fundamentals #1 [[slides](https://lectures.course-go.dev/02-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/02-katas/README.md)]
     - Packages & Visibility
     - Variables

@@ -847,8 +847,6 @@ int(-8)
 - Originally developed under [golang/mock](https://github.com/golang/mock) by Google
     - Archived in June 2023
 - Forked and now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
-    - **Sidenote**: Uber also has public [Go style guide](https://github.com/uber-go/guide/blob/master/style.md)
-        - Definitely worth checking out
 
 [Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
 

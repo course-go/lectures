@@ -12,9 +12,9 @@ Tags: golang, go
 - Installing Go
 - Running Go
     - Go executable
-    - Modules
-    - Packages
+    - Modules & Packages
     - Hello world
+- Resources
 
 ## Is Go worth learning?
 
@@ -650,15 +650,28 @@ $ go fmt main.go
 
 .play assets/lecture-01/visibility.go
 
+## Resources
+
+## Styleguides
+
+- [Google Go Styleguide](https://google.github.io/styleguide/go/)
+- [Uber Go Guide](https://github.com/uber-go/guide)
+- [Effective Go](https://go.dev/doc/effective_go)
+
+## Online resources
+
+- [Go Specification](https://go.dev/ref/spec)
+- [Go Documentation](https://pkg.go.dev)
+- [Go by Example](https://gobyexample.com)
+- [Tour of Go](https://go.dev/tour/welcome/1)
+
+## Books
+
+- [Jon Bodner: Learning Go](https://www.oreilly.com/library/view/learning-go-2nd/9781098139285/)
+- [Teiva Harsanyi: 100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them)
+    - [Online summary](https://100go.co)
+
 ## Go Playground
 
 - [Playground](https://go.dev/play/)
     - [Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide)
-
-## Resources worth checking out
-
-- [Go Specification](https://go.dev/ref/spec)
-- [Go Documentation](https://pkg.go.dev)
-- [Tour of Go](https://go.dev/tour/welcome/1)
-- [Effective Go](https://go.dev/doc/effective_go)
-- [Go by Example](https://gobyexample.com)
