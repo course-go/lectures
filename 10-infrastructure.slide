@@ -226,6 +226,8 @@ $ git push origin --tags
 - HTTPS?
     - Managing certificates
 
+[Sam Rose: Load Balancing](https://samwho.dev/load-balancing/)
+
 ## Caddy
 
 - Web server, reverse proxy, load-balancer
