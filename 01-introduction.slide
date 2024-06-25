@@ -383,13 +383,17 @@ and I think that's beautiful...
 - Vim/Neovim with a LSP
     - [gopls](https://pkg.go.dev/golang.org/x/tools/gopls#section-readme)
     - [vim-go](https://github.com/fatih/vim-go)
+- If you feel special or like trying something new
+    - [Emacs](https://www.gnu.org/software/emacs/)
+    - [Helix](https://helix-editor.com)
+    - [Zed](https://zed.dev/)
+    - [Sublime Text](http://www.sublimetext.com/)
 
 [Go Wiki: Editors and IDEs](https://go.dev/wiki/IDEsAndTextEditorPlugins)
 
 ## Installing Go
 
 ## Installing Go
-
 
 - The official download guide lets you download:
     - _.msi_ file for Windows
