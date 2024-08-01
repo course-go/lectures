@@ -664,10 +664,17 @@ $ go fmt main.go
 
 ## Online resources
 
+Starting with Go
+
 - [Go Specification](https://go.dev/ref/spec)
 - [Go Documentation](https://pkg.go.dev)
 - [Go by Example](https://gobyexample.com)
 - [Tour of Go](https://go.dev/tour/welcome/1)
+
+Staying up to date
+
+- [Golang Weekly](https://golangweekly.com)
+- [Cup o' Go](https://cupogo.dev)
 
 ## Books
 
