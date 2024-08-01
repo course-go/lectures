@@ -389,6 +389,23 @@ Compiles into:
 
 .play assets/lecture-05/packages/slog.go /START OMIT/,/END OMIT/
 
+## crypto
+
+- Encryption: [aes](https://pkg.go.dev/crypto/aes), [rsa](https://pkg.go.dev/crypto/rsa), [ed25519](https://pkg.go.dev/crypto/ed25519)
+- Hashing: [md5](https://pkg.go.dev/crypto/md5), [sha256](https://pkg.go.dev/crypto/sha256), [sha512](https://pkg.go.dev/crypto/sha512)
+- [hmac](https://pkg.go.dev/crypto/hmac), [rand](https://pkg.go.dev/crypto/rand), [tls](https://pkg.go.dev/crypto/tls), [x509](https://pkg.go.dev/crypto/x509)
+
+[Go Packages: crypto](https://pkg.go.dev/crypto)
+
+- Encryption: [chacha20](https://pkg.go.dev/golang.org/x/crypto/chacha20)
+- Hashing: [argon2](https://pkg.go.dev/golang.org/x/crypto/argon2), [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt), [pbkdf2](https://pkg.go.dev/golang.org/x/crypto/pbkdf2)
+- Certificates: [acme](https://pkg.go.dev/golang.org/x/crypto/acme), [pkcs12](https://pkg.go.dev/golang.org/x/crypto/pkcs12)
+- [ssh](https://pkg.go.dev/golang.org/x/crypto/ssh)
+
+[Go Packages: x/crypto](https://pkg.go.dev/golang.org/x/crypto)
+
+- And many more...
+
 ## Testing
 
 ## Golang Testing Frameworks
