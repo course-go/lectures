@@ -551,3 +551,10 @@ someType.methodName(parameters)
 ## More methods for the same type
 
 .play assets/lecture-02/methods/multiple.go
+
+## The new keyword
+
+- Initializes the zero value of a type and returns a pointer to it
+- Generally somewhat avoided 
+
+.play assets/lecture-02/new/new.go /START OMIT/,/END OMIT/
