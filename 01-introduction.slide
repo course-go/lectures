@@ -86,7 +86,6 @@ _"Go is an open source programming language that enables the productions of simp
 
 ## More readable compared to C/C++
 
-- Evolved from C
 - Declarations in postfix
 - Much faster for parser to parse source code
 - No semicolons
@@ -97,6 +96,8 @@ int a;
 int *p;
 int *(*f)(int *);
 ```
+
+[So you think you know C?](https://wordsandbuttons.online/so_you_think_you_know_c.html)
 
 Go:
 ```
