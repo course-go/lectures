@@ -303,8 +303,11 @@ and I think that's beautiful...
 - [Tiobe Index](https://www.tiobe.com/tiobe-index/)
 - [GitHub Innovation Graph](https://innovationgraph.github.com/global-metrics/programming-languages)
 - [PYPL](http://pypl.github.io/PYPL.html)
+- [StackOverflow 2024 Developer Survey](https://survey.stackoverflow.co/2024/)
+    - [Most popular technologies](https://survey.stackoverflow.co/2024/technology/#most-popular-technologies)
+    - [Admired and desired](https://survey.stackoverflow.co/2024/technology/#admired-and-desired)
 
-.image assets/gophers/hugs.png _ 360
+.image assets/gophers/hugs.png _ 240
 
 ## Use cases
 
