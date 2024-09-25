@@ -11,8 +11,8 @@ Tags: golang, go
 - IDEs and editors
 - Installing Go
 - Running Go
-    - Go executable
-    - Modules & Packages
+- Project basics
+    - Modules, Packages & Visibility
     - Hello world
 - Resources
 
@@ -482,6 +482,8 @@ vet         report likely mistakes in packages
         - `go get`
     - `/bin`: contains executable binaries 
         - `go install`
+
+## Project basics
 
 ## Keywords
 
