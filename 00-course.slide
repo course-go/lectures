@@ -4,25 +4,40 @@ Tags: golang, go
 
 ## Course
 
+- Open-source
+    - All materials are online and public
+    - Feel free to participate
+- Maintained under the **course-go** GitHub organization
+    - [github.com/course-go](https://github.com/course-go)
+    - [course-go.dev](https://course-go.dev)
+- Content split up to multiple repositories
+    - [course](https://github.com/course-go/course) gives basic insight into the course
+
+## Content
+
 - 11 [lectures](https://github.com/course-go/lectures)
     - Includes hands-on [exercises](https://github.com/course-go/exercises)
-- 4 [homework](https://github.com/course-go/homework) tasks
+- 5 [homework](https://github.com/course-go/homework) tasks
     - 14-day deadlines
     - 7-day review periods
+        - Overlaps with successive homework task
+    - Up to one resubmission for each task
 - Final project
-    - Solo
-    - Team
-    - Open-source contribution
+    - Solo/Team
+    - Custom assignments
+    - Open-source contribution/s
 
 ## Requirements
 
-- Total of 100 points
-    - ~12.5 points per homework
-    - ~50 points for project
-- 70 points to pass
+- Total of **100 points**
+    - 50 points for homework tasks
+        - Points vary between tasks based on their difficulty
+    - 50 points for project
+- **70 points** required to pass
 - Bonus points for:
     - Activity at the seminars
-    - Exceptional or creative solutions 
+    - Exceptional or creative solutions
+    - Implementing optional homework task extensions
 
 ## Course Outline
 
