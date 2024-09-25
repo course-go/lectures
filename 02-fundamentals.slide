@@ -4,11 +4,11 @@ Tags: golang, go
 
 ## Outline
 
-- Types
+- Built-in types
 - Variables
 - Control flow
 - Functions
-- User-defined data types
+- Custom types
 - Pointers
 
 ## Keywords
@@ -42,9 +42,9 @@ func                 goto      if
 struct               switch    type          var
 ```
 
-## Types
+## Built-in types
 
-## Types
+## Built-in types
 
 - Similar to C
 - No auto casts
@@ -347,9 +347,9 @@ var counter = 100
 
 .play assets/lecture-02/defer/return-values.go
 
-## User-defined data types
+## Custom types
 
-## User-defined data types
+## Custom types
 
 - `type` keyword
 - Go is very strict in typing (see examples)

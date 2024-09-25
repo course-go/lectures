@@ -8,7 +8,7 @@ Tags: golang, go
 - Runtime
 - Channels
 - Select
-- Packages
+- Related packages
 
 ## Keywords
 
@@ -331,7 +331,7 @@ close(c)
 
 .play assets/lecture-04/select/done.go /START OMIT/,/END OMIT/
 
-## Packages
+## Related packages
 
 ## Context package
 

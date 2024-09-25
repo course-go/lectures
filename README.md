@@ -13,16 +13,15 @@ This repository contains lecture slides for Course Go.
     - IDEs & Editors
     - Installing Go
     - Running Go
+    - Project basics
     - Resources
 2. Fundamentals #1 [[slides](https://lectures.course-go.dev/02-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/02-katas/README.md)]
-    - Packages & Visibility
+    - Built-in types
     - Variables
-    - Keywords
-    - Data types
     - Control flow
     - Functions
+    - Custom types
     - Pointers
-    - Structures
 3. Fundamentals #2 [[slides](https://lectures.course-go.dev/03-fundamentals.slide) | [exercise](https://github.com/course-go/exercises/blob/master/03-katas/README.md)]
     - Interfaces
     - Errors
@@ -54,7 +53,7 @@ This repository contains lecture slides for Course Go.
     - OpenAPI
     - Templating
 8. Containers [[slides](https://lectures.course-go.dev/08-containers.slide) | [exercise](https://github.com/course-go/exercises/blob/master/08-docker/README.md)]
-    - Containerization 
+    - Containerization
     - Docker
     - Kubernetes
 9. Databases [[slides](https://lectures.course-go.dev/09-databases.slide) | [exercise](https://github.com/course-go/exercises/blob/master/09-databases/README.md)]

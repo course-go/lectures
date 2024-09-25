@@ -47,17 +47,17 @@ Tags: golang, go
 - IDEs and editors
 - Installing Go
 - Running Go
+- Project basics
+- Resources
 
 ## Fundamentals #1 (Week 02)
 
-- Packages & visibility
+- Built-in types
 - Variables
-- Keywords
-- Data types
 - Control flow
 - Functions
+- Custom types
 - Pointers
-- Structures
 
 ## Fundamentals #2 (Week 03)
 
