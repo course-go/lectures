@@ -230,14 +230,6 @@ and I think that's beautiful...
 
 **=> new syntax**
 
-## Support for concurrency
-
-- [Communicating sequential processes](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf) by [C.A.R. Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) 
-    - a formal language etc. etc.
-- _"Don't communicate by sharing memory; share memory by communicating"_
-- **Goroutines**
-- **Channels**
-
 ## Concurrency and/or parallelism
 
 - **Serial**
@@ -274,6 +266,14 @@ and I think that's beautiful...
 - Threads
 - **Goroutines**
 - Coroutines
+
+## CSP
+
+- [Communicating sequential processes](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf) by [C.A.R. Hoare](https://en.wikipedia.org/wiki/Tony_Hoare) 
+    - A formal language etc. etc.
+- _"Don't communicate by sharing memory; share memory by communicating"_
+- **Goroutines**
+- **Channels**
 
 ## Memory locality
 
