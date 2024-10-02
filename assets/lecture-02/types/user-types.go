@@ -14,10 +14,10 @@ type (
 )
 
 func main() {
-	var id ID = 0
-	fmt.Println(id)
+	var id ID = 1
 	n := Name("Jan")
 	var s Surname
 	s = "Novák"
-	fmt.Println(n, s)
+	fmt.Println(id, n, s)
+	fmt.Printf("%T, %T, %T", id, n, s)
 }
