@@ -526,23 +526,23 @@ someType.methodName(parameters)
 
 ## User type with a single method
 
-.play assets/lecture-02/methods/methods.go
+.play assets/lecture-02/methods/methods.go /START OMIT/,/END OMIT/
 
 ## Value receiver
 
-.play assets/lecture-02/methods/value-receiver.go
+.play assets/lecture-02/methods/value-receiver.go /START OMIT/,/END OMIT/
 
 ## Pointer receiver
 
-.play assets/lecture-02/methods/pointer-receiver.go
+.play assets/lecture-02/methods/pointer-receiver.go /START OMIT/,/END OMIT/
 
 ## Nil receiver
 
-.play assets/lecture-02/methods/nil-receiver.go
+.play assets/lecture-02/methods/nil-receiver.go /START OMIT/,/END OMIT/
 
 ## More methods for the same type
 
-.play assets/lecture-02/methods/multiple.go
+.play assets/lecture-02/methods/multiple.go /START OMIT/,/END OMIT/
 
 ## The new keyword
 

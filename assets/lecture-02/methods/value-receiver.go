@@ -2,23 +2,27 @@ package main
 
 import "fmt"
 
-// LineType represents a line in 2D plane
-type LineType struct {
+// START OMIT
+
+// Line represents a line in 2D plane.
+type Line struct {
 	x1, y1 float64
 	x2, y2 float64
 }
 
-func (line LineType) translate(dx, dy float64) {
-	fmt.Printf("Translating line %v by %f %f\n", line, dx, dy)
-	line.x1 += dx
-	line.y1 += dy
-	line.x2 += dx
-	line.y2 += dy
+func (l Line) translate(dx, dy float64) {
+	fmt.Printf("Translating line %v by %f %f\n", l, dx, dy)
+	l.x1 += dx
+	l.y1 += dy
+	l.x2 += dx
+	l.y2 += dy
 }
 
 func main() {
-	line1 := LineType{x1: 0, y1: 0, x2: 100, y2: 100}
-	fmt.Println(line1)
-	line1.translate(5, 5)
-	fmt.Println(line1)
+	l := Line{x1: 0, y1: 0, x2: 100, y2: 100}
+	fmt.Println(l)
+	l.translate(5, 5)
+	fmt.Println(l)
 }
+
+// END OMIT
