@@ -318,23 +318,15 @@ var counter = 100
 
 .play assets/lecture-02/defer/arguments-evaluation.go /START OMIT/,/END OMIT/
 
-## defer with multiple return statements (1/2)
+## defer with multiple return statements
 
 - `defer` is called even when more `return` statements are used
 
-.play assets/lecture-02/defer/multiple-returns.go /^package main/,/^func main/
+.play assets/lecture-02/defer/multiple-returns.go /START OMIT/,/END OMIT/
 
-## defer with multiple return statements (2/2)
+## Practical usage of defer
 
-.play assets/lecture-02/defer/multiple-returns.go /^func main/,/^}/
-
-## Practical usage of defer (1/2)
-
-.play assets/lecture-02/defer/io-example.go /^package main/,/^}/
-
-## Practical usage of defer (2/2)
-
-.play assets/lecture-02/defer/io-example.go /^func main/,/^}/
+.play assets/lecture-02/defer/io-example.go /START OMIT/,/END OMIT/
 
 ## defer and return values
 

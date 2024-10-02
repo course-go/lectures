@@ -2,9 +2,17 @@ package main
 
 import "fmt"
 
+// START OMIT
+
+func main() {
+	for x := 0; x <= 10; x++ {
+		fmt.Println("Classified", x, "to", classify(x))
+	}
+}
+
 func classify(x int) string {
 	defer func(int) {
-		fmt.Printf("Defer %d\n", x)
+		fmt.Println("Deferred", x)
 	}(x)
 	switch x {
 	case 0, 2, 4, 6, 8:
@@ -16,8 +24,4 @@ func classify(x int) string {
 	}
 }
 
-func main() {
-	for x := 0; x <= 10; x++ {
-		fmt.Println(x, classify(x))
-	}
-}
+// END OMIT
