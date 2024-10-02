@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-// START OMIT
-
 // User is a new data type
 type User struct {
 	id      uint32
@@ -11,15 +9,15 @@ type User struct {
 	surname string
 }
 
-// MIDDLE OMIT
+// START OMIT
 
 func main() {
-	var u User
-	u.id = 1
-	u.name = "Linus"
-	u.surname = "Torvalds"
+	u := User{
+		id:      1,
+		name:    "Linus",
+		surname: "Torvalds",
+	}
 	fmt.Println(u)
-	fmt.Println("------------------")
 
 	var pName *string
 	var pSurname *string
@@ -29,12 +27,12 @@ func main() {
 	fmt.Println(pSurname)
 	fmt.Println(*pName)
 	fmt.Println(*pSurname)
-	fmt.Println("------------------")
 
-	(*pName) = "Rob"
-	(*pSurname) = "Pike"
+	*pName = "Rob"
+	*pSurname = "Pike"
 	fmt.Println(*pName)
 	fmt.Println(*pSurname)
+	fmt.Println(u)
 }
 
 // END OMIT

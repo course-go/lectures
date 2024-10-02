@@ -470,19 +470,15 @@ type rune = int32
 
 .play assets/lecture-02/pointers/panic.go
 
-## Pointer to structure (1/2)
-
-.play assets/lecture-02/pointers/to-struct.go /START OMIT/,/MIDDLE OMIT/
-
-## Pointer to structure (2/2)
+## Pointer to structure
 
 - Note the possibility of writing `p_u.id` instead of `(*p_u).id`
 
-.play assets/lecture-02/pointers/to-struct.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-02/pointers/to-struct.go /START OMIT/,/END OMIT/
 
 ## Pointer to structure member
 
-.play assets/lecture-02/pointers/to-struct-member.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-02/pointers/to-struct-member.go /START OMIT/,/END OMIT/
 
 ## Return pointer to local variable from C function
 

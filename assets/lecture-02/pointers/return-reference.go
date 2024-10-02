@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func getPointer() *int {
-	var i int = 42
+	i := 42
 	return &i
 }
 
