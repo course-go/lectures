@@ -9,8 +9,8 @@ func onFinish() {
 func main() {
 	defer onFinish()
 
-	for i := 10; i >= 0; i-- {
-		fmt.Printf("%2d\n", i)
+	for i := 5; i >= 0; i-- {
+		fmt.Println(i)
 	}
 
 	fmt.Println("Finishing main() function")
