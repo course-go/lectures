@@ -415,11 +415,15 @@ type rune = int32
 
 ## Calling functions with structs as arguments
 
-.play assets/lecture-02/structs/argument.go
+.play assets/lecture-02/structs/argument.go /START OMIT/,/END OMIT/
+
+## Struct composition
+
+.play assets/lecture-02/structs/composition.go /START OMIT/,/END OMIT/
 
 ## Struct embedding
 
-.play assets/lecture-02/structs/embedding.go
+.play assets/lecture-02/structs/embedding.go /START OMIT/,/END OMIT/
 
 ## Anonymous structure
 

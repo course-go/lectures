@@ -10,7 +10,7 @@ type user struct {
 }
 
 type registeredUser struct {
-	user
+	user  user
 	email string
 }
 
@@ -23,7 +23,7 @@ func main() {
 		email: "linus@torvalds.com",
 	}
 
-	fmt.Println(registeredUser.name, registeredUser.email)
+	fmt.Println(registeredUser.user.name, registeredUser.email)
 }
 
 // END OMIT

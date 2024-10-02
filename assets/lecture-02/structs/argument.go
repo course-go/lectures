@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// START OMIT
+
 // User is a new data type
 type User struct {
 	id      uint32
@@ -19,5 +21,8 @@ func main() {
 		name:    "Linus",
 		surname: "Torvalds",
 	}
+
 	printUser(user1)
 }
+
+// END OMIT
