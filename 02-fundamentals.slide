@@ -316,7 +316,7 @@ var counter = 100
 
 - Actual parameters are evaluated in runtime
 
-.play assets/lecture-02/defer/arguments-evaluation.go
+.play assets/lecture-02/defer/arguments-evaluation.go /START OMIT/,/END OMIT/
 
 ## defer with multiple return statements (1/2)
 

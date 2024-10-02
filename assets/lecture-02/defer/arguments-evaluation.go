@@ -2,19 +2,24 @@ package main
 
 import "fmt"
 
+// START OMIT
+
 func function(i int) {
-	fmt.Printf("Defer %2d\n", i)
+	fmt.Println("Deferred:", i)
 }
 
 func main() {
 	x := 0
-	fmt.Printf("Current x value = %2d\n", x)
+	fmt.Println("Current:", x)
 	defer function(x)
 
 	x++
-	fmt.Printf("Current x value = %2d\n", x)
+	fmt.Println("Current:", x)
 	defer function(x)
 
 	x++
-	fmt.Printf("Current x value = %2d\n", x)
+	fmt.Println("Current:", x)
+	defer function(x)
 }
+
+// END OMIT
