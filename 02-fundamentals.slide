@@ -337,7 +337,7 @@ var counter = 100
 
 ## defer and return values
 
-.play assets/lecture-02/defer/return-values.go
+.play assets/lecture-02/defer/return-values.go /START OMIT/,/END OMIT/
 
 ## Custom types
 
