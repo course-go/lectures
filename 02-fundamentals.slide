@@ -307,7 +307,7 @@ var counter = 100
 
 ## defer in loop
 
-- 10 `defer` statements
+- 5 `defer` statements
 - LIFO behaviour
 
 .play assets/lecture-02/defer/loop.go
