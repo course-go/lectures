@@ -578,7 +578,7 @@ import (
     - So reffering to the constant `Pi` from `math` package looks like this:
 
 ```
-main.Pi
+math.Pi
 ```
 
 [Go Packages: Standard library packages](https://pkg.go.dev/std)
