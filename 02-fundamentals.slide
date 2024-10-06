@@ -72,7 +72,7 @@ complex64 complex128
 - Each type has it's default value
     - Numeric types: **`0`**
     - Strings: **`""`**
-    - Runes: **`''`**
+    - Runes: **`''`** == **`0`** == **`U+0000`**
     - Booleans: **`false`**
     - Pointer types: **`nil`**
         - More on those later
