@@ -70,10 +70,10 @@ complex64 complex128
 ## Default values
 
 - Each type has it's default value
-    - Numeric types: **`0`**
-    - Strings: **`""`**
-    - Runes: **`''`** == **`0`** == **`U+0000`**
     - Booleans: **`false`**
+    - Strings: **`""`**
+    - Numeric types: **`0`**
+    - Runes: **`''`** == **`0`** == **`U+0000`**
     - Complex: **`0+0i`**
     - Pointer types: **`nil`**
         - More on those later
