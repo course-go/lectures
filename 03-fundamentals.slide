@@ -530,3 +530,28 @@ if set[key] { // returns bool
 - Note that the order of the key-value pairs is undeterministic
 
 .play assets/lecture-03/range/maps.go
+
+## Iterators
+
+- Iterates elements one-by-one
+- `yield` function
+- Required signatures:
+
+```
+func(func() bool)
+func(func(K) bool)
+func(func(K, V) bool)
+```
+
+- Handy generic shortcuts:
+
+```
+Seq[V any]     func(yield func(V) bool)
+Seq2[K, V any] func(yield func(K, V) bool)
+```
+
+[Package: iter](https://pkg.go.dev/iter)
+
+## Iterator example
+
+.play assets/lecture-03/range/iterator.go /START OMIT/,/END OMIT/
