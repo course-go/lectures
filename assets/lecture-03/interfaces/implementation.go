@@ -18,8 +18,8 @@ func length(shape OpenShape) float64 {
 	return shape.length()
 }
 
-func (line Line) length() float64 {
-	return math.Hypot(line.x1-line.x2, line.y1-line.y2)
+func (l Line) length() float64 {
+	return math.Hypot(l.x1-l.x2, l.y1-l.y2)
 }
 
 func main() {
