@@ -5,33 +5,20 @@ import "fmt"
 // START OMIT
 
 func main() {
-	var a1 [100]byte
-	var a2 [100]int32
+	var array [100]byte
+	fmt.Printf("Array length:   %d\n\n", len(array))
 
-	fmt.Printf("Array 1 length:   %d\n", len(a1))
-	fmt.Printf("Array 2 length:   %d\n", len(a2))
-	fmt.Println()
-
-	slice0 := a1[:]
+	slice0 := array[:]
 	fmt.Printf("Slice 0 length:   %d\n", len(slice0))
-	fmt.Printf("Slice 0 capacity: %d\n", cap(slice0))
-	fmt.Println()
+	fmt.Printf("Slice 0 capacity: %d\n\n", cap(slice0))
 
-	slice1 := a1[10:20]
+	slice1 := array[10:20]
 	fmt.Printf("Slice 1 length:   %d\n", len(slice1))
-	fmt.Printf("Slice 1 capacity: %d\n", cap(slice1))
-	fmt.Println()
+	fmt.Printf("Slice 1 capacity: %d\n\n", cap(slice1))
 
-	// MIDDLE OMIT
-
-	slice2 := a1[20:30]
+	slice2 := array[60:]
 	fmt.Printf("Slice 2 length:   %d\n", len(slice2))
-	fmt.Printf("Slice 2 capacity: %d\n", cap(slice2))
-	fmt.Println()
-
-	slice3 := a1[30:40]
-	fmt.Printf("Slice 3 length:   %d\n", len(slice3))
-	fmt.Printf("Slice 3 capacity: %d\n", cap(slice3))
+	fmt.Printf("Slice 2 capacity: %d\n\n", cap(slice2))
 }
 
 // END OMIT

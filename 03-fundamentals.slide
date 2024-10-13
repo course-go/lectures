@@ -328,15 +328,11 @@ type error interface {
 - "Slice operator" `[from:to]`
 - `append` function to add a new element to slice (complicated internally)
 
-## Usage of slices
+## Slicing
 
-.play assets/lecture-03/slices/slices.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-03/slices/slices.go /START OMIT/,/END OMIT/
 
 [Go Blog: slice usage and internals](https://go.dev/blog/slices/intro)
-
-## Usage of slices (cont.)
-
-.play assets/lecture-03/slices/slices.go /MIDDLE OMIT/,/END OMIT/
 
 ## Slices and arrays as data source for them
 
