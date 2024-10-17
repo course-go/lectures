@@ -10,7 +10,7 @@ import (
 // START OMIT
 
 func main() {
-	ctx, _ := context.WithTimeout(context.Background(), 6*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 6*time.Second)
 	data := make(chan int, 4)
 	producerDone := make(chan bool)
 	consumerDone := make(chan bool)
@@ -35,7 +35,7 @@ func main() {
 			case v := <-data:
 				fmt.Println("Procesing...")
 				time.Sleep(time.Second)
-				fmt.Printf("Processed: %s\n", v)
+				fmt.Printf("Processed: %d\n", v)
 			case <-ctx.Done():
 				fmt.Println("Consumer cancelled!")
 				consumerDone <- true
@@ -46,6 +46,7 @@ func main() {
 
 	<-producerDone
 	<-consumerDone
+	cancel()
 	fmt.Println("Program terminated...")
 }
 
