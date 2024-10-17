@@ -272,7 +272,7 @@ close(c)
 ## Select
 
 - Special construct and the last Go keyword we have not yet covered
-- Sytanctically similar to the `switch` statement
+- Syntactically similar to the `switch` statement
 - Helps us manipulate multiple channels at the same time
     - You can read on/write to numerous channels at once
     - Prevents reads/writes that would otherwise block
