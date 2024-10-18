@@ -415,13 +415,16 @@ ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
 
 ## Time package
 
-- Package for manipulating time
-- Time
+- Time manipulation
 
 ```
 now := time.Now()
 hour := now.Hour()
-t, err := time.Parse(time.RFC3339, "2006-01-02T15:04:05Z")
+
+y2k := time.Date(2000, 1, 1, 0, 0, 0, 0, time.UTC)
+y3k := time.Date(3000, 1, 1, 0, 0, 0, 0, time.UTC)
+before := y2k.Before(y3k)
+comparison := y3k.Compare(y2k)
 ```
 
 - Time constants
@@ -439,6 +442,33 @@ duration, err := time.ParseDuration("1h10m10s")
 - Timer, Ticker, etc.
 
 [Go packages: time](https://pkg.go.dev/time)
+
+## Time parsing
+
+- Uses special date for parsing
+
+```
+const Layout = "01/02 03:04:05PM '06 -0700"
+```
+
+- Some predefined standards:
+```
+RFC822      = "02 Jan 06 15:04 MST"
+RFC822Z     = "02 Jan 06 15:04 -0700" // RFC822 with numeric zone
+RFC850      = "Monday, 02-Jan-06 15:04:05 MST"
+RFC1123     = "Mon, 02 Jan 2006 15:04:05 MST"
+RFC1123Z    = "Mon, 02 Jan 2006 15:04:05 -0700" // RFC1123 with numeric zone
+RFC3339     = "2006-01-02T15:04:05Z07:00"
+Kitchen     = "3:04PM"
+```
+
+- Parsing:
+```
+t, err := time.Parse(time.RFC3339, "2024-08-12T04:02:32Z")
+t, err := time.Parse("02 2006 01", "08 2024 12") // custom format: day year month
+```
+
+[Willem Schots: How to parse a time or date in Go](https://www.willem.dev/articles/how-to-parse-time-date/)
 
 ## Timer
 
