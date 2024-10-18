@@ -69,6 +69,8 @@ Tags: golang, go
 
 [Go Wiki: Well-known struct tags](https://go.dev/wiki/Well-known-struct-tags)
 
+[Matt Holt: json-to-go](https://mholt.github.io/json-to-go/)
+
 ## JSON in Go (1/2)
 
 .code assets/lecture-07/json/marshalling-tags.go /START OMIT/,/MIDDLE OMIT/
