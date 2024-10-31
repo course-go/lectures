@@ -195,7 +195,7 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
 
 1. _"Pass structures by reference, not by value"_
 2. _"Pass receivers by reference, not by value"_
-3. _"Maps & slides pre-allocation"_
+3. _"Maps & slices pre-allocation"_
 4. _"Arrays vs slices"_
 
 - Most things mentioned are unidiomatic!
