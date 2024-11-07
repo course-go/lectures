@@ -44,7 +44,7 @@ Tags: golang, go
     - Under the `encoding` packages
         - Also supports other common formats:
             - CSV
-            - YAML
+            - XML
             - Base64 & Base32
             - Binary
             - And a few more...
