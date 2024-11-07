@@ -154,6 +154,12 @@ Tags: golang, go
 
 [Web Almanac: HTTP](https://almanac.httparchive.org/en/2021/http)
 
+## HTTP 2.0 vs HTTP 3.0 network protocol stack
+
+.image assets/lecture-07/http/http3-http2-protocol-stack.png 480 _
+
+[Robin Marx: Why HTTP/3 is Eating the World](https://pulse.internetsociety.org/blog/why-http-3-is-eating-the-world)
+
 ## CORS
 
 - Cross-Origin Resource Sharing
