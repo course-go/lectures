@@ -79,7 +79,7 @@ This repository contains lecture slides for Course Go.
 
 The slides are made using the [go present syntax](https://pkg.go.dev/golang.org/x/tools/present) which has its own tooling.
 
-The project maintains an up-to-date deployed version of the slides on [lectures.course-go.dev](lectures.course-go.dev).
+The project maintains an up-to-date deployed version of the slides on [https://lectures.course-go.dev](lectures.course-go.dev).
 
 The only disadvantage is that this version does not allow you to run the Go code presented on the slides for security reasons. 
 To run the Go code, you must run the slides locally.
