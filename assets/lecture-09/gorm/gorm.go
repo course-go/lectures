@@ -65,7 +65,7 @@ func main() {
 	// SELECT * FROM products;
 	db.Find(&products)
 
-	// SELECT * FROM products WHERE id = 10;
+	// SELECT * FROM products WHERE id = 3;
 	db.Find(&product, 3)
 	// SELECT * FROM users WHERE id IN (1,2,3);
 	db.Find(&products, []int{1, 2, 3})
