@@ -61,7 +61,7 @@
 ## Bubbletea
 
 - Project under [charmbracelet](https://github.com/charmbracelet) organization
-    - TUI componenets with [bubbles](https://github.com/charmbracelet/bubbles)
+    - TUI components with [bubbles](https://github.com/charmbracelet/bubbles)
     - Style layouts with [lipgloss](https://github.com/charmbracelet/lipgloss)
     - Animations with [harmonica](https://github.com/charmbracelet/harmonica)
     - Foms and prompts with [huh](https://github.com/charmbracelet/huh)
