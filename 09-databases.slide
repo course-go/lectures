@@ -306,7 +306,7 @@ Flags:
 
 .code assets/lecture-09/sqlc/sqlc.yaml
 
-[sqlx documentation: configuration](https://docs.sqlc.dev/en/latest/reference/config.html)
+[sqlc documentation: configuration](https://docs.sqlc.dev/en/latest/reference/config.html)
 
 ## Schema
 
