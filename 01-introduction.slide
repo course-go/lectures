@@ -320,7 +320,7 @@ and I think that's beautiful...
 
 [Go: Use Cases](https://go.dev/solutions/use-cases)
 
-## Cloud technologies writing in Go
+## Technologies written in Go
 
 - [Docker](https://www.docker.com)
 - [Podman](https://podman.io)
@@ -331,6 +331,7 @@ and I think that's beautiful...
 - [NATS](https://nats.io)
 - [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
 - [Go Ethereum](https://geth.ethereum.org)
+- [Typescript](https://github.com/microsoft/typescript-go)
 - and many more...
 
 ## Companies using Go
