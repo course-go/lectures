@@ -105,7 +105,7 @@ var counter int
  // NO
 counter := 0
 ```
-- Use **`:=`** when initializating the variable with other than the default value
+- Use **`:=`** when initializing the variable with other than the default value
 ```
  // YES
 counter := 100
@@ -144,7 +144,7 @@ var counter = 100
 
 ## Conditions
 
-- No parantheses around conditions
+- No parentheses around conditions
 - Allows init statement
 - Variables declared via init do not exist beyond the scope of the if block
 
@@ -287,7 +287,7 @@ var counter = 100
 - `defer` is a keyword in the Go
 - Used to "remember" commands that will be called before `return` or function exit
 - Based on LIFO (stack) of remembered commands
-    - The last defered call is called first
+    - The last deferred call is called first
 - Parameters are evaluated when `defer` is declared (i.e. in runtime)
     - Not when the specified code is called
 - It is possible to change function return value(s) via `defer`
