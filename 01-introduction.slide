@@ -157,7 +157,7 @@ and I think that's beautiful...
 - Ease of install 
     - "DLL hell" cannot happen
 - Backward compatibility
-    - [Compability promise](https://go.dev/doc/go1compat)
+    - [Compatibility promise](https://go.dev/doc/go1compat)
 - For DevOps from DevOps
 - Fast builds
     - Actually super fast builds
@@ -320,7 +320,7 @@ and I think that's beautiful...
 
 [Go: Use Cases](https://go.dev/solutions/use-cases)
 
-## Cloud technologies writting in Go 
+## Cloud technologies writing in Go
 
 - [Docker](https://www.docker.com)
 - [Podman](https://podman.io)
@@ -481,7 +481,7 @@ vet         report likely mistakes in packages
 - Defined by `$GOPATH` variable
     - `$HOME/go` by default
 - Structured directory:
-    - `/src`: historicaly used for storing source code
+    - `/src`: historically used for storing source code
         - unused after introduction of go modules
     - `/pkg`: stores downloaded versioned packages
         - `go get`
@@ -575,7 +575,7 @@ import (
 ```
 
 - Package name is the last element of the import path
-    - So reffering to the constant `Pi` from `math` package looks like this:
+    - So referring to the constant `Pi` from `math` package looks like this:
 
 ```
 math.Pi
@@ -604,7 +604,7 @@ go-scrapper/
 │       ├── movie.go
 │       ├── song.go
 │       └── user.go
-├── go.mod                  // project dependecies and metadata
+├── go.mod                  // project dependencies and metadata
 └── go.sum                  // dependency check-sums
 ```
 [GitHub: golang-standards/project-layout](https://github.com/golang-standards/project-layout)
