@@ -695,3 +695,11 @@ Staying up to date
 
 - [Playground](https://go.dev/play/)
     - [Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide)
+
+## Summary
+
+After this lecture you should:
+- roughly have an idea why Go exists
+- be aware of some of its strong and weak points
+- how to run Go
+- how Go projects look and how to create one
