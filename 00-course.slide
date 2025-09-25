@@ -20,7 +20,6 @@ Tags: golang, go
 - 5 [homework](https://github.com/course-go/homework) tasks
     - 14-day deadlines
     - 7-day review periods
-        - Overlaps with successive homework task
     - Up to one resubmission for each task
 - Final project
     - Solo/Team
@@ -29,11 +28,12 @@ Tags: golang, go
 
 ## Requirements
 
-- Total of **100 points**
+- Total of **110-113 points**
     - 50 points for homework tasks
         - Points vary between tasks based on their difficulty
     - 50 points for project
-- **70 points** required to pass
+    - 10-13 points for attendance
+- **80 points** required to pass
 - Bonus points for:
     - Activity at the seminars
     - Exceptional or creative solutions
