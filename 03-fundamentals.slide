@@ -37,7 +37,7 @@ This one goes over:
 
 
 
-interface   map                range       
+interface   map                range
 
 ```
 
@@ -415,7 +415,7 @@ m3[2] // 2 is the key
 delete(m3, 0) // 0 is the key
 ```
 
-## Unitialized map
+## Uninitialized map
 
 - Once again, default value for map is `nil`
     - Reading return the default value
@@ -523,7 +523,7 @@ if set[key] { // returns bool
 
 ## Iterating over maps
 
-- Note that the order of the key-value pairs is undeterministic
+- Note that the order of the key-value pairs is indeterministic
 
 .play assets/lecture-03/range/maps.go
 
