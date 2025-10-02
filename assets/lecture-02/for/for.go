@@ -7,7 +7,7 @@ func main() {
 		fmt.Println(i)
 	}
 
-	var i int = 10
+	i := 10
 	for i < 11 { // while with condition
 		fmt.Println(i)
 		i++
