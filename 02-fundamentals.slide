@@ -551,3 +551,11 @@ someType.methodName(parameters)
 - Generally somewhat avoided 
 
 .play assets/lecture-02/new/new.go /START OMIT/,/END OMIT/
+
+## Summary
+
+After this lecture you should:
+- know Go's built-in types
+- how to control code flow
+- how to define custom types and functions and how to use them
+- know pointer types and how to work with them
