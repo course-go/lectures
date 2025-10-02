@@ -227,7 +227,7 @@ ch<-value       // writing
 
 - Channels can be closed with `close` function
     - Writers are responsible for closing the channels
-    - Note that closing channels is not neccesary
+    - Note that closing channels is not necessary
         - Only used to signal the end of transmission to the readers
 ```
 c := make(chan int)
