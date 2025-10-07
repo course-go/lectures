@@ -201,15 +201,16 @@ Tags: golang, go
 
 ## net package
 
-- Interfaces for network I/O
-    - TCP/IP
-    - UDP
-    - DNS
-    - Unix sockets
-- Provides low-level primitives
-- Most notable:
-    - `Dial`/`Listen` functions
-    - And the associated `Conn`/`Listener` interfaces
+- Portable interface for network I/O, TCP/IP, UDP, DNS or Unix sockets
+- Name resolution:
+    - `LookupAddr`, `LookupCNAME`, `LookupPort`, `LookupTXT`
+- `IP` structure:
+    - `ParseIP`, `ParseCIDR`, `IsPrivate`, `IsMulticast`
+- Listening on addresses: `Listen` (`Listener`)
+- Connecting to addresses (`Dialer`):
+    - `Dial`, `DialTCP`, `DialUDP`, `DialIP`
+- Connections (`Conn`):
+    - `Read`, `Write`, `Close`
 
 [Go Packages: net](https://pkg.go.dev/net)
 
