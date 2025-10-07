@@ -241,7 +241,9 @@ Compiles into:
     - `DeleteFunc`
     - `Clone`, `Copy`
     - `Equal`, `EqualFunc`
-    - *Thats it...*
+    - Iterators:
+        - `Collect`, `Insert`
+        - `All`, `Keys`, `Values`
 
 [Go Packages: maps](https://pkg.go.dev/maps)
 
