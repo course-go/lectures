@@ -267,10 +267,12 @@ Compiles into:
     - `Cut`, `Trim`, `Split`, `Join`
     - `Contains`, `Index`
     - `ToLower`, `ToUpper`, `ToTitle`
+    - Iterators:
+        - `Lines`, `SplitSeq`, `SlitSeqAfter`
     - *And many more...*
-- String builder
+- `Builder`
     - Use whenever dynamically building strings
-- String reader
+- `Reader`
 
 [Go Packages: strings](https://pkg.go.dev/strings)
 
