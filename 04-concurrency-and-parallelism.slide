@@ -542,9 +542,17 @@ type Ticker struct {
     - `RLock()`
     - `RUnlock()`
 
+## Racy WaitGroup
+
+.play assets/lecture-04/sync/waitgroup-racy.go /START OMIT/,/END OMIT/
+
 ## WaitGroup
 
 .play assets/lecture-04/sync/waitgroup.go /START OMIT/,/END OMIT/
+
+## WaitGroup Go
+
+.play assets/lecture-04/sync/waitgroup-go.go /START OMIT/,/END OMIT/
 
 ## Sync/atomic package
 

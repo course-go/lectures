@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math/rand/v2"
 	"sync"
 )
 
@@ -14,17 +13,17 @@ func main() {
 	var sum int
 	wg.Add(2)
 	go func() {
-		for range 5 {
+		for i := range 5 {
 			mu.Lock()
-			sum += rand.IntN(100)
+			sum += i
 			mu.Unlock()
 		}
 		wg.Done() // Decrements the WaitGroup counter
 	}()
 	go func() {
-		for range 5 {
+		for i := range 5 {
 			mu.Lock()
-			sum += rand.IntN(100)
+			sum += i
 			mu.Unlock()
 		}
 		wg.Done() // Decrements the WaitGroup counter

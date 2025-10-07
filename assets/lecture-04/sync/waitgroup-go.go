@@ -3,32 +3,32 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
 // START OMIT
 
 func main() {
 	var mu sync.Mutex
+	var wg sync.WaitGroup
 	var sum int
 
-	go func() {
+	wg.Go(func() {
 		for i := range 5 {
 			mu.Lock()
 			sum += i
 			mu.Unlock()
 		}
-	}()
+	})
 
-	go func() {
+	wg.Go(func() {
 		for i := range 5 {
 			mu.Lock()
 			sum += i
 			mu.Unlock()
 		}
-	}()
+	})
 
-	time.Sleep(1 * time.Second) // This is inappropriate, let's fix it using WaitGroup later...
+	wg.Wait() // Better...
 	fmt.Printf("Summed: %d", sum)
 }
 
