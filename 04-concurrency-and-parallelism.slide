@@ -525,8 +525,9 @@ type Ticker struct {
     - **WaitGroup**: barrier
     - **Cond**: conditional variable
         - Can be simulated with just channels in most use cases
-    - **Map**: 
+    - **Map**:
         - Generally not recommended to be used
+    - **Once/Value/Values**: run function once
 
 [Go packages: sync](https://pkg.go.dev/sync)
 
