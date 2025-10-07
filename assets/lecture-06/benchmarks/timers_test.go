@@ -12,6 +12,12 @@ func BenchmarkReset(b *testing.B) {
 	}
 }
 
+func BenchmarkLoop(b *testing.B) {
+	for b.Loop() { // resets timer
+		// benchmark
+	}
+}
+
 func BenchmarkStopStart(b *testing.B) {
 	for range b.N {
 		b.StopTimer()
