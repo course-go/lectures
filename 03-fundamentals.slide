@@ -377,6 +377,7 @@ type error interface {
 
 - AKA associative array, hash map, or dictionary
 - Data structure for key-value pairs
+    - Implementation based on [Swiss Tables](https://abseil.io/about/design/swisstables)
 - Default value is nil:
 
 ```
