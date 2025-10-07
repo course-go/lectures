@@ -28,7 +28,7 @@ func main() {
 		}
 		wg.Done() // Decrements the WaitGroup counter
 	}()
-	wg.Wait() // Better...
+	wg.Wait()
 	fmt.Printf("Summed: %d", sum)
 }
 

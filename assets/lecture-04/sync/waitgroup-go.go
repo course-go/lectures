@@ -28,7 +28,7 @@ func main() {
 		}
 	})
 
-	wg.Wait() // Better...
+	wg.Wait()
 	fmt.Printf("Summed: %d", sum)
 }
 

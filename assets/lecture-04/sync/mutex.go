@@ -28,7 +28,7 @@ func main() {
 		}
 	}()
 
-	time.Sleep(1 * time.Second) // This is inappropriate, let's fix it using WaitGroup later...
+	time.Sleep(1 * time.Second) // You surely wouldn't want this in your production code.
 	fmt.Printf("Summed: %d", sum)
 }
 
