@@ -392,13 +392,13 @@ Compiles into:
 ## crypto
 
 - Encryption: [aes](https://pkg.go.dev/crypto/aes), [rsa](https://pkg.go.dev/crypto/rsa), [ed25519](https://pkg.go.dev/crypto/ed25519)
-- Hashing: [md5](https://pkg.go.dev/crypto/md5), [sha256](https://pkg.go.dev/crypto/sha256), [sha512](https://pkg.go.dev/crypto/sha512)
-- [hmac](https://pkg.go.dev/crypto/hmac), [rand](https://pkg.go.dev/crypto/rand), [tls](https://pkg.go.dev/crypto/tls), [x509](https://pkg.go.dev/crypto/x509)
+- Hashing: [md5](https://pkg.go.dev/crypto/md5), [sha256](https://pkg.go.dev/crypto/sha256), [sha512](https://pkg.go.dev/crypto/sha512), [sha3](https://pkg.go.dev/crypto/sha3), [pbkdf2](https://pkg.go.dev/crypto/pbkdf2)
+- [hmac](https://pkg.go.dev/crypto/hmac), [rand](https://pkg.go.dev/crypto/rand), [tls](https://pkg.go.dev/crypto/tls), [x509](https://pkg.go.dev/crypto/x509), [mlkem](https://pkg.go.dev/crypto/mlkem)
 
 [Go Packages: crypto](https://pkg.go.dev/crypto)
 
 - Encryption: [chacha20](https://pkg.go.dev/golang.org/x/crypto/chacha20)
-- Hashing: [argon2](https://pkg.go.dev/golang.org/x/crypto/argon2), [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt), [pbkdf2](https://pkg.go.dev/golang.org/x/crypto/pbkdf2)
+- Hashing: [argon2](https://pkg.go.dev/golang.org/x/crypto/argon2), [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt
 - Certificates: [acme](https://pkg.go.dev/golang.org/x/crypto/acme), [pkcs12](https://pkg.go.dev/golang.org/x/crypto/pkcs12)
 - [ssh](https://pkg.go.dev/golang.org/x/crypto/ssh)
 
