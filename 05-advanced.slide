@@ -467,13 +467,13 @@ Compiles into:
 
 ## The T type
 
+- **`Context`**: returns test context
 - **`Cleanup`**: registers a function that gets called when the test completes
-    - Like `defer`
+- **`Chdir`**: change directory for the duration of the test
 - **`TempDir`**: returns a temporary directory for the test to use
     - After the test is completed, it is aumatically removed
-- **`Helper`**: marks function as helper function
-    - When printing file and line information, it is skipped
-    - Makes test outputs cleaner
+- **`Helper`**: marks function as a helper function
+    - When printing file and line information, it is skipped (cleaner test outputs)
 - **`Run`**: runs a subtest in separate goroutine
 - **`Parallel`**: enables test to be run in parallel
 - And a few more...
