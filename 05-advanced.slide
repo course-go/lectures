@@ -398,7 +398,7 @@ Compiles into:
 [Go Packages: crypto](https://pkg.go.dev/crypto)
 
 - Encryption: [chacha20](https://pkg.go.dev/golang.org/x/crypto/chacha20)
-- Hashing: [argon2](https://pkg.go.dev/golang.org/x/crypto/argon2), [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt
+- Hashing: [argon2](https://pkg.go.dev/golang.org/x/crypto/argon2), [bcrypt](https://pkg.go.dev/golang.org/x/crypto/bcrypt)
 - Certificates: [acme](https://pkg.go.dev/golang.org/x/crypto/acme), [pkcs12](https://pkg.go.dev/golang.org/x/crypto/pkcs12)
 - [ssh](https://pkg.go.dev/golang.org/x/crypto/ssh)
 
