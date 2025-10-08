@@ -1,4 +1,3 @@
-// START OMIT
 module github.com/course-go/lectures
 
 go 1.25
@@ -11,8 +10,6 @@ require (
 	github.com/charmbracelet/bubbletea v0.26.1
 	github.com/cucumber/godog v0.14.0
 	github.com/gin-gonic/gin v1.9.1
-	// ...
-	// END OMIT
 	github.com/go-chi/chi/v5 v5.0.12
 	github.com/gofrs/uuid v4.3.1+incompatible
 	github.com/golang-migrate/migrate/v4 v4.17.1

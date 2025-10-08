@@ -530,11 +530,11 @@ $ go mod init <name-of-module>
 
 `go.mod`
 
-.code go.mod /START OMIT/,/END OMIT/
+.code assets/lecture-01/modules/go.mod
 
 `go.sum`
 
-.code go.sum
+.code assets/lecture-01/modules/go.sum
 
 ## Packages
 
