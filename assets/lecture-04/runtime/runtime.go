@@ -8,9 +8,15 @@ import (
 // START OMIT
 
 func main() {
-	fmt.Printf("Logical CPUs (\"P\"s): %d\n", runtime.NumCPU())
+	fmt.Println(`Logical CPUs ("P"s):`, runtime.NumCPU())
 	runtime.GC() // Invokes garbage collector
-	fmt.Printf("GOMAXPROCS: %d\n", runtime.GOMAXPROCS(8))
+	fmt.Println("GOMAXPROCS:", runtime.GOMAXPROCS(8))
+	fmt.Println("GOMAXPROCS:", runtime.GOMAXPROCS(4))
+	fmt.Println("Goroutines:", runtime.NumGoroutine())
+	runtime.LockOSThread()
+	stats := &runtime.MemStats{}
+	runtime.ReadMemStats(stats)
+	fmt.Println("Heap:", stats.Alloc, "B")
 }
 
 // END OMIT
