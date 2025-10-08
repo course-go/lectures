@@ -525,16 +525,31 @@ $ go mod init <name-of-module>
 ```
 
 [Go Blog: Using Go Modules](https://go.dev/blog/using-go-modules)
+[Go: Modules Reference](https://tip.golang.org/ref/mod)
 
 ## Modules
 
 `go.mod`
 
-.code assets/lecture-01/modules/go.mod
+.code assets/lecture-01/modules/go.mod /BASE START OMIT/,/BASE END OMIT/
 
 `go.sum`
 
 .code assets/lecture-01/modules/go.sum
+
+## Tools
+
+- Runnable Go tooling that is not directly used by the project
+
+```
+$ go get -tool mvdan.cc/gofumpt
+```
+
+.code assets/lecture-01/modules/go.mod /TOOL START OMIT/,/TOOL END OMIT/
+
+```
+$ go tool gofumpt -w .
+```
 
 ## Packages
 
