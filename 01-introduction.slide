@@ -518,16 +518,44 @@ This lectures covers just two of these:
     - `go.mod`
 - Dependency check-sums are saved to a separate file
     - `go.sum`
-- New modules can be create via `go` executable:
+
+[Go: Modules Reference](https://tip.golang.org/ref/mod)
+
+## Module commands
+
+- To create new module:
 
 ```
-$ go mod init <name-of-module>
+$ go mod init github.com/course-go/lectures
+```
+
+- To add a dependency:
+
+```
+$ go get github.com/gin-gonic/gin
+```
+
+- To add a dependency with specific version:
+
+```
+$ go get github.com/gin-gonic/gin@v1.11.0
+```
+
+- To update a dependency:
+
+```
+$ go get -u github.com/gin-gonic/gin
+```
+
+- To cleanup module:
+
+```
+$ go mod tidy
 ```
 
 [Go Blog: Using Go Modules](https://go.dev/blog/using-go-modules)
-[Go: Modules Reference](https://tip.golang.org/ref/mod)
 
-## Modules
+## Module files
 
 `go.mod`
 
