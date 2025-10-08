@@ -470,14 +470,22 @@ Compiles into:
 ## The T type
 
 - **`Context`**: returns test context
-- **`Cleanup`**: registers a function that gets called when the test completes
-- **`Chdir`**: change directory for the duration of the test
-- **`TempDir`**: returns a temporary directory for the test to use
-    - After the test is completed, it is aumatically removed
-- **`Helper`**: marks function as a helper function
-    - When printing file and line information, it is skipped (cleaner test outputs)
+- **`Attr`**: adds an key value attribute to test that gets printed
 - **`Run`**: runs a subtest in separate goroutine
 - **`Parallel`**: enables test to be run in parallel
+- **`Cleanup`**: registers a function that gets called when the test completes
+- **`Helper`**: marks function as a helper function
+    - When printing file and line information, it is skipped (cleaner test outputs)
+
+[Go Packages: testing T type](https://pkg.go.dev/testing#T)
+
+## The T type
+
+- **`Chdir`**: change directory for the duration of the test
+- **`TempDir`**: returns a temporary directory for the test to use
+    - After the test is completed, it is automatically removed
+- **`ArtifactDir`**: returns a directory for test outputs
+    - `-artifacts` flag needs to be provided otherwise it is cleaned up
 - And a few more...
 
 [Go Packages: testing T type](https://pkg.go.dev/testing#T)
