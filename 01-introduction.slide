@@ -635,17 +635,16 @@ $ go run hello.go
 Hello world
 ```
 
-## Go Format
+## Formatting
 
-.play assets/lecture-01/hello-world/unformatted.go
-
-- Can be formatted using the built-in `fmt` formatter
+- Built-in [gofmt](https://pkg.go.dev/cmd/gofmt) formatter
+    - Or alternatively [gofumpt](https://github.com/mvdan/gofumpt) which extends it with additional rules
 
 ```
 $ go fmt main.go
 ```
 
-- Results in:
+.play assets/lecture-01/hello-world/unformatted.go
 
 .code assets/lecture-01/hello-world/hello-world.go
 
