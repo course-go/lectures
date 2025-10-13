@@ -7,10 +7,10 @@ import (
 )
 
 // START OMIT
-var CannotGetNumberErr = errors.New("cannot get number")
+var ErrCannotGetNumber = errors.New("cannot get number")
 
 func number() (int, error) {
-	return 0, CannotGetNumberErr
+	return 0, ErrCannotGetNumber
 }
 
 func calculate() (int, error) {
@@ -23,7 +23,7 @@ func calculate() (int, error) {
 
 func main() {
 	calculation, err := calculate()
-	if errors.Is(err, CannotGetNumberErr) { // perhaps retry?
+	if errors.Is(err, ErrCannotGetNumber) { // perhaps retry?
 		return
 	}
 	if err != nil {
