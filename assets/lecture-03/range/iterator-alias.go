@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"iter"
+)
 
 // START OMIT
 
@@ -8,7 +11,7 @@ type Data struct {
 	names []string
 }
 
-func (d *Data) Iterator() func(yield func(int, string) bool) {
+func (d *Data) Iterator() iter.Seq2[int, string] {
 	return func(yield func(int, string) bool) {
 		for i, v := range d.names {
 			if !yield(i, v) {

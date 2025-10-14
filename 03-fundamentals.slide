@@ -552,3 +552,15 @@ Seq2[K, V any] func(yield func(K, V) bool)
 ## Iterator example
 
 .play assets/lecture-03/range/iterator.go /START OMIT/,/END OMIT/
+
+## Iterator alias
+
+.play assets/lecture-03/range/iterator-alias.go /START OMIT/,/END OMIT/
+
+## Iterator break
+
+.play assets/lecture-03/range/iterator-break.go /START OMIT/,/END OMIT/
+
+## Iterator panic
+
+.play assets/lecture-03/range/iterator-panic.go /START OMIT/,/END OMIT/
