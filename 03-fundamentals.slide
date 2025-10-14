@@ -101,22 +101,7 @@ type Calculator interface {
 
 - Forbidden, detected by compiler
 
-```
-type I1 interface {
-    I2
-    method_i1()
-}
-
-type I2 interface {
-    I3
-    method_i2()
-}
-
-type I3 interface {
-    I1
-    method_i3()
-}
-```
+.play assets/lecture-03/interfaces/circle.go /START OMIT/,/END OMIT/
 
 ## Declaration of two interfaces
 
