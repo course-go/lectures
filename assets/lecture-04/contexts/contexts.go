@@ -11,6 +11,8 @@ import (
 
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 6*time.Second)
+	defer cancel()
+
 	data := make(chan int, 4)
 	producerDone := make(chan bool)
 	consumerDone := make(chan bool)
@@ -33,7 +35,7 @@ func main() {
 		for {
 			select {
 			case v := <-data:
-				fmt.Println("Procesing...")
+				fmt.Println("Processing...")
 				time.Sleep(time.Second)
 				fmt.Printf("Processed: %d\n", v)
 			case <-ctx.Done():
@@ -46,7 +48,6 @@ func main() {
 
 	<-producerDone
 	<-consumerDone
-	cancel()
 	fmt.Println("Program terminated...")
 }
 
