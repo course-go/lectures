@@ -706,6 +706,35 @@ $ go fmt main.go
 
 .play assets/lecture-01/visibility.go
 
+## Naming conventions
+
+- Package names are lowercase
+    - No separator for multiword names
+
+```
+httptest
+```
+
+- Filenames are also lowercase
+    - Multiword names are separated using underscore
+
+```
+user_validation_service.go
+```
+
+- Other names use pascal or camel case
+    - Depending on the intended visibility
+
+```
+UserValidationService / userValidationService
+```
+
+- Abbreviations are never lowercased if first letter is capital
+
+```
+HTTPError / httpError
+```
+
 ## Resources
 
 ## Styleguides
