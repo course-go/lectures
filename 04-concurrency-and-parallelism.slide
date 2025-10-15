@@ -571,3 +571,7 @@ type Ticker struct {
 ## Atomics
 
 .play assets/lecture-04/sync/atomics.go /START OMIT/,/END OMIT/
+
+## Putting it all together
+
+.play assets/lecture-04/sync/waitgroup-combined.go /START OMIT/,/END OMIT/
