@@ -477,17 +477,25 @@ version     print Go version
 vet         report likely mistakes in packages
 ```
 
-## Workspace
+## Environment
 
-- Defined by `$GOPATH` variable
+- Workspace defined by `$GOPATH` variable
     - `$HOME/go` by default
 - Structured directory:
     - `/src`: historically used for storing source code
         - unused after introduction of go modules
     - `/pkg`: stores downloaded versioned packages
-        - `go get`
-    - `/bin`: contains executable binaries 
-        - `go install`
+        - `/mod`: module cache (`$GOMODCACHE` )
+        - `/sumdb`: module checksum database state
+            - `$ go get`
+    - `/bin`: contains executable binaries (`$GOBIN`)
+        - `$ go install`
+
+## Environment
+
+- Go distribution (`$GOROOT`)
+- Build cache directory (`$GOCACHE`)
+- Experimental features (`$GOEXPERIMENT`)
 
 ## Project basics
 
@@ -519,7 +527,7 @@ This lectures covers just two of these:
 - Dependency check-sums are saved to a separate file
     - `go.sum`
 
-[Go: Modules Reference](https://tip.golang.org/ref/mod)
+[Go Modules Reference](https://tip.golang.org/ref/mod)
 
 ## Module commands
 
@@ -565,7 +573,7 @@ $ go mod tidy
 
 .code assets/lecture-01/modules/go.sum
 
-## Tools
+## Module tools
 
 - Runnable Go tooling that is not directly used by the project
 
@@ -578,6 +586,25 @@ $ go get -tool mvdan.cc/gofumpt
 ```
 $ go tool gofumpt -w .
 ```
+
+[Go Module Reference: tools directive](https://go.dev/ref/mod#go-mod-file-tool)
+
+## Module proxies
+
+- Module proxies are HTTP servers that serve as cache mirrors to code repositories
+    - Go, by default, downloads code using the default Google proxy
+    - The default proxy can only access public repositories
+- Go also verifies code check-sums when downloading dependencies
+
+```
+GOPROXY='https://proxy.golang.org,direct'
+GOSUMDB='sum.golang.org'
+GOPRIVATE'git.my.company.com'
+GONOPROXY='git.my.company.com'
+GONOSUMDB='git.my.company.com'
+```
+
+[Go Module Reference: module proxies](https://go.dev/ref/mod#module-proxy)
 
 ## Packages
 
