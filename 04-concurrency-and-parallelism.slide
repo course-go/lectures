@@ -531,6 +531,10 @@ type Ticker struct {
 
 [Go packages: sync](https://pkg.go.dev/sync)
 
+## Racy sum
+
+.play assets/lecture-04/sync/mutex-less.go /START OMIT/,/END OMIT/
+
 ## Mutex
 
 .play assets/lecture-04/sync/mutex.go /START OMIT/,/END OMIT/
