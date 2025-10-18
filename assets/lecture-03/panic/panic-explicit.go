@@ -3,11 +3,11 @@ package main
 // START OMIT
 
 func main() {
-	increment(nil)
+	explicit()
 }
 
-func increment(i *int) {
-	*i++
+func explicit() {
+	panic("unimplemented")
 }
 
 // END OMIT

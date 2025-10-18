@@ -2,10 +2,7 @@ package main
 
 import "fmt"
 
-func panics() {
-	var i *int
-	*i++
-}
+// START OMIT
 
 func main() {
 	defer func() {
@@ -13,5 +10,11 @@ func main() {
 			fmt.Println("Recovered in f", r)
 		}
 	}()
-	panics()
+	increment(nil)
 }
+
+func increment(i *int) {
+	*i++
+}
+
+// END OMIT

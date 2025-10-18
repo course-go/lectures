@@ -254,11 +254,13 @@ type error interface {
 - So errors are nice
 - What about the panics?
 
-.play assets/lecture-03/panic/panic.go
+.play assets/lecture-03/panic/panic.go /START OMIT/,/END OMIT/
+
+.play assets/lecture-03/panic/panic-explicit.go /START OMIT/,/END OMIT/
 
 ## Recover
 
-.play assets/lecture-03/panic/recover.go
+.play assets/lecture-03/panic/recover.go /START OMIT/,/END OMIT/
 
 [Go Blog: Defer, Panic, and Recover](https://go.dev/blog/defer-panic-and-recover)
 
