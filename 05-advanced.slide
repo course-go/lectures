@@ -35,20 +35,20 @@ Tags: golang, go
 
 - Good old "normal" functions as used for decades
 
-.play assets/lecture-05/generics/normal-print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/normal-print/main.go /START OMIT/,/END OMIT/
 
 ## Function overloading
 
 - Not supported in Go
 - Avoids [name mangling](https://en.wikipedia.org/wiki/Name_mangling)
 
-.play assets/lecture-05/generics/overloaded-prints.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/overloaded-prints/main.go /START OMIT/,/END OMIT/
 
 ## Multiple implementations
 
 - An implemenetation for each type
 
-.play assets/lecture-05/generics/multiple-prints.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/multiple-prints/main.go /START OMIT/,/END OMIT/
 
 ## Runtime "generics"
 
@@ -56,7 +56,7 @@ Tags: golang, go
 - Tidious to implement
     - Usually combined with a type switch
 
-.play assets/lecture-05/generics/runtime-print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/runtime-print/main.go /START OMIT/,/END OMIT/
 
 ## Generic function
 
@@ -65,39 +65,39 @@ Tags: golang, go
         - Usually named `T`, `U`, `V`, ... but words can be used as well
     - The type parameters have to be instantiated on use
 
-.play assets/lecture-05/generics/print-instantiated.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print-instantiated/main.go /START OMIT/,/END OMIT/
 
 ## Selection of generic function
 
 - The instance of the type parameter can sometimes be omitted
     - Inferred by the compiler
 
-.play assets/lecture-05/generics/print.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print/main.go /START OMIT/,/END OMIT/
 
 ## Compilation type checks
 
 - Compiler checks that the instantiated type and arguments match
 
-.play assets/lecture-05/generics/print-check.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/print-check/main.go /START OMIT/,/END OMIT/
 
 ## Comparable with multiple implementations
 
-.play assets/lecture-05/generics/orderable-multiple.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/orderable-multiple/main.go /START OMIT/,/END OMIT/
 
 ## Type sets: orderable
 
 - Used to constrain the type parameter
 - The type parameter then supports intersection of operations of given types
 
-.play assets/lecture-05/generics/type-set-orderable.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-set-orderable/main.go /START OMIT/,/END OMIT/
 
 ## Type sets: unorderable
 
-.play assets/lecture-05/generics/type-set-unorderable.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-set-unorderable/main.go /START OMIT/,/END OMIT/
 
 ## Type sets: hierarchy
 
-.code assets/lecture-05/generics/type-set-hierarchy.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/type-set-hierarchy/main.go /START OMIT/,/END OMIT/
 
 ## Compile time or runtime?
 
@@ -118,7 +118,7 @@ $ go build -gcflags=main=-S
 
 ## Assembly: concrete implementation
 
-.code assets/lecture-05/generics/orderable-single.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/orderable-single/main.go /START OMIT/,/END OMIT/
 
 Compiles into:
 
@@ -133,7 +133,7 @@ Compiles into:
 
 ## Assembly: generic implementation (1/2)
 
-.code assets/lecture-05/generics/type-set-orderable.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/generics/type-set-orderable/main.go /START OMIT/,/END OMIT/
 
 Compiles into:
 
@@ -171,7 +171,7 @@ Compiles into:
 
 - Reminder: Go does not coerce types
 
-.play assets/lecture-05/generics/no-conversions.go 
+.play assets/lecture-05/generics/no-conversions/main.go 
 
 ## Type approximations
 
@@ -180,27 +180,27 @@ Compiles into:
         - The `int` type and 
         - All other types that have `int` as their underlying type
 
-.play assets/lecture-05/generics/type-approximations.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/type-approximations/main.go /START OMIT/,/END OMIT/
 
 ## Generic method vs. generic function
 
-.play assets/lecture-05/generics/slice.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/generics/slice/main.go /START OMIT/,/END OMIT/
 
 ## Map utilities (1/2)
 
-.play assets/lecture-05/generics/utilities-maps.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-05/generics/utilities-maps/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## Map utilities (2/2)
 
-.play assets/lecture-05/generics/utilities-maps.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-05/generics/utilities-maps/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Slice utilities (1/2)
 
-.play assets/lecture-05/generics/utilities-slices.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-05/generics/utilities-slices/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## Slice utilities (2/2)
 
-.play assets/lecture-05/generics/utilities-slices.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-05/generics/utilities-slices/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Packages
 
@@ -233,7 +233,7 @@ Compiles into:
 
 ## slices
 
-.play assets/lecture-05/packages/slices.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/slices/main.go /START OMIT/,/END OMIT/
 
 ## maps
 
@@ -315,7 +315,7 @@ Compiles into:
 - Also implements a few functions
     - `Copy`, `ReadAll`, ...
 
-.play assets/lecture-05/packages/io.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/io/main.go /START OMIT/,/END OMIT/
 
 [Go Packages: io](https://pkg.go.dev/io)
 
@@ -339,7 +339,7 @@ Compiles into:
 
 ## bufio
 
-.play assets/lecture-05/packages/bufio.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/bufio/main.go /START OMIT/,/END OMIT/
 
 ## os
 
@@ -358,7 +358,7 @@ Compiles into:
 
 ## os
 
-.play assets/lecture-05/packages/os.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/os/main.go /START OMIT/,/END OMIT/
 
 ## log
 
@@ -391,7 +391,7 @@ Compiles into:
 
 ## log/slog
 
-.play assets/lecture-05/packages/slog.go /START OMIT/,/END OMIT/
+.play assets/lecture-05/packages/slog/main.go /START OMIT/,/END OMIT/
 
 ## crypto
 
@@ -544,7 +544,7 @@ models/
         - It is included in the testing phase
         - Exluded from source code
 
-.code assets/lecture-05/testing/export_test.go
+.code assets/lecture-05/testing/export_test/main.go
 
 ## Running tests
 
@@ -559,32 +559,32 @@ models/
 
 ## Add example: separate package, exported
 
-.code assets/lecture-05/testing/exported-add-separated-package.go
-.code assets/lecture-05/testing/exported-add-separated-package_test.go
+.code assets/lecture-05/testing/exported-add-separated-package/main.go
+.code assets/lecture-05/testing/exported-add-separated-package_test/main.go
 
 ## Add example: separate package, unexported (1/2)
 
-.code assets/lecture-05/testing/unexported-add-separated-package.go
-.code assets/lecture-05/testing/unexported-add-separated-package_test.go
+.code assets/lecture-05/testing/unexported-add-separated-package/main.go
+.code assets/lecture-05/testing/unexported-add-separated-package_test/main.go
 
 ## Add example: separate package, unexported (2/2)
 
 - Works if we export it via **`export_test.go`** file like so:
 
-.code assets/lecture-05/testing/add-export_test.go
+.code assets/lecture-05/testing/add-export_test/main.go
 
 ## Test failures: Error
 
-.code assets/lecture-05/testing/add-error.go
-.code assets/lecture-05/testing/add-error_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-error/main.go
+.code assets/lecture-05/testing/add-error_test/main.go /START OMIT/,/END OMIT/
 
 ## Test failures: Log, Skip, Fatal
 
-.code assets/lecture-05/testing/add-fatal_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-fatal_test/main.go /START OMIT/,/END OMIT/
 
 ## Table-driven tests
 
-.code assets/lecture-05/testing/add-table-driven_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-table-driven_test/main.go /START OMIT/,/END OMIT/
 
 ## Running tests in parallel
 
@@ -602,7 +602,7 @@ models/
 
 ## Running tests in parallel
 
-.code assets/lecture-05/testing/add-parallel_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-parallel_test/main.go /START OMIT/,/END OMIT/
 
 ## Notes on test names
 
@@ -624,7 +624,7 @@ models/
     - To learn more about build tags run: **`go help buildconstraint`**
     - Short tests can be run with: **`go test -short ./...`** and checked via the T
 
-.code assets/lecture-05/testing/add-short_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-short_test/main.go /START OMIT/,/END OMIT/
 
 - Auxilery data are stored in `testdata` directories
     - Ignored by the compiler
@@ -703,7 +703,7 @@ f.Fuzz(func(t *testing.T, b []byte, i int) { ... })
 
 ## Fuzzing example
 
-.code assets/lecture-05/testing/fuzzing-add_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/fuzzing-add_test/main.go /START OMIT/,/END OMIT/
 
 - Can easily be run using the go toolkit
     - **`go test -fuzz FuzzAdd -fuzztime 5s`**
@@ -751,15 +751,15 @@ int(-8)
 
 ## Assertions
 
-.code assets/lecture-05/testing/recursive-factorial.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/recursive-factorial/main.go /START OMIT/,/END OMIT/
 
 ## Assertions
 
-.code assets/lecture-05/testing/asserts-factorial_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/asserts-factorial_test/main.go /START OMIT/,/END OMIT/
 
 ## Dot import
 
-.code assets/lecture-05/testing/asserts-factorial-dot-import_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/asserts-factorial-dot-import_test/main.go /START OMIT/,/END OMIT/
 
 ## goconvey
 
@@ -794,11 +794,11 @@ int(-8)
 
 ## goconvey factorial tests
 
-.code assets/lecture-05/goconvey/factorial_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/goconvey/factorial_test/main.go /START OMIT/,/END OMIT/
 
 ## goconvey slice tests
 
-.code assets/lecture-05/goconvey/slice_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/goconvey/slice_test/main.go /START OMIT/,/END OMIT/
 
 ## godog
 
@@ -839,11 +839,11 @@ int(-8)
 
 ## godog example (1/2)
 
-.code assets/lecture-05/godog/godogs_test.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-05/godog/godogs_test/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## godog example (2/2)
 
-.code assets/lecture-05/godog/godogs_test.go /TEST OMIT/,/END OMIT/
+.code assets/lecture-05/godog/godogs_test/main.go /TEST OMIT/,/END OMIT/
 
 ## Scenario Outline
 
@@ -867,7 +867,7 @@ int(-8)
 
 ## go-expect
 
-.code assets/lecture-05/go-expect/curl.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/go-expect/curl/main.go /START OMIT/,/END OMIT/
 
 ## Mocking
 
@@ -885,22 +885,22 @@ int(-8)
     - **`go install go.uber.org/mock/mockgen@latest`**
 - Define interface to mock:
 
-.code assets/lecture-05/gomock/interface.go
+.code assets/lecture-05/gomock/interface/main.go
 
 - Generate mock:
     - **`mockgen -source interfaces.go -destination mock.go -package calculator`**
 
 ## gomock mock (1/2)
 
-.code assets/lecture-05/gomock/mock.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-05/gomock/mock/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## gomock mock (2/2)
 
-.code assets/lecture-05/gomock/mock.go /MIDDLE OMIT/,/END OMIT/
+.code assets/lecture-05/gomock/mock/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## gomock testing with mock
 
-.code assets/lecture-05/gomock/calculator_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/gomock/calculator_test/main.go /START OMIT/,/END OMIT/
 
 ## Utilities
 

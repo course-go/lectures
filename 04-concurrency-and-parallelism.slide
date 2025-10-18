@@ -76,7 +76,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 
 ## Goroutines
 
-.play assets/lecture-04/goroutines/goroutines.go
+.play assets/lecture-04/goroutines/goroutines/main.go
 
 ## Runtime
 
@@ -86,7 +86,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
     - Same as the `libc` library in C
 - Statically linked with your program upon compilation
 
-.play assets/lecture-04/runtime/runtime.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/runtime/runtime/main.go /START OMIT/,/END OMIT/
 
 [Go's runtime package](https://pkg.go.dev/runtime)
 
@@ -177,7 +177,7 @@ ch<-value       // writing
 
 - Note that this example is racy
 
-.play assets/lecture-04/channels/unbuffered.go
+.play assets/lecture-04/channels/unbuffered/main.go
 
 ## Unbuffered channels
 
@@ -189,19 +189,19 @@ ch<-value       // writing
     - Buffered channels also block when full or empty
     - Go kindly detects deadlocks
 
-.play assets/lecture-04/channels/deadlock.go
+.play assets/lecture-04/channels/deadlock/main.go
 
 ## Goroutine synchronization 
 
 - Unbuffered channels can be used to synchronize goroutines
 
-.play assets/lecture-04/channels/sync.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/sync/main.go /START OMIT/,/END OMIT/
 
 ## Buffered channels
 
 - The size of the channel is provided as the second argument to `make`
 
-.play assets/lecture-04/channels/buffered.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/buffered/main.go /START OMIT/,/END OMIT/
 
 ## Buffered channels
 
@@ -217,11 +217,11 @@ ch<-value       // writing
 
 ## Pipeline (1/2)
 
-.play assets/lecture-04/channels/pipeline.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/channels/pipeline/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## Pipeline (2/2)
 
-.play assets/lecture-04/channels/pipeline.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/channels/pipeline/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Closing channels
 
@@ -243,17 +243,17 @@ close(c)
 
 - Writing to a closed channel
 
-.play assets/lecture-04/channels/closed-write.go
+.play assets/lecture-04/channels/closed-write/main.go
 
 ## Closed channel operations
 
 - Reading from a closed channel
 
-.play assets/lecture-04/channels/closed-read.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/closed-read/main.go /START OMIT/,/END OMIT/
 
 - "Comma ok" idiom channel check
 
-.play assets/lecture-04/channels/closed-read-ok.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/closed-read-ok/main.go /START OMIT/,/END OMIT/
 
 ## Range over channels
 
@@ -261,7 +261,7 @@ close(c)
     - The loop breaks when the channel gets closed
     - Empties the channel's buffer first
 
-.play assets/lecture-04/channels/range.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/channels/range/main.go /START OMIT/,/END OMIT/
 
 ## Channel operations
 
@@ -283,7 +283,7 @@ close(c)
 - Both of the channels in the following example are ready to be read from
     - Therefore, the `select` chooses one of them at random
 
-.play assets/lecture-04/select/select.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/select/main.go /START OMIT/,/END OMIT/
 
 ## Select
 
@@ -291,14 +291,14 @@ close(c)
     - Neither channels is full
     - Writing to them would not block
 
-.play assets/lecture-04/select/writes.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/writes/main.go /START OMIT/,/END OMIT/
 
 ## Select
 
 - The `chanB` would block on read
     - The `select` therefore always chooses the `chanA`
 
-.play assets/lecture-04/select/single.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/single/main.go /START OMIT/,/END OMIT/
 
 ## Select default
 
@@ -307,7 +307,7 @@ close(c)
 - We can leverage the `default` case
     - The `default` gets selected only when all the `case`s would block
 
-.play assets/lecture-04/select/default.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/default/main.go /START OMIT/,/END OMIT/
 
 ## Fan-out
 
@@ -319,17 +319,17 @@ close(c)
 
 ## Fan-in (1/2)
 
-.play assets/lecture-04/select/fanin.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/select/fanin/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Fan-in (2/2)
 
-.play assets/lecture-04/select/fanin.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/select/fanin/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## Signalling termination
 
 - Usually done through `context`s
 
-.play assets/lecture-04/select/done.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/select/done/main.go /START OMIT/,/END OMIT/
 
 ## Related packages
 
@@ -403,11 +403,11 @@ ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
 
 ## Context
 
-.play assets/lecture-04/contexts/contexts.go /START OMIT/,/MIDDLE OMIT/
+.play assets/lecture-04/contexts/contexts/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## Context
 
-.play assets/lecture-04/contexts/contexts.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-04/contexts/contexts/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Context propagation
 
@@ -489,7 +489,7 @@ type Timer struct {
 
 ## Timer
 
-.play assets/lecture-04/time/timer.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time/timer/main.go /START OMIT/,/END OMIT/
 
 ## Ticker
 
@@ -515,7 +515,7 @@ type Ticker struct {
 
 ## Ticker
 
-.play assets/lecture-04/time/ticker.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/time/ticker/main.go /START OMIT/,/END OMIT/
 
 ## Sync package
 
@@ -533,11 +533,11 @@ type Ticker struct {
 
 ## Racy sum
 
-.play assets/lecture-04/sync/mutex-less.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/mutex-less/main.go /START OMIT/,/END OMIT/
 
 ## Mutex
 
-.play assets/lecture-04/sync/mutex.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/mutex/main.go /START OMIT/,/END OMIT/
 
 ## RWMutex
 
@@ -548,15 +548,15 @@ type Ticker struct {
 
 ## Racy WaitGroup
 
-.play assets/lecture-04/sync/waitgroup-racy.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup-racy/main.go /START OMIT/,/END OMIT/
 
 ## WaitGroup
 
-.play assets/lecture-04/sync/waitgroup.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup/main.go /START OMIT/,/END OMIT/
 
 ## WaitGroup Go
 
-.play assets/lecture-04/sync/waitgroup-go.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup/main.go /START OMIT/,/END OMIT/
 
 ## Sync/atomic package
 
@@ -574,8 +574,8 @@ type Ticker struct {
 
 ## Atomics
 
-.play assets/lecture-04/sync/atomics.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/atomics/main.go /START OMIT/,/END OMIT/
 
 ## Putting it all together
 
-.play assets/lecture-04/sync/waitgroup-combined.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup-combined/main.go /START OMIT/,/END OMIT/

@@ -561,7 +561,7 @@ $ podman compose up
 
 ## Testcontainers
 
-.code assets/lecture-08/testcontainers/quickstart.go /START OMIT/,/END OMIT/
+.code assets/lecture-08/testcontainers/quickstart/main.go /START OMIT/,/END OMIT/
 
 [Testcontainers for Go: Quickstart](https://golang.testcontainers.org/quickstart/)
 
@@ -576,7 +576,7 @@ $ podman compose up
 
 ## Modules
 
-.code assets/lecture-08/testcontainers/module.go /START OMIT/,/END OMIT/
+.code assets/lecture-08/testcontainers/module/main.go /START OMIT/,/END OMIT/
 
 [Testcontainers for Go: Postgres module](https://golang.testcontainers.org/modules/postgres/)
 

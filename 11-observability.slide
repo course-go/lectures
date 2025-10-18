@@ -55,7 +55,7 @@ Tags: golang, go
 
 ## Health
 
-.code assets/lecture-11/health/health.go /START OMIT/,/END OMIT/
+.code assets/lecture-11/health/health/main.go /START OMIT/,/END OMIT/
 
 [GitHub: alexliesenfeld/health](https://github.com/alexliesenfeld/health)
 
@@ -113,7 +113,7 @@ Tags: golang, go
 
 ## Instrumenting
 
-.code assets/lecture-11/metrics/prometheus-instrumenting.go /START OMIT/,/END OMIT/
+.code assets/lecture-11/metrics/prometheus-instrumenting/main.go /START OMIT/,/END OMIT/
 
 [Prometheus: Instrumenting Go Application](https://prometheus.io/docs/guides/go-application/)
 
@@ -201,7 +201,7 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 - Minimalizes allocations
 - [Extendable](https://pkg.go.dev/go.uber.org/zap#hdr-Extending_Zap)
 
-.code assets/lecture-11/logs/zap.go /START OMIT/,/END OMIT/
+.code assets/lecture-11/logs/zap/main.go /START OMIT/,/END OMIT/
 
 [GitHub: zap](https://github.com/uber-go/zap)
 
@@ -212,7 +212,7 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 - Inspired by zap
 - Comes out the fastest according to [benchmarks](https://github.com/uber-go/zap?tab=readme-ov-file#performance)
 
-.code assets/lecture-11/logs/zerolog.go /START OMIT/,/END OMIT/
+.code assets/lecture-11/logs/zerolog/main.go /START OMIT/,/END OMIT/
 
 [GitHub: zerolog](https://github.com/rs/zerolog)
 
@@ -439,33 +439,33 @@ Pipeline
 
 ## Instrumentation: Resources
 
-.code assets/lecture-11/opentelemetry/otel.go /START RESOURCE OMIT/,/END RESOURCE OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START RESOURCE OMIT/,/END RESOURCE OMIT/
 
 [OpenTelemetry: Resources](https://opentelemetry.io/docs/languages/go/resources/)
 
 ## Instrumentation: Providers & Exporter
 
-.code assets/lecture-11/opentelemetry/otel.go /START TRACE-PROVIDER OMIT/,/END TRACE-PROVIDER OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START TRACE-PROVIDER OMIT/,/END TRACE-PROVIDER OMIT/
 
-.code assets/lecture-11/opentelemetry/otel.go /START METRIC-PROVIDER OMIT/,/END METRIC-PROVIDER OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START METRIC-PROVIDER OMIT/,/END METRIC-PROVIDER OMIT/
 
 ## Instrumentation: Initialization
 
-.code assets/lecture-11/opentelemetry/otel.go /START TRACE-INIT OMIT/,/END TRACE-INIT OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START TRACE-INIT OMIT/,/END TRACE-INIT OMIT/
 
 [OpenTelemetry: Instrumentation](https://opentelemetry.io/docs/languages/go/instrumentation/)
 
 ## OpenTelemetry Instrumentation: Traces
 
-.code assets/lecture-11/opentelemetry/otel.go /START CREATING-SPAN OMIT/,/END CREATING-SPAN OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START CREATING-SPAN OMIT/,/END CREATING-SPAN OMIT/
 
-.code assets/lecture-11/opentelemetry/otel.go /START SPAN-ATTRIBUTES OMIT/,/END SPAN-ATTRIBUTES OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START SPAN-ATTRIBUTES OMIT/,/END SPAN-ATTRIBUTES OMIT/
 
-.code assets/lecture-11/opentelemetry/otel.go /START SPAN-STATUS OMIT/,/END SPAN-STATUS OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START SPAN-STATUS OMIT/,/END SPAN-STATUS OMIT/
 
 ## OpenTelemetry Instrumentation: Metrics
 
-.code assets/lecture-11/opentelemetry/otel.go /START METRIC OMIT/,/END METRIC OMIT/
+.code assets/lecture-11/opentelemetry/otel/main.go /START METRIC OMIT/,/END METRIC OMIT/
 
 ## OpenTelemetry Metric Instruments
 

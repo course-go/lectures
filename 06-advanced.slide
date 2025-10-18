@@ -60,7 +60,7 @@ $ go test -bench Slice -benchmem -count 5 -benchtime 3s
 
 ## Slice benchmark
 
-.code assets/lecture-06/benchmarks/slices_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-06/benchmarks/slices_test/main.go /START OMIT/,/END OMIT/
 
 ## Benchmark result
 
@@ -128,7 +128,7 @@ geomean                        6.245
 
 ## Timers
 
-.code assets/lecture-06/benchmarks/timers_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-06/benchmarks/timers_test/main.go /START OMIT/,/END OMIT/
 
 ## Profiling
 
@@ -217,17 +217,17 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
 
 ## Large config (2/3)
 
-.code assets/lecture-06/optimizations/config.go /^type Config/,/^}/
+.code assets/lecture-06/optimizations/config/main.go /^type Config/,/^}/
 
-.code assets/lecture-06/optimizations/config.go /^type StorageConfiguration/,/^}/
+.code assets/lecture-06/optimizations/config/main.go /^type StorageConfiguration/,/^}/
 
 ## Large config (3/3)
 
-.code assets/lecture-06/optimizations/config.go /^type KafkaConfiguration/,/^}/
+.code assets/lecture-06/optimizations/config/main.go /^type KafkaConfiguration/,/^}/
 
 ## Config getter
 
-.code assets/lecture-06/optimizations/config.go /VALUE START OMIT/,/VALUE END OMIT/
+.code assets/lecture-06/optimizations/config/main.go /VALUE START OMIT/,/VALUE END OMIT/
 
 - Config is passed by value
 - Pros:
@@ -239,7 +239,7 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
 
 ## Dirty solution
 
-.code assets/lecture-06/optimizations/config.go /REFERENCE START OMIT/,/REFERENCE END OMIT/
+.code assets/lecture-06/optimizations/config/main.go /REFERENCE START OMIT/,/REFERENCE END OMIT/
 
 - The only possible solution in Go
     - Different semantic:
@@ -249,11 +249,11 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
 
 ## Benchmark helper functions
 
-.code assets/lecture-06/optimizations/config_test.go /HELPER START OMIT/,/HELPER END OMIT/
+.code assets/lecture-06/optimizations/config_test/main.go /HELPER START OMIT/,/HELPER END OMIT/
 
 ## Benchmarks
 
-.code assets/lecture-06/optimizations/config_test.go /BENCHMARK START OMIT/,/BENCHMARK MIDDLE OMIT/
+.code assets/lecture-06/optimizations/config_test/main.go /BENCHMARK START OMIT/,/BENCHMARK MIDDLE OMIT/
 
 ## Benchmark results
 
@@ -280,11 +280,11 @@ BenchmarkGetStorageConfigurationFunctionByReference-12     1000000000           
 
 - The same issue and simple fix
 
-.code assets/lecture-06/optimizations/config.go /RECEIVER START OMIT/,/RECEIVER END OMIT/
+.code assets/lecture-06/optimizations/config/main.go /RECEIVER START OMIT/,/RECEIVER END OMIT/
 
 ## Benchmark for methods
 
-.code assets/lecture-06/optimizations/config_test.go /BENCHMARK MIDDLE OMIT/,/BENCHMARK END OMIT/
+.code assets/lecture-06/optimizations/config_test/main.go /BENCHMARK MIDDLE OMIT/,/BENCHMARK END OMIT/
 
 ## Run the benchmark
 
@@ -320,7 +320,7 @@ m2 := make(map[uuid.UUID]time.Time, 1000)
 
 ## Benchmark
 
-.code assets/lecture-06/optimizations/maps_test.go /MAP-INSERT START OMIT/,/MAP-INSERT END OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /MAP-INSERT START OMIT/,/MAP-INSERT END OMIT/
 
 ## Benchmark results
 
@@ -346,11 +346,11 @@ BenchmarkPreallocatedMapInsert-12       100000000               69.12 ns/op
 - So keys might be pretty large
     - Imagine structs
 
-.code assets/lecture-06/optimizations/maps_test.go /COMPOUND-KEY-VALUE START OMIT/,/COMPOUND START OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /COMPOUND-KEY-VALUE START OMIT/,/COMPOUND START OMIT/
 
 ## Benchmark
 
-.code assets/lecture-06/optimizations/maps_test.go /COMPOUND START OMIT/,/COMPOUND END OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /COMPOUND START OMIT/,/COMPOUND END OMIT/
 
 ## Benchmark results for maps with large keys
 
@@ -389,15 +389,15 @@ BenchmarkInsertIntoEmptyMapCompoundKey-12                8367021               1
 
 ## Benchmark helper functions
 
-.code assets/lecture-06/optimizations/maps_test.go /SET-FILL START OMIT/,/SET-FILL END OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /SET-FILL START OMIT/,/SET-FILL END OMIT/
 
 ## Benchmark for map read/in-set operation
 
-.code assets/lecture-06/optimizations/maps_test.go /SET START OMIT/,/SET MIDDLE OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /SET START OMIT/,/SET MIDDLE OMIT/
 
 ## Benchmark for slice read/in-set operation
 
-.code assets/lecture-06/optimizations/maps_test.go /SET MIDDLE OMIT/,/SET END OMIT/
+.code assets/lecture-06/optimizations/maps_test/main.go /SET MIDDLE OMIT/,/SET END OMIT/
 
 ## Benchmark results
 
@@ -449,7 +449,7 @@ s2 := make([]uuid.UUID, 0, 1000)
 
 ## Benchmark
 
-.code assets/lecture-06/optimizations/slices_test.go /SLICES-PREALLOCATION START OMIT/,/SLICES-PREALLOCATION END OMIT/
+.code assets/lecture-06/optimizations/slices_test/main.go /SLICES-PREALLOCATION START OMIT/,/SLICES-PREALLOCATION END OMIT/
 
 ## Benchmark result
 
@@ -494,15 +494,15 @@ BenchmarkPreallocatedSliceInsertion-12          1000000000               1.566 n
 
 ## Benchmark helper functions
 
-.code assets/lecture-06/optimizations/slices_test.go /CHANGE START OMIT/,/CHANGE END OMIT/
+.code assets/lecture-06/optimizations/slices_test/main.go /CHANGE START OMIT/,/CHANGE END OMIT/
 
 ## Slice benchmark
 
-.code assets/lecture-06/optimizations/slices_test.go /SLICE START OMIT/,/SLICE END OMIT/
+.code assets/lecture-06/optimizations/slices_test/main.go /SLICE START OMIT/,/SLICE END OMIT/
 
 ## Arrays benchmark
 
-.code assets/lecture-06/optimizations/slices_test.go /ARRAY START OMIT/,/ARRAY END OMIT/
+.code assets/lecture-06/optimizations/slices_test/main.go /ARRAY START OMIT/,/ARRAY END OMIT/
 
 ## Benchmark results
 
@@ -529,15 +529,15 @@ BenchmarkPassArrayByReference-12        1000000000               0.3140 ns/op
 
 ## Now with a side effect
 
-.code assets/lecture-06/optimizations/slices-mutation_test.go /CHANGE START OMIT/,/CHANGE END OMIT/
+.code assets/lecture-06/optimizations/slices-mutation_test/main.go /CHANGE START OMIT/,/CHANGE END OMIT/
 
 ## Benchmark slice
 
-.code assets/lecture-06/optimizations/slices-mutation_test.go /SLICE START OMIT/,/SLICE END OMIT/
+.code assets/lecture-06/optimizations/slices-mutation_test/main.go /SLICE START OMIT/,/SLICE END OMIT/
 
 ## Benchmark arrays
 
-.code assets/lecture-06/optimizations/slices-mutation_test.go /ARRAY START OMIT/,/ARRAY END OMIT/
+.code assets/lecture-06/optimizations/slices-mutation_test/main.go /ARRAY START OMIT/,/ARRAY END OMIT/
 
 ## Benchmark results
 
@@ -564,7 +564,7 @@ BenchmarkPassArrayByReference-12        1000000000               0.3857 ns/op
 
 ## Slice benchmark
 
-.code assets/lecture-06/optimizations/for-each_test.go /SLICE START OMIT/,/SLICE END OMIT/
+.code assets/lecture-06/optimizations/for-each_test/main.go /SLICE START OMIT/,/SLICE END OMIT/
 
 ## Slice benchmark results
 
@@ -590,7 +590,7 @@ BenchmarkSliceForIndex-12          20893            282034 ns/op
 
 ## Map benchmark
 
-.code assets/lecture-06/optimizations/for-each_test.go /MAP START OMIT/,/MAP END OMIT/
+.code assets/lecture-06/optimizations/for-each_test/main.go /MAP START OMIT/,/MAP END OMIT/
 
 ## Map benchmark results
 
@@ -637,27 +637,27 @@ type stringStruct struct {
     - Naive builder
         - String concatenation
 
-.code assets/lecture-06/optimizations/builders.go /NAIVE OMIT/,/BYTES OMIT/
+.code assets/lecture-06/optimizations/builders/main.go /NAIVE OMIT/,/BYTES OMIT/
 
 ## Bytes buffer
 
 - Default
 
-.code assets/lecture-06/optimizations/builders.go /BYTES OMIT/,/BYTES-PREALLOCATED OMIT/
+.code assets/lecture-06/optimizations/builders/main.go /BYTES OMIT/,/BYTES-PREALLOCATED OMIT/
 
 - With pre-allocation
 
-.code assets/lecture-06/optimizations/builders.go /BYTES-PREALLOCATED OMIT/,/STRING OMIT/
+.code assets/lecture-06/optimizations/builders/main.go /BYTES-PREALLOCATED OMIT/,/STRING OMIT/
 
 ## String builder
 
 - Default
 
-.code assets/lecture-06/optimizations/builders.go /STRING OMIT/,/STRING-PREALLOCATED OMIT/
+.code assets/lecture-06/optimizations/builders/main.go /STRING OMIT/,/STRING-PREALLOCATED OMIT/
 
 - With pre-allocation
 
-.code assets/lecture-06/optimizations/builders.go /STRING-PREALLOCATED OMIT/,/END OMIT/
+.code assets/lecture-06/optimizations/builders/main.go /STRING-PREALLOCATED OMIT/,/END OMIT/
 
 ## Benchmark result
 
@@ -715,15 +715,15 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 ## Inlined C code
 
-.play assets/lecture-06/cgo/inlined.go
+.play assets/lecture-06/cgo/inlined/main.go
 
 ## Importing C code from separate file
 
-.code assets/lecture-06/cgo/independent.go
+.code assets/lecture-06/cgo/independent/main.go
 
 ## Memory management with C strings
 
-.play assets/lecture-06/cgo/strings.go /START OMIT/,/END OMIT/
+.play assets/lecture-06/cgo/strings/main.go /START OMIT/,/END OMIT/
 
 ## Should I use it then?
 
@@ -752,7 +752,7 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 ## Unsafe
 
-.play assets/lecture-06/unsafe/unsafe.go /START OMIT/,/END OMIT/
+.play assets/lecture-06/unsafe/unsafe/main.go /START OMIT/,/END OMIT/
 
 ## Reflection
 
@@ -765,12 +765,12 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 ## Reflection
 
-.play assets/lecture-06/reflect/reflect.go /START OMIT/,/END OMIT/
+.play assets/lecture-06/reflect/reflect/main.go /START OMIT/,/END OMIT/
 
 [Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)
 
 ## Reflecting structures
 
-.play assets/lecture-06/reflect/struct.go /START OMIT/,/END OMIT/
+.play assets/lecture-06/reflect/struct/main.go /START OMIT/,/END OMIT/
 
 [Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)

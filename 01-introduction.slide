@@ -688,7 +688,7 @@ go-scrapper/
 
 ## Hello world
 
-.play assets/lecture-01/hello-world/hello-world.go
+.play assets/lecture-01/hello-world/hello-world/main.go
 
 - Building an executable binary:
 
@@ -714,15 +714,15 @@ Hello world
 $ go fmt main.go
 ```
 
-.play assets/lecture-01/hello-world/unformatted.go
+.play assets/lecture-01/hello-world/unformatted/main.go
 
-.code assets/lecture-01/hello-world/hello-world.go
+.code assets/lecture-01/hello-world/hello-world/main.go
 
 ## Unicode
 
 - All string literals use UTF-8
 
-.play assets/lecture-01/hello-world/ukrainian.go
+.play assets/lecture-01/hello-world/ukrainian/main.go
 
 ## Visibility
 
@@ -731,7 +731,7 @@ $ go fmt main.go
     - They can be then reached from other packages or projects
 - `Pi` is a constant exported by the [math package](https://cs.opensource.google/go/go/+/refs/tags/go1.22.1:src/math/const.go;l=13)
 
-.play assets/lecture-01/visibility.go
+.play assets/lecture-01/visibility/main.go
 
 ## Naming conventions
 

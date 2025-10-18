@@ -27,11 +27,11 @@
 
 ## cobra (1/2)
 
-.code assets/projects/cli/cobra.go /START OMIT/,/MIDDLE OMIT/
+.code assets/projects/cli/cobra/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## cobra (2/2)
 
-.code assets/projects/cli/cobra.go /MIDDLE OMIT/,/END OMIT/
+.code assets/projects/cli/cobra/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## cli
 
@@ -48,11 +48,11 @@
 
 ## cli (1/2)
 
-.code assets/projects/cli/cli.go /START OMIT/,/MIDDLE OMIT/
+.code assets/projects/cli/cli/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## cli (2/2)
 
-.code assets/projects/cli/cli.go /MIDDLE OMIT/,/END OMIT/
+.code assets/projects/cli/cli/main.go /MIDDLE OMIT/,/END OMIT/
 
 [Urfave CLI: Examples](https://cli.urfave.org/v2/examples/greet/)
 
@@ -81,15 +81,15 @@ type Model interface {
 
 ## Bubbletea (1/3)
 
-.code assets/projects/tui/bubbletea.go /START OMIT/,/UPDATE OMIT/
+.code assets/projects/tui/bubbletea/main.go /START OMIT/,/UPDATE OMIT/
 
 ## Bubbletea (2/3)
 
-.code assets/projects/tui/bubbletea.go /UPDATE OMIT/,/VIEW OMIT/
+.code assets/projects/tui/bubbletea/main.go /UPDATE OMIT/,/VIEW OMIT/
 
 ## Bubbletea (3/3)
 
-.code assets/projects/tui/bubbletea.go /VIEW OMIT/,/END OMIT/
+.code assets/projects/tui/bubbletea/main.go /VIEW OMIT/,/END OMIT/
 
 ## Desktop
 
@@ -108,7 +108,7 @@ type Model interface {
 
 ## Wails
 
-.code assets/projects/desktop/wails.go /START OMIT/,/END OMIT/
+.code assets/projects/desktop/wails/main.go /START OMIT/,/END OMIT/
 
 ## Fyne
 
@@ -128,7 +128,7 @@ type Model interface {
 
 ## Fyne
 
-.code assets/projects/desktop/fyne.go /START OMIT/,/END OMIT/
+.code assets/projects/desktop/fyne/main.go /START OMIT/,/END OMIT/
 
 ## Web
 

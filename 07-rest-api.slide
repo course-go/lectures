@@ -54,11 +54,11 @@ Tags: golang, go
 
 ## JSON in Go (1/2)
 
-.code assets/lecture-07/json/marshalling.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-07/json/marshalling/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## JSON in Go (2/2)
 
-.play assets/lecture-07/json/marshalling.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-07/json/marshalling/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## Struct tags
 
@@ -73,11 +73,11 @@ Tags: golang, go
 
 ## JSON in Go (1/2)
 
-.code assets/lecture-07/json/marshalling-tags.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-07/json/marshalling-tags/main.go /START OMIT/,/MIDDLE OMIT/
 
 ## JSON in Go (2/2)
 
-.play assets/lecture-07/json/marshalling-tags.go /MIDDLE OMIT/,/END OMIT/
+.play assets/lecture-07/json/marshalling-tags/main.go /MIDDLE OMIT/,/END OMIT/
 
 ## HTTP
 
@@ -216,11 +216,11 @@ Tags: golang, go
 
 ## Dial
 
-.play assets/lecture-07/net/dial.go
+.play assets/lecture-07/net/dial/main.go
 
 ## Listen
 
-.play assets/lecture-07/net/listen.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/listen/main.go /START OMIT/,/END OMIT/
 
 ## net/http package
 
@@ -232,51 +232,51 @@ Tags: golang, go
 
 ## Simple get
 
-.play assets/lecture-07/net/http/get.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/get/main.go /START OMIT/,/END OMIT/
 
 ## Client
 
-.play assets/lecture-07/net/http/client.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/client/main.go /START OMIT/,/END OMIT/
 
 ## Server with default handler
 
 - Uses global `http.DefaultServerMux` router
 
-.play assets/lecture-07/net/http/server.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/server/main.go /START OMIT/,/END OMIT/
 
 ## Server with router
 
 - Explicit router
 
-.play assets/lecture-07/net/http/server-mux.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/server-mux/main.go /START OMIT/,/END OMIT/
 
 ## Configuring server
 
-.play assets/lecture-07/net/http/server-config.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/server-config/main.go /START OMIT/,/END OMIT/
 
 ## Path parameters
 
 - Added in Go 1.22
 - Accessed via `PathValue` method
 
-.play assets/lecture-07/net/http/path-parameters.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/path-parameters/main.go /START OMIT/,/END OMIT/
 
 ## Query parameters
 
 - Accessed via `r.URL.Query()`
     - Returns `Values` type: `map[string][]string` underneath
 
-.play assets/lecture-07/net/http/query-parameters.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/query-parameters/main.go /START OMIT/,/END OMIT/
 
 ## Methods
 
 - Also added in Go 1.22
 
-.play assets/lecture-07/net/http/methods.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/methods/main.go /START OMIT/,/END OMIT/
 
 ## Middleware
 
-.play assets/lecture-07/net/http/middleware.go /START OMIT/,/END OMIT/
+.play assets/lecture-07/net/http/middleware/main.go /START OMIT/,/END OMIT/
 
 ## Third party routers, frameworks & utilities
 
@@ -296,7 +296,7 @@ Tags: golang, go
 
 ## negroni
 
-.play assets/lecture-07/negroni/negroni.go
+.play assets/lecture-07/negroni/negroni/main.go
 
 ## mux
 
@@ -325,19 +325,19 @@ Tags: golang, go
 
 ## chi
 
-.code assets/lecture-07/chi/chi.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/chi/chi/main.go /START OMIT/,/END OMIT/
 
 [Chi documentation: routing patterns](https://go-chi.io/#/pages/routing?id=routing-patterns-amp-url-parameters)
 
 ## chi: subrouters
 
-.code assets/lecture-07/chi/subrouters.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/chi/subrouters/main.go /START OMIT/,/END OMIT/
 
 [Chi documentation: subrouters](https://go-chi.io/#/pages/routing?id=sub-routers)
 
 ## chi: routing groups
 
-.code assets/lecture-07/chi/routing-groups.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/chi/routing-groups/main.go /START OMIT/,/END OMIT/
 
 [Chi documentation: routing groups](https://go-chi.io/#/pages/routing?id=routing-groups)
 
@@ -370,7 +370,7 @@ Tags: golang, go
 
 ## Fiber
 
-.code assets/lecture-07/fiber/fiber.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/fiber/fiber/main.go /START OMIT/,/END OMIT/
 
 [Fiber documentation: Routing](https://docs.gofiber.io/guide/routing)
 
@@ -388,13 +388,13 @@ Tags: golang, go
 
 ## Echo: quick start
 
-.code assets/lecture-07/echo/echo.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/echo/echo/main.go /START OMIT/,/END OMIT/
 
 [Echo documentation: Quick Start](https://echo.labstack.com/docs/quick-start#hello-world)
 
 ## Echo: binding
 
-.code assets/lecture-07/echo/binding.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/echo/binding/main.go /START OMIT/,/END OMIT/
 
 [Echo documentation: Binding](https://echo.labstack.com/docs/binding)
 
@@ -416,19 +416,19 @@ Tags: golang, go
 
 ## Gin: Model binding
 
-.code assets/lecture-07/gin/model-binding.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/gin/model-binding/main.go /START OMIT/,/END OMIT/
 
 [Gin Web Framework documentation: Model binding and validation](https://gin-gonic.com/docs/examples/binding-and-validation/) 
 
 ## Gin: URI binding
 
-.code assets/lecture-07/gin/uri-binding.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/gin/uri-binding/main.go /START OMIT/,/END OMIT/
 
 [Gin Web Framework documentation: Bind Uri](https://gin-gonic.com/docs/examples/bind-uri/) 
 
 ## Gin: Router groups
 
-.code assets/lecture-07/gin/router-groups.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/gin/router-groups/main.go /START OMIT/,/END OMIT/
 
 [Gin Web Framework documentation: Grouping routes](https://gin-gonic.com/docs/examples/grouping-routes/) 
 
@@ -501,11 +501,11 @@ $ air -c .air.toml -- -h
 
 ## httptest recorder
 
-.code assets/lecture-07/net/http/httptest/recorder.go
+.code assets/lecture-07/net/http/httptest/recorder/main.go
 
 ## httptest server
 
-.code assets/lecture-07/net/http/httptest/server.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/net/http/httptest/server/main.go /START OMIT/,/END OMIT/
 
 ## OpenAPI
 
@@ -555,7 +555,7 @@ $ air -c .air.toml -- -h
 
 ## swag annotations
 
-.code assets/lecture-07/openapi/annotations.go /START OMIT/,/END OMIT/
+.code assets/lecture-07/openapi/annotations/main.go /START OMIT/,/END OMIT/
 
 ## OpenAPI code generation
 
@@ -590,7 +590,7 @@ $ air -c .air.toml -- -h
 
 ## Template data
 
-.code assets/lecture-07/template/text/render.go /DATA START OMIT/,/DATA END OMIT/
+.code assets/lecture-07/template/text/render/main.go /DATA START OMIT/,/DATA END OMIT/
 
 ## Template
 
@@ -605,7 +605,7 @@ $ air -c .air.toml -- -h
 - Templates can be referenced by their names after they are parsed
     - Allows nesting
 
-.play assets/lecture-07/template/text/render.go /RENDER START OMIT/,/RENDER END OMIT/
+.play assets/lecture-07/template/text/render/main.go /RENDER START OMIT/,/RENDER END OMIT/
 
 ## html/template
 

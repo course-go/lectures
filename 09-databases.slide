@@ -149,7 +149,7 @@ $ migrate -source file://migrations \
 
 ## migrate in code
 
-.code assets/lecture-09/migrations/migrate.go /START OMIT/,/END OMIT
+.code assets/lecture-09/migrations/migrate/main.go /START OMIT/,/END OMIT
 
 [Go Packages: migrate](https://pkg.go.dev/github.com/golang-migrate/migrate/v4)
 
@@ -173,7 +173,7 @@ $ migrate -source file://migrations \
 
 ## Connection to a DB
 
-.code assets/lecture-09/std/sql.go /MAIN START OMIT/,/MAIN END OMIT/
+.code assets/lecture-09/std/sql/main.go /MAIN START OMIT/,/MAIN END OMIT/
 
 ## DB type
 
@@ -196,23 +196,23 @@ $ migrate -source file://migrations \
     - Again, always preferred
 - **Exec**: no rows are returned
 
-.code assets/lecture-09/std/sql.go /EXEC START OMIT/,/EXEC END OMIT/
+.code assets/lecture-09/std/sql/main.go /EXEC START OMIT/,/EXEC END OMIT/
 
 - **QueryRow**: at most one row is expected
 
-.code assets/lecture-09/std/sql.go /QUERYROW START OMIT/,/QUERYROW END OMIT/
+.code assets/lecture-09/std/sql/main.go /QUERYROW START OMIT/,/QUERYROW END OMIT/
 
 ## Query types
 
 - **Query**: multiple values are expected
 
-.code assets/lecture-09/std/sql.go /QUERY START OMIT/,/QUERY END OMIT/
+.code assets/lecture-09/std/sql/main.go /QUERY START OMIT/,/QUERY END OMIT/
 
 ## Transactions
 
 - Manipulated via the [Tx](https://pkg.go.dev/database/sql#Tx) type returned by `Begin` functions
 
-.code assets/lecture-09/std/sql.go /TRANSACTION START OMIT/,/TRANSACTION END OMIT/
+.code assets/lecture-09/std/sql/main.go /TRANSACTION START OMIT/,/TRANSACTION END OMIT/
 
 ## sqlx
 
@@ -232,31 +232,31 @@ $ migrate -source file://migrations \
 
 ## Connecting to DB
 
-.code assets/lecture-09/sqlx/sqlx.go /MAIN START OMIT/,/MAIN END OMIT/
+.code assets/lecture-09/sqlx/sqlx/main.go /MAIN START OMIT/,/MAIN END OMIT/
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Seed
 
-.code assets/lecture-09/sqlx/sqlx.go /SEED START OMIT/,/SEED END OMIT/
+.code assets/lecture-09/sqlx/sqlx/main.go /SEED START OMIT/,/SEED END OMIT/
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Unmarshalling to structs
 
-.code assets/lecture-09/sqlx/sqlx.go /SELECT START OMIT/,/SELECT END OMIT/
+.code assets/lecture-09/sqlx/sqlx/main.go /SELECT START OMIT/,/SELECT END OMIT/
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Maps in selects
 
-.code assets/lecture-09/sqlx/sqlx.go /MAP START OMIT/,/MAP END OMIT/
+.code assets/lecture-09/sqlx/sqlx/main.go /MAP START OMIT/,/MAP END OMIT/
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Batch inserts
 
-.code assets/lecture-09/sqlx/sqlx.go /BATCH-INSERT START OMIT/,/BATCH-INSERT END OMIT/
+.code assets/lecture-09/sqlx/sqlx/main.go /BATCH-INSERT START OMIT/,/BATCH-INSERT END OMIT/
 
 [Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
@@ -318,7 +318,7 @@ Flags:
 
 ## Generated code
 
-.code assets/lecture-09/sqlc/generated/query.sql.go /START OMIT/,/END OMIT/
+.code assets/lecture-09/sqlc/generated/query.sql/main.go /START OMIT/,/END OMIT/
 
 ## GORM
 
@@ -339,86 +339,86 @@ Flags:
 
 ## Showcase
 
-.code assets/lecture-09/gorm/gorm.go /OPEN START OMIT/,/OPEN END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /OPEN START OMIT/,/OPEN END OMIT/
 
 ## Model
 
 - Utility type
     - Designed for embedding
 
-.code assets/lecture-09/gorm/models.go /MODEL START OMIT/,/MODEL END OMIT/
+.code assets/lecture-09/gorm/models/main.go /MODEL START OMIT/,/MODEL END OMIT/
 
 ## Primary key conventions
 
 - Field named **ID** is used as the default primary key
 
-.code assets/lecture-09/gorm/models.go /USER START OMIT/,/USER END OMIT/
+.code assets/lecture-09/gorm/models/main.go /USER START OMIT/,/USER END OMIT/
 
 - Can be overwritten with a tag
 
-.code assets/lecture-09/gorm/models.go /ANIMAL START OMIT/,/ANIMAL END OMIT/
+.code assets/lecture-09/gorm/models/main.go /ANIMAL START OMIT/,/ANIMAL END OMIT/
 
 ## Naming conventions
 
 - Can be adjusted using the [GORM config](https://gorm.io/docs/gorm_config.html#naming_strategy)
 - All names are converted to snake case by default
 
-.code assets/lecture-09/gorm/models.go /CATEGORY START OMIT/,/CATEGORY END OMIT/
+.code assets/lecture-09/gorm/models/main.go /CATEGORY START OMIT/,/CATEGORY END OMIT/
 
 - Uses pluralized struct names as table names
     - Can be overwritten using the `Tabler` interface
 
-.code assets/lecture-09/gorm/models.go /TABLENAME START OMIT/,/TABLENAME END OMIT/
+.code assets/lecture-09/gorm/models/main.go /TABLENAME START OMIT/,/TABLENAME END OMIT/
 
 ## Naming conventions
 
 - Column names can be overwritten using tags
 
-.code assets/lecture-09/gorm/models.go /SHOP START OMIT/,/SHOP END OMIT/
+.code assets/lecture-09/gorm/models/main.go /SHOP START OMIT/,/SHOP END OMIT/
 
 ## Timestamp conventions
 
 - `CreatedAt` and `UpdatedAt` are automatically managed for you
 
-.code assets/lecture-09/gorm/gorm.go /CONVENTIONS START OMIT/,/CONVENTIONS END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /CONVENTIONS START OMIT/,/CONVENTIONS END OMIT/
 
 - Can be disabled
 
-.code assets/lecture-09/gorm/models.go /ORDER START OMIT/,/ORDER END OMIT/
+.code assets/lecture-09/gorm/models/main.go /ORDER START OMIT/,/ORDER END OMIT/
 
 ## CRUD: Create
 
-.code assets/lecture-09/gorm/gorm.go /CREATE START OMIT/,/CREATE END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /CREATE START OMIT/,/CREATE END OMIT/
 
 [GORM: Create](https://gorm.io/docs/create.html)
 
 ## CRUD: Read
 
-.code assets/lecture-09/gorm/gorm.go /READ START OMIT/,/READ END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /READ START OMIT/,/READ END OMIT/
 
 [GORM: Query](https://gorm.io/docs/query.html)
 
 ## CRUD: Read with conditions
 
-.code assets/lecture-09/gorm/gorm.go /READ-CONDITIONS START OMIT/,/READ-CONDITIONS END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /READ-CONDITIONS START OMIT/,/READ-CONDITIONS END OMIT/
 
 [GORM: Query](https://gorm.io/docs/query.html)
 
 ## CRUD: Update
 
-.code assets/lecture-09/gorm/gorm.go /UPDATE START OMIT/,/UPDATE END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /UPDATE START OMIT/,/UPDATE END OMIT/
 
 [GORM: Update](https://gorm.io/docs/update.html)
 
 ## CRUD: Delete 
 
-.code assets/lecture-09/gorm/gorm.go /DELETE START OMIT/,/DELETE END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /DELETE START OMIT/,/DELETE END OMIT/
 
 [GORM: Delete](https://gorm.io/docs/delete.html)
 
 ## CRUD: Soft deletes 
 
-.code assets/lecture-09/gorm/gorm.go /SOFT-DELETE START OMIT/,/SOFT-DELETE END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /SOFT-DELETE START OMIT/,/SOFT-DELETE END OMIT/
 
 [GORM: Soft Delete](https://gorm.io/docs/delete.html#Soft-Delete)
 
@@ -437,33 +437,33 @@ Flags:
 
 ## Hooks
 
-.code assets/lecture-09/gorm/hooks.go /START OMIT/,/END OMIT/
+.code assets/lecture-09/gorm/hooks/main.go /START OMIT/,/END OMIT/
 
 [GORM: Hooks](https://gorm.io/docs/hooks.html)
 
 ## Associations: Belongs To
 
-.code assets/lecture-09/gorm/associations.go /IMPLICIT START OMIT/,/IMPLICIT END OMIT/
+.code assets/lecture-09/gorm/associations/main.go /IMPLICIT START OMIT/,/IMPLICIT END OMIT/
 
-.code assets/lecture-09/gorm/associations.go /EXPLICIT START OMIT/,/EXPLICIT END OMIT/
+.code assets/lecture-09/gorm/associations/main.go /EXPLICIT START OMIT/,/EXPLICIT END OMIT/
 
 [GORM: Belongs To](https://gorm.io/docs/belongs_to.html)
 
 ## Associations: Has One
 
-.code assets/lecture-09/gorm/associations.go /HAS-ONE START OMIT/,/HAS-ONE END OMIT/
+.code assets/lecture-09/gorm/associations/main.go /HAS-ONE START OMIT/,/HAS-ONE END OMIT/
 
 [GORM: Has One](https://gorm.io/docs/has_one.html)
 
 ## Associations: Has Many
 
-.code assets/lecture-09/gorm/associations.go /HAS-MANY START OMIT/,/HAS-MANY END OMIT/
+.code assets/lecture-09/gorm/associations/main.go /HAS-MANY START OMIT/,/HAS-MANY END OMIT/
 
 [GORM: Has Many](https://gorm.io/docs/has_many.html)
 
 ## Associations: Many To Many
 
-.code assets/lecture-09/gorm/associations.go /MANY-TO-MANY START OMIT/,/MANY-TO-MANY END OMIT/
+.code assets/lecture-09/gorm/associations/main.go /MANY-TO-MANY START OMIT/,/MANY-TO-MANY END OMIT/
 
 [GORM: Many To Many](https://gorm.io/docs/many_to_many.html)
 
@@ -472,4 +472,4 @@ Flags:
 - Not all SQL queries can be executed using the ORM itself
 - Supports raw SQL execution
 
-.code assets/lecture-09/gorm/gorm.go /RAW START OMIT/,/RAW END OMIT/
+.code assets/lecture-09/gorm/gorm/main.go /RAW START OMIT/,/RAW END OMIT/
