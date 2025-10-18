@@ -11,7 +11,7 @@ import (
 // START OMIT
 
 func main() {
-	var cmdPrint = &cobra.Command{
+	cmdPrint := &cobra.Command{
 		Short: "register [username] [password]",
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 2 {
@@ -26,7 +26,7 @@ func main() {
 			// ...
 		},
 	}
-	var cmdEcho = &cobra.Command{
+	cmdEcho := &cobra.Command{
 		Use:   "print [string]",
 		Short: "Print arguments to stdout",
 		Args:  cobra.MinimumNArgs(1),
@@ -38,7 +38,7 @@ func main() {
 	// MIDDLE OMIT
 
 	var count int
-	var cmdTimes = &cobra.Command{
+	cmdTimes := &cobra.Command{
 		Use:   "times [string]",
 		Short: "Print arguments to stdout count times",
 		Args:  cobra.MinimumNArgs(1),
@@ -51,9 +51,9 @@ func main() {
 	cmdTimes.Flags().IntVarP(&count, "count", "c", 1, "times to echo the input")
 
 	cmdEcho.AddCommand(cmdTimes)
-	var rootCmd = &cobra.Command{Use: "app"}
+	rootCmd := &cobra.Command{Use: "app"}
 	rootCmd.AddCommand(cmdPrint, cmdEcho)
-	rootCmd.Execute()
+	_ = rootCmd.Execute()
 }
 
 // END OMIT

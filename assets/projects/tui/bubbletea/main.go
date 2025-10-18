@@ -8,63 +8,63 @@ import (
 
 // START OMIT
 
-type todoModel struct {
+type TodoModel struct {
 	todos  []string
 	cursor int
 	done   map[int]struct{}
 }
 
-func newTodoModel() todoModel {
-	return todoModel{
+func NewTodoModel() TodoModel {
+	return TodoModel{
 		todos: []string{"Vacuum", "Do the dishes", "Mop the floor"},
 		done:  make(map[int]struct{}),
 	}
 }
 
-func (m todoModel) Init() tea.Cmd {
+func (tm TodoModel) Init() tea.Cmd {
 	return nil
 }
 
 // UPDATE OMIT
 
-func (m todoModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (tm TodoModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "q":
-			return m, tea.Quit
+			return tm, tea.Quit
 		case "up":
-			if m.cursor > 0 {
-				m.cursor--
+			if tm.cursor > 0 {
+				tm.cursor--
 			}
 		case "down":
-			if m.cursor < len(m.todos)-1 {
-				m.cursor++
+			if tm.cursor < len(tm.todos)-1 {
+				tm.cursor++
 			}
 		case "enter":
-			_, ok := m.done[m.cursor]
+			_, ok := tm.done[tm.cursor]
 			if ok {
-				delete(m.done, m.cursor)
+				delete(tm.done, tm.cursor)
 			} else {
-				m.done[m.cursor] = struct{}{}
+				tm.done[tm.cursor] = struct{}{}
 			}
 		}
 	}
-	return m, nil
+	return tm, nil
 }
 
 // VIEW OMIT
 
-func (m todoModel) View() string {
+func (tm TodoModel) View() string {
 	s := "Todos\n\n"
-	for i, todo := range m.todos {
+	for i, todo := range tm.todos {
 		cursor := " "
-		if m.cursor == i {
+		if tm.cursor == i {
 			cursor = ">"
 		}
 
 		done := " "
-		if _, ok := m.done[i]; ok {
+		if _, ok := tm.done[i]; ok {
 			done = "x"
 		}
 
@@ -76,8 +76,8 @@ func (m todoModel) View() string {
 }
 
 func main() {
-	p := tea.NewProgram(newTodoModel())
-	p.Run()
+	p := tea.NewProgram(NewTodoModel())
+	_, _ = p.Run()
 }
 
 // END OMIT

@@ -28,12 +28,12 @@ type App struct {
 	ctx context.Context
 }
 
-func (b *App) startup(ctx context.Context) {
-	b.ctx = ctx
+func (a *App) Sum(x, y int) int {
+	return x + y
 }
 
-func (b *App) Sum(x, y int) int {
-	return x + y
+func (a *App) startup(ctx context.Context) {
+	a.ctx = ctx
 }
 
 // END OMIT
