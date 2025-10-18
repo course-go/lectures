@@ -1,16 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // START OMIT
 
-// Key is a new data type
+// Key represents unique identification of a user.
 type Key struct {
 	id   uint32
 	role string
 }
 
-// User is a new data type
+// User represents a system user.
 type User struct {
 	id      uint32
 	name    string
@@ -20,26 +22,27 @@ type User struct {
 // MIDDLE OMIT
 
 func main() {
-	m1 := make(map[Key]User)
-	fmt.Println(m1)
+	users := map[Key]User{
+		Key{1, "root"} : User{
+			id:      1,
+			name:    "Linus",
+			surname: "Torvalds",
+		},
+		Key{2, "gopher"}: User{
+			id:      2,
+			name:    "Rob",
+			surname: "Pike",
+		},
+	}
 
-	m1[Key{1, "root"}] = User{
-		id:      1,
-		name:    "Linus",
-		surname: "Torvalds"}
+	fmt.Println(users)
+	delete(users, Key{1, "root"}) // existing key
+	fmt.Println(users)
+	delete(users, Key{1000, "somebody else"}) // non-existent key
+	fmt.Println(users)
 
-	m1[Key{2, "gopher"}] = User{
-		id:      2,
-		name:    "Rob",
-		surname: "Pike"}
-
-	fmt.Println(m1)
-
-	delete(m1, Key{1, "root"})
-	fmt.Println(m1)
-
-	delete(m1, Key{1000, "somebody else"})
-	fmt.Println(m1)
+	clear(users)
+	fmt.Println(users)
 }
 
 // END OMIT

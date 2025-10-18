@@ -445,7 +445,8 @@ So how can we differentiate between actual default value and missing key?
 
 ## Deleting items from map
 
-- built-in `delete` function
+- Built-in `delete` function
+- Alternatively `clear` can be used to delete all items
 
 .play assets/lecture-03/maps/deleting.go /START OMIT/,/MIDDLE OMIT/
 
