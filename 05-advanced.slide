@@ -675,6 +675,18 @@ total:                                  (statements)    50.0%
 
 .image assets/lecture-05/testing/html-coverage-profile.png 350 _
 
+## Synctest
+
+.code assets/lecture-05/testing/synctest/main.go /START OMIT/,/END OMIT/
+
+[Go Package: testing/synctest](https://pkg.go.dev/testing/synctest)
+
+## Synctest time
+
+.code assets/lecture-05/testing/synctest/main.go /START OMIT/,/END OMIT/
+
+[Go Package: testing/synctest](https://pkg.go.dev/testing/synctest)
+
 ## Fuzzing
 
 - As mentioned, the standard library also provides means to do fuzz testing
