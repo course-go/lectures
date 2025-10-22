@@ -29,7 +29,7 @@ Tags: golang, go
 
 - You either:
     - Have to define the same function for every type you would like to use
-    - Use `inferface{}` and type switch the concrete type at runtime
+    - Use `interface{}` and type switch the concrete type at runtime
 
 ## Non-generic functions
 
@@ -46,7 +46,7 @@ Tags: golang, go
 
 ## Multiple implementations
 
-- An implemenetation for each type
+- An implementation for each type
 
 .play assets/lecture-05/generics/multiple-prints/main.go /START OMIT/,/END OMIT/
 
@@ -343,7 +343,7 @@ Compiles into:
 
 ## os
 
-- Platform independant interface to OS functionalities
+- Platform independent interface to OS functionalities
 - File management
     - `File`, `FileInfo` types
     - `Chmod`, `Chown`
@@ -527,7 +527,7 @@ models/
 └── product_test.go // package models
 ```
 
-- But separating them is generally the preffered way
+- But separating them is generally the preferred way
     - Makes the tests more focused on the exported API
     - Tests do not depend on implementation details
     - However, you may want to test unexported parts of your program
@@ -542,7 +542,7 @@ models/
         - It can reference unexported types
     - As the file has **`_test.go`** suffix
         - It is included in the testing phase
-        - Exluded from source code
+        - Excluded from source code
 
 .code assets/lecture-05/testing/export_test/main.go
 
@@ -550,7 +550,7 @@ models/
 
 - The testing toolkit is part of the **`go`** executable
     - In the form of **`go test`** command
-- To run all tests recursivelly: **`go` `test` `./...`**
+- To run all tests recursively: **`go` `test` `./...`**
 - You can also specify a package or a single file
     - Same as with running **`go build`**/**`go run`** etc.
 - You can also specify part of the test suite by matching the test's names
@@ -596,7 +596,7 @@ models/
 - However, tests in the same package can be run in parallel
     - Signalled by calling the **`t.Parallel()`** method
 - Sequential tests are run first, one by one
-- Parallel tests are run after all sequantial tests are done, all at once
+- Parallel tests are run after all sequential tests are done, all at once
 
 [Mercari Engineering: Test parallelization in Go by Yoshiki Shibata](https://engineering.mercari.com/en/blog/entry/20220408-how_to_use_t_parallel)
 
@@ -626,7 +626,7 @@ models/
 
 .code assets/lecture-05/testing/add-short_test/main.go /START OMIT/,/END OMIT/
 
-- Auxilery data are stored in `testdata` directories
+- Auxiliary data are stored in `testdata` directories
     - Ignored by the compiler
 
 ```
@@ -679,9 +679,9 @@ total:                                  (statements)    50.0%
 
 - As mentioned, the standard library also provides means to do fuzz testing
     - TLDR; automated input generating for tests
-- Like regural tests, fuzz tests are located in files with **`_test.go`** suffix
+- Like regular tests, fuzz tests are located in files with **`_test.go`** suffix
 - The fuzz test functions:
-    - Are preffixed with **`Fuzz`** instead of **`Test`**
+    - Are prefixed with **`Fuzz`** instead of **`Test`**
     - Require **`*testing.F`** argument instead of **`*testing.T`**
 
 ## The F type
@@ -875,7 +875,7 @@ int(-8)
 
 - Originally developed under [golang/mock](https://github.com/golang/mock) by Google
     - Archived in June 2023
-- Forked and now maintaned by Uber under [uber-go/mock](https://github.com/uber-go/mock)
+- Forked and now maintained by Uber under [uber-go/mock](https://github.com/uber-go/mock)
 
 [Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
 
