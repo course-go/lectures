@@ -1,8 +1,9 @@
 package numbers_test
 
 import (
-	"path/to/local/package/numbers"
 	"testing"
+
+	numbers "github.com/course-go/lectures/assets/lecture-05/testing/add-error"
 )
 
 // START OMIT

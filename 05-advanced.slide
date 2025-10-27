@@ -171,7 +171,7 @@ Compiles into:
 
 - Reminder: Go does not coerce types
 
-.play assets/lecture-05/generics/no-conversions/main.go 
+.play assets/lecture-05/generics/no-conversions/main.go /START OMIT/,/END OMIT/
 
 ## Type approximations
 
@@ -576,7 +576,7 @@ models/
 ## Test failures: Error
 
 .code assets/lecture-05/testing/add-error/main.go
-.code assets/lecture-05/testing/add-error_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/add-error_test/main_test.go /START OMIT/,/END OMIT/
 
 ## Test failures: Log, Skip, Fatal
 
