@@ -556,7 +556,7 @@ type Ticker struct {
 
 ## WaitGroup Go
 
-.play assets/lecture-04/sync/waitgroup/main.go /START OMIT/,/END OMIT/
+.play assets/lecture-04/sync/waitgroup-go/main.go /START OMIT/,/END OMIT/
 
 ## Sync/atomic package
 
