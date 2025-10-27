@@ -161,18 +161,6 @@ value := <-ch   // reading
 ch<-value       // writing
 ```
 
-## Communication via message queues
-
-- Analogy of phone calls
-    - Phone ringing
-        - Blocking call
-    - Answerphone
-        - Non-blocking call 
-    - Multiple receivers
-        - Call centre
-    - Multiple senders
-        - Conference call
-
 ## Unbuffered channels
 
 - Note that this example is racy
