@@ -683,7 +683,7 @@ total:                                  (statements)    50.0%
 
 ## Synctest time
 
-.code assets/lecture-05/testing/synctest/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/synctest-time/main.go /START OMIT/,/END OMIT/
 
 [Go Package: testing/synctest](https://pkg.go.dev/testing/synctest)
 
