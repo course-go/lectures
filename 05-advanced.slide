@@ -920,7 +920,7 @@ int(-8)
 
 - Tool for displaying code coverage in your terminal
     - Can display colours with `-256colours` option
-- Usage: 
+- Usage:
     - Run **`go-carpet -256colors`** in your project
 
 [GitHub: go-carpet](https://github.com/msoap/go-carpet)
@@ -931,5 +931,14 @@ int(-8)
     - JSON, JUNIT XML outputs
     - Watch for changes
         - Automatically runs tests
-    
+
 [GitHub: gotestsum](https://github.com/gotestyourself/gotestsum)
+
+## Summary
+
+After this lecture you should:
+- know how to use generics and what is going on behind the scenes
+- be aware of some of the useful packages provided by the standard library
+- know how Go's testing framework works and how to use it
+- have a sense of different testing approaches
+- be aware of some of the helper libraries for writing tests
