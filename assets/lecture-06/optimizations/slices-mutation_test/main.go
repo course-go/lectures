@@ -34,7 +34,7 @@ func changeMe3(values *[MaxValues]int) int { // pointer to array
 
 func BenchmarkPassSlice(b *testing.B) {
 	values := make([]int, MaxValues)
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		r := changeMe1(values)
 		if r != DefaultValue {
 			b.Fatal()
@@ -50,7 +50,7 @@ func BenchmarkPassSlice(b *testing.B) {
 
 func BenchmarkPassArrayByValue(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		r := changeMe2(values)
 		if r != DefaultValue {
 			b.Fatal()
@@ -63,7 +63,7 @@ func BenchmarkPassArrayByValue(b *testing.B) {
 
 func BenchmarkPassArrayByReference(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		r := changeMe3(&values)
 		if r != DefaultValue {
 			b.Fatal()
