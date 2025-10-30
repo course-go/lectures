@@ -188,7 +188,7 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
 
 ## Optimizations
 
-- Go compiler is pretty straightfoward (= dumb)
+- Go compiler is pretty straightforward (= dumb)
 - It needs some help from developers
 
 ## Some interesting areas backed by experience
@@ -444,7 +444,7 @@ s1 := make([]uuid.UUID, 0)
 s2 := make([]uuid.UUID, 0, 1000)
 ```
 
-- The capacity can be ommited
+- The capacity can be omitted
     - But that is rarely wise if you know the size upfront
 
 ## Benchmark
