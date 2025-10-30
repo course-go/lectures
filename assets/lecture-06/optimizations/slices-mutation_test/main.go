@@ -3,44 +3,44 @@ package optimizations_test
 import "testing"
 
 const (
-	MAX_VALS      = 100
-	FIRST_VALUE   = 69
-	LAST_VALUE    = 420
-	DEFAULT_VALUE = 0
+	DefaultValue = 0
+	FirstValue   = 69
+	LastValue    = 420
+	MaxValues    = 100
 )
 
 // CHANGE START OMIT
 
 func changeMe1(values []int) int { // slice
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-	return values[MAX_VALS/2]
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
 }
 
-func changeMe2(values [MAX_VALS]int) int { // array
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-	return values[MAX_VALS/2]
+func changeMe2(values [MaxValues]int) int { // array
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
 }
 
-func changeMe3(values *[MAX_VALS]int) int { // pointer to array
-	values[0] = FIRST_VALUE
-	values[MAX_VALS-1] = LAST_VALUE
-	return values[MAX_VALS/2]
+func changeMe3(values *[MaxValues]int) int { // pointer to array
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
 }
 
 // CHANGE END OMIT
 // SLICE START OMIT
 
 func BenchmarkPassSlice(b *testing.B) {
-	values := make([]int, MAX_VALS)
+	values := make([]int, MaxValues)
 	for i := 0; i < b.N; i++ {
 		r := changeMe1(values)
-		if r != DEFAULT_VALUE {
+		if r != DefaultValue {
 			b.Fatal()
 		}
 	}
-	if values[0] != FIRST_VALUE || values[MAX_VALS-1] != LAST_VALUE {
+	if values[0] != FirstValue || values[MaxValues-1] != LastValue {
 		b.Fatal()
 	}
 }
@@ -49,27 +49,27 @@ func BenchmarkPassSlice(b *testing.B) {
 // ARRAY START OMIT
 
 func BenchmarkPassArrayByValue(b *testing.B) {
-	values := [MAX_VALS]int{DEFAULT_VALUE}
+	values := [MaxValues]int{DefaultValue}
 	for i := 0; i < b.N; i++ {
 		r := changeMe2(values)
-		if r != DEFAULT_VALUE {
+		if r != DefaultValue {
 			b.Fatal()
 		}
 	}
-	if values[0] != DEFAULT_VALUE || values[MAX_VALS-1] != DEFAULT_VALUE {
+	if values[0] != DefaultValue || values[MaxValues-1] != DefaultValue {
 		b.Fatal()
 	}
 }
 
 func BenchmarkPassArrayByReference(b *testing.B) {
-	values := [MAX_VALS]int{DEFAULT_VALUE}
+	values := [MaxValues]int{DefaultValue}
 	for i := 0; i < b.N; i++ {
 		r := changeMe3(&values)
-		if r != DEFAULT_VALUE {
+		if r != DefaultValue {
 			b.Fatal()
 		}
 	}
-	if values[0] != FIRST_VALUE || values[MAX_VALS-1] != LAST_VALUE {
+	if values[0] != FirstValue || values[MaxValues-1] != LastValue {
 		b.Fatal()
 	}
 }
