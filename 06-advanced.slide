@@ -729,6 +729,26 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 .play assets/lecture-06/cgo/strings/main.go /START OMIT/,/END OMIT/
 
+## Math bindings
+
+.code assets/lecture-06/cgo/math/math.go /START OMIT/,/END OMIT/
+
+## Math benchmarks
+
+.code assets/lecture-06/cgo/math/math_test.go /START OMIT/,/END OMIT/
+
+```
+$ go test -bench Gamma ./assets/lecture-06/cgo/math
+goos: darwin
+goarch: arm64
+pkg: github.com/course-go/lectures/assets/lecture-06/cgo/math
+cpu: Apple M2 Max
+BenchmarkGammaGo-12     190853757                6.279 ns/op
+BenchmarkGammaC-12      20363646                51.93 ns/op
+PASS
+ok      github.com/course-go/lectures/assets/lecture-06/cgo/math        2.516s
+```
+
 ## Should I use it then?
 
 - Don't...
