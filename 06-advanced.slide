@@ -778,3 +778,9 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 .play assets/lecture-06/reflect/struct/main.go /START OMIT/,/END OMIT/
 
 [Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)
+
+## Reflecting unexported structure fields
+
+.play assets/lecture-06/reflect/struct-unexported/main.go /START OMIT/,/END OMIT/
+
+[Go Blog: The Laws of Reflection](https://go.dev/blog/laws-of-reflection)

@@ -9,13 +9,11 @@ import (
 
 type User struct {
 	ID       int
-	Username string
+	username string
 }
 
 func main() {
 	user := User{23, "skidoo"}
-	fmt.Println("user before:", user)
-
 	value := reflect.ValueOf(&user).Elem()
 	valueType := value.Type()
 	fmt.Println("Fields:")
@@ -24,10 +22,6 @@ func main() {
 		fieldType := valueType.Field(i)
 		fmt.Printf("\t%d: %s %s = %v\n", i, fieldType.Name, field.Type(), field.Interface())
 	}
-
-	value.Field(0).SetInt(77)
-	value.Field(1).SetString("Sunset Strip")
-	fmt.Println("user after:", user)
 }
 
 // END OMIT

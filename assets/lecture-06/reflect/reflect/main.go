@@ -8,7 +8,7 @@ import (
 // START OMIT
 
 func main() {
-	var x rune = 'x'
+	x := 'x'
 	vx := reflect.ValueOf(x)
 	fmt.Println("type:", vx.Type())
 	fmt.Println("kind is int32:", vx.Kind() == reflect.Int32)
@@ -17,7 +17,7 @@ func main() {
 
 	fmt.Println()
 
-	var y float64 = 1.7
+	y := 1.7
 	p := reflect.ValueOf(&y)
 	fmt.Println("type of p:", p.Type())
 	fmt.Println("settability of p:", p.CanSet())
