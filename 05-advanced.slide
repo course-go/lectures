@@ -895,28 +895,31 @@ int(-8)
 
 [Go Packages: gomock](https://pkg.go.dev/go.uber.org/mock/gomock)
 
-## gomock usage
+## Generating mocks using gomock
 
 - Install mockgen executable:
     - **`go install go.uber.org/mock/mockgen@latest`**
+- Or add it to project tools:
+    - **`go get -tool go.uber.org/mock/mockgen`**
 - Define interface to mock:
 
-.code assets/lecture-05/gomock/interface/main.go
+.code assets/lecture-05/gomock/adder/adder.go
 
-- Generate mock:
-    - **`mockgen -source interfaces.go -destination mock.go -package calculator`**
+## Generated mock code (1/2)
 
-## gomock mock (1/2)
+.code assets/lecture-05/gomock/adder/mocks/adder_mock.go /type MockAdder/,/EXPECT/
 
-.code assets/lecture-05/gomock/mock/main.go /START OMIT/,/MIDDLE OMIT/
+## Generated mock code (2/2)
 
-## gomock mock (2/2)
+.code assets/lecture-05/gomock/adder/mocks/adder_mock.go /EXPECT/,/return mr.mock/
 
-.code assets/lecture-05/gomock/mock/main.go /MIDDLE OMIT/,/END OMIT/
+## Calculator with Adder dependency
 
-## gomock testing with mock
+.code assets/lecture-05/gomock/calculator/calculator.go /START OMIT/,/END OMIT/
 
-.code assets/lecture-05/gomock/calculator_test/main.go /START OMIT/,/END OMIT/
+## Testing Calculator using Adder mock
+
+.code assets/lecture-05/gomock/calculator/calculator_test.go /START OMIT/,/END OMIT/
 
 ## Utilities
 
