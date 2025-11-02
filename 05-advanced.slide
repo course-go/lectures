@@ -533,7 +533,7 @@ models/
     - However, you may want to test unexported parts of your program
         - Can it be done then?
 
-## Unit tests
+## Exporting unexported symbols
 
 - You can export some unexported part of code for testing
 - Can be done with a neat trick
@@ -544,7 +544,7 @@ models/
         - It is included in the testing phase
         - Excluded from source code
 
-.code assets/lecture-05/testing/export_test/main.go
+.code assets/lecture-05/testing/numbers-exported/export_test.go
 
 ## Running tests
 
@@ -557,34 +557,34 @@ models/
     - **`go test -run $REGEX ./...`**
     - The REGEX can be as simple as "Users" which runs all tests which contain the word "Users" in their names
 
-## Add example: separate package, exported
+## Add example: separate package, exported symbols
 
-.code assets/lecture-05/testing/exported-add-separated-package/main.go
-.code assets/lecture-05/testing/exported-add-separated-package_test/main.go
+.code assets/lecture-05/testing/numbers/add.go
+.code assets/lecture-05/testing/numbers/add_test.go
 
-## Add example: separate package, unexported (1/2)
+## Add example: separate package, unexported symbols (1/2)
 
-.code assets/lecture-05/testing/unexported-add-separated-package/main.go
-.code assets/lecture-05/testing/unexported-add-separated-package_test/main.go
+.code assets/lecture-05/testing/numbers-unexported/add.go
+.code assets/lecture-05/testing/numbers-unexported/add_test.go
 
-## Add example: separate package, unexported (2/2)
+## Add example: separate package, unexported symbols (2/2)
 
 - Works if we export it via **`export_test.go`** file like so:
 
-.code assets/lecture-05/testing/add-export_test/main.go
+.code assets/lecture-05/testing/numbers-exported/export_test.go
 
 ## Test failures: Error
 
-.code assets/lecture-05/testing/add-error/main.go
-.code assets/lecture-05/testing/add-error_test/main_test.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/numbers-error/add.go
+.code assets/lecture-05/testing/numbers-error/add_test.go /START OMIT/,/END OMIT/
 
 ## Test failures: Log, Skip, Fatal
 
-.code assets/lecture-05/testing/add-fatal_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/numbers-fatal/add_test.go /START OMIT/,/END OMIT/
 
 ## Table-driven tests
 
-.code assets/lecture-05/testing/add-table-driven_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/numbers-table/add_test.go /START OMIT/,/END OMIT/
 
 ## Running tests in parallel
 
@@ -602,7 +602,11 @@ models/
 
 ## Running tests in parallel
 
-.code assets/lecture-05/testing/add-parallel_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/numbers-parallel/add_test.go /START OMIT/,/END OMIT/
+
+## Running subtests in parallel
+
+.code assets/lecture-05/testing/numbers-table-parallel/add_test.go /START OMIT/,/END OMIT/
 
 ## Notes on test names
 
@@ -610,7 +614,7 @@ models/
     - They are ambiguous
         - Is the operation in test invalid or is the user invalid?
         - If so, what operation or in what state is the user?
-        - In the end, the programmer will have to study the test itself... 
+        - In the end, the programmer will have to study the test itself...
 - It is often suggested to follow more verbose naming conventions
     - [One such example](https://osherove.com/blog/2005/4/3/naming-standards-for-unit-tests.html) by [Roy Oshorove](https://osherove.com)
         - "UnitOfWork_StateUnderTest_ExpectedBehavior"
@@ -621,10 +625,10 @@ models/
 ## Tips & tricks
 
 - You can use build tags and/or short mode
-    - To learn more about build tags run: **`go help buildconstraint`**
     - Short tests can be run with: **`go test -short ./...`** and checked via the T
+    - To learn more about build tags run: **`go help buildconstraint`**
 
-.code assets/lecture-05/testing/add-short_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/short/short_test.go /START OMIT/,/END OMIT/
 
 - Auxiliary data are stored in `testdata` directories
     - Ignored by the compiler
@@ -677,13 +681,13 @@ total:                                  (statements)    50.0%
 
 ## Synctest
 
-.code assets/lecture-05/testing/synctest/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/synctest/synctest_test.go /AFTERFUNC START OMIT/,/AFTERFUNC END OMIT/
 
 [Go Package: testing/synctest](https://pkg.go.dev/testing/synctest)
 
 ## Synctest time
 
-.code assets/lecture-05/testing/synctest-time/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/synctest/synctest_test.go /TIME START OMIT/,/TIME END OMIT/
 
 [Go Package: testing/synctest](https://pkg.go.dev/testing/synctest)
 
@@ -715,7 +719,7 @@ f.Fuzz(func(t *testing.T, b []byte, i int) { ... })
 
 ## Fuzzing example
 
-.code assets/lecture-05/testing/fuzzing-add_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/numbers-fuzzing/add_test.go /START OMIT/,/END OMIT/
 
 - Can easily be run using the go toolkit
     - **`go test -fuzz FuzzAdd -fuzztime 5s`**
@@ -761,17 +765,17 @@ int(-8)
     - [gotestyourself/gotest.tools](https://github.com/gotestyourself/gotest.tools)
     - [alecthomas/assert](https://github.com/alecthomas/assert)
 
-## Assertions
+## Factorial
 
-.code assets/lecture-05/testing/recursive-factorial/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/factorial/factorial.go /START OMIT/,/END OMIT/
 
-## Assertions
+## Factorial tests using assertions
 
-.code assets/lecture-05/testing/asserts-factorial_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/factorial/factorial_test.go /START OMIT/,/END OMIT/
 
-## Dot import
+## Factorial tests using assertions via dot import
 
-.code assets/lecture-05/testing/asserts-factorial-dot-import_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/testing/factorial-dot-import/factorial_test.go /START OMIT/,/END OMIT/
 
 ## goconvey
 
@@ -806,11 +810,11 @@ int(-8)
 
 ## goconvey factorial tests
 
-.code assets/lecture-05/goconvey/factorial_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/goconvey/factorial/factorial_test.go /START OMIT/,/END OMIT/
 
 ## goconvey slice tests
 
-.code assets/lecture-05/goconvey/slice_test/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/goconvey/slice/slice_test.go /START OMIT/,/END OMIT/
 
 ## godog
 
@@ -847,15 +851,15 @@ int(-8)
 
 ## Gherkin language example
 
-.code assets/lecture-05/godog/godogs.feature
+.code assets/lecture-05/godog/godogs/testdata/godogs.feature
 
 ## godog example (1/2)
 
-.code assets/lecture-05/godog/godogs_test/main.go /START OMIT/,/MIDDLE OMIT/
+.code assets/lecture-05/godog/godogs/godogs_test.go /SUITE START OMIT/,/SUITE END OMIT/
 
 ## godog example (2/2)
 
-.code assets/lecture-05/godog/godogs_test/main.go /TEST OMIT/,/END OMIT/
+.code assets/lecture-05/godog/godogs/godogs_test.go /FUNCTIONS START OMIT/,/FUNCTIONS END OMIT/
 
 ## Scenario Outline
 
@@ -879,7 +883,7 @@ int(-8)
 
 ## go-expect
 
-.code assets/lecture-05/go-expect/curl/main.go /START OMIT/,/END OMIT/
+.code assets/lecture-05/go-expect/curl/curl_test.go /START OMIT/,/END OMIT/
 
 ## Mocking
 

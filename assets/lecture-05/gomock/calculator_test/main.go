@@ -1,14 +1,21 @@
 package calculator_test
 
 import (
-	"path/to/local/package/calculator"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
+	"path/to/local/package/calculator"
 )
 
 // START OMIT
+
+func TestCalculatorMock(t *testing.T) {
+	mock := setUpMock(t)
+	assert.Equal(t, 2, mock.Add(1, 1))
+	assert.Equal(t, -1, mock.Add(0, -1))
+	assert.Equal(t, 100, mock.Add(105, -5))
+}
 
 func setUpMock(t *testing.T) *calculator.MockAdder {
 	ctrl := gomock.NewController(t)
@@ -21,13 +28,6 @@ func setUpMock(t *testing.T) *calculator.MockAdder {
 	)
 
 	return mock
-}
-
-func TestCalculatorMock(t *testing.T) {
-	mock := setUpMock(t)
-	assert.Equal(t, 2, mock.Add(1, 1))
-	assert.Equal(t, -1, mock.Add(0, -1))
-	assert.Equal(t, 100, mock.Add(105, -5))
 }
 
 // END OMIT
