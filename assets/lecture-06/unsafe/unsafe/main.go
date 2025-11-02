@@ -7,24 +7,25 @@ import (
 
 // START OMIT
 
-func main() {
-	type s struct {
-		a string
-		b int32
-		c uint64
-	}
-	x := s{a: "Hello", b: -72, c: 1000}
-	fmt.Println(unsafe.Sizeof(x))
-	fmt.Println(unsafe.Alignof(x))
-	fmt.Println(unsafe.Offsetof(x.a))
+type product struct {
+	name  string
+	stock int32
+	price uint64
+}
 
-	pointer := unsafe.Pointer(&x)
-	a := (*string)(unsafe.Add(pointer, unsafe.Offsetof(x.a)))
-	b := (*int32)(unsafe.Add(pointer, unsafe.Offsetof(x.b)))
-	fmt.Println("a:", *a, "b", *b)
+func main() {
+	product := product{name: "Flamethrower", stock: -72, price: 999}
+	fmt.Println("Size:", unsafe.Sizeof(product))
+	fmt.Println("Alignment:", unsafe.Alignof(product))
+	fmt.Println("Name offset:", unsafe.Offsetof(product.name))
+	fmt.Println("Price offset:", unsafe.Offsetof(product.price))
+
+	productPointer := unsafe.Pointer(&product)
+	stock := (*int32)(unsafe.Add(productPointer, unsafe.Offsetof(product.stock)))
+	fmt.Println("Stock", *stock)
 
 	truth := []string{"Go", "is", "the", "best!"}
-	fmt.Println(unsafe.Sizeof(truth))
+	fmt.Println("Slice size:", unsafe.Sizeof(truth))
 	slicePointer := unsafe.Pointer(unsafe.SliceData(truth))
 	itemSize := unsafe.Sizeof("")
 	for i := range len(truth) {
