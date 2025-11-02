@@ -1,4 +1,4 @@
-package optimizations
+package builders
 
 import (
 	"bytes"
@@ -7,9 +7,9 @@ import (
 
 // NAIVE OMIT
 
-func naiveBuilder(n int) string {
+func NaiveBuilder(n int) string {
 	var s string
-	for i := 0; i < n; i++ {
+	for range n {
 		s += "*"
 	}
 
@@ -18,9 +18,9 @@ func naiveBuilder(n int) string {
 
 // BYTES OMIT
 
-func bytesBuilder(n int) string {
+func BytesBuilder(n int) string {
 	var bb bytes.Buffer
-	for i := 0; i < n; i++ {
+	for range n {
 		bb.WriteRune('*')
 	}
 
@@ -29,10 +29,10 @@ func bytesBuilder(n int) string {
 
 // BYTES-PREALLOCATED OMIT
 
-func bytesBuilderPreallocated(n int) string {
+func BytesBuilderPreallocated(n int) string {
 	var bb bytes.Buffer
 	bb.Grow(n)
-	for i := 0; i < n; i++ {
+	for range n {
 		bb.WriteRune('*')
 	}
 
@@ -41,9 +41,9 @@ func bytesBuilderPreallocated(n int) string {
 
 // STRING OMIT
 
-func stringBuilder(n int) string {
+func StringBuilder(n int) string {
 	var sb strings.Builder
-	for i := 0; i < n; i++ {
+	for range n {
 		sb.WriteRune('*')
 	}
 
@@ -52,10 +52,10 @@ func stringBuilder(n int) string {
 
 // STRING-PREALLOCATED OMIT
 
-func stringBuilderPreallocated(n int) string {
+func StringBuilderPreallocated(n int) string {
 	var sb strings.Builder
 	sb.Grow(n)
-	for i := 0; i < n; i++ {
+	for range n {
 		sb.WriteRune('*')
 	}
 

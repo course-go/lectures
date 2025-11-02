@@ -1,4 +1,4 @@
-package optimizations_test
+package slices_test
 
 import "testing"
 
@@ -9,30 +9,12 @@ const (
 	MaxValues    = 100
 )
 
-// CHANGE START OMIT
-
-func changeMe1(values []int) { // slice
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-}
-
-func changeMe2(values [MaxValues]int) { // array
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-}
-
-func changeMe3(values *[MaxValues]int) { // pointer to array
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-}
-
-// CHANGE END OMIT
 // SLICE START OMIT
 
 func BenchmarkPassSlice(b *testing.B) {
 	values := make([]int, MaxValues)
 	for b.Loop() {
-		changeMe1(values)
+		changeSlice(values)
 	}
 	if values[0] != FirstValue || values[MaxValues-1] != LastValue {
 		b.Fatal()
@@ -45,7 +27,7 @@ func BenchmarkPassSlice(b *testing.B) {
 func BenchmarkPassArrayByValue(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
 	for b.Loop() {
-		changeMe2(values)
+		changeArray(values)
 	}
 	if values[0] != DefaultValue || values[MaxValues-1] != DefaultValue {
 		b.Fatal()
@@ -55,7 +37,7 @@ func BenchmarkPassArrayByValue(b *testing.B) {
 func BenchmarkPassArrayByReference(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
 	for b.Loop() {
-		changeMe3(&values)
+		changeArrayReference(&values)
 	}
 	if values[0] != FirstValue || values[MaxValues-1] != LastValue {
 		b.Fatal()
@@ -80,3 +62,21 @@ func BenchmarkPreallocatedSliceInsertion(b *testing.B) {
 }
 
 // SLICES-PREALLOCATION END OMIT
+// CHANGE START OMIT
+
+func changeSlice(values []int) {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+}
+
+func changeArray(values [MaxValues]int) {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+}
+
+func changeArrayReference(values *[MaxValues]int) {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+}
+
+// CHANGE END OMIT

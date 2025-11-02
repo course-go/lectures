@@ -1,4 +1,4 @@
-package optimizations_test
+package slices_test
 
 import "testing"
 
@@ -9,33 +9,12 @@ const (
 	MaxValues    = 100
 )
 
-// CHANGE START OMIT
-
-func changeMe1(values []int) int { // slice
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-	return values[MaxValues/2]
-}
-
-func changeMe2(values [MaxValues]int) int { // array
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-	return values[MaxValues/2]
-}
-
-func changeMe3(values *[MaxValues]int) int { // pointer to array
-	values[0] = FirstValue
-	values[MaxValues-1] = LastValue
-	return values[MaxValues/2]
-}
-
-// CHANGE END OMIT
 // SLICE START OMIT
 
 func BenchmarkPassSlice(b *testing.B) {
 	values := make([]int, MaxValues)
 	for b.Loop() {
-		r := changeMe1(values)
+		r := changeSlice(values)
 		if r != DefaultValue {
 			b.Fatal()
 		}
@@ -51,7 +30,7 @@ func BenchmarkPassSlice(b *testing.B) {
 func BenchmarkPassArrayByValue(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
 	for b.Loop() {
-		r := changeMe2(values)
+		r := changeArray(values)
 		if r != DefaultValue {
 			b.Fatal()
 		}
@@ -64,7 +43,7 @@ func BenchmarkPassArrayByValue(b *testing.B) {
 func BenchmarkPassArrayByReference(b *testing.B) {
 	values := [MaxValues]int{DefaultValue}
 	for b.Loop() {
-		r := changeMe3(&values)
+		r := changeArrayReference(&values)
 		if r != DefaultValue {
 			b.Fatal()
 		}
@@ -75,3 +54,24 @@ func BenchmarkPassArrayByReference(b *testing.B) {
 }
 
 // ARRAY END OMIT
+// CHANGE START OMIT
+
+func changeSlice(values []int) int {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
+}
+
+func changeArray(values [MaxValues]int) int {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
+}
+
+func changeArrayReference(values *[MaxValues]int) int {
+	values[0] = FirstValue
+	values[MaxValues-1] = LastValue
+	return values[MaxValues/2]
+}
+
+// CHANGE END OMIT

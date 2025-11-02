@@ -1,4 +1,4 @@
-package optimizations_test
+package for_test
 
 import "testing"
 

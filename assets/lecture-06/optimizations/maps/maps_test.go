@@ -1,4 +1,4 @@
-package optimizations_test
+package maps_test
 
 import (
 	"testing"
