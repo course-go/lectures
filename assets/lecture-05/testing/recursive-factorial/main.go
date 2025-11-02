@@ -1,15 +1,15 @@
-package main
+package factorial
 
 import "errors"
 
 // START OMIT
 
-var NegativeIntegerErr = errors.New("invalid input: cannot process negative integer")
+var ErrNegativeInteger = errors.New("invalid input: cannot process negative integer")
 
 // Factorial represents a classic recursive variant of factorial computation
 func Factorial(n int64) (result int64, err error) {
 	if n < 0 {
-		return 0, NegativeIntegerErr
+		return 0, ErrNegativeInteger
 	}
 
 	return factorial(n), nil
@@ -21,7 +21,6 @@ func factorial(n int64) int64 {
 	}
 
 	return n * factorial(n-1)
-
 }
 
 // END OMIT
