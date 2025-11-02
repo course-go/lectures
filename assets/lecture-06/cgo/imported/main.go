@@ -1,10 +1,13 @@
 package main
 
-// #include "cgo-independent.h"
+// #include "hello.c"
 // #include <stdlib.h>
 import "C"
-import "fmt"
-import "unsafe"
+
+import (
+	"fmt"
+	"unsafe"
+)
 
 func main() {
 	fmt.Println("Hello from Go.")

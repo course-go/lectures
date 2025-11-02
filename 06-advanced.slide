@@ -723,7 +723,7 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 ## Importing C code from separate file
 
-.code assets/lecture-06/cgo/independent/main.go
+.play assets/lecture-06/cgo/imported/main.go
 
 ## Memory management with C strings
 

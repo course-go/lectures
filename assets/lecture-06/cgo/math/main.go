@@ -3,8 +3,11 @@ package main
 // #cgo LDFLAGS: -lm
 //#include <math.h>
 import "C"
-import "fmt"
-import "math"
+
+import (
+	"fmt"
+	"math"
+)
 
 var data = []float64{
 	1.0,
@@ -39,9 +42,27 @@ func Ctgamma(num float64) float64 {
 func main() {
 	fmt.Println("Go math")
 	for i := 0; i < len(data); i++ {
-		fmt.Printf("Number: %f Sin: %f Cos: %f Tan: %f\n", data[i], math.Sin(data[i]), math.Cos(data[i]), math.Tan(data[i]))
-		fmt.Printf("Asin: %f ACos: %f ATan: %f Log: %f \n", math.Asin(data[i]), math.Acos(data[i]), math.Atan(data[i]), math.Log(data[i]))
-		fmt.Printf("Log10: %f Sinh: %f Cosh: %f Tanh: %f\n", math.Log10(data[i]), math.Sinh(data[i]), math.Cosh(data[i]), math.Tanh(data[i]))
+		fmt.Printf(
+			"Number: %f Sin: %f Cos: %f Tan: %f\n",
+			data[i],
+			math.Sin(data[i]),
+			math.Cos(data[i]),
+			math.Tan(data[i]),
+		)
+		fmt.Printf(
+			"Asin: %f ACos: %f ATan: %f Log: %f \n",
+			math.Asin(data[i]),
+			math.Acos(data[i]),
+			math.Atan(data[i]),
+			math.Log(data[i]),
+		)
+		fmt.Printf(
+			"Log10: %f Sinh: %f Cosh: %f Tanh: %f\n",
+			math.Log10(data[i]),
+			math.Sinh(data[i]),
+			math.Cosh(data[i]),
+			math.Tanh(data[i]),
+		)
 		fmt.Printf("Erf: %f tGamma: %f\n", math.Erf(data[i]), math.Gamma(data[i]))
 	}
 	fmt.Println("libc math")
