@@ -61,7 +61,9 @@ This repository contains lecture slides for Course Go.
 [exercise](https://github.com/course-go/exercises/blob/master/06-pprof/README.md)
 ]
     - Benchmarks
+    - Profiling
     - Optimizations
+    - Tracing
     - CGo
     - Unsafe & Reflect
 7. REST APIs [
