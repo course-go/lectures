@@ -11,12 +11,12 @@ func Csin(num float64) float64 {
 	return float64(C.sin(C.double(num)))
 }
 
-// Ccos is a binding to C cos function
+// Ccos is a binding to C cos function.
 func Ccos(num float64) float64 {
 	return float64(C.cos(C.double(num)))
 }
 
-// Ctgamma is a binding to C tgamma function
+// Ctgamma is a binding to C tgamma function.
 func Ctgamma(num float64) float64 {
 	return float64(C.tgamma(C.double(num)))
 }

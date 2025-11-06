@@ -17,7 +17,7 @@ type key struct {
 
 func BenchmarkInsertIntoPreallocatedMapCompoundKey(b *testing.B) {
 	m := make(map[key]value, b.N)
-	for i := 0; i < b.N; i++ {
+	for i := range b.N {
 		k := key{
 			ID: i,
 		}
@@ -27,7 +27,7 @@ func BenchmarkInsertIntoPreallocatedMapCompoundKey(b *testing.B) {
 
 func BenchmarkInsertIntoEmptyMapCompoundKey(b *testing.B) {
 	m := make(map[key]value)
-	for i := 0; i < b.N; i++ {
+	for i := range b.N {
 		k := key{
 			ID: i,
 		}
@@ -65,7 +65,7 @@ func genID(i int) ID {
 
 func fillInMap(n int) map[ID]struct{} {
 	m := make(map[ID]struct{}, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		id := genID(i)
 		m[id] = struct{}{}
 	}
@@ -74,7 +74,7 @@ func fillInMap(n int) map[ID]struct{} {
 
 func fillInSlice(n int) []ID {
 	s := make([]ID, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		id := genID(i)
 		s[i] = id
 	}
@@ -90,7 +90,7 @@ const findInSetSize = 100
 func BenchmarkFindInMap(b *testing.B) {
 	m := fillInMap(findInSetSize)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
+	for i := range b.N {
 		_, found := m[genID(i%findInSetSize)]
 		if !found {
 			b.Fatal("not found")
@@ -103,8 +103,8 @@ func BenchmarkFindInMap(b *testing.B) {
 func BenchmarkFindInSlice(b *testing.B) {
 	s := fillInSlice(findInSetSize)
 	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		found := false
+	for i := range b.N {
+		var found bool
 		id := genID(i % findInSetSize)
 		for _, p := range s {
 			if p == id {
