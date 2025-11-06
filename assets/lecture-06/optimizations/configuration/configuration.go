@@ -231,25 +231,25 @@ func createURL(server, endpoint string) (string, error) {
 
 // VALUE START OMIT
 
-func GetStorageConfigurationByValue(configuration Config) StorageConfiguration {
+func StorageConfigurationByValue(configuration Config) StorageConfiguration {
 	return configuration.Storage
 }
 
 // VALUE END OMIT
 // REFERENCE START OMIT
 
-func GetStorageConfigurationByReference(configuration *Config) StorageConfiguration {
+func StorageConfigurationByReference(configuration *Config) StorageConfiguration {
 	return configuration.Storage
 }
 
 // REFERENCE END OMIT
 // RECEIVER START OMIT
 
-func (configuration Config) GetStorageConfigurationByValue() StorageConfiguration {
+func (configuration Config) StorageConfigurationByValue() StorageConfiguration {
 	return configuration.Storage
 }
 
-func (configuration *Config) GetStorageConfigurationByReference() StorageConfiguration {
+func (configuration *Config) StorageConfigurationByReference() StorageConfiguration {
 	return configuration.Storage
 }
 

@@ -19,14 +19,14 @@ const (
 func BenchmarkGetStorageConfigurationFunctionByValue(b *testing.B) {
 	config := mustLoadConfiguration(b)
 	for b.Loop() {
-		configuration.GetStorageConfigurationByValue(config)
+		configuration.StorageConfigurationByValue(config)
 	}
 }
 
 func BenchmarkGetStorageConfigurationFunctionByReference(b *testing.B) {
 	config := mustLoadConfiguration(b)
 	for b.Loop() {
-		configuration.GetStorageConfigurationByReference(&config)
+		configuration.StorageConfigurationByReference(&config)
 	}
 }
 
@@ -35,14 +35,14 @@ func BenchmarkGetStorageConfigurationFunctionByReference(b *testing.B) {
 func BenchmarkGetStorageConfigurationMethodByValue(b *testing.B) {
 	config := mustLoadConfiguration(b)
 	for b.Loop() {
-		config.GetStorageConfigurationByValue()
+		config.StorageConfigurationByValue()
 	}
 }
 
 func BenchmarkGetStorageConfigurationMethodByReference(b *testing.B) {
 	config := mustLoadConfiguration(b)
 	for b.Loop() {
-		config.GetStorageConfigurationByReference()
+		config.StorageConfigurationByReference()
 	}
 }
 
