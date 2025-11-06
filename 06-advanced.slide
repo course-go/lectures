@@ -735,6 +735,12 @@ $ go tool trace trace.out
 
 .image assets/lecture-06/traces/regions.png 500 _
 
+## Traces overview in gotraceui
+
+.image assets/lecture-06/traces/gotraceui.png 500 _
+
+[Gotraceui](https://gotraceui.dev/)
+
 ## CGo
 
 ## CGo
