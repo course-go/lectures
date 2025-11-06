@@ -34,6 +34,7 @@ Tags: golang, go
 - Like the **`*testing.T`** type, the **`*testing.B`** is used to interact with the benchmark
     - It extends the testing type with additional methods
 - **`N`**: exposes number of runs for the benchmark
+- **`Loop`**: used for loop iteration that executes observed work
 - **`StartTimer`**: starts the benchmark timer
 - **`StopTimer`**: stops the benchmark timer
 - **`ResetTimer`**: resets the benchmark timer
