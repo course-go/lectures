@@ -25,7 +25,7 @@ Tags: golang, go
 - Benchmarks are a part of the test files
 - Each benchmark is also a function that has to:
     - Start with the **`Benchmark`** prefix
-    - Take in a single armung of type **`*testing.B`**
+    - Take in a single argument of type **`*testing.B`**
 
 [Go Packages: testing benchmarks](https://pkg.go.dev/testing#hdr-Benchmarks)
 
