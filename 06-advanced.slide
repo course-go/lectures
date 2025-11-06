@@ -12,6 +12,7 @@ Tags: golang, go
     - Slices
     - Loops
     - Strings
+- Tracing
 - CGo
 - Unsafe
 - Reflection
@@ -691,6 +692,44 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 ##
 
 .image assets/lecture-06/optimizations/builders-higher-graph.png 550 _
+
+## Traces
+
+## Traces
+
+- Built-in runtime tracing
+- Can be generated:
+    - by instrumenting directly in code
+    - using handlers provided by [net/http/pprof](https://pkg.go.dev/net/http/pprof)
+    - or using tests
+
+```
+$ go trace -trace trace.out
+```
+
+- Tracing outputs can be preview using build-in tooling
+
+```
+$ go tool trace trace.out
+```
+
+- Or you can use third-party tooling like [gotraceui](https://gotraceui.dev/)
+
+[Go blog: More powerful Go execution traces](https://go.dev/blog/execution-traces-2024)
+
+## Traces with regions
+
+.play assets/lecture-06/traces/regions/main.go /START OMIT/,/END OMIT/
+
+[Go packages: runtime/tracing](https://pkg.go.dev/runtime/trace)
+
+## Traces overview
+
+.image assets/lecture-06/traces/overview.png 500 _
+
+## Traces regions overview
+
+.image assets/lecture-06/traces/regions.png 500 _
 
 ## CGo
 
