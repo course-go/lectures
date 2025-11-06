@@ -130,6 +130,12 @@ type Model interface {
 
 .code assets/projects/desktop/fyne/main.go /START OMIT/,/END OMIT/
 
+## Fynedesk
+
+.image assets/projects/desktop/fyne/fynedesk.png 500 _
+
+[Github: Fynedesk](https://github.com/FyshOS/fynedesk)
+
 ## Web
 
 ## HTMX
