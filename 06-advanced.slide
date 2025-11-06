@@ -768,11 +768,11 @@ $ go tool trace trace.out
 
 ## Inlined C code
 
-.play assets/lecture-06/cgo/inlined/main.go
+.play assets/lecture-06/cgo/inlined/main.go /START OMIT/,/END OMIT/
 
 ## Importing C code from separate file
 
-.play assets/lecture-06/cgo/imported/main.go
+.play assets/lecture-06/cgo/imported/main.go /START OMIT/,/END OMIT/
 
 ## Memory management with C strings
 

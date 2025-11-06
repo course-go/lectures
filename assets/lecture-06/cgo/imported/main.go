@@ -1,5 +1,7 @@
 package main
 
+// START OMIT
+
 // #include "hello.c"
 // #include <stdlib.h>
 import "C"
@@ -18,3 +20,5 @@ func main() {
 	}
 	C.free(unsafe.Pointer(hello))
 }
+
+// END OMIT

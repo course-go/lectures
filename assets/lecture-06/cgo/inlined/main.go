@@ -1,5 +1,7 @@
 package main
 
+// START OMIT
+
 // #include <stdio.h>
 //
 //const int eof = EOF;
@@ -22,3 +24,5 @@ func main() {
 		fmt.Println("Printing in C failed with EOF.")
 	}
 }
+
+// END OMIT
