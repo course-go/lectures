@@ -8,24 +8,24 @@ import (
 // START OMIT
 
 type User struct {
-	Name        string   `json:"name,omitempty"`
+	Name        string   `json:"name,omitzero"`
 	Active      bool     `json:"-"` // Always omitted
-	Age         uint     `json:"age,omitempty"`
-	Address     Address  `json:"address,omitempty"`
+	Age         uint     `json:"age,omitzero"`
+	Address     Address  `json:"address,omitzero"`
 	Phones      []Phone  `json:"phone_numbers,omitempty"`
-	AssignedCar *Car     `json:"assigned_car,omitempty"`
+	AssignedCar *Car     `json:"assigned_car,omitzero"`
 	Children    []string `json:"children,omitempty"`
 }
 
 type Address struct {
-	Street     string `json:"street,omitempty"`
-	City       string `json:"city,omitempty"`
-	PostalCode string `json:"postal_code,omitempty"`
+	Street     string `json:"street,omitzero"`
+	City       string `json:"city,omitzero"`
+	PostalCode string `json:"postal_code,omitzero"`
 }
 
 type Phone struct {
-	Type   string `json:"type,omitempty"`
-	Number string `json:"number,omitempty"`
+	Type   string `json:"type,omitzero"`
+	Number string `json:"number,omitzero"`
 }
 
 type Car struct {
