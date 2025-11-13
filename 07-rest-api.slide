@@ -97,7 +97,8 @@ Tags: golang, go
 
 - HTTP version
 - HTTP method
-    - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+    - GET, POST, PUT, PATCH, DELETE
+    - HEAD, OPTIONS, CONNECT, TRACE
 - URL
 - HTTP request headers
     - Key-value pairs
