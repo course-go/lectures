@@ -191,7 +191,7 @@ Tags: golang, go
 
 - REpresentational State Transfer
 - Introduced by [Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) in 2000
-- Set of architectural constaints
+- Set of architectural constraints
     - Uniform interface
     - Defines a set of resources
     - Stateless communication
@@ -448,7 +448,7 @@ Tags: golang, go
 ## So many options!
 
 - What should I use then?
-- Sticking to the **`net/http`** standard libary is a viable option since Go 1.22 release
+- Sticking to the **`net/http`** standard library is a viable option since Go 1.22 release
     - Previously, the package was hard to use
         - A lot of boiler plate had to be written (methods, path parameters)
 - When you need to squeeze-out extra performance `fasthttp` could be the way
@@ -606,7 +606,7 @@ $ air -c .air.toml -- -h
 
 ## Rendering template
 
-- Templates are executed by appling a data structure
+- Templates are executed by applying a data structure
 - Templates can be referenced by their names after they are parsed
     - Allows nesting
 
