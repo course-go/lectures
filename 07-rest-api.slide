@@ -346,39 +346,6 @@ Tags: golang, go
 
 [Chi documentation: routing groups](https://go-chi.io/#/pages/routing?id=routing-groups)
 
-## fasthttp
-
-- Alternative HTTP implementation
-    - Up to 10x faster than [net/http](https://pkg.go.dev/net/http)
-    - Optimized for thousands of small to medium sized requests per second with consistent low millisecond response times
-- Does not provide `ServeMux`
-- Multiple routers build on top of it:
-    - [fiber](https://github.com/gofiber/fiber)
-    - [atreugo](https://github.com/savsgio/atreugo)
-    - [fasthttp-routing](https://github.com/qiangxue/fasthttp-routing)
-
-[GitHub: fasthttp](https://github.com/valyala/fasthttp)
-
-## Fiber
-
-- [Express](https://expressjs.com) inspired web framework
-    - Yes, that Javascript framework
-- Built on top of `fasthttp`
-- Plenty of [middleware](https://docs.gofiber.io/category/-middleware) built-in
-- Handlers use custom context: [fiber.Ctx](https://docs.gofiber.io/api/ctx)
-
-[GitHub: fiber](https://github.com/gofiber/fiber)
-
-[Fiber documentation](https://docs.gofiber.io)
-
-*You will like the docs if you like emojis*
-
-## Fiber
-
-.code assets/lecture-07/fiber/fiber/main.go /START OMIT/,/END OMIT/
-
-[Fiber documentation: Routing](https://docs.gofiber.io/guide/routing)
-
 ## Echo
 
 - Web framework
@@ -436,6 +403,39 @@ Tags: golang, go
 .code assets/lecture-07/gin/router-groups/main.go /START OMIT/,/END OMIT/
 
 [Gin Web Framework documentation: Grouping routes](https://gin-gonic.com/docs/examples/grouping-routes/) 
+
+## fasthttp
+
+- Alternative HTTP implementation
+    - Up to 10x faster than [net/http](https://pkg.go.dev/net/http)
+    - Optimized for thousands of small to medium sized requests per second with consistent low millisecond response times
+- Does not provide `ServeMux`
+- Multiple routers build on top of it:
+    - [fiber](https://github.com/gofiber/fiber)
+    - [atreugo](https://github.com/savsgio/atreugo)
+    - [fasthttp-routing](https://github.com/qiangxue/fasthttp-routing)
+
+[GitHub: fasthttp](https://github.com/valyala/fasthttp)
+
+## Fiber
+
+- [Express](https://expressjs.com) inspired web framework
+    - Yes, that Javascript framework
+- Built on top of `fasthttp`
+- Plenty of [middleware](https://docs.gofiber.io/category/-middleware) built-in
+- Handlers use custom context: [fiber.Ctx](https://docs.gofiber.io/api/ctx)
+
+[GitHub: fiber](https://github.com/gofiber/fiber)
+
+[Fiber documentation](https://docs.gofiber.io)
+
+*You will like the docs if you like emojis*
+
+## Fiber
+
+.code assets/lecture-07/fiber/fiber/main.go /START OMIT/,/END OMIT/
+
+[Fiber documentation: Routing](https://docs.gofiber.io/guide/routing)
 
 ## Honorable mentions
 
