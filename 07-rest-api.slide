@@ -169,6 +169,10 @@ Tags: golang, go
 
 [mdn web docs: HTTP CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
+## CORS
+
+.image assets/lecture-07/cors/cors.drawio.svg _ 750
+
 ## Cookies
 
 - Piece of data sent from server to user
@@ -178,7 +182,7 @@ Tags: golang, go
     - Session management
     - Personalization
     - Tracking
-    
+
 .code assets/lecture-07/http/cookies.txt
 
 [mdn web docs: HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
