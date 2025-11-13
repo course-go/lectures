@@ -301,7 +301,7 @@ Tags: golang, go
 
 ## negroni
 
-.play assets/lecture-07/negroni/negroni/main.go
+.play assets/lecture-07/negroni/negroni/main.go /START OMIT/,/END OMIT/
 
 ## mux
 

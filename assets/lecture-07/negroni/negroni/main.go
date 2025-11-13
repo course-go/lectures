@@ -7,6 +7,8 @@ import (
 	"github.com/urfave/negroni"
 )
 
+// START OMIT
+
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
@@ -18,3 +20,5 @@ func main() {
 
 	http.ListenAndServe(":8080", n)
 }
+
+// END OMIT
