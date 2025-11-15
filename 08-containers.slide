@@ -50,7 +50,7 @@ Tags: golang, go
 ## Motivation
 
 - Local development
-    - Running dependecies
+    - Running dependencies
     - Minimal overhead
 - Production environment
     - Shipping deyployable units of software
@@ -64,7 +64,7 @@ Tags: golang, go
 - Three specifications:
     - [Runtime Specification](https://github.com/opencontainers/runtime-spec?tab=readme-ov-file)
     - [Image Specification](https://github.com/opencontainers/image-spec)
-    - [Distrubution Specification](https://github.com/opencontainers/distribution-spec)
+    - [Distribution Specification](https://github.com/opencontainers/distribution-spec)
 
 [GitHub: Open Container Initiative](https://github.com/opencontainers)
 
@@ -111,7 +111,7 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
 ## Docker Images & Containers
 
 - Container images
-    - A form of snaphost or template for container construction
+    - A form of snapshot or template for container construction
     - They declare what the snapshot contains
     - What is run when the image gets deployed in the form of a container
 - Containers are actual running instances constructed from container images
@@ -373,7 +373,7 @@ $ docker build --platform linux/amd64 .
 ```
 
 - Multi-platform builds allow us to create multiple images supporting multiple platforms at one
-    - Three stategies
+    - Three strategies
         - [QEMU](https://docs.docker.com/build/building/multi-platform/#qemu)
         - [Multiple nodes of different architecture](https://docs.docker.com/build/building/multi-platform/#multiple-native-nodes)
         - [Cross-compilation](https://docs.docker.com/build/building/multi-platform/#cross-compilation)
@@ -440,7 +440,7 @@ $ docker compose up
 $ docker compose up -d
 ```
 
-- Shuting down the compose services
+- Shutting down the compose services
     - `down` = `stop` + `rm`
 
 ```
@@ -616,7 +616,7 @@ $ podman compose up
     - **kube-controller-manager**: monitors cluster state using the API
     - **etcd**: key-value storage
 
-[Kubernetes Componenets](https://kubernetes.io/docs/concepts/overview/components/#node-components)
+[Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/#node-components)
 
 ## Kubernetes architecture
 
@@ -689,4 +689,4 @@ $ kubectl describe deployments/k8s-bc
 $ kubectl apply -f nginx-deployment.yaml
 ```
 
-[Kubernets: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+[Kubernetes: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
