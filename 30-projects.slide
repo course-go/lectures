@@ -6,6 +6,7 @@
 - TUI
 - Desktop
 - Web
+- Embedded
 - Open-source
 
 ## CLI
@@ -170,6 +171,23 @@ type Model interface {
     - [Svelte](https://svelte.dev)
     - [SolidJS](https://www.solidjs.com)
 - Or just wait a couple of days for the next one to drop
+
+## Embedded
+
+## TinyGo
+
+- Alternative compiler
+    - Brings Go to embedded systems
+    - Smaller binaries
+- Provides support for:
+    - Over [100 microcontrollers](https://tinygo.org/docs/reference/microcontrollers/)
+    - Over [100 drivers](https://github.com/tinygo-org/drivers) for hardware such as sensors, displays, etc.
+    - Embedded [filesystems](https://github.com/tinygo-org/tinyfs)
+    - [Bluetooth](https://github.com/tinygo-org/bluetooth)
+
+[TinyGo](https://tinygo.org/)
+
+[Tour of TinyGo](https://tinygo.org/tour/blink/onboard/)
 
 ## Open-source
 
