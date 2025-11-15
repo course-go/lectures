@@ -114,7 +114,7 @@ In C++ we don't say "Missing asterisk". We say:
 
 ```
 error C2664:
-'void std::vector<block,std::alocator<_Ty> >::push_back(const block &)':
+'void std::vector<block,std::allocator<_Ty> >::push_back(const block &)':
 cannot convert argument 1 from
 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<block> > >'
 to 'block &&'
