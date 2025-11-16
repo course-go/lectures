@@ -1,4 +1,5 @@
-name: Deploy lecture slides
+---
+name: Lectures CI/CD
 
 on:
   push:
@@ -10,8 +11,8 @@ env:
   GAR_IMAGE: ${{ vars.GAR_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT }}/${{ vars.GAR_REPOSITORY }}/${{ vars.IMAGE_NAME}}
 
 jobs:
-  deploy:
-    name: "Deploy"
+  delivery:
+    name: "Delivery"
     runs-on: ubuntu-latest
 
     permissions:
@@ -57,6 +58,24 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+    needs: [delivery]
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Log in to the Google Cloud Platform
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - name: Configure auth to Google Cloud Platform
+        run: gcloud auth configure-docker ${{ vars.GAR_REGION }}-docker.pkg.dev
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v2
