@@ -142,7 +142,7 @@
     - Targets
     - Swapping
     - Supports Web Sockets
-- HTMX expects HTML fragments in reponses
+- HTMX expects HTML fragments in responses
 - Can be easily added to the mark-up
 
 ```
