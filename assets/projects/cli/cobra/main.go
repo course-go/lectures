@@ -11,8 +11,9 @@ import (
 // START OMIT
 
 func main() {
-	cmdPrint := &cobra.Command{
-		Short: "register [username] [password]",
+	registerCommand := &cobra.Command{
+		Use:   "register [email] [password]",
+		Short: "Register new user",
 		Args: func(cmd *cobra.Command, args []string) error {
 			if len(args) != 2 {
 				return errors.New("invalid number of arguments provided")
@@ -26,7 +27,7 @@ func main() {
 			// ...
 		},
 	}
-	cmdEcho := &cobra.Command{
+	echoCommand := &cobra.Command{
 		Use:   "print [string]",
 		Short: "Print arguments to stdout",
 		Args:  cobra.MinimumNArgs(1),
@@ -38,7 +39,7 @@ func main() {
 	// MIDDLE OMIT
 
 	var count int
-	cmdTimes := &cobra.Command{
+	timesCommand := &cobra.Command{
 		Use:   "times [string]",
 		Short: "Print arguments to stdout count times",
 		Args:  cobra.MinimumNArgs(1),
@@ -48,12 +49,13 @@ func main() {
 			}
 		},
 	}
-	cmdTimes.Flags().IntVarP(&count, "count", "c", 1, "times to echo the input")
+	timesCommand.Flags().IntVarP(&count, "count", "c", 1, "times to echo the input")
 
-	cmdEcho.AddCommand(cmdTimes)
-	rootCmd := &cobra.Command{Use: "app"}
-	rootCmd.AddCommand(cmdPrint, cmdEcho)
-	_ = rootCmd.Execute()
+	echoCommand.AddCommand(timesCommand)
+
+	rootCommand := &cobra.Command{Use: "my-cli"}
+	rootCommand.AddCommand(registerCommand, echoCommand)
+	_ = rootCommand.Execute()
 }
 
 // END OMIT
