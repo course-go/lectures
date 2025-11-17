@@ -14,17 +14,18 @@ import (
 // START OMIT
 
 func main() {
-	myApp := app.New()
-	myWindow := myApp.NewWindow("My giga cool app")
+	app := app.New()
+	window := app.NewWindow("My cool app")
 
-	var clicks uint
+	clickBinding := binding.NewInt()
 	nameBinding := binding.NewString()
-	name := widget.NewEntryWithData(nameBinding)
-	button := widget.NewButtonWithIcon("Click", theme.CheckButtonIcon(), func() {
-		clicks++
+	nameInput := widget.NewEntryWithData(nameBinding)
+	submitButton := widget.NewButtonWithIcon("Submit", theme.ConfirmIcon(), func() {
+		current, _ := clickBinding.Get()
+		_ = clickBinding.Set(current + 1)
 	})
-	nameContainer := container.New(layout.NewHBoxLayout(), name, button)
-
+	clicks := widget.NewLabelWithData(binding.IntToString(clickBinding))
+	nameContainer := container.New(layout.NewHBoxLayout(), nameInput, submitButton, clicks)
 	check := widget.NewCheck("Go is the best!", func(value bool) {
 		log.Println("This must be always checked!")
 	})
@@ -34,8 +35,8 @@ func main() {
 	choicesContainer := container.New(layout.NewHBoxLayout(), check, radio)
 
 	content := container.New(layout.NewVBoxLayout(), nameContainer, choicesContainer)
-	myWindow.SetContent(content)
-	myWindow.ShowAndRun()
+	window.SetContent(content)
+	window.ShowAndRun()
 }
 
 // END OMIT
