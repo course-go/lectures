@@ -132,8 +132,7 @@
 - Custom `fyne` CLI for building the apps
 - Defines containers, layouts, widgets, collections etc.
 - Supports two-way data bindings
-- The maintainars also built a Linux distro using Fyne
-    - [FyshOS](https://github.com/FyshOS/fynedesk)
+- The maintainars also built a Linux distro named [FyshOS](https://github.com/FyshOS/fyshos) using Fyne and the [Fynedesk](https://github.com/FyshOS/fynedesk) desktop environment
 
 [Fyne](https://fyne.io)
 
