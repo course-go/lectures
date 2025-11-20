@@ -620,3 +620,12 @@ $ air -c .air.toml -- -h
     - Assumes the template authors are trusted while data is not
 
 [Go Packages: html/template](https://pkg.go.dev/html/template)
+
+## Summary
+
+- Refreshed HTTP protocol and REST API fundamentals
+- Have sense of what `net` package does
+- Know how to use the `net/http` package
+- Have sense of other third party libraries and what they solve for you
+- Know how to test your HTTP based APIs
+- Be aware of Go's built-in templating library
