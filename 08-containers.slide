@@ -384,6 +384,10 @@ $ docker build --platform linux/amd64 .
 
 - `BuildKit` supports [multiple build arguments](https://docs.docker.com/reference/dockerfile/#automatic-platform-args-in-the-global-scope) out of the box
 
+```
+$ docker buildx build --platform=linux/amd64,linux/arm64 .
+```
+
 .code assets/lecture-08/docker/Dockerfile.cross-compilation
 
 [Docker: Cross-Compilation Guide](https://www.docker.com/blog/faster-multi-platform-builds-dockerfile-cross-compilation-guide/)
