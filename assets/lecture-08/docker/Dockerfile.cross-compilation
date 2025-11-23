@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.22-alpine AS build
+FROM --platform=$BUILDPLATFORM golang:1.25-alpine AS build
 
 WORKDIR /usr/app
 COPY . .
@@ -7,7 +7,7 @@ ARG TARGETOS TARGETARCH
 RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -v -o /usr/app/bin/app .
 
 
-FROM alpine
+FROM alpine:3
 
 COPY --from=build /usr/app/bin/app /bin
 
