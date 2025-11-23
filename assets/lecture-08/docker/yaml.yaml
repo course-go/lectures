@@ -3,7 +3,7 @@ service:
   name: Customer API
   enabled: true
   port: 8080
-  database_url: "postgres://postgres:5432/api"
+  database_url: "postgres://db.course-go.dev:5432/api"
   banner: |
     Hello from Customer API
     Running in 3, 2, 1...
