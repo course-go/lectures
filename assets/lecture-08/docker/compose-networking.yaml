@@ -1,3 +1,4 @@
+---
 services:
   content:
     image: course-go/content

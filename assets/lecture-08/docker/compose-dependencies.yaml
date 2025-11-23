@@ -1,3 +1,4 @@
+---
 services:
   api:
     build: .
@@ -17,7 +18,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=gophers
     healthcheck:
-      test: [ "CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'" ]
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
       interval: 2s
       timeout: 3s
       retries: 10
