@@ -15,8 +15,8 @@ import (
 
 func main() {
 	ctx := context.Background()
-	postgresContainer, _ := postgres.RunContainer(ctx, // ignored error
-		testcontainers.WithImage("docker.io/postgres:16-alpine"),
+	postgresContainer, _ := postgres.Run(ctx, // ignored error
+		"docker.io/postgres:16-alpine",
 		postgres.WithInitScripts(filepath.Join("testdata", "init-user-db.sh")),
 		postgres.WithConfigFile(filepath.Join("testdata", "my-postgres.conf")),
 		postgres.WithDatabase("postgres"),
