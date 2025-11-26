@@ -7,8 +7,10 @@ import (
 	"net"
 )
 
+// START OMIT
+
 func main() {
-	conn, err := net.Dial("tcp", "course-go.dev:80") // Returns `Conn` interface
+	conn, err := net.Dial("tcp", "course-go.dev:80")
 	if err != nil {
 		log.Fatalf("failed dialing: %v", err)
 	}
@@ -22,3 +24,5 @@ func main() {
 
 	fmt.Println(resp)
 }
+
+// END OMIT

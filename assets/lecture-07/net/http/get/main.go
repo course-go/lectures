@@ -15,7 +15,6 @@ func main() {
 		log.Fatalf("could not execute request: %v", err)
 	}
 
-	// Request
 	fmt.Println(resp.Request.Proto)
 	fmt.Println(resp.Request.Host)
 	fmt.Println(resp.Request.URL)
@@ -24,7 +23,6 @@ func main() {
 
 	fmt.Println()
 
-	// Response
 	fmt.Println(resp.Proto)
 	fmt.Println(resp.Status)
 	fmt.Println(resp.Header)

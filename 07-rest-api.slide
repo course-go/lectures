@@ -219,11 +219,15 @@ Tags: golang, go
 
 [Go Packages: net](https://pkg.go.dev/net)
 
-## Dial
+## Client: Dial
 
-.play assets/lecture-07/net/dial/main.go
+- `Dial` returns `Conn`
 
-## Listen
+.play assets/lecture-07/net/dial/main.go /START OMIT/,/END OMIT/
+
+## Server: Listen
+
+- `Listen` returns `Listener`
 
 .play assets/lecture-07/net/listen/main.go /START OMIT/,/END OMIT/
 
@@ -240,27 +244,27 @@ Tags: golang, go
 
 [Dreams of Code: The standard library now has all you need for routing in Go](https://www.youtube.com/watch?v=H7tbjKFSg58)
 
-## Simple get
+## Client: default client get
 
 .play assets/lecture-07/net/http/get/main.go /START OMIT/,/END OMIT/
 
-## Client
+## Client: custom with request
 
 .play assets/lecture-07/net/http/client/main.go /START OMIT/,/END OMIT/
 
-## Server with default handler
+## Server: default handler
 
 - Uses global `http.DefaultServerMux` router
 
 .play assets/lecture-07/net/http/server/main.go /START OMIT/,/END OMIT/
 
-## Server with router
+## Server: custom handler
 
-- Explicit router
+- Explicit custom router (=mux)
 
 .play assets/lecture-07/net/http/server-mux/main.go /START OMIT/,/END OMIT/
 
-## Configuring server
+## Server: custom server with custom handler
 
 .play assets/lecture-07/net/http/server-config/main.go /START OMIT/,/END OMIT/
 
