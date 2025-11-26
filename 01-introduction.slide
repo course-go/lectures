@@ -126,19 +126,13 @@ and I think that's beautiful...
 
 ## More readable compared to C++
 
-    #include <vector>
-    #include <algorithm>
-    
-    int main()
-    {
-        int a;
-        std::vector< std::vector <int> > v;
-        std::vector< std::vector <int> >::const_iterator it = std::find( v.begin(), v.end(), a );
-    }
+.code assets/lecture-01/c++/vector/main.cpp
 
-- `gcc -c error.cpp` will produce 
+- `gcc -c error.cpp` will produce:
     - 15786 bytes of output
-    - longest line of 330 characters
+    - Longest line of 330 characters
+
+[YouTube: The worst programming language of all time](https://www.youtube.com/watch?v=7fGB-hjc2Gc)
 
 ## Goals
 
