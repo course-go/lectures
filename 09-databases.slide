@@ -41,7 +41,7 @@ Tags: golang, go
     - Heavily used in enterprise systems
     - Fintech etc.
 - [MySQL](https://www.mysql.com)
-    - Owned by Oracle after the aquisition of Sun Microsystems [2009]
+    - Owned by Oracle after the acquisition of Sun Microsystems [2009]
     - Open-source
     - Dual-licensing
 - MS SQL
@@ -165,7 +165,7 @@ $ migrate -source file://migrations \
 
 - Rather low-level
 - Defines generic interfaces for SQL databases
-- Needs to be used in conjuntion with a specific database driver
+- Needs to be used in conjunction with a specific database driver
     - Plenty of [supported drivers](https://go.dev/wiki/SQLDrivers)
     - Drivers for all previously mentioned RDBMSs exist
 
