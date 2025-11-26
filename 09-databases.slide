@@ -467,9 +467,17 @@ Flags:
 
 [GORM: Many To Many](https://gorm.io/docs/many_to_many.html)
 
-## Raw SQL 
+## Raw SQL
 
 - Not all SQL queries can be executed using the ORM itself
 - Supports raw SQL execution
 
 .code assets/lecture-09/gorm/gorm/main.go /RAW START OMIT/,/RAW END OMIT/
+
+## Summary
+
+After this lecture you should:
+- have refreshed SQL basics
+- be aware of some of the major RDBMSs and which one might be the right one for you
+- know what the Go standard library provides for you in regards to SQL databases
+- be aware of the different approaches and libraries that exist in the Go ecosystem for interacting with SQL database systems
