@@ -694,3 +694,13 @@ $ kubectl apply -f nginx-deployment.yaml
 ```
 
 [Kubernetes: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+
+## Summary
+
+After this lecture you should:
+- get a sense of what containers are and how they work
+- understand the motivation why we want to use containers
+- be aware of the Docker ecosystem, its tools and what components it uses underneath
+- know how to use Docker to containerize and run your own application
+- know how to declaratively orchestrate multiple containers using Docker Compose
+- have a sense how Kubernetes works and what additional problems it resolves
