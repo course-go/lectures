@@ -230,6 +230,11 @@ Tags: golang, go
 ## net/http package
 
 - Provides HTTP client and server implementations
+    - `Server`, `Client`
+    - `Request`, `Response`, `ResponseWriter`
+- Interfaces for HTTP handlers
+
+.code assets/lecture-07/net/http/handlers/handlers.go /START OMIT/,/END OMIT/
 
 [Go Internals: HTTP request multiplexing in Go](https://akshay-kumar.hashnode.dev/go-internals-http-request-multiplexing-in-go-1)
 
