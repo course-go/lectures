@@ -70,6 +70,8 @@ Tags: golang, go
     - "Memory allocations"
     - "HTTP requests count"
     - "HTTP response time"
+- [The Four Golden Signals](https://sre.google/sre-book/monitoring-distributed-systems/#xref_monitoring_golden-signals)
+    - Latency, Traffic, Errors, and Saturation
 
 ## Prometheus
 
