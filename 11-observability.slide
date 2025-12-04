@@ -86,6 +86,10 @@ Tags: golang, go
 
 [GitHub: Prometheus](https://github.com/prometheus/prometheus)
 
+## Prometheus Architecture
+
+.image assets/lecture-11/metrics/prometheus-architecture.svg 520 _
+
 ## Prometheus Configuration
 
 .code assets/lecture-11/metrics/prometheus.yaml
