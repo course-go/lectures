@@ -182,7 +182,9 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 
 [GitHub: Grafana](https://github.com/grafana/grafana)
 
-## 
+[Prometheus: Grafana support](https://prometheus.io/docs/visualization/grafana/)
+
+##
 
 .video assets/lecture-11/metrics/grafana.mp4 video/mp4 520 _
 
