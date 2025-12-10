@@ -452,21 +452,19 @@ Tags: golang, go
 - [Hertz](https://github.com/cloudwego/hertz)
     - [CloudWeGo](https://github.com/cloudwego) project (Bytedance)
 - [Beego](https://github.com/beego/beego)
-- [Revel](https://github.com/revel/revel)
 - [Buffalo](https://github.com/gobuffalo/buffalo)
 - [Atreugo](https://github.com/savsgio/atreugo)
-- [Goji](https://github.com/goji/goji)
 
-## So many options!
+## So many options! What should I use then?
 
-- What should I use then?
 - Sticking to the **`net/http`** standard library is a viable option since Go 1.22 release
     - Previously, the package was hard to use
         - A lot of boiler plate had to be written (methods, path parameters)
+    - Still, some things are hard to do like subrouters, using **chi** makes it easier
 - When you need to squeeze-out extra performance `fasthttp` could be the way
-    - **Fiber/Atreugo**
+    - **Fiber**, **Hertz** or **Atreugo**
 - When writing complex apps where you can leverage the extra features offered by more advanced frameworks, use them
-    - **Gin/Echo**
+    - **Echo** or **Gin**
 - No matter the choice, you will, most likely, be fine with any of them
 
 [TechEmpower: Web Framework Benchmarks](https://www.techempower.com/benchmarks/#hw=ph&test=fortune&section=data-r22&l=zijocf-cn3)
