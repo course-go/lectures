@@ -383,17 +383,18 @@ Tags: golang, go
 
 - Fully fledged web framework
     - Pretty feature rich, but somewhat bloated
-- Features [martini](https://github.com/go-martini/martini)-like API
-    - Martini is no longer maintained
-- Documentation is based on [unstructures examples](https://gin-gonic.com/docs/examples/)
-    - "Meh..."
 - Handlers also use custom context: [gin.Context](https://pkg.go.dev/github.com/gin-gonic/gin#Context)
+- Features [martini](https://github.com/go-martini/martini)-like API
+    - Martini is pretty old and no longer maintained
+- Documentation is based on [unstructures examples](https://gin-gonic.com/docs/examples/)
 - Most popular and used Go web framework
      - ~75.000 stars on GitHub
 
 [GitHub: gin](https://github.com/gin-gonic/gin)
 
 [Gin Web Framework: documentation](https://gin-gonic.com/en/docs/)
+
+[Efron Licht: Gin is a very bad software library](https://eblog.fly.dev/ginbad.html)
 
 ## Gin: Model binding
 
