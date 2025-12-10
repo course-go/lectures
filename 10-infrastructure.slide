@@ -151,7 +151,7 @@ $ git push origin --tags
 - GitHub's CI/CD
     - Built into GitHub
 - No restrictions for public repositories
-- Defined as [worklows](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#workflows)
+- Defined as [workflows](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#workflows)
     - Configured using YAML
     - In `.github/workflows/` directory
     - Single workflow can have multiple `jobs`
@@ -178,10 +178,10 @@ $ git push origin --tags
 
 ## GitHub Actions
 
-- Pre-prepared worklow steps
+- Pre-prepared workflow steps
     - No need to write repeating shell command sequences
         - You just use the action
-    - Regural GitHub repositories
+    - Regular GitHub repositories
         - [golangci/golangci-lint-action](https://github.com/golangci/golangci-lint-action)
 - Simplify usage of frequent tasks
 - [Custom actions](https://docs.github.com/en/actions/creating-actions) can be created
