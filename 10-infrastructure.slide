@@ -25,32 +25,42 @@ Tags: golang, go
     - More static analysis checks
     - Configurable
 
-## golanci-lint
+## golangci-lint
 
-- Go linters runner
-    - Runs them in parallel
-- Configured using YAML
-    - Using `.golangci.yaml`
-- Over a hundred of [linters](https://golangci-lint.run/usage/linters/)
-- [Custom CLI](https://golangci-lint.run/welcome/install/)
+- Parallel runner for third party Go [linters](https://golangci-lint.run/docs/linters/)
+    - Integrates over a hundred of them
+- Has integration for all major [IDEs](https://golangci-lint.run/docs/welcome/integrations/)
+- Can also run [formatters](https://golangci-lint.run/docs/formatters/)
+    - Notably `gofmt` itself, `gofumpt` (extension of `gofmt`) and `gci`/`goimports` for import formatting
+- Can be configured using CLI flags or, preferably, by a configuration file
+    - Supports YAML, TOML and JSON
+    - `.golangci.yaml`, `.golangci.toml` or `.golangci.json` respectively
+- Has a custom [CLI](https://golangci-lint.run/welcome/install/) binary
 
 ```
 $ golangci-lint run
+$ golangci-lint fmt
 ```
 
 [golangci-lint.run](https://golangci-lint.run)
 
-## Configuring golangci-lint
+## golangci-lint: configuring linters
 
-.code assets/lecture-10/linters/golangci.yaml /CONFIG START OMIT/,/CONFIG END OMIT/
+.code assets/lecture-10/linters/golangci.yaml /LINTERS START OMIT/,/LINTERS END OMIT/
 
-[golang-ci-lint.run configuration](https://golangci-lint.run/usage/configuration/)
+[golang-ci-lint.run: linters configuration](https://golangci-lint.run/usage/configuration/)
 
-## Configuring specific golangci-lint linters
+## golangci-lint: configuring formatters
 
-.code assets/lecture-10/linters/golangci.yaml /LINTER CONFIG START OMIT/,/LINTER CONFIG END OMIT/
+.code assets/lecture-10/linters/golangci.yaml /FORMATTERS START OMIT/,/FORMATTERS END OMIT/
 
-[golang-ci-lint.run configuration](https://golangci-lint.run/usage/configuration/)
+[golang-ci-lint.run: formatters configuration](https://golangci-lint.run/docs/configuration/file/#formatters-configuration)
+
+## golangci-lint: configuring outputs
+
+.code assets/lecture-10/linters/golangci.yaml /OUTPUTS START OMIT/,/OUTPUTS END OMIT/
+
+[golang-ci-lint.run: output configuration](https://golangci-lint.run/docs/configuration/file/#output-configuration)
 
 ## CI/CD
 

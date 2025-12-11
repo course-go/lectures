@@ -1,70 +1,57 @@
-# // CONFIG START OMIT
-
+--- # LINTERS START OMIT
+version: "2"
 run:
-  timeout: 5m
-  tests: false
-
-output:
-  sort-results: true
-  formats:
-    - format: json
-      path: stderr
-
+  tests: true
 linters:
-  enable-all: true
+  default: all
   disable:
-    # restrictive
     - exhaustruct
     - varnamelen
     - nlreturn
     - funlen
     - nonamedreturns
     - gochecknoglobals
+  settings:
+    dupl:
+      threshold: 200
+    gosec:
+      excludes:
+        - G501 # Import blocklist: crypto/md5
 
-# // CONFIG END OMIT
+# LINTERS END OMIT
+# FORMATTERS START OMIT
 
-    - depguard
-    - godox
-    - wsl
-    - nakedret
-    - wrapcheck
-    - whitespace
-    - containedctx
-    # deprecated
-    - forbidigo
-    - scopelint
-    - maligned
-    - varcheck
-    - structcheck
-    - interfacer
-    - exhaustivestruct
-    - golint
-    - nosnakecase
-    - deadcode
-    - ifshort
-    # not relevant
-    - copyloopvar
-    - intrange
-    # to possibly enable in future
-    - forcetypeassert
-    - goerr113
-    - noctx
-    - cyclop
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+  settings:
+    gofumpt:
+      extra-rules: true
+    golines:
+      max-len: 120
 
-# // LINTER CONFIG START OMIT
+issues:
+  fix: true
 
-linters-settings:
-  cyclop:
-    max-complexity: 5
-  errorlint:
-    errorf: false
-  gofumpt:
-    extra-rules: true
-  goconst:
-    min-len: 2
-    min-occurences: 2
-  gomnd:
-    ignored-numbers:
-      - '0o644'
+# FORMATTERS END OMIT
+# OUTPUTS START OMIT
 
-# // LINTER CONFIG END OMIT
+output:
+  formats:
+    text:
+      path: stdout
+    tab:
+      path: golangci-lint.out
+      colors: false
+    html:
+      path: golangci-lint.out.html
+  sort-order:
+    - linter
+    - severity
+    - file
+
+# OUTPUTS END OMIT
