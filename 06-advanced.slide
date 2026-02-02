@@ -566,7 +566,9 @@ BenchmarkPassArrayByReference-12        1000000000               0.3857 ns/op
 
 ## Slice range benchmark
 
-.code assets/lecture-06/optimizations/for-loops/for_test.go /SLICE START OMIT/,/SLICE END OMIT/
+.code assets/lecture-06/optimizations/loops/account_test.go /START OMIT/,/END OMIT/
+
+.code assets/lecture-06/optimizations/loops/slices_test.go /START OMIT/,/END OMIT/
 
 ## Slice range benchmark results
 
@@ -577,7 +579,7 @@ $ go test -bench SliceFor -benchtime 5s --count 5
 ```
 goos: darwin
 goarch: arm64
-pkg: github.com/course-go/lectures/assets/lecture-06/optimizations/for-loops
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations/loops
 cpu: Apple M2 Max
 BenchmarkSliceForRangeValue-12               261          23051489 ns/op
 BenchmarkSliceForRangeValue-12               273          22278131 ns/op
@@ -593,7 +595,9 @@ BenchmarkSliceForRangeIndex-12          20718726               299.9 ns/op
 
 ## Map benchmark
 
-.code assets/lecture-06/optimizations/for-loops/for_test.go /MAP START OMIT/,/MAP END OMIT/
+.code assets/lecture-06/optimizations/loops/account_test.go /START OMIT/,/END OMIT/
+
+.code assets/lecture-06/optimizations/loops/maps_test.go /START OMIT/,/END OMIT/
 
 ## Map benchmark results
 
@@ -604,17 +608,18 @@ $ go test -bench MapForLoop -benchtime 5s --count 5
 ```
 goos: darwin
 goarch: arm64
-pkg: github.com/course-go/lectures/assets/lecture-06/optimizations
-BenchmarkMapForLoopValue-12               760           7864646 ns/op
-BenchmarkMapForLoopValue-12               762           7976435 ns/op
-BenchmarkMapForLoopValue-12               751           8124824 ns/op
-BenchmarkMapForLoopValue-12               738           8135197 ns/op
-BenchmarkMapForLoopValue-12               732           8108427 ns/op
-BenchmarkMapForLoopKey-12                 484          12443618 ns/op
-BenchmarkMapForLoopKey-12                 480          12498248 ns/op
-BenchmarkMapForLoopKey-12                 477          12452687 ns/op
-BenchmarkMapForLoopKey-12                 477          12548773 ns/op
-BenchmarkMapForLoopKey-12                 472          12461708 ns/op
+pkg: github.com/course-go/lectures/assets/lecture-06/optimizations/loops
+cpu: Apple M2 Max
+BenchmarkMapForRangeValue-12                 266          23102741 ns/op
+BenchmarkMapForRangeValue-12                 264          23047942 ns/op
+BenchmarkMapForRangeValue-12                 253          23333638 ns/op
+BenchmarkMapForRangeValue-12                 256          23654111 ns/op
+BenchmarkMapForRangeValue-12                 253          23368831 ns/op
+BenchmarkMapForRangeKey-12                408572             14698 ns/op
+BenchmarkMapForRangeKey-12                407484             14734 ns/op
+BenchmarkMapForRangeKey-12                405678             14719 ns/op
+BenchmarkMapForRangeKey-12                408717             14687 ns/op
+BenchmarkMapForRangeKey-12                407572             14685 ns/op
 ```
 
 ## Strings
