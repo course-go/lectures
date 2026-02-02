@@ -2,26 +2,34 @@ package for_test
 
 import "testing"
 
-const size = 1_000_000
+const (
+	size     = 1_000
+	megabyte = 1 << 20
+)
 
 // SLICE START OMIT
 
-func BenchmarkSliceForRange(b *testing.B) {
-	s := seedSlice()
-	var sum int
+type Account struct {
+	Balance int
+	Data    [megabyte]byte
+}
+
+func BenchmarkSliceForRangeValue(b *testing.B) {
+	accounts := seedAccounts()
+	var total int
 	for b.Loop() {
-		for _, value := range s {
-			sum += value
+		for _, account := range accounts {
+			total += account.Balance
 		}
 	}
 }
 
-func BenchmarkSliceForIndex(b *testing.B) {
-	s := seedSlice()
-	var sum int
+func BenchmarkSliceForRangeIndex(b *testing.B) {
+	accounts := seedAccounts()
+	var total int
 	for b.Loop() {
-		for i := 0; i < len(s); i++ {
-			sum += s[i]
+		for i := range accounts {
+			total += accounts[i].Balance
 		}
 	}
 }
@@ -60,10 +68,12 @@ func seedMap() map[int]int {
 	return m
 }
 
-func seedSlice() []int {
-	s := make([]int, size)
+func seedAccounts() []Account {
+	s := make([]Account, size)
 	for i := range size {
-		s[i] = i
+		s[i] = Account{
+			Balance: i,
+		}
 	}
 
 	return s
