@@ -784,10 +784,13 @@ Staying up to date
 - [Teiva Harsanyi: 100 Go Mistakes and How to Avoid Them](https://www.manning.com/books/100-go-mistakes-and-how-to-avoid-them)
     - [Online summary](https://100go.co)
 
-## Go Playground
+## Playground
 
-- [Playground](https://go.dev/play/)
+- Official [playground](https://go.dev/play/)
     - [Go Talks: History of Playground](https://go.dev/talks/2019/playground-v3/playground-v3.slide)
+- Better [go-playground](https://goplay.tools/)
+    - Based on [monaco-editor](https://github.com/microsoft/monaco-editor)
+    - Includes syntax highlighting, autocompletion, etc.
 
 ## Summary
 
