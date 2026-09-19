@@ -15,15 +15,19 @@ type registeredUser struct {
 }
 
 func main() {
-	registeredUser := registeredUser{
-		user: user{
+	robert := registeredUser{
+		user: user{ // Older way of initialization using the embedded struct
 			id:   1,
-			name: "Linus",
+			name: "Robert Griesemer",
 		},
+		email: "robert@griesemer.com",
+	}
+	linus := registeredUser{
+		id:    2,
+		name:  "Linus Torvalds", // Since Go 1.27 compiler allows direct access to embedded fields
 		email: "linus@torvalds.com",
 	}
-
-	fmt.Println(registeredUser.name, registeredUser.email)
+	fmt.Println(linus.name, linus.email, robert.name, robert.email)
 }
 
 // END OMIT
