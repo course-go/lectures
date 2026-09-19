@@ -145,36 +145,32 @@ Or you can run the slides locally using the Go present CLI.
 
 ```sh
 git clone git@github.com:course-go/lectures.git
+cd lectures
 ```
 
 ##### Installation
 
 [Install Go](https://go.dev/doc/install) if you do not have it yet.
 
-Install the CLI present tool using Go install:
-
-```sh
-go install golang.org/x/tools/cmd/present@latest
-```
-
-This installs the **present** executable into your
-**$GOPATH/bin** directory if **GOPATH** is set or the
-**$HOME/go/bin** directory otherwise.
+That is all you need.
+The **present** tool is declared as a
+[Go tool dependency](https://go.dev/doc/modules/managing-dependencies#tools)
+in the **go.mod** file, so it does not have to be installed separately.
 
 ##### Usage
 
-Make sure that the directory with the **present** executable is in your $PATH.
-
-After that, running the present tool is simple:
+Run the present tool from the repository root:
 
 ```sh
-present
+go tool present
 ```
+
+The first run downloads and builds the tool, which may take a moment.
 
 Alternatively, you can specify on which address the server should listen:
 
 ```sh
-present http=:8080
+go tool present -http=:8080
 ```
 
 A webserver is run on the specified address.
