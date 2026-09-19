@@ -16,10 +16,10 @@ func main() {
 	}
 	fmt.Printf("Person with new: %T %v\n", p1, p1)
 	fmt.Printf("Person with ampersand: %T %v\n", p2, p2)
-	i1 := new(int)
-	// i2 := &0 Invalid
+
+	i1 := new(42) // Declares and initializes the reference
 	var integer int
-	i2 := &integer
+	i2 := &integer // Requires two steps (i2 := &0 is invalid)
 	fmt.Printf("Integer with new: %T %v\n", i1, i1)
 	fmt.Printf("Integer with ampersand: %T %v\n", i2, i2)
 }

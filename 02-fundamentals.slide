@@ -547,8 +547,8 @@ someType.methodName(parameters)
 
 ## The new keyword
 
-- Initializes the zero value of a type and returns a pointer to it
-- Generally somewhat avoided 
+- Used to just initialize the zero value of a type and returned a pointer to it (unused)
+- Since Go 1.26 it allows expressions as argument
 
 .play assets/lecture-02/new/new/main.go /START OMIT/,/END OMIT/
 
