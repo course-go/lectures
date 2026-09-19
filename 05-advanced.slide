@@ -182,9 +182,23 @@ Compiles into:
 
 .play assets/lecture-05/generics/type-approximations/main.go /START OMIT/,/END OMIT/
 
-## Generic method vs. generic function
+## Method vs. function on a generic type
 
 .play assets/lecture-05/generics/slice/main.go /START OMIT/,/END OMIT/
+
+## Generic methods
+
+- Since [Go version 1.27](https://tip.golang.org/doc/go1.27) a method may declare
+  its own type parameters (apart from the parameters already declared on the receiver)
+
+.play assets/lecture-05/generics/generic-method/main.go /START OMIT/,/END OMIT/
+
+## Generic methods: restrictions
+
+- Interface methods may not declare type parameters
+- Interface methods may not be implemented by generic methods
+
+.play assets/lecture-05/generics/generic-method-restrictions/main.go /START OMIT/,/END OMIT/
 
 ## Map utilities (1/2)
 
