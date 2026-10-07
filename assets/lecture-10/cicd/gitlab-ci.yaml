@@ -4,15 +4,15 @@ image: golang:latest
 
 stages:
   - lint
-  - test
   - build
+  - test
   - release
 
 lint:
-    image: golangci/golangci-lint:latest
-    stage: lint
-    script:
-      - golangci-lint run
+  image: golangci/golangci-lint:latest
+  stage: lint
+  script:
+    - golangci-lint run
 
 build:
   stage: build
@@ -30,14 +30,14 @@ test:
       - coverage.out
 
 docker:
-  image: docker:stable
+  image: docker:latest
   stage: release
   services:
     - docker:dind
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE${tag}" .
-    - docker push "$CI_REGISTRY_IMAGE${tag}"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 # // END OMIT
