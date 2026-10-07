@@ -10,8 +10,8 @@ Tags: golang, go
 - Maintained under the **course-go** GitHub organization
     - [github.com/course-go](https://github.com/course-go)
     - [course-go.dev](https://course-go.dev)
-- Content split up to multiple repositories
-    - [course](https://github.com/course-go/course) gives basic insight into the course
+- Content split into multiple repositories
+    - [course](https://github.com/course-go/course) gives a basic insight into the course
 
 ## Content
 
@@ -85,7 +85,9 @@ Tags: golang, go
 ## Advanced #2 (Week 06)
 
 - Benchmarks
+- Profiling
 - Optimizations
+- Tracing
 - CGo
 - Unsafe & Reflect
 
@@ -101,7 +103,7 @@ Tags: golang, go
 
 ## Containers (Week 08)
 
-- Containerization 
+- Containerization
 - YAML
 - Docker
 - Kubernetes
@@ -111,7 +113,7 @@ Tags: golang, go
 - SQL
 - RDBMSs
 - Migrations
-- databases/sql
+- database/sql
 - sqlx
 - sqlc
 - GORM
