@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var scrappedData = []string{
+var scrapedData = []string{
 	"Go",
 	"Is",
 	"Awesome",
@@ -20,10 +20,10 @@ var scrappedData = []string{
 
 // START OMIT
 
-func scrapper(data chan<- string) {
+func scraper(data chan<- string) {
 	// Scrape some data
-	for _, sd := range scrappedData {
-		fmt.Println("Scrapping...")
+	for _, sd := range scrapedData {
+		fmt.Println("Scraping...")
 		time.Sleep(80 * time.Millisecond)
 		data <- sd // pass for processing
 	}
@@ -53,7 +53,7 @@ func main() {
 	ingress := make(chan string, 2)
 	egress := make(chan string, 2)
 
-	go scrapper(ingress)
+	go scraper(ingress)
 	go processor(ingress, egress)
 	go exporter(egress)
 

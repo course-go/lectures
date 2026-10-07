@@ -51,7 +51,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 - Concurrency is possible with even a single CPU core
     - Parallelism is not
 - Backbone of concurrency in Go:
-    - Gouroutines
+    - Goroutines
     - Channels
     - `select` construct
 
@@ -69,10 +69,10 @@ After this lecture, you will know all of the Go keywords! Yaay!
         - Limited context switching and interactions with the OS
         - Goroutine scheduler is able to better optimize the workload
     - Generally cheap to spawn
-        - Initial stack size is smaller compared to POSIX threads (8 KB vs 8 MB)
-        - But do not get the false sense you can spawn infinite number of them, it is still a resource
+        - Initial stack size is smaller compared to POSIX threads (2 KB vs 8 MB)
+        - But do not get the false sense you can spawn an infinite number of them, it is still a resource
             - Up to tens/hundreds of thousands are fine
-    - Internally multiplexed across on kernel thread pool (M:N)
+    - Internally multiplexed across a kernel thread pool (M:N)
 
 ## Goroutines
 
@@ -96,7 +96,7 @@ After this lecture, you will know all of the Go keywords! Yaay!
 - Runs goroutines
 - Pauses and resumes them
 - Pre-emptive since Go 1.14
-    - Goroutines are pre-emted after [10ms](https://github.com/golang/go/blob/go1.19.1/src/runtime/proc.go#L5279-L5281)
+    - Goroutines are pre-empted after [10ms](https://github.com/golang/go/blob/go1.19.1/src/runtime/proc.go#L5279-L5281)
     - Sysmon
 - Work-stealing
 - Handoffs
@@ -120,6 +120,8 @@ After this lecture, you will know all of the Go keywords! Yaay!
 ## Naming
 
 - **P** (Processor): Logical processor
+    - Their count is set by `GOMAXPROCS`
+    - Defaults to the number of available CPUs (respects container CPU limits since Go 1.25)
 - **M** (Machine): OS Thread
     - Initially, each P gets assigned one M
     - More can be spawned by the runtime
@@ -213,7 +215,7 @@ ch<-value       // writing
 
 ## Closing channels
 
-- Channels can be closed with `close` function
+- Channels can be closed with the `close` function
     - Writers are responsible for closing the channels
     - Note that closing channels is not necessary
         - Only used to signal the end of transmission to the readers
@@ -221,10 +223,10 @@ ch<-value       // writing
 c := make(chan int)
 close(c)
 ```
-- Reading from a closed channel returns a default value
-- Readers can check for closed channels using optional second return argument
+- Reading from a closed channel returns the zero value (once its buffer is drained)
+- Readers can check for closed channels using the optional second return value
     - Same as with maps
-- Alternatively readers can detect closed channel with the loop over range
+- Alternatively, readers can detect a closed channel with the loop over range
     - Does the same "comma ok" idiom under the hood
 
 ## Closed channel operations
@@ -276,7 +278,7 @@ close(c)
 ## Select
 
 - The same works for writes
-    - Neither channels is full
+    - Neither channel is full
     - Writing to them would not block
 
 .play assets/lecture-04/select/writes/main.go /START OMIT/,/END OMIT/
@@ -291,7 +293,7 @@ close(c)
 ## Select default
 
 - All channel reads block
-    - `select` would panic
+    - `select` would block (here, resulting in a deadlock)
 - We can leverage the `default` case
     - The `default` gets selected only when all the `case`s would block
 
@@ -324,15 +326,15 @@ close(c)
 ## Context package
 
 - Introduced in Go 1.7
-- Structure used for carrying deadlines, context cancellations 
+- Structure used for carrying deadlines, cancellation signals,
 and other request-scoped values across API boundaries
-- Contexts can be inherited to further propagate cancallations
+- Contexts can be inherited to further propagate cancellations
     - The changes to the child contexts are not propagated to the parents
 
 ```
 type Context interface {
 	Deadline() (deadline time.Time, ok bool)
-	Done() <-chan struct{}      // channel used for signalling cancallation
+	Done() <-chan struct{}      // channel used for signalling cancellation
 	Err() error
 	Value(key any) any          // map[any]any
 }
@@ -342,7 +344,8 @@ type Context interface {
 
 ## Context creation
 
-- **TODO**: should never be used in production applications
+- **TODO**: placeholder when it is unclear which context to use
+    - Should not remain in production code
 
 ```
 ctx := context.TODO()
@@ -357,9 +360,11 @@ ctx := context.Background()
 - **WithValue**: adds value to an existing context and returns it
 
 ```
+type versionKey struct{} // avoid built-in types as keys to prevent collisions
+
 parent := context.Background()
-ctx := context.WithValue(parent, "API version", "v2")
-version := ctx.Value("API version")
+ctx := context.WithValue(parent, versionKey{}, "v2")
+version := ctx.Value(versionKey{})
 ```
 
 ## Context creation
@@ -373,20 +378,20 @@ cancel()
 ```
 
 - **WithDeadline**: adds deadline to an existing context and returns it
-    - `Done` channels gets closed when the specified time passes
+    - The `Done` channel gets closed when the specified time passes
 
 ```
-time := time.Now().Add(shortDuration)
+deadline := time.Now().Add(shortDuration)
 parent := context.Background()
-ctx, cancel := context.WithDeadline(parent, time)
+ctx, cancel := context.WithDeadline(parent, deadline)
 ```
 
 - **WithTimeout**: adds timeout to an existing context and returns it
-    - `Done` channels gets closed after the specified duration passes
+    - The `Done` channel gets closed after the specified duration passes
 
 ```
 parent := context.Background()
-ctx, cancel := context.WithTimeout(parent, 10 * time.Second)
+ctx, cancel := context.WithTimeout(parent, 10*time.Second)
 ```
 
 ## Context
@@ -433,7 +438,7 @@ duration, err := time.ParseDuration("1h10m10s")
 
 ## Time parsing
 
-- Uses special date for parsing
+- Uses a special reference date for parsing
 
 ```
 const Layout = "01/02 03:04:05PM '06 -0700"
@@ -461,6 +466,8 @@ t, err := time.Parse("02 2006 01", "08 2024 12") // custom format: day year mont
 ## Timer
 
 - Structure that delivers a tick after a specified time
+- Since Go 1.23, unstopped timers are garbage collected
+    - Timer channels are unbuffered, so no stale value is received after `Stop`/`Reset`
 
 ```
 timer := time.NewTimer(time.Second)
@@ -482,7 +489,7 @@ type Timer struct {
 ## Ticker
 
 - Structure for delivering ticks in a specified period
-- Same as `timer` but ticks endlessly or unless directly stopped
+- Same as `Timer` but ticks repeatedly until stopped
 
 ```
 ticker := time.NewTicker(time.Second)
@@ -507,7 +514,7 @@ type Ticker struct {
 
 ## Sync package
 
-- Contains synchronizations primitives, most notably:
+- Contains synchronization primitives, most notably:
     - **Mutex**: mutex
     - **RWMutex**: read-write mutex
     - **WaitGroup**: barrier
@@ -515,7 +522,7 @@ type Ticker struct {
         - Can be simulated with just channels in most use cases
     - **Map**:
         - Generally not recommended to be used
-    - **Once/Value/Values**: run function once
+    - **Once/OnceFunc/OnceValue/OnceValues**: run function once
 
 [Go packages: sync](https://pkg.go.dev/sync)
 
@@ -554,7 +561,7 @@ type Ticker struct {
     - Integer
         - Signed/unsigned
         - 32/64
-    - Generic Value
+    - `Pointer[T]` (generic) and `Value`
 - Swaps
 - Compares and swaps (CAS)
 
