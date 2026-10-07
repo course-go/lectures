@@ -15,7 +15,7 @@ type User struct {
 
 func main() {
 	users := []User{
-		User{
+		{
 			firstname: "Russ",
 			lastname:  "Cox",
 		},

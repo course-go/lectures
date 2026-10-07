@@ -9,7 +9,7 @@ type orderable interface {
 }
 
 func compare[T orderable](x, y T) bool {
-	return x < y // All types in comparable interface can be ordered via `<` operator
+	return x < y // All types in the orderable interface can be ordered via the `<` operator
 }
 
 func main() {

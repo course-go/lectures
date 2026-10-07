@@ -19,9 +19,9 @@ func TestAdd(t *testing.T) {
 		{"Add zeroes", 0, 0, 0},
 		{"Add positive numbers", 2, 1, 3},
 		{"Add mixed numbers", 2, -2, 0},
-		{"Add no-op", math.MaxInt32, 0, math.MaxInt32},
-		{"Add int32 overflow", math.MaxInt32, 1, math.MinInt32},
-		{"Add int32 extremes", math.MaxInt32, math.MinInt32, -1},
+		{"Add no-op", math.MaxInt, 0, math.MaxInt},
+		{"Add int overflow", math.MaxInt, 1, math.MinInt},
+		{"Add int extremes", math.MaxInt, math.MinInt, -1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

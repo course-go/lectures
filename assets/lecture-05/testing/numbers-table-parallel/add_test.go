@@ -18,11 +18,11 @@ func TestAdd(t *testing.T) {
 		expected int
 	}{
 		{"ZeroPlusZero_ReturnsZero", 0, 0, 0},
-		{"TwoPlusZero_ReturnsThree", 2, 1, 3},
+		{"TwoPlusOne_ReturnsThree", 2, 1, 3},
 		{"TwoPlusMinusTwo_ReturnsZero", 2, -2, 0},
-		{"MaxIntPlusZero_ReturnsMaxInt", math.MaxInt32, 0, math.MaxInt32},
-		{"MaxIntPlusOne_OverflowsToMinInt", math.MaxInt32, 1, math.MinInt32},
-		{"MaxIntPlusMinInt_ReturnsMinusOne", math.MaxInt32, math.MinInt32, -1},
+		{"MaxIntPlusZero_ReturnsMaxInt", math.MaxInt, 0, math.MaxInt},
+		{"MaxIntPlusOne_OverflowsToMinInt", math.MaxInt, 1, math.MinInt},
+		{"MaxIntPlusMinInt_ReturnsMinusOne", math.MaxInt, math.MinInt, -1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

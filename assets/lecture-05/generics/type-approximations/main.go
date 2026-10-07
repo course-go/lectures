@@ -12,7 +12,7 @@ func add[T numeric](x, y T) T {
 	return x + y
 }
 
-type myInt int // Alias for `int`
+type myInt int // Defined type with `int` as its underlying type (not an alias)
 
 func main() {
 	x := myInt(42)
