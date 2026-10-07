@@ -69,14 +69,15 @@ complex64 complex128
 
 ## Default values
 
-- Each type has it's default value
+- Each type has its default value (_zero value_)
     - Booleans: **`false`**
     - Strings: **`""`**
     - Numeric types: **`0`**
-    - Runes: **`''`** == **`0`** == **`U+0000`**
+    - Runes: **`'\x00'`** == **`0`** == **`U+0000`**
     - Complex: **`0+0i`**
-    - Pointer types: **`nil`**
+    - Pointers, slices, maps, channels, functions and interfaces: **`nil`**
         - More on those later
+    - Structs and arrays: zero value of each field/element
 
 ## Variables
 
@@ -86,7 +87,7 @@ complex64 complex128
     - Using **`var`**
     - Using **`:=`**
         - Infers the type of the variable
-        - Cannot be used when declaring global variables (only function level)
+        - Cannot be used when declaring package-level variables (only inside functions)
 - Assignments
     - Using **`=`**
     - The variable has to be previously declared
@@ -118,7 +119,7 @@ var counter = 100
 
 - Declared and initialized using **`const`**
 - No changes are permitted beyond declaration
-- Only supports runes, strings, bools, and numeric values 
+- Only supports runes, strings, bools, and numeric values
 
 .play assets/lecture-02/variables/constants/main.go
 
@@ -159,8 +160,8 @@ var counter = 100
 ## Switch statement
 
 - Also allows init statement
-- Like set of if-(else-if)-else statements
-- Evaluated top-bottom, first successful case is executed
+- Like a set of if-(else-if)-else statements
+- Evaluated top-to-bottom, first matching case is executed
 - No fallthrough by default
 
 .play assets/lecture-02/switch/switch/main.go
@@ -248,7 +249,7 @@ var counter = 100
 
 ## Typical usages for lambda functions
 
-- `go` blocks
+- `go` statements
 - `defer` statement
 - Callback functions
 - Comparison functions for sorting
@@ -263,9 +264,9 @@ var counter = 100
 ## Closures
 
 - Lambda functions that refer to variables defined outside the scope of the function
-- It "closes over" another function, hence the name
+- It "closes over" the variables of the enclosing function, hence the name
 - Contains code pointer and environment pointer internally
-- Useful for functions that need to store it's state "somewhere"
+- Useful for functions that need to store their state "somewhere"
 
 ## Closures
 
@@ -274,28 +275,29 @@ var counter = 100
 ## The infamous init function
 
 - Basically a function for side effects
-    - Sets-up an initial state
-- Gets called when a package is imported
-- Allows multiple declarations even per file/package
-    - They are processed as declared/alphabetically
+    - Sets up an initial state
+- Gets called automatically when the package is initialized
+    - After package-level variables are initialized, before `main`
+- Allows multiple declarations even within a single file
+    - They are executed in the order they appear (files are processed in filename order)
 - Avoid it whenever possible
 
 .play assets/lecture-02/functions/init/main.go /START OMIT/,/END OMIT/
 
 ## defer statement
 
-- `defer` is a keyword in the Go
+- `defer` is a keyword in Go
 - Used to "remember" commands that will be called before `return` or function exit
 - Based on LIFO (stack) of remembered commands
     - The last deferred call is called first
-- Parameters are evaluated when `defer` is declared (i.e. in runtime)
+- Arguments are evaluated when the `defer` statement is executed (i.e. at runtime)
     - Not when the specified code is called
 - It is possible to change function return value(s) via `defer`
 - Great for cleaning-up resources
 
 ## Basic usage of defer statement
 
-- Function `on_finish()` is called before exit from `main()`
+- Function `onFinish()` is called before exit from `main()`
 
 .play assets/lecture-02/defer/defer/main.go
 
@@ -308,14 +310,14 @@ var counter = 100
 
 ## defer in loop
 
-- 5 `defer` statements
+- 6 `defer` statements
 - LIFO behaviour
 
 .play assets/lecture-02/defer/loop/main.go
 
 ## defer arguments evaluation
 
-- Actual parameters are evaluated in runtime
+- Actual arguments are evaluated at runtime, when `defer` is executed
 
 .play assets/lecture-02/defer/arguments-evaluation/main.go /START OMIT/,/END OMIT/
 
@@ -333,7 +335,7 @@ var counter = 100
 
 - It is possible to change function's return value(s) via `defer`
     - Works as function declared in defer is a closure
-- Function return values needs to be named
+- Function return values need to be named
 - Sometimes used in applications to alter the `err` return value
 
 ## defer and return values
@@ -352,7 +354,8 @@ var counter = 100
 type Email string
 ```
 
-- This is, for example, how the `byte` and `rune` types are defined:
+- The `type` keyword can also declare type aliases (note the `=`)
+    - This is, for example, how the `byte` and `rune` types are defined:
 
 ```
 type byte = uint8
@@ -382,7 +385,7 @@ type rune = int32
 - Initialization using `{}`
     - Members are explicitly named or follow the structure order as declared
 - Structs are comparable
-    - Note that the structure must not contain uncomparable types (slices, maps, ...)
+    - Note that the structure must not contain incomparable types (slices, maps, ...)
 
 ## Structs and dot operator
 
@@ -391,7 +394,7 @@ type rune = int32
 ## Initialization of struct members
 
 - Similar to C language initialization
-- Usage of {} parenthesis
+- Usage of `{}` braces
 - C-like initialization: order matters!
 
 ## Initialization of struct members
@@ -401,7 +404,7 @@ type rune = int32
 ## Explicit struct members initialization
 
 - Struct members are explicitly specified by name
-- Greatly increases readability 
+- Greatly increases readability
 - Preferred approach
 
 ## Explicit struct members initialization
@@ -424,18 +427,21 @@ type rune = int32
 
 ## Struct embedding
 
+- Fields and methods of the embedded struct are _promoted_
+- Since Go 1.27, promoted fields can also be used as keys in struct literals
+
 .play assets/lecture-02/structs/embedding/main.go /START OMIT/,/END OMIT/
 
 ## Anonymous structure
 
-- Just declare new variable and specify its type to `struct` _something_
+- Just declare a new variable and specify its type as `struct` _something_
 
 .play assets/lecture-02/structs/anonymous/main.go
 
 ## Enums
 
 - No direct support
-- Can be somewhat simulated with 
+- Can be somewhat simulated with
     - Custom types
     - And a set of predefined constants
 - Go has a special **iota** for enumerating integer constants
@@ -463,7 +469,7 @@ type rune = int32
 
 ## Basic usage of pointers
 
-- Note the usage of `*p_i++`
+- Note the usage of `*ptrToInteger++`
 
 .play assets/lecture-02/pointers/to-int/main.go
 
@@ -473,7 +479,7 @@ type rune = int32
 
 ## Pointer to structure
 
-- Note the possibility of writing `p_u.id` instead of `(*p_u).id`
+- Note the possibility of writing `pUser.id` instead of `(*pUser).id`
 
 .play assets/lecture-02/pointers/to-struct/main.go /START OMIT/,/END OMIT/
 
@@ -519,11 +525,11 @@ func (receiver) methodName(parameters) returnTypes {
 - Methods are called like this:
 
 ```
-someType.methodName(parameters)
+value.methodName(parameters)
 ```
 
-- Methods can modify the receiver
-    - Call by value vs. call by reference
+- Methods with a pointer receiver can modify the receiver
+    - Value receiver vs. pointer receiver (Go always passes arguments by value)
 
 ## User type with a single method
 
@@ -547,8 +553,8 @@ someType.methodName(parameters)
 
 ## The new keyword
 
-- Used to just initialize the zero value of a type and returned a pointer to it (unused)
-- Since Go 1.26 it allows expressions as argument
+- Allocates a zero value of a type and returns a pointer to it (rarely used)
+- Since Go 1.26 it also accepts an expression, e.g. `new(42)`, initializing the variable with its value
 
 .play assets/lecture-02/new/new/main.go /START OMIT/,/END OMIT/
 
@@ -556,6 +562,6 @@ someType.methodName(parameters)
 
 After this lecture you should:
 - know Go's built-in types
-- how to control code flow
-- how to define custom types and functions and how to use them
+- know how to control code flow
+- know how to define custom types and functions and how to use them
 - know pointer types and how to work with them

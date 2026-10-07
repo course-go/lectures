@@ -16,7 +16,7 @@ type registeredUser struct {
 
 func main() {
 	robert := registeredUser{
-		user: user{ // Older way of initialization using the embedded struct
+		user: user{ // Initialization using the embedded struct
 			id:   1,
 			name: "Robert Griesemer",
 		},
@@ -24,7 +24,7 @@ func main() {
 	}
 	linus := registeredUser{
 		id:    2,
-		name:  "Linus Torvalds", // Since Go 1.27 compiler allows direct access to embedded fields
+		name:  "Linus Torvalds", // Since Go 1.27, promoted fields can be used as keys directly
 		email: "linus@torvalds.com",
 	}
 	fmt.Println(linus.name, linus.email, robert.name, robert.email)

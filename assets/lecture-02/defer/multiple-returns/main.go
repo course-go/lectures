@@ -11,7 +11,7 @@ func main() {
 }
 
 func classify(x int) string {
-	defer func(int) {
+	defer func(x int) {
 		fmt.Println("Deferred", x)
 	}(x)
 	switch x {

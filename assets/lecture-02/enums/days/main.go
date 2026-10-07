@@ -8,12 +8,12 @@ type Day string
 
 const (
 	Monday    Day = "monday"
-	Tuesday       = "tuesday"
-	Wednesday     = "wednesday"
-	Thursday      = "thursday"
-	Friday        = "friday"
-	Saturday      = "saturday"
-	Sunday        = "sunday"
+	Tuesday   Day = "tuesday"
+	Wednesday Day = "wednesday"
+	Thursday  Day = "thursday"
+	Friday    Day = "friday"
+	Saturday  Day = "saturday"
+	Sunday    Day = "sunday"
 )
 
 func currentDay() Day {
