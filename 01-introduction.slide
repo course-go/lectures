@@ -20,9 +20,9 @@ Tags: golang, go
 
 - Lots of interesting programming languages that you can learn
 - Should you perfect them all?
-    - Of course no...
+    - Of course not...
 - So what about the Go language - is it worth a try?
-- Let's take look...
+- Let's take a look...
 
 ## Introduction to Go
 
@@ -40,9 +40,9 @@ Tags: golang, go
     - Designs
     - Colours
     - Typography
-    - Visual identify
+    - Visual identity
 
-_"Go is an open source programming language that enables the productions of simple, efficient and reliable software at scale."_ 
+_"Go is an open source programming language that enables the production of simple, efficient and reliable software at scale."_ 
 
 ~ Brand Book
 
@@ -59,7 +59,7 @@ _"Go is an open source programming language that enables the productions of simp
     - [Release History](https://go.dev/doc/devel/release)
 - Frustration with C++ builds
 - More readable replacement for languages such as C, C++ or Java
-- Better suits corporations needs
+- Better suits corporations' needs
 - _Go vs Golang_
 
 ## Key characteristics
@@ -106,7 +106,7 @@ p *int
 f func(*int) *int
 ```
 
-[The Go Blog: Go's Declaration Syntax](https://blog.golang.org/gos-declaration-syntax)
+[The Go Blog: Go's Declaration Syntax](https://go.dev/blog/declaration-syntax)
 
 ## More readable compared to C++
 
@@ -122,7 +122,7 @@ to 'block &&'
 
 and I think that's beautiful...
 
-[Reddit: C++ is a beautiful language](https://goo.gl/Akxjih)
+[Reddit: C++ is a beautiful language](https://www.reddit.com/r/ProgrammerHumor/comments/8nwyma/c_is_a_beautiful_language/)
 
 ## More readable compared to C++
 
@@ -179,11 +179,11 @@ and I think that's beautiful...
     - Garbage collector
 - Standardized testing framework
 - Stricter rules
-    - No pointer arithmetics
+    - No pointer arithmetic
     - No `void`
     - ...
 
-## We are in 21st century!
+## We are in the 21st century!
 
 - Multi-core CPUs
 - Distributed systems
@@ -229,7 +229,7 @@ and I think that's beautiful...
 - **Serial**
     - Runs tasks in an order with one CPU core
 - **Concurrent**
-    - Runs many tasks simultaneously with a less number of CPU cores (or even 1)
+    - Runs many tasks simultaneously with fewer CPU cores (or even 1)
 - **Parallel**
     - Runs N tasks simultaneously with N CPU cores
 
@@ -283,7 +283,7 @@ and I think that's beautiful...
 ## Memory locality and access time
 
 - RAM is no longer "Random Access Memory"
-- We humans are bad comparing very small time periods
+- We humans are bad at comparing very small time periods
     - Same goes for other units (length, money etc.)
 
 .image assets/lecture-01/cpu-cache-hierarchy.png _ 500
@@ -296,10 +296,10 @@ and I think that's beautiful...
 
 - [Tiobe Index](https://www.tiobe.com/tiobe-index/)
 - [GitHub Innovation Graph](https://innovationgraph.github.com/global-metrics/programming-languages)
-- [PYPL](http://pypl.github.io/PYPL.html)
-- [StackOverflow 2024 Developer Survey](https://survey.stackoverflow.co/2024/)
-    - [Most popular technologies](https://survey.stackoverflow.co/2024/technology/#most-popular-technologies)
-    - [Admired and desired](https://survey.stackoverflow.co/2024/technology/#admired-and-desired)
+- [PYPL](https://pypl.github.io/PYPL.html)
+- [Stack Overflow 2025 Developer Survey](https://survey.stackoverflow.co/2025/)
+    - [Most popular technologies](https://survey.stackoverflow.co/2025/technology/#most-popular-technologies)
+    - [Admired and desired](https://survey.stackoverflow.co/2025/technology/#admired-and-desired)
 
 .image assets/gophers/hugs.png _ 240
 
@@ -319,13 +319,13 @@ and I think that's beautiful...
 - [Docker](https://www.docker.com)
 - [Podman](https://podman.io)
 - [Kubernetes](https://kubernetes.io)
-- [Kubernetes Operators](https://coreos.com/operators)
+- [Kubernetes Operators](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
 - [MinIO](https://min.io)
 - [NSQ](https://nsq.io)
 - [NATS](https://nats.io)
 - [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
 - [Go Ethereum](https://geth.ethereum.org)
-- [Typescript](https://github.com/microsoft/typescript-go)
+- [TypeScript compiler (since 7.0)](https://github.com/microsoft/TypeScript)
 - and many more...
 
 ## Companies using Go
@@ -343,7 +343,7 @@ and I think that's beautiful...
 
 [Go: Case Studies](https://go.dev/solutions/case-studies)
 
-## So...is it worth to spend time learning Go?
+## So...is it worth spending time learning Go?
 
 - Networking - **YES**
 - (Micro)services - **YES**
@@ -355,7 +355,7 @@ and I think that's beautiful...
 - The simplest deployment - **YES**
 - Guaranteed source code compatibility - **YES**
 
-## So...is it worth to spend time learning Go?
+## So...is it worth spending time learning Go?
 
 - You like classic (broken) class-based OOP - **NO**
 - You like baroque languages - **NO**
@@ -363,15 +363,15 @@ and I think that's beautiful...
 - You like inconsistent languages - **NO**
     - Enjoy Perl
 - You like homoiconic languages - **NO**
-    - LISP/Scheme/Clojure are better choice
+    - LISP/Scheme/Clojure are a better choice
 
-## So...is it worth to spend time learning Go?
+## So...is it worth spending time learning Go?
 
-- You want to manage memory ourself - **NO**
+- You want to manage memory yourself - **NO**
 - You like to have buffer overflows - **NO**
     - There are "better" alternatives
 - You like **really very strong** type system & fast language
-    - Rust may be more suitable choice
+    - Rust may be a more suitable choice
 
 [The Computer Language Benchmarks Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
 
@@ -379,9 +379,9 @@ and I think that's beautiful...
 
 ## IDEs and editors
 
-- [JetBrains Goland](https://www.jetbrains.com/go/)
+- [JetBrains GoLand](https://www.jetbrains.com/go/)
 - [VS Code](https://code.visualstudio.com/docs/languages/go)
-- Vim/Neovim with a LSP
+- Vim/Neovim with an LSP
     - [gopls](https://pkg.go.dev/golang.org/x/tools/gopls#section-readme)
     - [vim-go](https://github.com/fatih/vim-go)
 - If you feel special or like trying something new
@@ -398,13 +398,13 @@ and I think that's beautiful...
 
 - The official download guide lets you download:
     - _.msi_ file for Windows
-    - _.pkg_ file for MacOS
+    - _.pkg_ file for macOS
     - _.tar.gz_ archive for Linux
 - The _.msi_ and _.pkg_ can be executed directly
 - The tar archive has to be unarchived, moved and the path to it exported manually
 
 ```
- $ rm -rf /usr/local/go && tar -C /usr/local -xzf go<version>linux-amd64.tar.gz
+ $ rm -rf /usr/local/go && tar -C /usr/local -xzf go<version>.linux-amd64.tar.gz
  $ export PATH=$PATH:/usr/local/go/bin
 ```
 
@@ -420,10 +420,10 @@ Package managers can also be used
 $ sudo apt install golang-go
 ```
 
-- MacOS: [Homebrew](https://brew.sh)
+- macOS: [Homebrew](https://brew.sh)
 
 ```
-$ brew install golang
+$ brew install go
 ```
 
 - Windows: [Chocolatey](https://chocolatey.org)
@@ -434,15 +434,15 @@ $ choco install golang
 
 ## Verify Installation
 
-Execute the `go` command to verify that go was installed and you have it in your path
+Execute the `go` command to verify that Go was installed and you have it in your `PATH`
 
 ```
 $ go version
-````
+```
 
 Should output:
 ```
-go version go<version> <os>/<platform>
+go version go<version> <os>/<arch>
 ```
 
 ## Running Go
@@ -455,20 +455,20 @@ build       compile packages and dependencies
 clean       remove object files and cached files
 doc         show documentation for package or symbol
 env         print Go environment information
-fix         update packages to use new APIs
+fix         apply fixes suggested by static checkers
 fmt         gofmt (reformat) package sources
 generate    generate Go files by processing source
 get         add dependencies to current module and install them
 install     compile and install packages and dependencies
 list        list packages or modules
 mod         module maintenance
-work        workspace maintenance
 run         compile and run Go program
 telemetry   manage telemetry data and settings
 test        test packages
 tool        run specified go tool
 version     print Go version
 vet         report likely mistakes in packages
+work        workspace maintenance
 ```
 
 ## Environment
@@ -503,7 +503,7 @@ interface   map      package   range         return
 select      struct   switch    type          var
 ```
 
-This lectures covers just two of these:
+This lecture covers just two of these:
 
 ```
 
@@ -515,17 +515,17 @@ This lectures covers just two of these:
 
 ## Modules
 
-- Introduced in Go versions 1.12-13
+- Introduced in Go 1.11, enabled by default since Go 1.16
 - Specifies project metadata and dependencies
     - `go.mod`
 - Dependency check-sums are saved to a separate file
     - `go.sum`
 
-[Go Modules Reference](https://tip.golang.org/ref/mod)
+[Go Modules Reference](https://go.dev/ref/mod)
 
 ## Module commands
 
-- To create new module:
+- To create a new module:
 
 ```
 $ go mod init github.com/course-go/lectures
@@ -537,10 +537,10 @@ $ go mod init github.com/course-go/lectures
 $ go get github.com/gin-gonic/gin
 ```
 
-- To add a dependency with specific version:
+- To add a dependency with a specific version:
 
 ```
-$ go get github.com/gin-gonic/gin@v1.11.0
+$ go get github.com/gin-gonic/gin@v1.12.0
 ```
 
 - To update a dependency:
@@ -549,7 +549,7 @@ $ go get github.com/gin-gonic/gin@v1.11.0
 $ go get -u github.com/gin-gonic/gin
 ```
 
-- To cleanup module:
+- To clean up the module:
 
 ```
 $ go mod tidy
@@ -593,7 +593,7 @@ $ go tool gofumpt -w .
 ```
 GOPROXY='https://proxy.golang.org,direct'
 GOSUMDB='sum.golang.org'
-GOPRIVATE'git.my.company.com'
+GOPRIVATE='git.my.company.com'
 GONOPROXY='git.my.company.com'
 GONOSUMDB='git.my.company.com'
 ```
@@ -651,11 +651,11 @@ math.Pi
 ## Typical Go project layout
 
 ```
-go-scrapper/
+go-scraper/
 ├── configs/
 │   └── api.yaml
 ├── cmd/
-│   └── scrapper/
+│   └── scraper/
 │       └── main.go         // project entrypoint 
 ├── internal/               // packages in internal cannot be imported by outer packages
 │   ├── api/
@@ -672,7 +672,9 @@ go-scrapper/
 ├── go.mod                  // project dependencies and metadata
 └── go.sum                  // dependency check-sums
 ```
-[GitHub: golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+[Go: Organizing a Go module](https://go.dev/doc/modules/layout)
+
+[GitHub: golang-standards/project-layout](https://github.com/golang-standards/project-layout) (community, unofficial)
 
 ## Executable Packages 
 
@@ -703,6 +705,7 @@ Hello world
 
 - Built-in [gofmt](https://pkg.go.dev/cmd/gofmt) formatter
     - Or alternatively [gofumpt](https://github.com/mvdan/gofumpt) which extends it with additional rules
+- [go fix](https://go.dev/blog/gofix) updates code to modern idioms using _modernizers_ (Go 1.26+)
 
 ```
 $ go fmt main.go
@@ -721,9 +724,9 @@ $ go fmt main.go
 ## Visibility
 
 - Types, variables, functions, etc. can be exported
-    - Every name that starts with capital letter is exported
+    - Every name that starts with an uppercase letter is exported
     - They can be then reached from other packages or projects
-- `Pi` is a constant exported by the [math package](https://cs.opensource.google/go/go/+/refs/tags/go1.22.1:src/math/const.go;l=13)
+- `Pi` is a constant exported by the [math package](https://cs.opensource.google/go/go/+/refs/tags/go1.27.1:src/math/const.go;l=13)
 
 .play assets/lecture-01/visibility/main.go
 
@@ -743,14 +746,14 @@ httptest
 user_validation_service.go
 ```
 
-- Other names use pascal or camel case
+- Other names use PascalCase or camelCase
     - Depending on the intended visibility
 
 ```
 UserValidationService / userValidationService
 ```
 
-- Abbreviations are never lowercased if first letter is capital
+- Initialisms keep a consistent case
 
 ```
 HTTPError / httpError
@@ -758,9 +761,9 @@ HTTPError / httpError
 
 ## Resources
 
-## Styleguides
+## Style guides
 
-- [Google Go Styleguide](https://google.github.io/styleguide/go/)
+- [Google Go Style Guide](https://google.github.io/styleguide/go/)
 - [Uber Go Guide](https://github.com/uber-go/guide)
 - [Effective Go](https://go.dev/doc/effective_go)
 
@@ -797,5 +800,5 @@ Staying up to date
 After this lecture you should:
 - roughly have an idea why Go exists
 - be aware of some of its strong and weak points
-- how to run Go
-- how Go projects look and how to create one
+- know how to run Go
+- know how Go projects look and how to create one
