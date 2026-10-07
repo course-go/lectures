@@ -51,7 +51,7 @@ Tags: golang, go
 ## RDBMS
 
 - [PostgreSQL](https://www.postgresql.org)
-    - Originated from `Ingres` project at University of California, Berkeley
+    - Originated from the `POSTGRES` project (successor of `Ingres`) at University of California, Berkeley
     - Free and open-source, MIT-like license
     - Feature-rich
     - Plenty of extensions
@@ -75,7 +75,7 @@ Tags: golang, go
 
 ## Database Migrations
 
-- Changes to you database schema have to be made as your application evolves
+- Changes to your database schema have to be made as your application evolves
 - Done using database migrations
     - Can be easily tracked in time
     - Automated migration application
@@ -91,7 +91,7 @@ migrations/
 ├── 20240420114809_init.down.sql
 ├── 20240421013210_alter_user.up.sql
 ├── 20240421013210_alter_user.down.sql
-└── 20240422221345_add_product.up.sql
+├── 20240422221345_add_product.up.sql
 └── 20240422221345_add_product.down.sql
 ```
 
@@ -107,7 +107,7 @@ migrations/
 - Multiple [migration sources](https://github.com/golang-migrate/migrate?tab=readme-ov-file#migration-sources)
     - Filesystem
     - GitHub
-    - Gitlab
+    - GitLab
     - AWS S3
     - Google Cloud Storage
 
@@ -134,7 +134,7 @@ $ migrate -source file://migrations -database postgres://localhost:5432/postgres
 ```
 
 ```
-$ docker run -v app/migrations:/migrations --network host migrate/migrate
+$ docker run -v "$(pwd)/migrations:/migrations" --network host migrate/migrate \
     -path=/migrations/ -database postgres://localhost:5432/database up 2
 ```
 
@@ -145,11 +145,11 @@ $ migrate -source file://migrations \
     -database "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable" drop
 ```
 
-[GitHub: migrate CLI](https://github.com/golang-migrate/migrate/tree/v4.17.1/cmd/migrate)
+[GitHub: migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate)
 
 ## migrate in code
 
-.code assets/lecture-09/migrations/migrate/main.go /START OMIT/,/END OMIT
+.code assets/lecture-09/migrations/migrate/main.go /START OMIT/,/END OMIT/
 
 [Go Packages: migrate](https://pkg.go.dev/github.com/golang-migrate/migrate/v4)
 
@@ -204,7 +204,7 @@ $ migrate -source file://migrations \
 
 ## Query types
 
-- **Query**: multiple values are expected
+- **Query**: multiple rows are expected
 
 .code assets/lecture-09/std/sql/main.go /QUERY START OMIT/,/QUERY END OMIT/
 
@@ -222,43 +222,43 @@ $ migrate -source file://migrations \
 - Provides plenty of additional features
     - Marshalling rows to structs
     - Named parameters
-- The usage is not as tidious
+- The usage is not as tedious
 - There is also a [SQLx](https://github.com/launchbadge/sqlx) library for Rust
     - Keep in mind when looking it up
 
 [Go Packages: sqlx](https://pkg.go.dev/github.com/jmoiron/sqlx)
 
-[GitHub IO: Illustrated guide to SQLX](http://jmoiron.github.io/sqlx/)
+[GitHub IO: Illustrated guide to SQLX](https://jmoiron.github.io/sqlx/)
 
 ## Connecting to DB
 
 .code assets/lecture-09/sqlx/sqlx/main.go /MAIN START OMIT/,/MAIN END OMIT/
 
-[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+[GitHub: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Seed
 
 .code assets/lecture-09/sqlx/sqlx/main.go /SEED START OMIT/,/SEED END OMIT/
 
-[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+[GitHub: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Unmarshalling to structs
 
 .code assets/lecture-09/sqlx/sqlx/main.go /SELECT START OMIT/,/SELECT END OMIT/
 
-[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+[GitHub: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Maps in selects
 
 .code assets/lecture-09/sqlx/sqlx/main.go /MAP START OMIT/,/MAP END OMIT/
 
-[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+[GitHub: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## Batch inserts
 
 .code assets/lecture-09/sqlx/sqlx/main.go /BATCH-INSERT START OMIT/,/BATCH-INSERT END OMIT/
 
-[Github: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
+[GitHub: sqlx usage](https://github.com/jmoiron/sqlx?tab=readme-ov-file#usage)
 
 ## sqlc
 
@@ -272,7 +272,7 @@ $ migrate -source file://migrations \
     - [Kotlin](https://github.com/sqlc-dev/sqlc-gen-kotlin), [Python](https://github.com/sqlc-dev/sqlc-gen-python), [TypeScript](https://github.com/sqlc-dev/sqlc-gen-typescript)
 - Currently supports MySQL, PostgreSQL & SQLite for Go
 
-[Go Packages: sqlc](https://pkg.go.dev/github.com/kyleconroy/sqlc)
+[Go Packages: sqlc](https://pkg.go.dev/github.com/sqlc-dev/sqlc)
 
 ## sqlc CLI
 

@@ -68,13 +68,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	result, err = tx.Exec(`UPDATE orders SET status = ? WHERE id = ?`, "fullfilled", 2059)
+	result, err = tx.Exec(`UPDATE orders SET status = $1 WHERE id = $2`, "fulfilled", 2059)
 	if err != nil {
 		_ = tx.Rollback()
 		log.Fatal(err)
 	}
 
-	result, err = tx.Exec(`UPDATE users SET status = ? WHERE id = ?`, "loyal", 27)
+	result, err = tx.Exec(`UPDATE users SET status = $1 WHERE id = $2`, "loyal", 27)
 	if err != nil {
 		_ = tx.Rollback()
 		log.Fatal(err)
