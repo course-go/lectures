@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"runtime"
 
@@ -14,7 +15,7 @@ import (
 	sdkmetric "go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.21.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.43.0"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -81,7 +82,8 @@ func main() {
 	mp := newMeterProvider(me)
 	defer mp.Shutdown(ctx)
 	otel.SetMeterProvider(mp)
-	meter = mp.Meter("Ma Awesome App")
+	meter = mp.Meter("My Awesome App")
+	setupMetrics()
 }
 
 // END TRACE-INIT OMIT
@@ -90,15 +92,16 @@ func main() {
 func httpHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, span := tracer.Start(r.Context(), "my-awesome-span")
 	defer span.End()
+	getFluffyGophers(ctx) // ctx carries the span to downstream calls
 }
 
 // END CREATING-SPAN OMIT
 // START SPAN-ATTRIBUTES OMIT
 
 func httpHandlerWithAttributes(w http.ResponseWriter, r *http.Request) {
-	ctx, span := tracer.Start(context.Background(), "span-with-attributes", trace.WithAttributes(attribute.String("hello", "gophers")))
-	span.SetAttributes(attribute.Bool("authorized", true), attribute.String("username", "bob"))
+	_, span := tracer.Start(r.Context(), "span-with-attributes", trace.WithAttributes(attribute.String("hello", "gophers")))
 	defer span.End()
+	span.SetAttributes(attribute.Bool("authorized", true), attribute.String("username", "bob"))
 }
 
 // END SPAN-ATTRIBUTES OMIT
@@ -111,7 +114,9 @@ func httpHandlerWithStatus(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		span.SetStatus(codes.Error, "getting fluffy gophers failed")
 		span.RecordError(err)
+		return
 	}
+	fmt.Fprintf(w, "%d fluffy gophers", gophers)
 }
 
 // END SPAN-STATUS OMIT
@@ -124,7 +129,7 @@ func getFluffyGophers(ctx context.Context) (int, error) {
 
 var apiCounter metric.Int64UpDownCounter
 
-func init() {
+func setupMetrics() {
 	apiCounter, _ = meter.Int64UpDownCounter("api.request.counter",
 		metric.WithDescription("HTTP request count."),
 		metric.WithUnit("{call}"),
@@ -142,7 +147,7 @@ func init() {
 }
 
 func httpHandlerWithCounter(w http.ResponseWriter, r *http.Request) {
-	apiCounter.Add(r.Context(), 1, metric.WithAttributes(semconv.HTTPStatusCode(http.StatusOK)))
+	apiCounter.Add(r.Context(), 1, metric.WithAttributes(semconv.HTTPResponseStatusCode(http.StatusOK)))
 }
 
 // END METRIC OMIT
