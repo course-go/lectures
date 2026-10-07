@@ -17,6 +17,6 @@ services:
     environment:
       - POSTGRES_USER=api
       - POSTGRES_PASSWORD=gophers
-      - POSTGRES_DATABASE=api
+      - POSTGRES_DB=api
       - PGDATA=/var/lib/postgresql/data/pgdata
-    profiles: [all, depedendencies]
+    profiles: [all, dependencies]

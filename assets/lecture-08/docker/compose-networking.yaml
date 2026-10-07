@@ -7,7 +7,7 @@ services:
     image: postgres:16
     networks: [content]
   users:
-    image: course-go/content
+    image: course-go/users
     networks: [users, apis]
   users-db:
     image: postgres:16

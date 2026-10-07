@@ -53,7 +53,7 @@ Tags: golang, go
     - Running dependencies
     - Minimal overhead
 - Production environment
-    - Shipping deyployable units of software
+    - Shipping deployable units of software
     - Simplifies collaboration with DevOps/Ops engineers
 
 ## Open Container Initiative (OCI)
@@ -102,7 +102,7 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
     - Docker Compose
     - And a few more tools...
 - "All-in-one package"
-- You can also install the separately
+- You can also install them separately
 
 [Docker: Docker Desktop](https://docs.docker.com/desktop/)
 
@@ -121,7 +121,7 @@ _"Commercial use of Docker Desktop in larger enterprises (more than 250 employee
 
 - Image registry
     - Largest
-    - De facto the standard
+    - The de facto standard
         - Docker uses it by default
 - You can easily [create your own container repository](https://docs.docker.com/docker-hub/repos/)
 
@@ -200,7 +200,7 @@ CONTAINER ID   IMAGE      COMMAND                  CREATED         STATUS       
 9a6a02b6f0d4   postgres   "docker-entrypoint.s…"   2 seconds ago   Up 1 second   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   serene_jemison
 ```
 
-- You can also inspect images by running a interactive shell session inside of them
+- You can also inspect running containers by starting an interactive shell session inside of them
     - Great for debugging
 
 ```
@@ -215,8 +215,8 @@ $ docker kill 9a6a02b6f0d4
 
 ## Container volumes
 
-- Containers do not persist memory
-    - Any changes done inside of the container are then discarded when the container is dropped
+- Containers do not persist data
+    - Any changes done inside of the container are discarded when the container is removed
 - You can mount a disk volume to persist data in the given directory
 
 ```
@@ -271,7 +271,7 @@ EXPOSE	Describe which ports your application is listening on.
 FROM	Create a new build stage from a base image.
 HEALTHCHECK	Check a container's health on startup.
 LABEL	Add metadata to an image.
-MAINTAINER	Specify the author of an image.
+MAINTAINER	Specify the author of an image (deprecated, use LABEL).
 ONBUILD	Specify instructions for when the image is used in a build.
 RUN	Execute build commands.
 SHELL	Set the default shell of an image.
@@ -292,7 +292,7 @@ WORKDIR	Change working directory.
 ## Building and pushing images
 
 - You can easily build the image
-    - `-t` arguments specifies the tag at build time
+    - `-t` argument specifies the tag at build time
 
 ```
 $ docker build -t <NAME>:<TAG> .
@@ -302,10 +302,10 @@ $ docker build -t <NAME>:<TAG> .
     - Image can also have multiple tags
 
 ```
-$ docker tag <EXISTING-NAME>:<EXISTING-TAG> <NEW-NAME>:<NEW:TAG>
+$ docker tag <EXISTING-NAME>:<EXISTING-TAG> <NEW-NAME>:<NEW-TAG>
 ```
 
-- You have to login before pushing images to a remote registry
+- You have to log in before pushing images to a remote registry
 
 ```
 $ docker login
@@ -348,7 +348,7 @@ $ docker build my-cool-app/src
 
 ## Multi-stage builds
 
-- The runtime usually does not require the SDK, it's dependencies or the compiler
+- The runtime usually does not require the SDK, its dependencies or the compiler
     - In Go, we only need the final binary
 - Multi-stage builds allow us to separate the image creation into multiple stages
 - Benefits
@@ -372,7 +372,7 @@ $ docker build my-cool-app/src
 $ docker build --platform linux/amd64 .
 ```
 
-- Multi-platform builds allow us to create multiple images supporting multiple platforms at one
+- Multi-platform builds allow us to create multiple images supporting multiple platforms at once
     - Three strategies
         - [QEMU](https://docs.docker.com/build/building/multi-platform/#qemu)
         - [Multiple nodes of different architecture](https://docs.docker.com/build/building/multi-platform/#multiple-native-nodes)
@@ -422,7 +422,7 @@ $ docker buildx build --platform=linux/amd64,linux/arm64 .
 
 ## Docker Compose
 
-- Tools for orchestrating multiple containers at once
+- Tool for orchestrating multiple containers at once
 - Specified using a `docker-compose.yaml` file
     - Also supports `compose.yaml` (preferred nowadays)
 
@@ -468,11 +468,11 @@ $ docker compose logs -f
 - Docker Compose automatically creates a network for your services
     - The network gets shared by all of your services
     - `bridge` type
-    - `default_network`
+    - Named `<PROJECT>_default`
 - You can explicitly specify the networks for each service
-    - Docker defines a [default set of drivers](https://docs.docker.com/network/drivers/)
+    - Docker defines a [default set of drivers](https://docs.docker.com/engine/network/drivers/)
 
-[Docker: Networking](https://docs.docker.com/network/)
+[Docker: Networking](https://docs.docker.com/engine/network/)
 
 ## Networking
 
@@ -484,7 +484,7 @@ $ docker compose logs -f
 
 ## Profiles
 
-- You may not  want to run all services each time
+- You may not want to run all services each time
     - Running tests for the service may only require dependencies
 - Custom profiles can be specified
 - You can then run the subset of services sharing the profile
@@ -513,7 +513,7 @@ $ docker compose --profile products --profile orders up
     - `service_completed_successfully`
 - `healthcheck`
 
-[Docker Compose: Control order](https://docs.docker.com/compose/startup-order/)
+[Docker Compose: Control order](https://docs.docker.com/compose/how-tos/startup-order/)
 
 ## Dependencies
 
@@ -615,7 +615,7 @@ $ podman compose up
     - **kubelet**: manages and monitors containers in pods
     - **kube-proxy**: manages network traffic to pods
 - **Control Plane**: cluster orchestration layer
-    - **kube-api-server**: exposes orchestration  API
+    - **kube-apiserver**: exposes orchestration API
     - **kube-scheduler**: makes pods deployment decisions
     - **kube-controller-manager**: monitors cluster state using the API
     - **etcd**: key-value storage
@@ -632,7 +632,7 @@ $ podman compose up
 
 ## Minikube
 
-- You can easily set-up local cluster using Minikube
+- You can easily set up a local cluster using Minikube
     - Great for learning or local development
 
 ```
@@ -675,7 +675,7 @@ $ kubectl scale deployments/k8s-bc --replicas=3
 - Or updated
 
 ```
-$ kubectl set image deployments/k8s-bc k8s-bc=docker.io/jocatalin/kubernetes-bootcamp:v2
+$ kubectl set image deployments/k8s-bc kubernetes-bootcamp=docker.io/jocatalin/kubernetes-bootcamp:v2
 $ kubectl describe deployments/k8s-bc
 ```
 
@@ -687,11 +687,14 @@ $ kubectl describe deployments/k8s-bc
 
 ## Deployment using a specification
 
-- The then apply the specification to the cluster
+- Then apply the specification to the cluster
 
 ```
 $ kubectl apply -f nginx-deployment.yaml
 ```
+
+- Since Go 1.25, the default `GOMAXPROCS` respects the container CPU limit
+    - No need for workarounds like [automaxprocs](https://github.com/uber-go/automaxprocs) anymore
 
 [Kubernetes: Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 
@@ -703,4 +706,4 @@ After this lecture you should:
 - be aware of the Docker ecosystem, its tools and what components it uses underneath
 - know how to use Docker to containerize and run your own application
 - know how to declaratively orchestrate multiple containers using Docker Compose
-- have a sense how Kubernetes works and what additional problems it resolves
+- have a sense of how Kubernetes works and what additional problems it resolves
