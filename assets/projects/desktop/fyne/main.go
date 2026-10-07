@@ -27,7 +27,7 @@ func main() {
 	clicks := widget.NewLabelWithData(binding.IntToString(clickBinding))
 	nameContainer := container.New(layout.NewHBoxLayout(), nameInput, submitButton, clicks)
 	check := widget.NewCheck("Go is the best!", func(value bool) {
-		log.Println("This must be always checked!")
+		log.Println("This must always be checked!")
 	})
 	radio := widget.NewRadioGroup([]string{"Gophers", "Even more Gophers"}, func(value string) {
 		log.Println("Radio set to", value)
