@@ -21,7 +21,7 @@ func main() {
 
 func handleUser(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
-	if name == "" {
+	if name != "" {
 		fmt.Fprintf(w, "Hello %s\n", name)
 	} else {
 		fmt.Fprintf(w, "Mr. Nobody\n")

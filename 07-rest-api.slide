@@ -9,7 +9,7 @@ Tags: golang, go
 - REST API
 - Go & HTTP
     - Standard library
-    - Third party libraries
+    - Third-party libraries
     - Testing webservers
 - OpenAPI
 - Templating
@@ -49,6 +49,8 @@ Tags: golang, go
             - Binary
             - And a few more...
 - Uses reflection
+- Go 1.27 added [encoding/json/v2](https://pkg.go.dev/encoding/json/v2) with stricter defaults
+    - The original `encoding/json` API stays supported and is now backed by the v2 implementation
 
 [Go Packages: encoding/json](https://pkg.go.dev/encoding/json)
 
@@ -86,7 +88,7 @@ Tags: golang, go
 - Hypertext Transfer Protocol
     - Application layer protocol
     - Client-server
-- Proposed by [Time Bernars-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) in 1989
+- Proposed by [Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) in 1989
     - Foundation of World Wide Web
     - Originally designed to transmit HTML documents
         - Later made extensible via headers
@@ -124,7 +126,7 @@ Tags: golang, go
 - Client error: 4**
 - Server error: 5**
 
-[mdn web docs: HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+[mdn web docs: HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
 
 ## HTTP versions
 
@@ -138,17 +140,18 @@ Tags: golang, go
 - HTTP 1.1
     - Standardized in 1997 [[RFC 2068]](https://datatracker.ietf.org/doc/html/rfc2068)
     - Persistent connections
-    - Introduced pipelining 
+    - Introduced pipelining
 
 ## HTTP versions
 
 - HTTP 2.0
-    - Standardized in 2015 [[RFC 9113]](https://datatracker.ietf.org/doc/html/rfc9113)
+    - Standardized in 2015 [[RFC 7540]](https://datatracker.ietf.org/doc/html/rfc7540)
+        - Revised in 2022 [[RFC 9113]](https://datatracker.ietf.org/doc/html/rfc9113)
     - Aimed to improve performance
     - Messages are embedded into a binary structure
         - Compresses headers
     - Multiplexes messages over a single connection
-- HTTP 3.0 
+- HTTP 3.0
     - Standardized in 2022 [[RFC 9114]](https://datatracker.ietf.org/doc/html/rfc9114)
     - Builds on top of QUIC protocol
         - Runs multiple streams over UDP
@@ -159,7 +162,7 @@ Tags: golang, go
 
 .image assets/lecture-07/http/http3-http2-protocol-stack.png 480 _
 
-[Robin Marx: Why HTTP/3 is Eating the World](https://pulse.internetsociety.org/blog/why-http-3-is-eating-the-world)
+[Robin Marx: Why HTTP/3 is Eating the World](https://pulse.internetsociety.org/en/blog/2023/06/why-http-3-is-eating-the-world/)
 
 ## CORS
 
@@ -167,7 +170,7 @@ Tags: golang, go
 - HTTP-header based mechanism
 - Allows servers to specify origins from which browsers can fetch resources
 
-[mdn web docs: HTTP CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+[mdn web docs: HTTP CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
 
 ## CORS
 
@@ -185,7 +188,7 @@ Tags: golang, go
 
 .code assets/lecture-07/http/cookies.txt
 
-[mdn web docs: HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+[mdn web docs: HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)
 
 ## REST API
 
@@ -254,7 +257,7 @@ Tags: golang, go
 
 ## Server: default handler
 
-- Uses global `http.DefaultServerMux` router
+- Uses global `http.DefaultServeMux` router
 
 .play assets/lecture-07/net/http/server/main.go /START OMIT/,/END OMIT/
 
@@ -292,7 +295,7 @@ Tags: golang, go
 
 .play assets/lecture-07/net/http/middleware/main.go /START OMIT/,/END OMIT/
 
-## Third party routers, frameworks & utilities
+## Third-party routers, frameworks & utilities
 
 ## negroni
 
@@ -304,7 +307,7 @@ Tags: golang, go
         - Catches panics and returns 500 status code
     - `negroni.Logger`: logger middleware
     - `negroni.Static`: static file serving middleware
-- [Bunch of third party negroni compatible middlewares](https://github.com/urfave/negroni?tab=readme-ov-file#third-party-middleware)
+- [Bunch of third-party negroni-compatible middlewares](https://github.com/urfave/negroni?tab=readme-ov-file#third-party-middleware)
 
 [GitHub: negroni](https://github.com/urfave/negroni)
 
@@ -317,7 +320,7 @@ Tags: golang, go
 - One of the oldest routers, if not the oldest
     - Created in 2012
 - Part of the [gorilla web toolkit](https://github.com/gorilla)
-    - [sessions](https://github.com/gorilla/sessions) for cookie nad session management
+    - [sessions](https://github.com/gorilla/sessions) for cookie and session management
     - [websocket](https://github.com/gorilla/websocket) implements the WebSocket protocol
     - [handlers](https://github.com/gorilla/handlers) is a collection of middleware handlers
     - And a few more...
@@ -331,7 +334,7 @@ Tags: golang, go
 - Lightweight, idiomatic router
 - Compatible with `net/http`
     - Any router or middleware can be reused
-- Comes with it's own [middleware package](https://pkg.go.dev/github.com/go-chi/chi/v5/middleware)
+- Comes with its own [middleware package](https://pkg.go.dev/github.com/go-chi/chi/v5/middleware)
 
 [GitHub: chi](https://github.com/go-chi/chi)
 
@@ -361,7 +364,7 @@ Tags: golang, go
 - Nice documentation
     - Also contains a bunch of [cookbooks](https://echo.labstack.com/docs/category/cookbook)
 - Plenty of [middleware](https://echo.labstack.com/docs/category/middleware) built-in
-- Handlers also use custom context: [echo.Context](https://echo.labstack.com/docs/context)
+- Handlers also use custom context: [echo.Context](https://pkg.go.dev/github.com/labstack/echo/v4#Context)
 
 [GitHub: echo](https://github.com/labstack/echo)
 
@@ -371,7 +374,7 @@ Tags: golang, go
 
 .code assets/lecture-07/echo/echo/main.go /START OMIT/,/END OMIT/
 
-[Echo documentation: Quick Start](https://echo.labstack.com/docs/quick-start#hello-world)
+[Echo documentation: Quick Start](https://echo.labstack.com/docs/quick-start)
 
 ## Echo: binding
 
@@ -386,9 +389,9 @@ Tags: golang, go
 - Handlers also use custom context: [gin.Context](https://pkg.go.dev/github.com/gin-gonic/gin#Context)
 - Features [martini](https://github.com/go-martini/martini)-like API
     - Martini is pretty old and no longer maintained
-- Documentation is based on [unstructures examples](https://gin-gonic.com/docs/examples/)
+- Documentation is mostly [example-based](https://gin-gonic.com/en/docs/)
 - Most popular and used Go web framework
-     - ~75.000 stars on GitHub
+    - ~89,000 stars on GitHub
 
 [GitHub: gin](https://github.com/gin-gonic/gin)
 
@@ -400,19 +403,19 @@ Tags: golang, go
 
 .code assets/lecture-07/gin/model-binding/main.go /START OMIT/,/END OMIT/
 
-[Gin Web Framework documentation: Model binding and validation](https://gin-gonic.com/docs/examples/binding-and-validation/) 
+[Gin Web Framework documentation: Model binding and validation](https://gin-gonic.com/en/docs/binding/binding-and-validation/)
 
 ## Gin: URI binding
 
 .code assets/lecture-07/gin/uri-binding/main.go /START OMIT/,/END OMIT/
 
-[Gin Web Framework documentation: Bind Uri](https://gin-gonic.com/docs/examples/bind-uri/) 
+[Gin Web Framework documentation: Bind Uri](https://gin-gonic.com/en/docs/binding/bind-uri/)
 
 ## Gin: Router groups
 
 .code assets/lecture-07/gin/router-groups/main.go /START OMIT/,/END OMIT/
 
-[Gin Web Framework documentation: Grouping routes](https://gin-gonic.com/docs/examples/grouping-routes/) 
+[Gin Web Framework documentation: Grouping routes](https://gin-gonic.com/en/docs/routing/grouping-routes/)
 
 ## fasthttp
 
@@ -420,7 +423,7 @@ Tags: golang, go
     - Up to 10x faster than [net/http](https://pkg.go.dev/net/http)
     - Optimized for thousands of small to medium sized requests per second with consistent low millisecond response times
 - Does not provide `ServeMux`
-- Multiple routers build on top of it:
+- Multiple routers built on top of it:
     - [fiber](https://github.com/gofiber/fiber)
     - [atreugo](https://github.com/savsgio/atreugo)
     - [fasthttp-routing](https://github.com/qiangxue/fasthttp-routing)
@@ -430,7 +433,7 @@ Tags: golang, go
 ## Fiber
 
 - [Express](https://expressjs.com) inspired web framework
-    - Yes, that Javascript framework
+    - Yes, that JavaScript framework
 - Built on top of `fasthttp`
 - Plenty of [middleware](https://docs.gofiber.io/category/-middleware) built-in
 - Handlers use custom context: [fiber.Ctx](https://docs.gofiber.io/api/ctx)
@@ -459,9 +462,9 @@ Tags: golang, go
 
 - Sticking to the **`net/http`** standard library is a viable option since Go 1.22 release
     - Previously, the package was hard to use
-        - A lot of boiler plate had to be written (methods, path parameters)
+        - A lot of boilerplate had to be written (methods, path parameters)
     - Still, some things are hard to do like subrouters, using **chi** makes it easier
-- When you need to squeeze-out extra performance `fasthttp` could be the way
+- When you need to squeeze out extra performance, `fasthttp` could be the way
     - **Fiber**, **Hertz** or **Atreugo**
 - When writing complex apps where you can leverage the extra features offered by more advanced frameworks, use them
     - **Echo** or **Gin**
@@ -491,7 +494,7 @@ $ air -- -h
 $ air -c .air.toml -- -h
 ```
 
-[GitHub: Air](https://github.com/cosmtrek/air)
+[GitHub: Air](https://github.com/air-verse/air)
 
 ## Air: config
 
@@ -509,10 +512,13 @@ $ air -c .air.toml -- -h
         - Implementation of `http.ResponseWriter`
         - Records mutations for later inspection
     - **`Server`**
-        - Runs a HTTP server on a system port
+        - Runs an HTTP server on a local loopback port
         - Suitable for testing clients
+    - **`NewTestServer()`**
+        - Added in Go 1.27, uses an in-memory network
+        - Suitable for tests using `testing/synctest`
 
-[Go Packages: net/http/httptest](https://pkg.go.dev/net/http/httptest#ResponseRecorder)
+[Go Packages: net/http/httptest](https://pkg.go.dev/net/http/httptest)
 
 ## httptest recorder
 
@@ -529,7 +535,7 @@ $ air -c .air.toml -- -h
 - Machine-readable specification for describing web service interfaces
     - Previously known as _Swagger Specification_
     - Published in 2011
-    - Latest version is 3.1 (2021)
+    - Latest version is 3.2 (2025)
     - Written in YAML or JSON
 - Swagger Tools
     - Tooling around OpenAPI
@@ -543,23 +549,24 @@ $ air -c .air.toml -- -h
 
 .code assets/lecture-07/openapi/example.yaml
 
-[Swagger: Basic Structure](https://swagger.io/docs/specification/basic-structure/)
+[Swagger: Basic Structure](https://swagger.io/docs/specification/v3_0/basic-structure/)
 
 ## Generating OpenAPI
 
 - Multiple libraries:
     - [swag](https://github.com/swaggo/swag)
-        - Only supports version 2.0
+        - Stable v1 only supports version 2.0
+        - v2 (release candidate) adds 3.1 support
     - [go-swagger](https://github.com/go-swagger/go-swagger)
         - Again, supports only version 2.0
 
 ## swag
 
-- Tool for generating Open API specification from source code
+- Tool for generating OpenAPI specification from source code
 - Relies on annotations
-- Ships with it's own CLI
+- Ships with its own CLI
     - Can reformat your annotations
-    - Can run you Swagger UI for you
+    - Can run Swagger UI for you
 - Multiple middleware plugins for major routers/frameworks
     - [gin](https://github.com/swaggo/gin-swagger)
     - [fiber](https://github.com/swaggo/fiber-swagger)
@@ -577,17 +584,17 @@ $ air -c .air.toml -- -h
 - Code can also be generated from the specification
     - Generally good at generating boilerplate code
 - Multiple tools:
-    - [oapi-codegen](https://github.com/deepmap/oapi-codegen)
+    - [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen)
     - [ogen](https://github.com/ogen-go/ogen)
 
 ## OpenAPI parsing and processing
 
 - [kin-openapi](https://github.com/getkin/kin-openapi)
-    - Handles OpenAPI version 2.0 and 3.0
-    - Version 3.1 got [somewhat stuck](https://github.com/getkin/kin-openapi/issues/230)
+    - Handles OpenAPI version 2.0, 3.0 and 3.1
+        - Version 3.2 partially
 - [libopenapi](https://github.com/pb33f/libopenapi)
     - Relatively new (2022)
-    - Handlers all major versions
+    - Handles all major versions
         - 2.0/3.0/3.1
 
 ## Templating
@@ -612,7 +619,7 @@ $ air -c .air.toml -- -h
 - Variables are templated using `{{ ... }}` syntax
 - Supports loops, function calls and conditions
 
-.code assets/lecture-07/template/text/user.tmpl 
+.code assets/lecture-07/template/text/user.tmpl
 
 ## Rendering template
 
@@ -633,9 +640,10 @@ $ air -c .air.toml -- -h
 
 ## Summary
 
-- Refreshed HTTP protocol and REST API fundamentals
-- Have sense of what `net` package does
-- Know how to use the `net/http` package
-- Have sense of other third party libraries and what they solve for you
-- Know how to test your HTTP based APIs
-- Be aware of Go's built-in templating library
+After this lecture you should:
+- have refreshed HTTP protocol and REST API fundamentals
+- have a sense of what the `net` package does
+- know how to use the `net/http` package
+- have a sense of other third-party libraries and what they solve for you
+- know how to test your HTTP-based APIs
+- be aware of Go's built-in templating library

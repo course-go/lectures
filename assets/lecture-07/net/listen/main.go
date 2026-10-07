@@ -11,7 +11,7 @@ import (
 func main() {
 	ln, err := net.Listen("tcp", ":8080")
 	if err != nil {
-		log.Fatalf("could not listen on port 8000: %v", err)
+		log.Fatalf("could not listen on port 8080: %v", err)
 	}
 
 	fmt.Println("Listening on port 8080...")

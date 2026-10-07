@@ -1,9 +1,9 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"os"
+	"text/template"
 )
 
 // DATA START OMIT

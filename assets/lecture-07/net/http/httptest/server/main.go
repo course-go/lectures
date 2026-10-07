@@ -13,14 +13,14 @@ import (
 func TestSignatureEditionBoxThreeClient(t *testing.T) {
 	expected := "{'data':{'name':'Gavin Belson'}}"
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, expected)
+		fmt.Fprint(w, expected)
 	}))
 	defer server.Close()
 
 	client := NewHooliClient(server.URL) // Server hostname can easily be accessed
 	response, err := client.ExecuteRequest()
 	if err != nil {
-		t.Fatalf("error should nil but got %v", err)
+		t.Fatalf("error should be nil but got %v", err)
 	}
 
 	actual := strings.TrimSpace(response)

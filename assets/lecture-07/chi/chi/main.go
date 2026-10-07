@@ -23,7 +23,7 @@ func getArticle(w http.ResponseWriter, r *http.Request) {
 	article, err := database.GetArticle(date, slug)
 	if err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		w.Write([]byte(fmt.Sprintf("error fetching article %s-%s: %v", date, slug, err)))
+		fmt.Fprintf(w, "error fetching article %s-%s: %v", date, slug, err)
 		return
 	}
 
