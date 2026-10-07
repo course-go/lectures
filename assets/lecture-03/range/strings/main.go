@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	helloWorld := "plɹoʍ ollǝɥ"
 
-	for _, ch := range helloWorld { // iterates over runes - i.e. unicode glyphs
+	for _, ch := range helloWorld { // iterates over runes - i.e. Unicode code points
 		fmt.Printf("%c ", ch)
 	}
 

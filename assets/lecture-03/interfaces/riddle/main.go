@@ -7,7 +7,7 @@ import "fmt"
 // I represents a new interface type
 type I interface{}
 
-// T represents an user-defined data type
+// T represents a user-defined data type
 type T struct{}
 
 func main() {
