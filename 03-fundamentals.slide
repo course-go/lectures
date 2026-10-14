@@ -103,7 +103,7 @@ type Calculator interface {
 
 .play assets/lecture-03/interfaces/circle/main.go /START OMIT/,/END OMIT/
 
-## Declaration of two interfaces
+## Declaration of three interfaces
 
 .code assets/lecture-03/interfaces/interfaces/main.go
 
