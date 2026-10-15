@@ -12,9 +12,9 @@
     placeholder="Search...">
 <div id="search-results"></div>
 
-<div hx-ws="connect:wss:/chatroom">
+<div hx-ext="ws" ws-connect="/chatroom">
     <div id="chat_room"></div>
-    <form hx-ws="send:submit">
+    <form ws-send>
         <input name="chat_message">
     </form>
 </div>

@@ -14,6 +14,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not execute request: %v", err)
 	}
+	defer resp.Body.Close()
 
 	fmt.Println(resp.Request.Proto)
 	fmt.Println(resp.Request.Host)
@@ -28,7 +29,6 @@ func main() {
 	fmt.Println(resp.Header)
 	fmt.Println(resp.ContentLength)
 	bodyBytes, _ := io.ReadAll(resp.Body)
-	defer resp.Body.Close()
 	fmt.Println(string(bodyBytes))
 }
 

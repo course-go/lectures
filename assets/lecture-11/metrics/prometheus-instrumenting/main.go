@@ -1,7 +1,7 @@
 package main
 
 import (
-	"math/rand"
+	"math/rand/v2"
 	"net/http"
 	"strconv"
 	"time"
@@ -26,7 +26,7 @@ func main() {
 	}()
 	go func() {
 		for {
-			randomNumbersGauge.WithLabelValues(strconv.Itoa(rand.Int())).Set(rand.Float64())
+			randomNumbersGauge.WithLabelValues(strconv.Itoa(rand.IntN(10))).Set(rand.Float64())
 			time.Sleep(2 * time.Second)
 		}
 	}()

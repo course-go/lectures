@@ -68,7 +68,7 @@ func (tm TodoModel) View() string {
 		if ok := tm.done[i]; ok {
 			done = "x"
 		}
-		b.WriteString(fmt.Sprintf("%s [%s] %s\n", cursor, done, todo))
+		fmt.Fprintf(&b, "%s [%s] %s\n", cursor, done, todo)
 	}
 
 	b.WriteString("\nPress q to quit.\n")

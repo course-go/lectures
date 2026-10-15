@@ -20,10 +20,10 @@ func main() {
 	}
 
 	payload := PostRequest{Data: "Hello there!"}
-	payloadJson, _ := json.Marshal(payload)
-	fmt.Println(string(payloadJson))
+	payloadJSON, _ := json.Marshal(payload)
+	fmt.Println(string(payloadJSON))
 
-	reader := bytes.NewReader([]byte(payloadJson))
+	reader := bytes.NewReader(payloadJSON)
 	req, _ := http.NewRequest(http.MethodPost, "http://course-go.dev/upload", reader)
 	req.Header.Add("Content-Type", "application/json")
 	fmt.Println(req)

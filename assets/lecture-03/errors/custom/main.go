@@ -39,9 +39,8 @@ func processRequest(req http.Request) error {
 
 func main() {
 	err := processRequest(http.Request{})
-	var httpErr httpErr
-	if errors.As(err, &httpErr) {
-		fmt.Printf("Failed! Code: %d\n", httpErr.code)
+	if herr, ok := errors.AsType[httpErr](err); ok { // Go 1.26+, previously errors.As
+		fmt.Printf("Failed! Code: %d\n", herr.code)
 		os.Exit(2)
 	}
 

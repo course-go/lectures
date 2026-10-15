@@ -91,7 +91,7 @@ This repository contains lecture slides for Course Go.
     - SQL
     - RDBMSs
     - Migrations
-    - sql
+    - database/sql
     - sqlx
     - sqlc
     - GORM

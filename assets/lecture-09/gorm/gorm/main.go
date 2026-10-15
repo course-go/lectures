@@ -67,7 +67,7 @@ func main() {
 
 	// SELECT * FROM products WHERE id = 3;
 	db.Find(&product, 3)
-	// SELECT * FROM users WHERE id IN (1,2,3);
+	// SELECT * FROM products WHERE id IN (1,2,3);
 	db.Find(&products, []int{1, 2, 3})
 
 	// READ END OMIT
@@ -83,8 +83,8 @@ func main() {
 	db.Find(&products, "name <> ? AND price > ?", "Otter", 20.0)
 
 	// SELECT * FROM products WHERE name = 'Beaver';
-	db.Find(&products, User{Name: "Beaver"})
-	db.Find(&products, map[string]interface{}{"name": "Beaver"})
+	db.Find(&products, Product{Name: "Beaver"})
+	db.Find(&products, map[string]any{"name": "Beaver"})
 
 	// SELECT * FROM products WHERE NOT name = 'Gopher' ORDER BY id LIMIT 1;
 	db.Not("name = ?", "Gopher").First(&product)
@@ -108,7 +108,7 @@ func main() {
 	db.Save(&Product{Model: gorm.Model{ID: 1}, Name: "Hoodie", Price: 44.49})
 
 	// UPDATE products SET name='Beaver plush toy' WHERE name='Beaver';
-	db.Model(User{}).Where("name = ?", "Beaver").Updates(Product{Name: "Beaver plush toy"})
+	db.Model(&Product{}).Where("name = ?", "Beaver").Updates(Product{Name: "Beaver plush toy"})
 
 	// UPDATE products SET name='Beanie', updated_at = '2024-04-21 03:42:36' WHERE id = 11;
 	db.Model(&product).Updates(Product{Model: gorm.Model{ID: 11}, Name: "Beanie"})
@@ -132,7 +132,7 @@ func main() {
 	// DELETE FROM products WHERE id IN (1,2);
 	db.Delete(&products)
 
-	// DELETE FROM users WHERE name LIKE "%boo%" AND id IN (1,2);
+	// DELETE FROM products WHERE name LIKE "%boo%" AND id IN (1,2);
 	db.Delete(&products, "name LIKE ?", "%boo%")
 
 	// DELETE END OMIT
@@ -142,11 +142,11 @@ func main() {
 	// UPDATE products SET deleted_at="2024-04-21 03:58:11" WHERE id = 11;
 	db.Delete(&product)
 
-	// UPDATE products SET deleted_at="2024-04-21 03:58:28" WHERE age = 20;
-	db.Where("name = ?", "Gopher").Delete(&User{})
+	// UPDATE products SET deleted_at="2024-04-21 03:58:28" WHERE name = 'Gopher';
+	db.Where("name = ?", "Gopher").Delete(&Product{})
 
 	// SELECT * FROM products WHERE name='Gopher' AND deleted_at IS NULL;
-	db.Where("name = Gopher").Find(&product)
+	db.Where("name = ?", "Gopher").Find(&product)
 
 	// SOFT-DELETE END OMIT
 	// CONVENTIONS START OMIT
@@ -167,14 +167,14 @@ func main() {
 	// CONVENTIONS END OMIT
 	// RAW START OMIT
 
-	var total int
+	var total float64
 	db.Raw("SELECT SUM(price) FROM products").Scan(&total)
 
 	db.Raw("UPDATE products SET name = ? WHERE price = ? RETURNING id, name",
 		"Overpriced toy", 100.00,
 	).Scan(&products)
 
-	db.Exec("UPDATE products SET deleted = ? WHERE id IN ?",
+	db.Exec("UPDATE products SET deleted_at = ? WHERE id IN ?",
 		time.Now(), []int64{1, 2, 3},
 	)
 

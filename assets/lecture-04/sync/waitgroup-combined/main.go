@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
 	"sync"
 	"time"
 )
@@ -67,7 +67,7 @@ func processData(ctx context.Context, data []data) (err error) {
 // END OMIT
 
 func runWorker(ctx context.Context, d data, resultCh chan<- dataResult) {
-	t := time.NewTimer(time.Duration(rand.Int()%500) * time.Millisecond)
+	t := time.NewTimer(time.Duration(rand.IntN(500)) * time.Millisecond)
 
 	select {
 	case <-t.C:

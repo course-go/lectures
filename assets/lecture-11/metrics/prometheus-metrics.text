@@ -6,7 +6,7 @@ go_gc_duration_seconds{quantile="1"} 0.000211501
 go_gc_duration_seconds_sum 0.000809541
 go_gc_duration_seconds_count 9
 go_goroutines 33
-go_info{version="go1.22.2"} 1
+go_info{version="go1.27.1"} 1
 go_memstats_alloc_bytes 1.9502544e+07
 prometheus_http_request_duration_seconds_bucket{handler="/metrics",le="0.2"} 10
 prometheus_http_request_duration_seconds_bucket{handler="/metrics",le="0.4"} 10

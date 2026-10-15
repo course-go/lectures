@@ -23,7 +23,7 @@ type User struct {
 
 func main() {
 	users := map[Key]User{
-		Key{1, "root"} : User{
+		Key{1, "root"}: User{
 			id:      1,
 			name:    "Linus",
 			surname: "Torvalds",

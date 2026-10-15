@@ -28,7 +28,7 @@ func main() {
 	fmt.Println("Slice size:", unsafe.Sizeof(truth))
 	slicePointer := unsafe.Pointer(unsafe.SliceData(truth))
 	itemSize := unsafe.Sizeof("")
-	for i := range len(truth) {
+	for i := range truth {
 		fmt.Println(*(*string)(unsafe.Add(slicePointer, uintptr(i)*itemSize)))
 	}
 }

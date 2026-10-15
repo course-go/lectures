@@ -7,7 +7,7 @@ type Adder interface {
 	add(int, int) int
 }
 
-// Calculator is a user-defined data types that satisfy Adder interface
+// Calculator is a user-defined data type that satisfies the Adder interface
 type Calculator struct {
 }
 

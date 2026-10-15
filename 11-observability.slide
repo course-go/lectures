@@ -37,7 +37,7 @@ Tags: golang, go
 ```
 {
   "name": "API",
-  "version": "v1.15.3"
+  "version": "v1.15.3",
   "status": "NOK",
   "components": {
     "database": {
@@ -81,7 +81,7 @@ Tags: golang, go
 - Custom Prometheus Query Language ([PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/))
 - [Stores data](https://prometheus.io/docs/prometheus/latest/storage/) as time series
 - Exercises the pull strategy by default
-    - Pushing can be set-up using the [pushgateway](https://github.com/prometheus/pushgateway)
+    - Pushing can be set up using the [pushgateway](https://github.com/prometheus/pushgateway)
 - Supports [alerting](https://prometheus.io/docs/alerting/latest/overview/) out of the box
 
 [Prometheus](https://prometheus.io)
@@ -143,13 +143,13 @@ promhttp_metric_handler_requests_total{code="200"}
 count(promhttp_metric_handler_requests_total)
 ```
 
-- Average `/metrics` handler requests with status OK across 3 minute windows
+- Per-second rate of `/metrics` handler requests with status OK over 3-minute windows
 
 ```
 rate(promhttp_metric_handler_requests_total{code="200"}[3m])
 ```
 
-- Average HTTP request duration split by 3 minute windows
+- Average HTTP request duration over 3-minute windows
 
 ```
 sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duration_seconds_count[3m]))
@@ -176,7 +176,7 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
     - [Free plan](https://grafana.com/pricing/)
         - 10k metrics
         - 14-day retention
-        - 50 GB of logs and metrics
+        - 50 GB of logs and 50 GB of traces
 
 [Grafana Labs: Grafana](https://grafana.com/grafana/)
 
@@ -200,14 +200,15 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
     - Unstructured
 - Generally supported by programming languages out of the box
     - [log](https://pkg.go.dev/log)
-    - [slog](https://pkg.go.dev/slog)
+    - [log/slog](https://pkg.go.dev/log/slog) for structured logging (since Go 1.21)
+        - `slog.NewMultiHandler` fans out records to multiple handlers (since Go 1.26)
 
 ## zap
 
 - Created by Uber
 - Focuses on performance
-- Minimalizes allocations
-- [Extendable](https://pkg.go.dev/go.uber.org/zap#hdr-Extending_Zap)
+- Minimizes allocations
+- [Extensible](https://pkg.go.dev/go.uber.org/zap#hdr-Extending_Zap)
 
 .code assets/lecture-11/logs/zap/main.go /START OMIT/,/END OMIT/
 
@@ -228,17 +229,17 @@ sum(rate(http_request_duration_seconds_sum[3m])) / sum(rate(http_request_duratio
 
 ## Loki
 
-- Horizontally-scalable, highly-available, log aggregation system
+- Horizontally scalable, highly available log aggregation system
     - Inspired by Prometheus
     - Focuses on logs instead of metrics
-- Created by Grafana Labs and maintained under the CNCF
+- Created and maintained by Grafana Labs
 - The log data are compressed and [stored](https://grafana.com/docs/loki/latest/get-started/architecture/#storage) in chunks
     - Object storage
 - [Labels](https://grafana.com/docs/loki/latest/get-started/labels/) the data and uses the labels to index them
 - Multiple clients can be configured to collect the logs
 - Custom [LogQL](https://grafana.com/docs/loki/latest/query/) query language similar to PromQL
 
-[Grafana Lab: Loki](https://grafana.com/oss/loki/)
+[Grafana Labs: Loki](https://grafana.com/oss/loki/)
 
 [GitHub: Loki](https://github.com/grafana/loki)
 
@@ -262,20 +263,21 @@ $ loki -config.file=loki.yaml -target compactor
 
 .code assets/lecture-11/logs/loki.yaml
 
-[Grafana Lab: Loki configuration](https://grafana.com/docs/loki/latest/configure/)
+[Grafana Labs: Loki configuration](https://grafana.com/docs/loki/latest/configure/)
 
 ## Clients
 
 - [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/)
     - Logging agent
     - Reuses Prometheus `scrape_configs` configuration
+    - Deprecated, reached end-of-life in March 2026 (use Alloy instead)
 - [Docker Driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/)
     - Docker plugin that reads container logs and pushes them to Loki
 - [OpenTelemetry Collector](https://grafana.com/docs/loki/latest/send-data/otel/)
     - Loki can ingest OTel logs
     - More on OpenTelemetry later
 - [Grafana Alloy](https://grafana.com/docs/alloy/latest/)
-    - Grafanas distribution of OpenTelemetry Collector
+    - Grafana's distribution of OpenTelemetry Collector
 
 [Grafana Labs: Send log data to Loki](https://grafana.com/docs/loki/latest/send-data/)
 
@@ -284,30 +286,31 @@ $ loki -config.file=loki.yaml -target compactor
 ## Traces
 
 - Model work in distributed systems
-- Each trace models a transaction through your system 
+- Each trace models a transaction through your system
     - End-to-end request/response
 - Traces are basically a set of interconnected logs
     - Even through multiple services
 - Each trace is made up of a single or multiple spans
     - Span models a part of the transaction
-        - A span can model a service interaction or a interaction within a component etc.
-    - Each spans contains tags/attributes
+        - A span can model a service interaction or an interaction within a component etc.
+    - Each span contains tags/attributes
         - Provide additional context
 
 ## Spans
 
 .image assets/lecture-11/traces/spans.svg 450 _
 
-[Jaeger: Spans](https://www.jaegertracing.io/docs/1.57/architecture/#span)
+[Jaeger: Spans](https://www.jaegertracing.io/docs/latest/terminology/#span)
 
 ## Jaeger
 
 - Distributed tracing platform
-- Inspired by Dapper and OpenZepkin
+- Inspired by Dapper and OpenZipkin
 - Created by Uber in 2015
     - A CNCF graduated project
 - Nowadays uses OpenTelemetry for instrumentation
     - Previously had its own clients
+- Jaeger v2 is built on top of the OpenTelemetry Collector
 - Supports multiple storage backends
     - Most notable are Cassandra, Elasticsearch, and Kafka
 - Jaeger maintains a [hotrod demo](https://github.com/jaegertracing/jaeger/tree/main/examples/hotrod)
@@ -318,34 +321,34 @@ $ loki -config.file=loki.yaml -target compactor
 
 .image assets/lecture-11/traces/jaeger-traces-view.png 520 _
 
-[Jaeger: Introduction](https://www.jaegertracing.io/docs/1.57/#screenshots)
+[Jaeger: Introduction](https://www.jaegertracing.io/docs/latest/#screenshots)
 
 ##
 
 .image assets/lecture-11/traces/jaeger-traces-detail-view.png 520 _
 
-[Jaeger: Introduction](https://www.jaegertracing.io/docs/1.57/#screenshots)
+[Jaeger: Introduction](https://www.jaegertracing.io/docs/latest/#screenshots)
 
 ## Architecture
 
 - Similarly to Loki, Jaeger can be:
-    - Deployed as a all-in-one binary
-    - Or split by components
-- Components
+    - Deployed as an all-in-one binary
+    - Or split by roles
+- Roles
     - Collector
-        - Receives traces, runs them through a pipeline and saves it
+        - Receives traces, runs them through a pipeline and saves them
     - Query
         - Exposes query API and hosts UI
     - Ingester
         - Adds support for Kafka
 
-[Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
+[Jaeger: Architecture](https://www.jaegertracing.io/docs/latest/architecture/)
 
 ## Architecture
 
 .image assets/lecture-11/traces/jaeger-architecture.svg 320 _ 
 
-[Jaeger: Architecture](https://www.jaegertracing.io/docs/1.57/architecture/)
+[Jaeger: Architecture](https://www.jaegertracing.io/docs/latest/architecture/)
 
 ## Sampling
 
@@ -492,12 +495,12 @@ Pipeline
 
 - The SDK has to be enabled for applications to expose telemetry
     - Otherwise, all telemetry related actions are no-ops
-- The SDK can be configured using [environmental variables](https://opentelemetry.io/docs/languages/sdk-configuration/general/)
+- The SDK can be configured using [environment variables](https://opentelemetry.io/docs/languages/sdk-configuration/general/)
     - [Implementation Compliance Matrix](https://github.com/open-telemetry/opentelemetry-specification/blob/main/spec-compliance-matrix.md#environment-variables)
 
 ## Demo
 
-- Additional [Go examples](https://github.com/open-telemetry/opentelemetry-go/tree/main/example)
+- Additional [Go examples](https://github.com/open-telemetry/opentelemetry-go-contrib/tree/main/examples)
 - OpenTelemetry also maintains an up-to-date demo
     - Microservice-based distributed system
     - Showcases OTel usage

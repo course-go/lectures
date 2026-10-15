@@ -35,6 +35,7 @@ Tags: golang, go
     - It extends the testing type with additional methods
 - **`N`**: exposes number of runs for the benchmark
 - **`Loop`**: used for loop iteration that executes observed work
+    - Added in Go 1.24, preferred over iterating up to **`N`**
 - **`StartTimer`**: starts the benchmark timer
 - **`StopTimer`**: stops the benchmark timer
 - **`ResetTimer`**: resets the benchmark timer
@@ -140,7 +141,7 @@ geomean                        6.245
 - Pretty user friendly
 - Workflow:
     - A profile has to be generated first
-        - Tests using [flags](https://pkg.go.dev/cmd/go/internal/test)
+        - Tests using [flags](https://pkg.go.dev/cmd/go#hdr-Testing_flags)
         - During the [runtime of the application](https://pkg.go.dev/runtime/pprof)
         - By invoking [HTTP requests](https://pkg.go.dev/net/http/pprof)
     - The profile can be inspected using the `pprof` tool
@@ -155,6 +156,7 @@ geomean                        6.245
     - Heap/Memory
     - Mutex
     - Block
+    - Goroutine leak (since Go 1.27)
 - The options slightly vary by the way you generate the profile
 
 [Go Packages: runtime/pprof Profile type](https://pkg.go.dev/runtime/pprof#Profile)
@@ -182,6 +184,7 @@ $ go tool pprof profile.out
 $ go tool pprof http://localhost:6060/debug/pprof/heap
 ```
 
+- The web UI (`-http`) opens the flame graph view by default (since Go 1.26)
 - Many other commands/outputs:
     - web/pdf/png/gif/dot/proto
 - Configurable options and what to display
@@ -211,7 +214,7 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
     - Large structures passed by value everywhere in the code
     - Even within inner loops
     - It causes overhead that is easy to avoid
-        - But at cost: wrong semantic is used
+        - But at a cost: wrong semantics are used
 
 ## Large config (1/3)
 
@@ -237,14 +240,14 @@ $ go tool pprof http://localhost:6060/debug/pprof/heap
     - Basically declares that the structure is immutable
 - Cons:
     - The config is always copied
-        - Structure size is about 700 bytes!
+        - Structure size is almost 800 bytes!
 
 ## Dirty solution
 
 .code assets/lecture-06/optimizations/configuration/configuration.go /REFERENCE START OMIT/,/REFERENCE END OMIT/
 
 - The only possible solution in Go
-    - Different semantic:
+    - Different semantics:
         - Passing by reference implies that the struct can be changed within
 - Unfortunately we can't distinguish between `const` and `mut`
     - Mutation (or the lack of it) has to be checked by unit tests
@@ -271,7 +274,7 @@ BenchmarkGetStorageConfigurationFunctionByValue-12          263807433           
 BenchmarkGetStorageConfigurationFunctionByReference-12     1000000000               0.2815 ns/op
 ```
 
-- That is **5516%** speed increase
+- That is roughly **48x** speed-up
     - `memcpy` operation elimination
 
 ## Profile
@@ -308,7 +311,7 @@ BenchmarkGetStorageConfigurationMethodByReference-12        1000000000          
 
 ## Maps pre-allocation
 
-- Map allocations via `make` allows to specify expected number of map items
+- Map allocation via `make` allows specifying the expected number of map items
 
 ```
 m1 := make(map[uuid.UUID]time.Time)
@@ -317,8 +320,9 @@ m2 := make(map[uuid.UUID]time.Time, 1000)
 
 - Not strictly needed
     - Developers tend to ignore it
-- Does it even make sense to try to estimate number of items?
+- Does it even make sense to try to estimate the number of items?
     - Who knows? Probably only the benchmark...
+- Note: since Go 1.24, maps are implemented as Swiss tables, so current numbers may differ
 
 ## Benchmark
 
@@ -439,7 +443,7 @@ BenchmarkFindInSlice-1000-12        22378456               153.9 ns/op
 
 ## Slices pre-allocation
 
-- `make` allows to specify initial capacity and length for slices
+- `make` allows specifying initial length and capacity for slices
 
 ```
 s1 := make([]uuid.UUID, 0)
@@ -456,7 +460,7 @@ s2 := make([]uuid.UUID, 0, 1000)
 ## Benchmark result
 
 ```
-$ go test -bench Pass -benchtime 3s -cpuprofile slice-insertion.profile
+$ go test -bench SliceInsertion -benchtime 3s -cpuprofile slice-insertion.profile
 ```
 
 ```
@@ -488,9 +492,9 @@ BenchmarkPreallocatedSliceInsertion-12          1000000000               1.566 n
    - Pointer to the data
         - Array
    - Length
-        - Count of array elements
+        - Number of elements accessible through the slice
    - Capacity
-        - Size of the allocated array
+        - Number of elements in the underlying array (from the pointer onwards)
 - Passed by value
    - But only the structure is copied
 
@@ -522,7 +526,7 @@ BenchmarkPassArrayByReference-12        1000000000               0.3140 ns/op
 ```
 
 - What?
-    - Compiler detected that local changes are not visible outside the `changeMe2` function
+    - Compiler detected that local changes are not visible outside the `changeArray` function
     - Hence, it dropped the function call
 
 ## Is it really the case?
@@ -706,25 +710,26 @@ BenchmarkStringBuilderPreallocated-12           500871392                2.378 n
 
 - Built-in runtime tracing
 - A profile can be generated by:
-    - Tests using [flags](https://pkg.go.dev/cmd/go/internal/test)
+    - Tests using [flags](https://pkg.go.dev/cmd/go#hdr-Testing_flags)
     - Directly instrumented during the [runtime of the application](https://pkg.go.dev/runtime/trace)
     - Invoking [HTTP requests](https://pkg.go.dev/net/http/pprof)
 
 ```
-$ go trace -trace trace.out
+$ go test -trace trace.out
 ```
 
 ```
 $ curl -o trace.out http://localhost:6060/debug/pprof/trace?seconds=5
 ```
 
-- Tracing profiles can be inspected using `trace` tool
+- Tracing profiles can be inspected using the `trace` tool
 
 ```
 $ go tool trace trace.out
 ```
 
 - Or you can use third-party tooling like [gotraceui](https://gotraceui.dev/)
+- Since Go 1.25, [trace.FlightRecorder](https://pkg.go.dev/runtime/trace#FlightRecorder) can continuously record the last few seconds of a trace in memory
 
 [Go blog: More powerful Go execution traces](https://go.dev/blog/execution-traces-2024)
 
@@ -732,7 +737,7 @@ $ go tool trace trace.out
 
 .play assets/lecture-06/traces/regions/main.go /START OMIT/,/END OMIT/
 
-[Go packages: runtime/tracing](https://pkg.go.dev/runtime/trace)
+[Go Packages: runtime/trace](https://pkg.go.dev/runtime/trace)
 
 ## Traces overview
 
@@ -754,7 +759,7 @@ $ go tool trace trace.out
 
 - C and Go, CGo
 - Allows interoperability between Go and C
-    - Go can call C code and vice versa 
+    - Go can call C code and vice versa
 - Foreign function interface
 - Interactions via the C "meta" package
 
@@ -765,11 +770,12 @@ $ go tool trace trace.out
 ## CGo
 
 - Has extreme overhead
-    - Look for solution in Go
-- C code cannot hold pointers in to the Go world
+    - Go 1.26 reduced the baseline cost of a call by ~30%, but it is still far more expensive than a Go call
+    - Look for a solution in Go
+- C code cannot keep pointers into Go memory
     - Due to the nature of the GC
 - Need to manually free heap allocated C memory
-    - String, arrays and such
+    - Strings, arrays and such
 - Code is generated by the `import "C"` statement
     - Even blank lines cannot exist between the import and the C code
 
@@ -814,7 +820,7 @@ ok      github.com/course-go/lectures/assets/lecture-06/cgo/math        2.516s
         - Complicated builds
         - Cross compilation
         - More error prone
-    - Rewriting existing C code is almost always the prefer way
+    - Rewriting existing C code is almost always the preferred way
         - Always look for existing Go solutions
 - Thoroughly examine the CGo docs
 - Again, it has an EXTREME overhead
@@ -826,7 +832,7 @@ ok      github.com/course-go/lectures/assets/lecture-06/cgo/math        2.516s
 - Unsafe operations
     - Not protected by the compatibility promise
 - Steps around the type system of Go
-- Allows to directly access memory
+- Allows direct memory access
 
 [Go Packages: unsafe](https://pkg.go.dev/unsafe)
 
@@ -839,7 +845,7 @@ ok      github.com/course-go/lectures/assets/lecture-06/cgo/math        2.516s
 ## Reflection
 
 - Run-time reflection
-- Allows to manipulate objects with arbitrary types
+- Allows manipulating objects with arbitrary types
 
 [Go Packages: reflect](https://pkg.go.dev/reflect)
 
@@ -864,3 +870,8 @@ ok      github.com/course-go/lectures/assets/lecture-06/cgo/math        2.516s
 ## Summary
 
 After this lecture you should:
+- know how to write, run and compare benchmarks
+- know how to generate and inspect profiles and execution traces
+- be aware of common performance pitfalls and how to measure them
+- know what CGo is and why you should mostly avoid it
+- be aware of the `unsafe` and `reflect` packages and their trade-offs

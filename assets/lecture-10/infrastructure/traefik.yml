@@ -4,7 +4,7 @@ api:
 
 entryPoints:
   web:
-    address: :5000
+    address: ":80"
 
 providers:
   docker:

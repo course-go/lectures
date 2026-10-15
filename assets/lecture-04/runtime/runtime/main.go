@@ -8,7 +8,7 @@ import (
 // START OMIT
 
 func main() {
-	fmt.Println(`Logical CPUs ("P"s):`, runtime.NumCPU())
+	fmt.Println("Logical CPUs:", runtime.NumCPU())
 	runtime.GC() // Invokes garbage collector
 	fmt.Println("GOMAXPROCS:", runtime.GOMAXPROCS(8))
 	fmt.Println("GOMAXPROCS:", runtime.GOMAXPROCS(4))

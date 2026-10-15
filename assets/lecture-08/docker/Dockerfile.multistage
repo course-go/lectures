@@ -1,17 +1,17 @@
-FROM golang:1.25-alpine3.22 AS builder
+FROM golang:1.27-alpine3.24 AS builder
 
 ARG SERVICE
 WORKDIR /usr/app
 
 COPY . .
-RUN go build -v -o /usr/app/bin/${SERVICE} cmd/${SERVICE}/main.go
+RUN go build -v -o /usr/app/bin/app ./cmd/${SERVICE}
 
 
-FROM alpine:3.22
+FROM alpine:3.24
 
 EXPOSE 8080/tcp
 
 WORKDIR /usr/app
-COPY --from=builder /usr/app/bin/${SERVICE} /usr/app/${SERVICE}
+COPY --from=builder /usr/app/bin/app /usr/app/app
 
-ENTRYPOINT ["/usr/app/${SERVICE}"]
+ENTRYPOINT ["/usr/app/app"]

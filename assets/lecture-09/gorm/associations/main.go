@@ -64,8 +64,8 @@ type OfficeBuilding struct {
 
 type Office struct {
 	gorm.Model
-	BuildingID uint
-	Number     string
+	OfficeBuildingID uint
+	Number           string
 }
 
 func GetAllOfficeBuildings(db *gorm.DB) ([]OfficeBuilding, error) {
@@ -79,8 +79,8 @@ func GetAllOfficeBuildings(db *gorm.DB) ([]OfficeBuilding, error) {
 
 type Developer struct {
 	gorm.Model
-	Name  string
-	Skill []Skill `gorm:"many2many:developer_skill"` // join table
+	Name   string
+	Skills []Skill `gorm:"many2many:developer_skill"` // join table
 }
 
 type Skill struct {

@@ -25,11 +25,11 @@ func main() {
 				Name: "arguments",
 				Action: func(cCtx *cli.Context) error {
 					if cCtx.String("lang") == "english" {
-						fmt.Printf("Your provided %d arguments!\n", cCtx.Args().Len())
+						fmt.Printf("You provided %d arguments!\n", cCtx.Args().Len())
 						return nil
 					}
 
-					fmt.Printf("Donde esta la biblioteca?")
+					fmt.Println("¿Dónde está la biblioteca?")
 					return nil
 				},
 			},

@@ -9,10 +9,10 @@ import (
 // START OMIT
 
 func main() {
-	testCopyFile("08_defer_practical_usage.go", "new.go")
+	testCopyFile("main.go", "new.go")
 	testCopyFile("not_exists", "new.go")
-	testCopyFile("08_defer_practical_usage.go", "")
-	testCopyFile("08_defer_practical_usage.go", "/dev/full")
+	testCopyFile("main.go", "")
+	testCopyFile("main.go", "/dev/full")
 	testCopyFile("/dev/null", "new2.go")
 }
 

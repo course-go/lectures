@@ -66,7 +66,6 @@ type XI interface {
 }
 ```
 
-- Interface type — variable of interface type, can hold any value implementing an interface
 - Variable of interface type *I* can hold any value _implementing_ *I*
 
 [Go Data Structures: Interfaces by Russ Cox](https://research.swtch.com/interfaces)
@@ -135,7 +134,7 @@ type Calculator interface {
 - Alias for empty interface
 
 ```
-type any interface{}
+type any = interface{}
 ```
 
 - Used in the standard library in many places
@@ -179,13 +178,15 @@ variable, ok := iface.(Type)
 - Checks that the interface value `iface` holds the concrete type `Type`
     - If check fails, `variable` will contain zero value and `ok` will be `false`
     - If check passed, assign the underlying `Type` value to the variable `variable`, `ok` will be `true`
-    - Also knows as "comma ok idiom"
+    - Also known as "comma ok idiom"
 
 ## Type assertions
 
 .play assets/lecture-03/interfaces/assertions/main.go
 
-## Type assertions
+## Type switch
+
+- Type assertions for multiple types can be combined using `switch v := x.(type)`
 
 .play assets/lecture-03/interfaces/server-error-assertions/main.go
 
@@ -204,7 +205,7 @@ type error interface {
 }
 ```
 
-[builtin.go](https://cs.opensource.google/go/go/+/master:src/builtin/builtin.go;l=308)
+[builtin.go](https://pkg.go.dev/builtin#error)
 
 ## Error handling
 
@@ -215,9 +216,10 @@ type error interface {
 ## Wrapping errors
 
 - Errors can be wrapped using `fmt.Errorf`
-- Errors can be then `unwrapped` to obtain wrapped errors
+- Errors can be then _unwrapped_ to obtain wrapped errors
     - Either by calling `errors.Unwrap` directly
     - Or by `errors.Is` and `errors.As` functions
+    - Since Go 1.26, the generic `errors.AsType[T]` is the preferred alternative to `errors.As`
 
 [errors package](https://pkg.go.dev/errors)
 
@@ -244,7 +246,7 @@ type error interface {
     - "Happy path" on the left (one column)
     - No nest of indented braces for "happy path"
     - Exit early
-    - No else returns style statements (`golint` is able to detect it)
+    - No else returns style statements (linters such as `revive` are able to detect it)
     - "Happy return" at the very last line
 
 [Uncyclopedia: Go](https://en.uncyclopedia.co/wiki/Go_%28programming_language%29)
@@ -270,7 +272,7 @@ type error interface {
 
 - Basic data type in the Go programming language
 - All array items have the same type
-    - Unless you use `interface{}` to allow _dynamic typing behaviour_
+    - Unless you use `any` (`interface{}`) to allow _dynamic typing behaviour_
 - Type of an array is derived from the type of items **and** the array's size
     - Unlike slices
 - Index in range *<0,length)*
@@ -303,15 +305,15 @@ type error interface {
 
 ## Slices
 
-- Proper data type in the Go
+- Proper data type in Go
 - Slices are used more often than _plain old arrays_
     - Arrays themselves are actually almost never used
     - Arrays only serve as the foundation for slices
-- Type of slice is derived from the type of it's items
-- Internally, a slice is triple:
-    - **Pointer** to the first element (start of the underlying array)
-    - **Length** of the array
-    - **Capacity** of the array
+- Type of slice is derived from the type of its items
+- Internally, a slice is a triple:
+    - **Pointer** to the first element of the slice (somewhere in the underlying array)
+    - **Length** of the slice
+    - **Capacity** of the slice (from its first element to the end of the underlying array)
 - "Slice operator" `[from:to]`
 - `append` function to add a new element to slice (complicated internally)
 
@@ -319,7 +321,7 @@ type error interface {
 
 .play assets/lecture-03/slices/slices/main.go /START OMIT/,/END OMIT/
 
-[Go Blog: slice usage and internals](https://go.dev/blog/slices/intro)
+[Go Blog: Go Slices: usage and internals](https://go.dev/blog/slices-intro)
 
 ## Slices and arrays as data source for them
 
@@ -339,14 +341,14 @@ type error interface {
 
 - The function `append` returns a new slice
     - Always assign the output of append to the same slice
-- The capacity of new slice can be increased
+- The capacity of the new slice can be increased
     - Realloc magic inside!
 
 .play assets/lecture-03/slices/append/main.go /START OMIT/,/END OMIT/
 
 ## make function
 
-- Allows to create slices with preallocated size
+- Allows creating slices with preallocated size
 - Takes up to three arguments. Mind the order!
     - Type of the slice
     - Length
@@ -406,14 +408,14 @@ delete(m3, 0) // 0 is the key
 ## Uninitialized map
 
 - Once again, default value for map is `nil`
-    - Reading return the default value
-    - Writing is forbidden
+    - Reading returns the zero value
+    - Writing panics
 
 .play assets/lecture-03/maps/nil/main.go
 
 ## Initialized map
 
-- Make can help you specify expected number of elements for the map
+- `make` can help you specify the expected number of elements for the map
 
 .play assets/lecture-03/maps/initialized/main.go
 
@@ -441,12 +443,12 @@ So how can we differentiate between actual default value and missing key?
 
 ## Reading items from map
 
-.play assets/lecture-03/maps/reading/main.go /START OMIT/,/END OMIT/ 
+.play assets/lecture-03/maps/reading/main.go /START OMIT/,/END OMIT/
 
 ## Deleting items from map
 
 - Built-in `delete` function
-- Alternatively `clear` can be used to delete all items
+- Alternatively, the built-in `clear` (Go 1.21) can be used to delete all items
 
 .play assets/lecture-03/maps/deleting/main.go /START OMIT/,/MIDDLE OMIT/
 
@@ -486,9 +488,11 @@ if set[key] { // returns bool
     - Endless while
 - A fourth type exists:
     - For loop with range clause
-- This `range` clause helps us iterate over array items, slice items, map pairs etc.
+- This `range` clause helps us iterate over array items, slice items, map pairs, string runes, channel values, integers (Go 1.22) and iterator functions (Go 1.23)
 - Provides an item index as well
     - Enumeration
+- Since Go 1.22, each iteration has its own copy of the loop variables
+    - Safe to capture them in closures and goroutines
 
 ## Iterating over integers
 
@@ -496,7 +500,7 @@ if set[key] { // returns bool
 
 ## Iterating over arrays
 
-- First item stores the index, second stores the values
+- First item stores the index, second stores the value
 
 .play assets/lecture-03/range/arrays/main.go /START OMIT/,/END OMIT/
 
@@ -512,12 +516,13 @@ if set[key] { // returns bool
 
 ## Iterating over maps
 
-- Note that the order of the key-value pairs is indeterministic
+- Note that the order of the key-value pairs is not specified (and is randomized)
 
 .play assets/lecture-03/range/maps/main.go
 
 ## Iterators
 
+- Range over functions since Go 1.23
 - Iterates elements one-by-one
 - `yield` function
 - Required signatures:
@@ -535,7 +540,11 @@ Seq[V any]     func(yield func(V) bool)
 Seq2[K, V any] func(yield func(K, V) bool)
 ```
 
+- Standard library provides iterators too, e.g. `slices.All`, `maps.Keys`, `strings.Lines`
+
 [Package: iter](https://pkg.go.dev/iter)
+
+[Go Blog: Range Over Function Types](https://go.dev/blog/range-functions)
 
 ## Iterator example
 

@@ -13,8 +13,8 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	e.Get("/user/:id", getUser)
-	e.Get("/show", show)
+	e.GET("/user/:id", getUser)
+	e.GET("/show", show)
 	e.Logger.Fatal(e.Start(":8080"))
 }
 

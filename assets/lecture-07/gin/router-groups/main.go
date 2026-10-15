@@ -10,7 +10,7 @@ func main() {
 	v1 := router.Group("/v1")
 	{
 		v1.GET("/products", legacyGetProduct)
-		v1.POST("/products", legayPostProduct)
+		v1.POST("/products", legacyPostProduct)
 		v1.PUT("/products", legacyPutProduct)
 	}
 

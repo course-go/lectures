@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
-	"fmt"
+	"errors"
 	"net/http"
 	"time"
 
@@ -25,7 +25,7 @@ func main() {
 		health.WithPeriodicCheck(15*time.Second, 3*time.Second, health.Check{
 			Name: "search",
 			Check: func(ctx context.Context) error {
-				return fmt.Errorf("this makes the check fail")
+				return errors.New("this makes the check fail")
 			},
 		}),
 	)

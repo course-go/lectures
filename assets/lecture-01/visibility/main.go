@@ -7,7 +7,7 @@ import (
 
 const (
 	notExported = "This is not exported!"
-	Exported    = "This exported!"
+	Exported    = "This is exported!"
 )
 
 func main() {

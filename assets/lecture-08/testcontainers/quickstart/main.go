@@ -12,23 +12,23 @@ import (
 
 func main() {
 	ctx := context.Background()
-	req := testcontainers.ContainerRequest{
-		Image:        "redis:latest",
-		ExposedPorts: []string{"6379/tcp"},
-		WaitingFor:   wait.ForLog("Ready to accept connections"),
-	}
-	redisContainer, err := testcontainers.GenericContainer(ctx, testcontainers.GenericContainerRequest{
-		ContainerRequest: req,
-		Started:          true,
-	})
-	if err != nil {
-		log.Fatalf("Could not start redis: %s", err)
-	}
+	redisContainer, err := testcontainers.Run(
+		ctx, "redis:latest",
+		testcontainers.WithExposedPorts("6379/tcp"),
+		testcontainers.WithWaitStrategy(
+			wait.ForListeningPort("6379/tcp"),
+			wait.ForLog("Ready to accept connections"),
+		),
+	)
 	defer func() {
-		if err := redisContainer.Terminate(ctx); err != nil {
-			log.Fatalf("Could not stop redis: %s", err)
+		if err := testcontainers.TerminateContainer(redisContainer); err != nil {
+			log.Printf("could not stop redis: %s", err)
 		}
 	}()
+	if err != nil {
+		log.Printf("could not start redis: %s", err)
+		return
+	}
 }
 
 // END OMIT

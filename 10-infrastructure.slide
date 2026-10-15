@@ -27,7 +27,7 @@ Tags: golang, go
 
 ## golangci-lint
 
-- Parallel runner for third party Go [linters](https://golangci-lint.run/docs/linters/)
+- Parallel runner for third-party Go [linters](https://golangci-lint.run/docs/linters/)
     - Integrates over a hundred of them
 - Has integration for all major [IDEs](https://golangci-lint.run/docs/welcome/integrations/)
 - Can also run [formatters](https://golangci-lint.run/docs/formatters/)
@@ -48,19 +48,19 @@ $ golangci-lint fmt
 
 .code assets/lecture-10/linters/golangci.yaml /LINTERS START OMIT/,/LINTERS END OMIT/
 
-[golang-ci-lint.run: linters configuration](https://golangci-lint.run/usage/configuration/)
+[golangci-lint.run: linters configuration](https://golangci-lint.run/usage/configuration/)
 
 ## golangci-lint: configuring formatters
 
 .code assets/lecture-10/linters/golangci.yaml /FORMATTERS START OMIT/,/FORMATTERS END OMIT/
 
-[golang-ci-lint.run: formatters configuration](https://golangci-lint.run/docs/configuration/file/#formatters-configuration)
+[golangci-lint.run: formatters configuration](https://golangci-lint.run/docs/configuration/file/#formatters-configuration)
 
 ## golangci-lint: configuring outputs
 
 .code assets/lecture-10/linters/golangci.yaml /OUTPUTS START OMIT/,/OUTPUTS END OMIT/
 
-[golang-ci-lint.run: output configuration](https://golangci-lint.run/docs/configuration/file/#output-configuration)
+[golangci-lint.run: output configuration](https://golangci-lint.run/docs/configuration/file/#output-configuration)
 
 ## CI/CD
 
@@ -87,13 +87,13 @@ $ golangci-lint fmt
 
 ## CD
 
-- Mostly setup on pushes to the _main_ branch
+- Mostly set up on pushes to the _main_ branch
     - Releases/tags
 - Continuous Delivery
-    - Shipping update
+    - Shipping updates
         - Container/package repositories
 - Continuous Deployment
-    - Deploying update to production
+    - Deploying updates to production
     - Not always practiced
         - Manual trigger
 
@@ -107,8 +107,8 @@ $ golangci-lint fmt
     - New features
 - Patch
     - Bug fixes
-- Release candidates
-    - Suffixed with `.rc-[NUMBER]`
+- Pre-releases, e.g. release candidates
+    - Suffixed with `-rc.[NUMBER]`, e.g. `v1.18.0-rc.1`
 
 [Semver](https://semver.org)
 
@@ -143,7 +143,7 @@ $ git push origin --tags
 ## GitLab CI/CD
 
 - Built into GitLab
-- Configured using the `.gitlab-ci.yaml`
+- Configured using the `.gitlab-ci.yml` file
     - Root of project
 
 [GitLab Docs: CI/CD](https://docs.gitlab.com/ee/topics/build_your_application.html)
@@ -210,7 +210,7 @@ $ git push origin --tags
 ## Alternatives
 
 - [Jenkins](https://www.jenkins.io)
-- [Circle CI](https://circleci.com)
+- [CircleCI](https://circleci.com)
 - [TeamCity](https://www.jetbrains.com/teamcity/)
 
 ## Deployments
@@ -240,7 +240,7 @@ $ git push origin --tags
 
 ## Caddy
 
-- Web server, reverse proxy, load-balancer
+- Web server, reverse proxy, load balancer
     - Alternative to NGINX, Apache etc.
 - Native config format is JSON
     - `Caddyfile`
@@ -301,7 +301,7 @@ $ caddy run
 - What if our VM dies?
     - Lack of hardware resources
     - Network outage
-    - Datacenters can [caught on fire](https://dgtlinfra.com/data-center-fires/)
+    - Datacenters can [catch fire](https://dgtlinfra.com/data-center-fires/)
 
 ## Complex
 
@@ -311,7 +311,7 @@ $ caddy run
 
 ## Cloud
 
-- Allows access to computer system resource and storage
+- Allows access to computer system resources and storage
 - Major service providers:
     - **Amazon Web Services (AWS)** [~33 %]
     - **Microsoft Azure** [~22 %]
@@ -320,7 +320,7 @@ $ caddy run
 - For only hosting VPSs or dedicated servers, consider smaller providers
     - Generally cheaper
     - Honorable mentions:
-        - [Hetzner](https://www.hetzner.com), [netcup](https://www.netcup.eu), [Digital Ocean](https://www.digitalocean.com)
+        - [Hetzner](https://www.hetzner.com), [netcup](https://www.netcup.eu), [DigitalOcean](https://www.digitalocean.com)
 
 [N-iX: AWS vs Azure vs GCP](https://www.n-ix.com/comparing-big-3-aws-azure-gcp/)
 
@@ -336,7 +336,7 @@ $ caddy run
         - Gemini
     - Computing
     - Storage
-    - Data anylytics
+    - Data analytics
 
 [GCP: Cloud APIs](https://cloud.google.com/apis?hl=en)
 
@@ -349,7 +349,7 @@ $ caddy run
     - Deploy them right away
 - Additional features:
     - Vulnerability scanning
-- You can setup building of containers in GCP directly
+- You can set up building of containers in GCP directly
     - [Cloud Build](https://cloud.google.com/build/docs)
 
 [GCP: Artifact Registry](https://cloud.google.com/artifact-registry)
@@ -390,7 +390,7 @@ $ caddy run
 
 - Virtual Private Cloud
 - Network service
-    - Allows you to setup virtual topology
+    - Allows you to set up virtual topology
     - Allows network sharing across projects
 - Alternatives:
     - Amazon: Virtual Private Cloud
@@ -401,10 +401,10 @@ $ caddy run
 ## Cloud SQL
 
 - Service for running SQL database instances
-- Currently supports MySQL, PostgresSQL, and SQL Server
+- Currently supports MySQL, PostgreSQL, and SQL Server
 - Alternatives:
-    - Amazon: Simple Storage Service (S3)
-    - Azure: Blob Storage
+    - Amazon: Relational Database Service (RDS)
+    - Azure: Azure SQL Database, Azure Database for PostgreSQL/MySQL
 
 [GCP: Cloud SQL](https://cloud.google.com/sql?hl=en)
 
@@ -417,7 +417,7 @@ $ caddy run
 - Alternatives:
     - Amazon: Simple Storage Service (S3)
     - Azure: Blob Storage
-    - Open-source: [Minio](https://github.com/minio/minio)
+    - Open-source: [SeaweedFS](https://github.com/seaweedfs/seaweedfs), [Garage](https://garagehq.deuxfleurs.fr)
 
 [GCP: Cloud Storage](https://cloud.google.com/storage?hl=en)
 

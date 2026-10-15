@@ -30,6 +30,8 @@ func main() {
 		fmt.Println(err)
 		os.Exit(2)
 	}
+
+	fmt.Println(calculation)
 }
 
 // END OMIT
